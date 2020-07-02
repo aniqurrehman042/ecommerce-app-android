@@ -1,10 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
     tools:context=".ui.SignInSignUpActivity">
 
-  </androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="@dimen/_320sdp"
+            android:layout_height="@dimen/_180sdp"
+            android:src="@color/red" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:gravity="center_horizontal"
+            android:paddingHorizontal="@dimen/_10sdp"
+            android:text="REGISTRATION"
+            android:textColor="@color/red"
+            android:textSize="@dimen/_16ssp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/padding_normal">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_large"
+                android:background="@drawable/bg_light_grey_rounded"
+                android:hint="Name"
+                android:inputType="textPersonName"
+                android:lines="1"
+                android:maxLength="35"
+                android:maxLines="1"
+                android:paddingHorizontal="@dimen/padding_large"
+                android:paddingVertical="@dimen/padding_normal"
+                android:textSize="@dimen/_10ssp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:background="@drawable/bg_light_grey_rounded"
+                android:hint="Phone no"
+                android:inputType="phone"
+                android:lines="1"
+                android:maxLength="13"
+                android:maxLines="1"
+                android:paddingHorizontal="@dimen/padding_large"
+                android:paddingVertical="@dimen/padding_normal"
+                android:textSize="@dimen/_10ssp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:background="@drawable/bg_light_grey_rounded"
+                android:hint="CNIC no"
+                android:inputType="number"
+                android:lines="1"
+                android:maxLength="15"
+                android:maxLines="1"
+                android:paddingHorizontal="@dimen/padding_large"
+                android:paddingVertical="@dimen/padding_normal"
+                android:textSize="@dimen/_10ssp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:background="@drawable/bg_light_grey_rounded"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:lines="1"
+                android:maxLength="50"
+                android:maxLines="1"
+                android:paddingHorizontal="@dimen/padding_large"
+                android:paddingVertical="@dimen/padding_normal"
+                android:textSize="@dimen/_10ssp" />
+
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_30sdp"
+                android:background="@drawable/bg_black_rounded_bordered">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:gravity="center_horizontal"
+                    android:paddingVertical="@dimen/padding_normal"
+                    android:text="Sign in"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10ssp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/bg_black_right_rounded"
+                    android:gravity="center_horizontal"
+                    android:paddingVertical="@dimen/padding_normal"
+                    android:text="Sign up"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_10ssp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_small"
+        android:layout_marginTop="@dimen/margin_large"
+        android:gravity="center"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="@dimen/size_back_button"
+            android:layout_height="@dimen/size_back_button"
+            android:src="@drawable/ic_left_arrow_white" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

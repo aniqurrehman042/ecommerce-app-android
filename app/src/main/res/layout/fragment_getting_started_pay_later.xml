@@ -1,14 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.GettingStartedPayLaterFragment">
+    tools:context=".ui.fragments.GettingStartedRegistrationFragment"
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
 
-    <!-- TODO: Update blank fragment layout -->
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <ImageView
+        android:layout_width="@dimen/_320sdp"
+        android:layout_height="@dimen/_280sdp"
+        android:src="#00ff00"/>
+
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PAY LATER"
+        android:textColor="@color/red"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="@dimen/margin_small"
+        android:paddingHorizontal="@dimen/_10sdp"
+        android:textSize="@dimen/_16ssp" />
 
-</FrameLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="You get a cutting edge lease to own option built for you, with no credit required."
+        android:textColor="@color/black"
+        android:gravity="center_horizontal"
+        android:paddingHorizontal="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/margin_small"
+        android:textSize="@dimen/_12ssp" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+</LinearLayout>
