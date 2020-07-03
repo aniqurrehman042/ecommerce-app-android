@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".ui.SignInSignUpActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="@dimen/_320sdp"
+            android:layout_height="@dimen/_120sdp"
+            android:src="@color/red" />
+
+        <TextView
+            android:id="@+id/tvMainHeading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:gravity="center_horizontal"
+            android:paddingHorizontal="@dimen/_10sdp"
+            android:text="FILL YOUR INFORMATION"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_heading" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginBottom="@dimen/margin_normal">
+
+            <LinearLayout
+                android:id="@+id/llMoreDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="@dimen/padding_normal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:text="Current Address"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_normal" />
+
+                <EditText
+                    android:id="@+id/etHouseNo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:background="@drawable/bg_light_grey_circle"
+                    android:hint="House #"
+                    android:inputType="text"
+                    android:lines="1"
+                    android:maxLength="10"
+                    android:maxLines="1"
+                    android:paddingHorizontal="@dimen/padding_large"
+                    android:paddingVertical="@dimen/padding_normal"
+                    android:textSize="@dimen/text_normal" />
+
+                <EditText
+                    android:id="@+id/etStreet"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:background="@drawable/bg_light_grey_circle"
+                    android:hint="Street"
+                    android:inputType="text"
+                    android:lines="1"
+                    android:maxLength="20"
+                    android:maxLines="1"
+                    android:paddingHorizontal="@dimen/padding_large"
+                    android:paddingVertical="@dimen/padding_normal"
+                    android:textSize="@dimen/text_normal" />
+
+                <EditText
+                    android:id="@+id/etArea"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:background="@drawable/bg_light_grey_circle"
+                    android:hint="Area"
+                    android:inputType="text"
+                    android:lines="1"
+                    android:maxLength="20"
+                    android:maxLines="1"
+                    android:paddingHorizontal="@dimen/padding_large"
+                    android:paddingVertical="@dimen/padding_normal"
+                    android:textSize="@dimen/text_normal" />
+
+                <EditText
+                    android:id="@+id/etCity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:background="@drawable/bg_light_grey_circle"
+                    android:hint="City"
+                    android:inputType="text"
+                    android:lines="1"
+                    android:maxLength="20"
+                    android:maxLines="1"
+                    android:paddingHorizontal="@dimen/padding_large"
+                    android:paddingVertical="@dimen/padding_normal"
+                    android:textSize="@dimen/text_normal" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_40sdp">
+
+            <TextView
+                android:id="@+id/tvSkip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="@dimen/margin_large"
+                android:background="@drawable/bg_red_circle_bordered"
+                android:gravity="center_horizontal"
+                android:paddingHorizontal="@dimen/padding_large"
+                android:paddingVertical="@dimen/padding_normal"
+                android:text="SKIP"
+                android:textColor="@color/red"
+                android:textSize="@dimen/text_button" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/tvNext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginRight="@dimen/margin_large"
+                android:background="@drawable/bg_black_circle_bordered"
+                android:gravity="center_horizontal"
+                android:paddingHorizontal="@dimen/padding_large"
+                android:paddingVertical="@dimen/padding_normal"
+                android:text="Next"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_button" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_small"
+        android:layout_marginTop="@dimen/margin_large"
+        android:gravity="center"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="@dimen/size_back_button"
+            android:layout_height="@dimen/size_back_button"
+            android:src="@drawable/ic_left_arrow_white" />
+
+    </LinearLayout>
+
+    <include layout="@layout/layout_loader" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

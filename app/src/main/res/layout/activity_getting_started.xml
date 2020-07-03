@@ -41,7 +41,7 @@
                 android:paddingHorizontal="@dimen/_10sdp"
                 android:text="@string/welcome_message"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_12ssp" />
+                android:textSize="@dimen/text_normal" />
 
             <View
                 android:layout_width="0dp"
@@ -73,7 +73,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_small"
         android:layout_marginBottom="@dimen/_40sdp"
-        android:background="@drawable/bg_red_rounded_bordered"
+        android:background="@drawable/bg_red_circle_bordered"
         android:paddingHorizontal="@dimen/_20sdp"
         android:paddingVertical="@dimen/_4sdp"
         android:text="Skip"
@@ -97,27 +97,27 @@
             android:id="@+id/vIndicator1"
             android:layout_width="@dimen/_5sdp"
             android:layout_height="@dimen/_5sdp"
-            android:background="@drawable/bg_red_rounded" />
+            android:background="@drawable/bg_red_circle" />
 
         <View
             android:id="@+id/vIndicator2"
             android:layout_width="@dimen/_5sdp"
             android:layout_height="@dimen/_5sdp"
-            android:background="@drawable/bg_dark_grey_rounded"
+            android:background="@drawable/bg_dark_grey_circle"
             android:layout_marginLeft="@dimen/_5sdp"/>
 
         <View
             android:id="@+id/vIndicator3"
             android:layout_width="@dimen/_5sdp"
             android:layout_height="@dimen/_5sdp"
-            android:background="@drawable/bg_dark_grey_rounded"
+            android:background="@drawable/bg_dark_grey_circle"
             android:layout_marginLeft="@dimen/_5sdp"/>
 
         <View
             android:id="@+id/vIndicator4"
             android:layout_width="@dimen/_5sdp"
             android:layout_height="@dimen/_5sdp"
-            android:background="@drawable/bg_dark_grey_rounded"
+            android:background="@drawable/bg_dark_grey_circle"
             android:layout_marginLeft="@dimen/_5sdp"/>
 
     </LinearLayout>
@@ -126,7 +126,7 @@
         android:id="@+id/llNext"
         android:layout_width="@dimen/_150sdp"
         android:layout_height="@dimen/_150sdp"
-        android:background="@drawable/bg_red_rounded"
+        android:background="@drawable/bg_red_circle"
         android:gravity="center"
         android:translationX="@dimen/_45sdp"
         android:translationY="@dimen/_20sdp"

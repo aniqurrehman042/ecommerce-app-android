@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".ui.VerificationActivity">
 
@@ -17,6 +18,7 @@
     <ImageView
         android:layout_width="@dimen/_320sdp"
         android:layout_height="@dimen/_180sdp"
+        android:layout_gravity="center_horizontal"
         android:src="@color/red" />
 
     <TextView
@@ -25,8 +27,134 @@
         android:layout_marginTop="@dimen/_15sdp"
         android:layout_gravity="center_horizontal"
         android:paddingHorizontal="@dimen/_10sdp"
-        android:text="REGISTRATION"
+        android:text="VERIFICATION"
         android:textColor="@color/red"
-        android:textSize="@dimen/_16ssp" />
+        android:textSize="@dimen/text_heading" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Enter 4 DIGIT CODE we sent to"
+        android:textColor="@color/black"
+        android:gravity="center_horizontal"
+        android:paddingHorizontal="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/margin_small"
+        android:textSize="@dimen/text_normal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="+92 331 112 3344"
+        android:textColor="@color/black"
+        android:gravity="center_horizontal"
+        android:textSize="@dimen/text_normal" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    
+    <LinearLayout
+        android:id="@+id/llVCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/margin_small"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        
+        <EditText
+            android:id="@+id/etVCode1"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_light_grey_rounded"
+            android:paddingVertical="@dimen/padding_normal"
+            android:textSize="@dimen/text_normal"
+            android:maxLength="1"
+            android:gravity="center"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/etVCode2"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_light_grey_rounded"
+            android:paddingVertical="@dimen/padding_normal"
+            android:textSize="@dimen/text_normal"
+            android:layout_marginLeft="@dimen/margin_large"
+            android:maxLength="1"
+            android:gravity="center"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/etVCode3"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_light_grey_rounded"
+            android:paddingVertical="@dimen/padding_normal"
+            android:layout_marginLeft="@dimen/margin_large"
+            android:textSize="@dimen/text_normal"
+            android:maxLength="1"
+            android:gravity="center"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/etVCode4"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_light_grey_rounded"
+            android:paddingVertical="@dimen/padding_normal"
+            android:layout_marginLeft="@dimen/margin_large"
+            android:textSize="@dimen/text_normal"
+            android:maxLength="1"
+            android:gravity="center"
+            android:inputType="number" />
+        
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvReqText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Request code in "
+        android:textColor="@color/blue"
+        android:layout_marginTop="@dimen/margin_tiny"
+        android:textSize="@dimen/text_normal"
+        app:layout_constraintLeft_toLeftOf="@id/llVCode"
+        app:layout_constraintTop_toBottomOf="@id/llVCode"/>
+
+        <TextView
+            android:id="@+id/tvReqTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00:30"
+            android:textColor="@color/blue"
+            android:layout_marginTop="@dimen/margin_tiny"
+            android:textSize="@dimen/text_normal"
+            app:layout_constraintLeft_toRightOf="@id/tvReqText"
+            app:layout_constraintBottom_toBottomOf="@id/tvReqText"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/tvContinue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_black_circle"
+        android:paddingHorizontal="@dimen/padding_large"
+        android:paddingVertical="@dimen/padding_normal"
+        android:gravity="center_horizontal"
+        android:layout_marginHorizontal="@dimen/margin_small"
+        android:layout_marginBottom="@dimen/margin_large"
+        android:text="Continue"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_button" />
 
 </LinearLayout>

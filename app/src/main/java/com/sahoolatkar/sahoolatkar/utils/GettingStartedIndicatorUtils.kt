@@ -62,8 +62,8 @@ class GettingStartedIndicatorUtils(private val activity: Activity, private val v
     }
 
     private fun switchIndicator(position: Int) {
-        selectedIndicator.background = ContextCompat.getDrawable(activity, R.drawable.bg_dark_grey_rounded)
-        views[position].background = ContextCompat.getDrawable(activity, R.drawable.bg_red_rounded)
+        selectedIndicator.background = ContextCompat.getDrawable(activity, R.drawable.bg_dark_grey_circle)
+        views[position].background = ContextCompat.getDrawable(activity, R.drawable.bg_red_circle)
         selectedIndicator = views[position]
         vpGettingStarted.currentItem = position
     }

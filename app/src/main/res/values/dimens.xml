@@ -8,4 +8,7 @@
     <dimen name="margin_large">@dimen/_20sdp</dimen>
     <dimen name="padding_large">@dimen/_15sdp</dimen>
     <dimen name="size_back_button">@dimen/_25sdp</dimen>
+    <dimen name="text_heading">@dimen/_16ssp</dimen>
+    <dimen name="text_normal">@dimen/_12ssp</dimen>
+    <dimen name="margin_normal">@dimen/_15sdp</dimen>
 </resources>

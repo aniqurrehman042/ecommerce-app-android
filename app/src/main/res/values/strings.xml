@@ -3,4 +3,12 @@
     <string name="welcome_message">With SAHOOLATKAR, you get a cutting-edge lease to own option built for you, with no credit required. You can apply using our intuitive online process in-store or at home while shopping online.</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <array name="occupations">
+        <item>Occupation</item>
+        <item>Fisherman</item>
+        <item>Farmer</item>
+        <item>Lawyer</item>
+        <item>Postman</item>
+        <item>Policeman</item>
+    </array>
 </resources>
