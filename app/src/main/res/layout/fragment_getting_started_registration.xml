@@ -15,7 +15,7 @@
     <ImageView
         android:layout_width="@dimen/_320sdp"
         android:layout_height="@dimen/_280sdp"
-        android:src="@color/red"/>
+        android:src="@drawable/img_registration"/>
 
 
     <TextView
