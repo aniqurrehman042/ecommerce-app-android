@@ -25,15 +25,15 @@ class WorkInfoActivity : AppCompatActivity() {
         ViewUtils.setDatePicker(etPaycheckDate, this)
 
         tvNext.setOnClickListener {
-            startMainActivity()
+            startRegistrationSuccessActivity()
         }
 
         tvSkip.setOnClickListener {
-            startMainActivity()
+            startRegistrationSuccessActivity()
         }
     }
 
-    private fun startMainActivity() {
-        startActivity(Intent(this, MainActivity::class.java))
+    private fun startRegistrationSuccessActivity() {
+        startActivity(Intent(this, RegistrationSuccessActivity::class.java))
     }
 }
