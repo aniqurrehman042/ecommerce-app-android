@@ -1,5 +1,6 @@
 package com.sahoolatkar.sahoolatkar.ui
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.sahoolatkar.sahoolatkar.R
@@ -22,5 +23,17 @@ class WorkInfoActivity : AppCompatActivity() {
 
     private fun setListeners() {
         ViewUtils.setDatePicker(etPaycheckDate, this)
+
+        tvNext.setOnClickListener {
+            startMainActivity()
+        }
+
+        tvSkip.setOnClickListener {
+            startMainActivity()
+        }
+    }
+
+    private fun startMainActivity() {
+        startActivity(Intent(this, MainActivity::class.java))
     }
 }
