@@ -8,12 +8,14 @@ import android.text.TextWatcher
 import android.view.View
 import android.widget.EditText
 import com.sahoolatkar.sahoolatkar.R
+import com.sahoolatkar.sahoolatkar.utils.SyncEditTextUtils
 import com.sahoolatkar.sahoolatkar.utils.UIUtils
 import kotlinx.android.synthetic.main.activity_verification.*
 
 class VerificationActivity : AppCompatActivity() {
 
     private lateinit var vCodeEts: Array<EditText>
+    private lateinit var syncVCodeUtils: SyncEditTextUtils
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,23 +43,11 @@ class VerificationActivity : AppCompatActivity() {
     private fun setupIndexLineNavigation() {
 
         populateEtsArray()
+        syncEditTexts()
+    }
 
-        for (i in 0..vCodeEts.size - 2)
-        vCodeEts[i].addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(p0: Editable?) {
-
-            }
-
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-            }
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if (p0!!.isNotEmpty()) {
-                    vCodeEts[i + 1].requestFocus()
-                }
-            }
-        })
+    private fun syncEditTexts() {
+        syncVCodeUtils = SyncEditTextUtils(this, vCodeEts)
     }
 
     private fun populateEtsArray() {

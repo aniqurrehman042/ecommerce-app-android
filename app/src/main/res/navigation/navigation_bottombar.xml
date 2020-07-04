@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_bottombar"
+    app:startDestination="@id/home">
+
+    <fragment
+        android:id="@+id/store_locator"
+        android:name="com.sahoolatkar.sahoolatkar.ui.fragments.StoreLocatorFragment"
+        android:label="Store Locator"
+        tools:layout="@layout/fragment_store_locator" />
+
+    <fragment
+        android:id="@+id/apply_loan"
+        android:name="com.sahoolatkar.sahoolatkar.ui.fragments.ApplyLoanFragment"
+        android:label="Apply Loan"
+        tools:layout="@layout/fragment_apply_loan" />
+
+    <fragment
+        android:id="@+id/home"
+        android:name="com.sahoolatkar.sahoolatkar.ui.fragments.HomeFragment"
+        android:label="Home Fragment"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/installments"
+        android:name="com.sahoolatkar.sahoolatkar.ui.fragments.InstallmentsFragment"
+        android:label="Installments"
+        tools:layout="@layout/fragment_installments" />
+
+    <fragment
+        android:id="@+id/profile"
+        android:name="com.sahoolatkar.sahoolatkar.ui.fragments.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile" />
+
+</navigation>

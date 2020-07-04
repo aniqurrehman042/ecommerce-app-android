@@ -25,15 +25,15 @@ class WorkInfoActivity : AppCompatActivity() {
         ViewUtils.setDatePicker(etPaycheckDate, this)
 
         tvNext.setOnClickListener {
-            startRegistrationSuccessActivity()
+            startPinCreationActivity()
         }
 
         tvSkip.setOnClickListener {
-            startRegistrationSuccessActivity()
+            startPinCreationActivity()
         }
     }
 
-    private fun startRegistrationSuccessActivity() {
-        startActivity(Intent(this, RegistrationSuccessActivity::class.java))
+    private fun startPinCreationActivity() {
+        startActivity(Intent(this, PinCreationActivity::class.java))
     }
 }

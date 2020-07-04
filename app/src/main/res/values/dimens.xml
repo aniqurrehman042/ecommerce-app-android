@@ -14,4 +14,6 @@
     <dimen name="text_heading">@dimen/_16ssp</dimen>
     <dimen name="text_normal">@dimen/_12ssp</dimen>
     <dimen name="margin_normal">@dimen/_15sdp</dimen>
+    <dimen name="size_small_horizontal_item">@dimen/_50sdp</dimen>
+    <dimen name="text_small">@dimen/_9ssp</dimen>
 </resources>

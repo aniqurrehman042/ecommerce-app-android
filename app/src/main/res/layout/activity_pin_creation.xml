@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".ui.VerificationActivity"
+    android:background="@color/white">
+
+    <ImageView
+        android:layout_width="@dimen/size_back_button"
+        android:layout_height="@dimen/size_back_button"
+        android:src="@drawable/ic_left_arrow_white"
+        android:tint="@color/red"
+        android:layout_marginLeft="@dimen/margin_small"
+        android:layout_marginTop="@dimen/margin_large" />
+
+    <ImageView
+        android:layout_width="@dimen/_320sdp"
+        android:layout_height="@dimen/_180sdp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/img_code_verfication" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_gravity="center_horizontal"
+        android:paddingHorizontal="@dimen/_10sdp"
+        android:text="LOGIN PIN"
+        android:textColor="@color/red"
+        android:textSize="@dimen/text_heading" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Enter 4 DIGIT PIN CODE that you can use for login"
+        android:textColor="@color/black"
+        android:gravity="center_horizontal"
+        android:paddingHorizontal="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/margin_small"
+        android:textSize="@dimen/text_normal" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/llPCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/margin_small"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <EditText
+                android:id="@+id/etPCode1"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_light_grey_rounded"
+                android:paddingVertical="@dimen/padding_normal"
+                android:textSize="@dimen/text_normal"
+                android:maxLength="1"
+                android:gravity="center"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/etPCode2"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_light_grey_rounded"
+                android:paddingVertical="@dimen/padding_normal"
+                android:textSize="@dimen/text_normal"
+                android:layout_marginLeft="@dimen/margin_large"
+                android:maxLength="1"
+                android:gravity="center"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/etPCode3"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_light_grey_rounded"
+                android:paddingVertical="@dimen/padding_normal"
+                android:layout_marginLeft="@dimen/margin_large"
+                android:textSize="@dimen/text_normal"
+                android:maxLength="1"
+                android:gravity="center"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/etPCode4"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_light_grey_rounded"
+                android:paddingVertical="@dimen/padding_normal"
+                android:layout_marginLeft="@dimen/margin_large"
+                android:textSize="@dimen/text_normal"
+                android:maxLength="1"
+                android:gravity="center"
+                android:inputType="number" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvConfirmPCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="Confirm the pin code"
+            android:textColor="@color/black"
+            android:paddingHorizontal="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:textSize="@dimen/text_normal"
+            app:layout_constraintTop_toBottomOf="@id/llPCode"/>
+
+        <LinearLayout
+            android:id="@+id/llPCodeConfirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/margin_small"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvConfirmPCode">
+
+            <EditText
+                android:id="@+id/etPCodeConfirm1"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_light_grey_rounded"
+                android:paddingVertical="@dimen/padding_normal"
+                android:textSize="@dimen/text_normal"
+                android:maxLength="1"
+                android:gravity="center"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/etPCodeConfirm2"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_light_grey_rounded"
+                android:paddingVertical="@dimen/padding_normal"
+                android:textSize="@dimen/text_normal"
+                android:layout_marginLeft="@dimen/margin_large"
+                android:maxLength="1"
+                android:gravity="center"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/etPCodeConfirm3"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_light_grey_rounded"
+                android:paddingVertical="@dimen/padding_normal"
+                android:layout_marginLeft="@dimen/margin_large"
+                android:textSize="@dimen/text_normal"
+                android:maxLength="1"
+                android:gravity="center"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/etPCodeConfirm4"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_light_grey_rounded"
+                android:paddingVertical="@dimen/padding_normal"
+                android:layout_marginLeft="@dimen/margin_large"
+                android:textSize="@dimen/text_normal"
+                android:maxLength="1"
+                android:gravity="center"
+                android:inputType="number" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/tvContinue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_black_circle"
+        android:paddingHorizontal="@dimen/padding_large"
+        android:paddingVertical="@dimen/padding_normal"
+        android:gravity="center_horizontal"
+        android:layout_marginHorizontal="@dimen/margin_small"
+        android:layout_marginBottom="@dimen/margin_large"
+        android:text="Continue"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_button" />
+
+</LinearLayout>
