@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 import com.sahoolatkar.sahoolatkar.R
 import com.sahoolatkar.sahoolatkar.models.CategoryModel
 
-class SmallHorizontalRecyclerAdapter(var horizontalItems: MutableList<CategoryModel>) : RecyclerView.Adapter<SmallHorizontalRecyclerAdapter.ViewHolder>() {
+class SmallCategoriesRecyclerAdapter(var horizontalItems: MutableList<CategoryModel>) : RecyclerView.Adapter<SmallCategoriesRecyclerAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val ivItemImg = itemView.findViewById<ImageView>(R.id.ivItemImg)
@@ -18,7 +18,7 @@ class SmallHorizontalRecyclerAdapter(var horizontalItems: MutableList<CategoryMo
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.layout_small_horizontal_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.layout_small_category_item, parent, false)
         return ViewHolder(view)
     }
 
@@ -33,7 +33,6 @@ class SmallHorizontalRecyclerAdapter(var horizontalItems: MutableList<CategoryMo
             .load(horizontalItem.imageUrl)
             .fitCenter()
             .into(holder.ivItemImg)
-
         holder.tvItemName.text = horizontalItem.name
     }
 }

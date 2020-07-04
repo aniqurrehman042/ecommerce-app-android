@@ -16,4 +16,5 @@
     <dimen name="margin_normal">@dimen/_15sdp</dimen>
     <dimen name="size_small_horizontal_item">@dimen/_50sdp</dimen>
     <dimen name="text_small">@dimen/_9ssp</dimen>
+    <dimen name="size_large_category_img">@dimen/_80sdp</dimen>
 </resources>
