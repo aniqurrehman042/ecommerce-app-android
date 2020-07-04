@@ -6,10 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
-import com.bumptech.glide.Glide
 import com.sahoolatkar.sahoolatkar.R
 import com.sahoolatkar.sahoolatkar.models.SliderItemModel
 import com.smarteist.autoimageslider.SliderViewAdapter
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.fragment_home.*
 
 
 class SliderAdapter(val context: Context) :
@@ -41,10 +42,10 @@ class SliderAdapter(val context: Context) :
         position: Int
     ) {
         val sliderItemModel: SliderItemModel = mSliderItemModels[position]
-        Glide.with(viewHolder.itemView)
-            .load(sliderItemModel.imageUrl)
-            .fitCenter()
+
+        Picasso.get().load(sliderItemModel.imageUrl)
             .into(viewHolder.ivBannerImage)
+
         viewHolder.itemView.setOnClickListener {
                 Toast.makeText(context, "This is item in position $position", Toast.LENGTH_SHORT)
                     .show()
