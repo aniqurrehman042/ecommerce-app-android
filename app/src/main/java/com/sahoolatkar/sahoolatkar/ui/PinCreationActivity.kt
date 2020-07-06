@@ -1,15 +1,16 @@
 package com.sahoolatkar.sahoolatkar.ui
 
-import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
-import androidx.appcompat.app.AlertDialog
 import com.sahoolatkar.sahoolatkar.R
+import com.sahoolatkar.sahoolatkar.utils.AlertDialogUtils
+import com.sahoolatkar.sahoolatkar.utils.EditTextUtils
 import com.sahoolatkar.sahoolatkar.utils.SyncEditTextUtils
 import com.sahoolatkar.sahoolatkar.utils.UIUtils
 import kotlinx.android.synthetic.main.activity_pin_creation.*
+import kotlinx.android.synthetic.main.activity_pin_creation.ivBack
 import kotlinx.android.synthetic.main.activity_verification.tvContinue
 
 class PinCreationActivity : AppCompatActivity() {
@@ -41,32 +42,27 @@ class PinCreationActivity : AppCompatActivity() {
         tvContinue.setOnClickListener {
             continueClick()
         }
+
+        ivBack.setOnClickListener {
+            onBackPressed()
+        }
     }
 
     private fun continueClick() {
-        var pinCode = getCombinedInputFromEtsArray(pCodeEts)
-        var pinCodeConfirm = getCombinedInputFromEtsArray(pCodeConfirmEts)
+        var pinCode = EditTextUtils.getCombinedInputFromEtsArray(pCodeEts)
+        var pinCodeConfirm = EditTextUtils.getCombinedInputFromEtsArray(pCodeConfirmEts)
 
-        if (pinCode == pinCodeConfirm) {
-            startRegistrationSuccessActivity()
-        } else {
-            AlertDialog.Builder(this)
-                .setTitle("Pin Confirmation")
-                .setMessage("Pins don't match. Please try again.")
-                .setNeutralButton("Retry", DialogInterface.OnClickListener { dialogInterface, i ->
-                    dialogInterface.dismiss()
-                }).show()
+        when {
+            pinCode.length < 4 -> {
+                AlertDialogUtils.showAlertWithMessage("Please enter a pin code", this)
+            }
+            pinCode != pinCodeConfirm -> {
+                AlertDialogUtils.showAlertWithMessage("Pins don't match. Please try again.", this)
+            }
+            else -> {
+                startRegistrationSuccessActivity()
+            }
         }
-    }
-
-    private fun getCombinedInputFromEtsArray(etsArray: Array<EditText>): String {
-        var combinedInputOfEts = ""
-
-        for (et in etsArray) {
-            combinedInputOfEts += et.text
-        }
-
-        return combinedInputOfEts
     }
 
     private fun startRegistrationSuccessActivity() {

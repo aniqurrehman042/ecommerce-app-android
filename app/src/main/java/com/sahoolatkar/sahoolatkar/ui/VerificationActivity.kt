@@ -1,13 +1,12 @@
 package com.sahoolatkar.sahoolatkar.ui
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import android.view.View
 import android.widget.EditText
+import androidx.appcompat.app.AppCompatActivity
 import com.sahoolatkar.sahoolatkar.R
+import com.sahoolatkar.sahoolatkar.utils.AlertDialogUtils
+import com.sahoolatkar.sahoolatkar.utils.EditTextUtils
 import com.sahoolatkar.sahoolatkar.utils.SyncEditTextUtils
 import com.sahoolatkar.sahoolatkar.utils.UIUtils
 import kotlinx.android.synthetic.main.activity_verification.*
@@ -32,6 +31,18 @@ class VerificationActivity : AppCompatActivity() {
 
     private fun setListeners() {
         tvContinue.setOnClickListener {
+            continueClick()
+        }
+
+        ivBack.setOnClickListener {
+            onBackPressed()
+        }
+    }
+
+    private fun continueClick() {
+        if (EditTextUtils.getCombinedInputFromEtsArray(vCodeEts).length < 4) {
+            AlertDialogUtils.showAlertWithMessage("Please enter a pin code.", this)
+        } else {
             startOptionalInfoActivity()
         }
     }

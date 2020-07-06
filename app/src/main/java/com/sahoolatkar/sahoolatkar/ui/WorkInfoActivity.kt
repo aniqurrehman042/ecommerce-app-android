@@ -7,6 +7,8 @@ import com.sahoolatkar.sahoolatkar.R
 import com.sahoolatkar.sahoolatkar.utils.UIUtils
 import com.sahoolatkar.sahoolatkar.utils.ViewUtils
 import kotlinx.android.synthetic.main.activity_work_info.*
+import kotlinx.android.synthetic.main.activity_work_info.ivBack
+import kotlinx.android.synthetic.main.activity_work_info.tvNext
 
 class WorkInfoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,6 +32,10 @@ class WorkInfoActivity : AppCompatActivity() {
 
         tvSkip.setOnClickListener {
             startPinCreationActivity()
+        }
+
+        ivBack.setOnClickListener {
+            onBackPressed()
         }
     }
 

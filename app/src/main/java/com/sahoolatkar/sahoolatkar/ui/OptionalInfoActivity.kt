@@ -1,12 +1,12 @@
 package com.sahoolatkar.sahoolatkar.ui
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.sahoolatkar.sahoolatkar.R
 import com.sahoolatkar.sahoolatkar.utils.UIUtils
-import com.sahoolatkar.sahoolatkar.utils.ViewUtils
 import kotlinx.android.synthetic.main.activity_optional_info.*
+import kotlinx.android.synthetic.main.activity_optional_info.tvNext
 
 class OptionalInfoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,6 +28,10 @@ class OptionalInfoActivity : AppCompatActivity() {
 
         tvSkip.setOnClickListener {
             startWorkInfoActivity()
+        }
+
+        ivBack.setOnClickListener {
+            onBackPressed()
         }
     }
 

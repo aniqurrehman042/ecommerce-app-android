@@ -1,15 +1,14 @@
 package com.sahoolatkar.sahoolatkar.ui
 
-import android.app.DatePickerDialog
-import android.app.DatePickerDialog.OnDateSetListener
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.sahoolatkar.sahoolatkar.R
-import com.sahoolatkar.sahoolatkar.utils.DateUtils
+import com.sahoolatkar.sahoolatkar.utils.EditTextUtils
 import com.sahoolatkar.sahoolatkar.utils.UIUtils
+import com.sahoolatkar.sahoolatkar.utils.ValidationUtils
 import com.sahoolatkar.sahoolatkar.utils.ViewUtils
 import kotlinx.android.synthetic.main.activity_sign_in_sign_up.*
 import kotlinx.android.synthetic.main.layout_loader.*
@@ -61,24 +60,40 @@ class SignInSignUpActivity : AppCompatActivity() {
             etCusId.text.clear()
         }
 
+        ivBack.setOnClickListener {
+            onBackPressed()
+        }
+
+        EditTextUtils.setCnicHyphensAdder(etCnicNo)
+
         ViewUtils.setDatePicker(etDob, this)
 
         ViewUtils.setDatePicker(etCnicExpiry, this)
     }
 
     private fun validateInitialDetailsAndProceed() {
-        if (ViewUtils.isVisible(etCnicNo) && etCnicNo.text.isNotEmpty()) {
-            showLoader("Validating if user already exists")
-            Handler().postDelayed(Runnable {
-                showLoader("Verifying CNIC from Nadra")
+
+        val cnicNo = etCnicNo.text.toString()
+        val cusId = etCusId.text.toString()
+
+        if (ViewUtils.isVisible(etCnicNo)) {
+            if (cnicNo.isEmpty()) {
+                etCnicNo.error = "This field is required"
+            } else if (!ValidationUtils.validateCnic(cnicNo)) {
+                etCnicNo.error = "CNIC format is not valid"
+            } else {
+                showLoader("Validating if user already exists")
                 Handler().postDelayed(Runnable {
-                    hideLoader()
-                    ViewUtils.hideView(llInitialDetails)
-                    ViewUtils.showView(llMoreDetails)
-                    showCustomerName("Irfan")
+                    showLoader("Verifying CNIC from Nadra")
+                    Handler().postDelayed(Runnable {
+                        hideLoader()
+                        ViewUtils.hideView(llInitialDetails)
+                        ViewUtils.showView(llMoreDetails)
+                        showCustomerName("Irfan")
+                    }, 2000)
                 }, 2000)
-            }, 2000)
-        } else if (ViewUtils.isVisible(etCusId) && etCusId.text.isNotEmpty()) {
+            }
+        } else if (ViewUtils.isVisible(etCusId) && cusId.isNotEmpty()) {
             showLoader("Validating if user exists")
             Handler().postDelayed(Runnable {
                 hideLoader()
@@ -87,7 +102,6 @@ class SignInSignUpActivity : AppCompatActivity() {
                 showCustomerName("Irfan")
             }, 2000)
         } else {
-            etCnicNo.error = "This field is required"
             etCusId.error = "This field is required"
         }
     }
@@ -127,9 +141,15 @@ class SignInSignUpActivity : AppCompatActivity() {
     }
 
     private fun validateMoreDetailsAndProceed() {
-        var verified: Boolean = true
-        if (etEmail.text.isEmpty()) {
+        var verified = true
+        val email = etEmail.text.toString()
+        val phone = etPhone.text.toString()
+
+        if (email.isEmpty()) {
             etEmail.error = "This field is required"
+            verified = false
+        } else if (!ValidationUtils.validateEmail(email)) {
+            etEmail.error = "Email is not valid"
             verified = false
         }
         if (etFatherName.text.isEmpty()) {
@@ -144,8 +164,11 @@ class SignInSignUpActivity : AppCompatActivity() {
             etCnicExpiry.error = "This field is required"
             verified = false
         }
-        if (etPhone.text.isEmpty()) {
+        if (phone.isEmpty()) {
             etPhone.error = "This field is required"
+            verified = false
+        } else if (!ValidationUtils.validatePakPhoneNo(phone)) {
+            etPhone.error = "Phone number is not valid in Pakistan"
             verified = false
         }
 
