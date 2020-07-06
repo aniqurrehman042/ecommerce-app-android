@@ -2,6 +2,7 @@ package com.sahoolatkar.sahoolatkar.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import com.sahoolatkar.sahoolatkar.R
@@ -27,6 +28,19 @@ class VerificationActivity : AppCompatActivity() {
     private fun init() {
         setListeners()
         setupIndexLineNavigation()
+        setUpCountdown()
+    }
+
+    private fun setUpCountdown() {
+        object : CountDownTimer(30000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                tvReqTime.text = "00:" + millisUntilFinished / 1000
+            }
+
+            override fun onFinish() {
+                tvReqTime.text = "00:00"
+            }
+        }.start()
     }
 
     private fun setListeners() {
