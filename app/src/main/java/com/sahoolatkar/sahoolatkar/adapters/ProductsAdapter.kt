@@ -46,7 +46,7 @@ class ProductsAdapter(val products: MutableList<ProductModel>) : RecyclerView.Ad
         holder.tvProductDesc.text = product.desc
         holder.tvPrice.text = product.price.toString()
         holder.tvDiscount.text = product.discount.toString()
-        Picasso.get().load("https://mygreatdubai.com/sahoolatkar/wp-content/uploads/2020/05/DW-115-C.jpg").into(holder.ivProductImg)
+        Picasso.get().load("https://sukena.pk/wp-content/uploads/2018/11/0005702_orient-microwave-oven-om-36axxgeg930axx-1-600x900.png").into(holder.ivProductImg)
         Picasso.get().load("https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Heart_icon_red_hollow.svg/1083px-Heart_icon_red_hollow.svg.png").into(holder.ivLike)
     }
 }
