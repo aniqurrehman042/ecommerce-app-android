@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="@dimen/padding_small">
+
+    <ImageView
+        android:id="@+id/ivProductImg"
+        android:layout_width="@dimen/width_product_img"
+        android:layout_height="@dimen/height_product_img"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <ImageView
+        android:id="@+id/ivLike"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/margin_tiny"
+        android:layout_marginRight="@dimen/margin_tiny"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/ivProductImg"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <TextView
+            android:id="@+id/tvProductName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Product Name"
+            android:textSize="@dimen/text_item_details"
+            android:layout_marginTop="@dimen/margin_tiny"
+            android:ellipsize="end"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tvProductDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Product Description"
+            android:textSize="@dimen/text_item_details"
+            android:layout_marginTop="@dimen/margin_tiny"
+            android:ellipsize="end"
+            android:textColor="@color/black" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:layout_marginTop="@dimen/margin_tiny">
+
+            <TextView
+                android:id="@+id/tvCurrency"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PKR"
+                android:textSize="@dimen/text_currency"
+                android:layout_marginTop="@dimen/margin_tiny"
+                android:ellipsize="end"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/tvPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2000"
+                android:textSize="@dimen/text_price"
+                android:layout_marginTop="@dimen/margin_tiny"
+                android:layout_marginLeft="@dimen/_3sdp"
+                android:textStyle="bold"
+                android:ellipsize="end"
+                android:textColor="@color/black" />
+
+            <LinearLayout
+                android:id="@+id/llOldPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="bottom"
+                android:layout_marginLeft="@dimen/_3sdp">
+
+                <TextView
+                    android:id="@+id/tvOldCurrency"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PKR"
+                    android:textSize="@dimen/text_currency"
+                    android:layout_marginTop="@dimen/margin_tiny"
+                    android:ellipsize="end"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/tvOldPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2000"
+                    android:textSize="@dimen/text_price"
+                    android:layout_marginTop="@dimen/margin_tiny"
+                    android:layout_marginLeft="@dimen/_3sdp"
+                    android:textStyle="bold"
+                    android:ellipsize="end"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llDiscount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/light_green"
+            android:paddingHorizontal="3dp">
+
+            <TextView
+                android:id="@+id/tvDiscount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="20"
+                android:textSize="@dimen/text_item_details"
+                android:ellipsize="end"
+                android:textStyle="bold"
+                android:textColor="@color/dark_green" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="% OFF"
+                android:textSize="@dimen/text_item_details"
+                android:ellipsize="end"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

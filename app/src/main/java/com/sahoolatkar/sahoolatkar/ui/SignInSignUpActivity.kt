@@ -34,12 +34,7 @@ class SignInSignUpActivity : AppCompatActivity() {
 
     private fun setListeners() {
         tvNext.setOnClickListener {
-            if (ViewUtils.isVisible(llInitialDetails)) {
-                validateInitialDetailsAndProceed()
-            } else if (ViewUtils.isVisible(llMoreDetails)) {
-                validateMoreDetailsAndProceed()
-            }
-
+            nextClick()
         }
 
         tvNewCustomer.setOnClickListener {
@@ -71,6 +66,14 @@ class SignInSignUpActivity : AppCompatActivity() {
         ViewUtils.setDatePicker(etCnicExpiry, this)
     }
 
+    private fun nextClick() {
+        if (ViewUtils.isVisible(llInitialDetails)) {
+            validateInitialDetailsAndProceed()
+        } else if (ViewUtils.isVisible(llMoreDetails)) {
+            validateMoreDetailsAndProceed()
+        }
+    }
+
     private fun validateInitialDetailsAndProceed() {
 
         val cnicNo = etCnicNo.text.toString()
@@ -87,8 +90,7 @@ class SignInSignUpActivity : AppCompatActivity() {
                     showLoader("Verifying CNIC from Nadra")
                     Handler().postDelayed(Runnable {
                         hideLoader()
-                        ViewUtils.hideView(llInitialDetails)
-                        ViewUtils.showView(llMoreDetails)
+                        hideTypeInitialShowMore()
                         showCustomerName("Irfan")
                     }, 2000)
                 }, 2000)
@@ -97,13 +99,18 @@ class SignInSignUpActivity : AppCompatActivity() {
             showLoader("Validating if user exists")
             Handler().postDelayed(Runnable {
                 hideLoader()
-                ViewUtils.hideView(llInitialDetails)
-                ViewUtils.showView(llMoreDetails)
+                hideTypeInitialShowMore()
                 showCustomerName("Irfan")
             }, 2000)
         } else {
             etCusId.error = "This field is required"
         }
+    }
+
+    private fun hideTypeInitialShowMore() {
+        ViewUtils.hideView(llInitialDetails)
+        ViewUtils.hideView(llCustomerType)
+        ViewUtils.showView(llMoreDetails)
     }
 
     private fun showCustomerName(name: String) {
@@ -183,5 +190,16 @@ class SignInSignUpActivity : AppCompatActivity() {
 
     private fun startVerificationActivity() {
         startActivity(Intent(this@SignInSignUpActivity, VerificationActivity::class.java))
+    }
+
+    override fun onBackPressed() {
+        if (ViewUtils.isVisible(llMoreDetails)) {
+            ViewUtils.hideView(llMoreDetails)
+            ViewUtils.showView(llCustomerType)
+            hideCustomerName()
+            return
+        }
+
+        super.onBackPressed()
     }
 }
