@@ -17,9 +17,10 @@
     <dimen name="size_small_horizontal_item">@dimen/_50sdp</dimen>
     <dimen name="text_small">@dimen/_9ssp</dimen>
     <dimen name="size_large_category_img">@dimen/_80sdp</dimen>
-    <dimen name="width_product_img">@dimen/_100sdp</dimen>
-    <dimen name="height_product_img">@dimen/_150sdp</dimen>
+    <dimen name="width_product_img">@dimen/_120sdp</dimen>
+    <dimen name="height_product_img">@dimen/_180sdp</dimen>
     <dimen name="text_item_details">@dimen/_8ssp</dimen>
     <dimen name="text_currency">@dimen/_7ssp</dimen>
     <dimen name="text_price">@dimen/_10ssp</dimen>
+    <dimen name="text_extra_small">@dimen/_7ssp</dimen>
 </resources>

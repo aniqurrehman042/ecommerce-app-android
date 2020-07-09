@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.ProductsActivity"></activity>
+        <activity android:name=".ui.ProductDetailsActivity"></activity>
+        <activity android:name=".ui.ProductsActivity" />
         <activity android:name=".ui.PinCreationActivity" />
         <activity android:name=".ui.RegistrationSuccessActivity" />
         <activity android:name=".ui.WorkInfoActivity" />
@@ -20,14 +21,15 @@
         <activity android:name=".ui.SignInSignUpActivity" />
         <activity android:name=".ui.GettingStartedActivity" />
         <activity android:name=".ui.SplashActivity">
+
+        </activity>
+        <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.MainActivity">
-
-        </activity>
     </application>
+
 </manifest>
