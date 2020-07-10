@@ -51,23 +51,6 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/margin_small"
             android:layout_marginTop="@dimen/margin_small"
-            android:text="Kitchen Appliances"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_small" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvKitchenAppliances"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_70sdp"
-            android:layout_marginTop="@dimen/margin_tiny"
-            android:clipToPadding="false"
-            android:paddingRight="@dimen/padding_normal" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_small"
-            android:layout_marginTop="@dimen/margin_small"
             android:text="Mobiles"
             android:textColor="@color/black"
             android:textSize="@dimen/text_small" />

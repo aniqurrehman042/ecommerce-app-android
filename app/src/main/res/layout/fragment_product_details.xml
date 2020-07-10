@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.ProductDetailsActivity">
+    tools:context=".ui.fragments.ProductDetailsFragment">
 
     <com.smarteist.autoimageslider.SliderView
         android:id="@+id/productSlider"
@@ -76,6 +76,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_tiny"
-        app:layout_constraintTop_toBottomOf="@id/tvDeliverTo"/>
+        app:layout_constraintTop_toBottomOf="@id/tvDeliverTo">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tlProductDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </androidx.viewpager.widget.ViewPager>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

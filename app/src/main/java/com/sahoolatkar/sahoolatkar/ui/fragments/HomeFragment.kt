@@ -51,7 +51,6 @@ class HomeFragment : Fragment() {
 
     private fun setUpRecyclers() {
         setUpCategoriesRecycler()
-        setUpKitchenAppliancesRecycler()
         setUpMobilesRecycler()
     }
 
@@ -68,21 +67,6 @@ class HomeFragment : Fragment() {
         var mobilesAdapter = LargeCategoriesRecyclerAdapter(activity as Activity, mobiles)
         rvMobiles.layoutManager = GridLayoutManager(context, 3)
         rvMobiles.adapter = mobilesAdapter
-    }
-
-    private fun setUpKitchenAppliancesRecycler() {
-        var kitchenAppliances: MutableList<CategoryModel> = ArrayList()
-        kitchenAppliances.add(CategoryModel("Toys", "https://cdn4.iconfinder.com/data/icons/toys-5/100/Toys2-512.png"))
-        kitchenAppliances.add(CategoryModel("Food", "https://cdn0.iconfinder.com/data/icons/e-commerce-207/1024/food-512.png"))
-        kitchenAppliances.add(CategoryModel("Mobiles", "https://cdn4.iconfinder.com/data/icons/devices-24/64/iphone_iphone-512.png"))
-        kitchenAppliances.add(CategoryModel("Sports", "https://image.flaticon.com/icons/png/512/2158/2158445.png"))
-        kitchenAppliances.add(CategoryModel("Toys", "https://cdn4.iconfinder.com/data/icons/toys-5/100/Toys2-512.png"))
-        kitchenAppliances.add(CategoryModel("Food", "https://cdn0.iconfinder.com/data/icons/e-commerce-207/1024/food-512.png"))
-        kitchenAppliances.add(CategoryModel("Mobiles", "https://cdn4.iconfinder.com/data/icons/devices-24/64/iphone_iphone-512.png"))
-        kitchenAppliances.add(CategoryModel("Sports", "https://image.flaticon.com/icons/png/512/2158/2158445.png"))
-        var categoriesAdapter: SmallCategoriesRecyclerAdapter = SmallCategoriesRecyclerAdapter(activity as Activity, kitchenAppliances)
-        rvKitchenAppliances.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        rvKitchenAppliances.adapter = categoriesAdapter
     }
 
     private fun setUpCategoriesRecycler() {

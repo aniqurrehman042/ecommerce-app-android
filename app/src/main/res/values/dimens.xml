@@ -23,4 +23,5 @@
     <dimen name="text_currency">@dimen/_7ssp</dimen>
     <dimen name="text_price">@dimen/_10ssp</dimen>
     <dimen name="text_extra_small">@dimen/_7ssp</dimen>
+    <dimen name="padding_welcome_text">@dimen/_40sdp</dimen>
 </resources>

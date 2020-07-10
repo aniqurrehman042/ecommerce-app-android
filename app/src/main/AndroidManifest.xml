@@ -11,14 +11,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.ProductDetailsActivity"></activity>
-        <activity android:name=".ui.ProductsActivity" />
         <activity android:name=".ui.PinCreationActivity" />
         <activity android:name=".ui.RegistrationSuccessActivity" />
-        <activity android:name=".ui.WorkInfoActivity" />
-        <activity android:name=".ui.OptionalInfoActivity" />
+        <activity android:name=".ui.WorkInfoActivity"
+            android:windowSoftInputMode="adjustPan|adjustResize" />
+        <activity android:name=".ui.OptionalInfoActivity"
+            android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".ui.VerificationActivity" />
-        <activity android:name=".ui.SignInSignUpActivity" />
+        <activity android:name=".ui.SignInSignUpActivity"
+            android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".ui.GettingStartedActivity" />
         <activity android:name=".ui.SplashActivity">
 

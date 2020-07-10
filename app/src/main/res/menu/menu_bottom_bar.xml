@@ -4,31 +4,31 @@
 
     <item
         android:id="@+id/store_locator"
-        android:icon="@drawable/ic_store_locator"
+        android:icon="@drawable/ic_menu_storelocator_grey"
         android:title="Store Locator"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/apply_loan"
-        android:icon="@drawable/ic_applyloan"
+        android:icon="@drawable/ic_menu_applyloan_grey"
         android:title="Apply Loan"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/home"
-        android:icon="@drawable/ic_home"
+        android:icon="@drawable/ic_menu_home_red"
         android:title="Home"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/installments"
-        android:icon="@drawable/ic_installments"
+        android:icon="@drawable/ic_menu_installments_grey"
         android:title="Installments"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/profile"
-        android:icon="@drawable/ic_profile"
+        android:icon="@drawable/ic_menu_profile_grey"
         android:title="Profile"
         app:showAsAction="always" />
 

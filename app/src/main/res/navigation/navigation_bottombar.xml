@@ -21,7 +21,11 @@
         android:id="@+id/home"
         android:name="com.sahoolatkar.sahoolatkar.ui.fragments.HomeFragment"
         android:label="Home Fragment"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_home_to_productsCatalogFragment"
+            app:destination="@id/productsCatalogFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/installments"
@@ -34,5 +38,20 @@
         android:name="com.sahoolatkar.sahoolatkar.ui.fragments.ProfileFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/productsCatalogFragment"
+        android:name="com.sahoolatkar.sahoolatkar.ui.fragments.ProductsCatalogFragment"
+        android:label="fragment_products_catalog"
+        tools:layout="@layout/fragment_products_catalog" >
+        <action
+            android:id="@+id/action_productsCatalogFragment_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/productDetailsFragment"
+        android:name="com.sahoolatkar.sahoolatkar.ui.fragments.ProductDetailsFragment"
+        android:label="fragment_product_details"
+        tools:layout="@layout/fragment_product_details" />
 
 </navigation>

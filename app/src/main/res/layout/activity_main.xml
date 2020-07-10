@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_grey"
+    android:background="@color/white"
     tools:context=".ui.MainActivity">
 
     <ImageView
@@ -104,7 +104,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:paddingBottom="@dimen/padding_small"
+        android:paddingBottom="@dimen/padding_normal"
+        android:paddingHorizontal="@dimen/padding_small"
         app:itemIconSize="@dimen/_20sdp"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -34,7 +34,7 @@
         android:text="You get a cutting edge lease to own option built for you, with no credit required."
         android:textColor="@color/black"
         android:gravity="center_horizontal"
-        android:paddingHorizontal="@dimen/_10sdp"
+        android:paddingHorizontal="@dimen/padding_welcome_text"
         android:layout_marginTop="@dimen/margin_small"
         android:textSize="@dimen/text_normal" />
 
