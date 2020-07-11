@@ -1,22 +1,38 @@
 package com.sahoolatkar.sahoolatkar.ui.fragments
 
+import android.Manifest
+import android.content.Context
+import android.content.pm.PackageManager
+import android.location.LocationManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
-import com.google.android.gms.maps.*
+import com.google.android.gms.common.util.MapUtils
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.MapView
+import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.maps.android.SphericalUtil
 import com.sahoolatkar.sahoolatkar.R
+import com.sahoolatkar.sahoolatkar.models.StoreModel
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_store_locator.*
+import java.util.ArrayList
 
 
 class StoreLocatorFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
-    private var map: GoogleMap? = null
     private lateinit var mapView: MapView
+    private var map: GoogleMap? = null
+    private val REQUEST_LOCATION: Int = 1
+    private val stores: MutableList<StoreModel> = ArrayList()
+    private val storeMarkers: MutableList<Marker> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,14 +79,16 @@ class StoreLocatorFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
         val view = inflater.inflate(R.layout.fragment_store_locator, container, false)
         mapView = view.findViewById(R.id.mapView)
         mapView.onCreate(savedInstanceState)
+        mapView.onResume()
 
-        init(view)
+        init()
 
         return view
     }
 
-    private fun init(view: View) {
-        mapView.onResume()
+    private fun init() {
+        stores.add(StoreModel("Sahooolat Kar Township", 31.456544, 74.301541, "Boss Sahoolat Kar, College Road, Township, Lahore", "9 am - 8 pm", "0323-4000062", "https://lh5.googleusercontent.com/p/AF1QipOBKUmL73b4UjnH3I6tO2sKaJ9gP5_8ne-P7b9V=w408-h669-k-no"))
+        stores.add(StoreModel("Sahooolat Kar LOS", 31.542794, 74.316784, "Boss Sahoolat Kar, Firoz Pur Road, LOS Chowk, Lahore", "9 am - 8 pm", "0304-4855158", "https://lh5.googleusercontent.com/p/AF1QipOBKUmL73b4UjnH3I6tO2sKaJ9gP5_8ne-P7b9V=w408-h669-k-no"))
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -92,26 +110,106 @@ class StoreLocatorFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
 
     override fun onMapReady(map: GoogleMap?) {
         this.map = map
+        map?.setOnMarkerClickListener(this)
 
-        val latLng = LatLng(31.456544, 74.301541)
+        addStoreMarkers()
+//        tvStoreTitle.text = SphericalUtil.computeDistanceBetween(storeMarkers[0].position, storeMarkers[1].position).toString()
 
-        val marker = map?.addMarker(
-            MarkerOptions()
-            .position(latLng)
-            .title("SAHOOLAT KAR TOWNSHIP"))
-
-        moveToCurrentLocation(latLng)
+        val currentLocation = getCurrentLatLng()
+        if (currentLocation != null) {
+            moveToLocation(currentLocation)
+        } else {
+            moveCameraToShowAllStores()
+        }
     }
 
-    override fun onMarkerClick(p0: Marker?): Boolean {
+    private fun moveCameraToShowAllStores() {
+
+    }
+
+    private fun addStoreMarkers() {
+
+        for (store in stores) {
+            storeMarkers.add(map?.addMarker(
+                MarkerOptions()
+                    .position(LatLng(store.storeLat, store.storeLng))
+                    .title(store.storeTitle)
+            )!!)
+        }
+    }
+
+    override fun onMarkerClick(marker: Marker?): Boolean {
+
+        if (storeMarkers.contains(marker)) {
+            var selectedStore = stores[storeMarkers.indexOf(marker)]
+            setStoreDetails(selectedStore)
+        }
         return true
     }
 
-    private fun moveToCurrentLocation(currentLocation: LatLng) {
+    private fun setStoreDetails(selectedStore: StoreModel) {
+        Picasso.get().load(selectedStore.storeImgUrl).into(ivStoreImg)
+        tvStoreTitle.text = selectedStore.storeTitle
+        tvStoreAddress.text = selectedStore.storeAddress
+        tvStoreTiming.text = selectedStore.storeTiming
+        tvStorePhone.text = selectedStore.storePhone
+    }
+
+    private fun moveToLocation(currentLocation: LatLng) {
         map?.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 15f))
         // Zoom in, animating the camera.
         map?.animateCamera(CameraUpdateFactory.zoomIn())
         // Zoom out to zoom level 10, animating with a duration of 2 seconds.
         map?.animateCamera(CameraUpdateFactory.zoomTo(15f), 2000, null)
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
+        if (requestCode == REQUEST_LOCATION) {
+            if (permissions[0] == Manifest.permission.ACCESS_COARSE_LOCATION && grantResults[0] == PackageManager.PERMISSION_GRANTED
+                && permissions[1] == Manifest.permission.ACCESS_FINE_LOCATION && grantResults[1] == PackageManager.PERMISSION_GRANTED
+            ) {
+                val currentLatLng = getCurrentLatLng();
+                if (currentLatLng != null) {
+                    moveToLocation(currentLatLng)
+                }
+            } else {
+
+            }
+        }
+    }
+
+    private fun getCurrentLatLng(): LatLng? {
+
+        if (ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED &&
+            ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            requestPermissions(
+                arrayOf(
+                    Manifest.permission.ACCESS_COARSE_LOCATION,
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                ),
+                REQUEST_LOCATION
+            )
+            return null
+        } else {
+            val locationManager =
+                requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
+            val locationProvider = LocationManager.NETWORK_PROVIDER
+            val lastKnownLocation =
+                locationManager.getLastKnownLocation(locationProvider)
+            val userLat = lastKnownLocation!!.latitude
+            val userLng = lastKnownLocation.longitude
+            return LatLng(userLat, userLng)
+        }
     }
 }
