@@ -1,4 +1,4 @@
 package com.sahoolatkar.sahoolatkar.models
 
-class CategoryModel(var name: String, var imageUrl: String) {
+class CategoryModel(var name: String, var imageUrl: String, var imageId: Int) {
 }

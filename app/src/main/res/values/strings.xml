@@ -11,4 +11,6 @@
         <item>Postman</item>
         <item>Policeman</item>
     </array>
+
+    <string name="MAPS_API_KEY">AIzaSyAfxKvRo5qENv-HbPJacjEH_sSDDs8pWpA</string>
 </resources>

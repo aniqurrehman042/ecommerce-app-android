@@ -40,8 +40,10 @@ class SmallCategoriesRecyclerAdapter(var activity: Activity, var horizontalItems
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val horizontalItem = horizontalItems[position]
 
-        Picasso.get().load(horizontalItem.imageUrl)
-            .into(holder.ivItemImg)
+//        Picasso.get().load(horizontalItem.imageUrl)
+//            .into(holder.ivItemImg)
+
+        holder.ivItemImg.setImageResource(horizontalItem.imageId)
 
         holder.tvItemName.text = horizontalItem.name
 

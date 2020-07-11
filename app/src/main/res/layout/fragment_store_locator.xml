@@ -1,14 +1,240 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginHorizontal="@dimen/margin_normal"
+    android:layout_marginVertical="@dimen/margin_normal"
+    android:background="@drawable/bg_white_rounded"
+    app:cardCornerRadius="15dp"
+    app:cardElevation="10dp"
     tools:context=".ui.fragments.StoreLocatorFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:background="@drawable/bg_white_rounded">
 
-</FrameLayout>
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/mapView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:name="com.google.android.gms.maps.SupportMapFragment" />
+
+        <LinearLayout
+            android:id="@+id/llStoreDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_white_rounded"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="@dimen/padding_large">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="@dimen/margin_small">
+
+                    <ImageView
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:src="@color/red" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_small"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Hilton Hotel Store"
+                            android:textColor="@color/red"
+                            android:textSize="@dimen/text_normal" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/tvDistance"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="1 km"
+                                android:textColor="@color/dark_grey"
+                                android:textSize="@dimen/text_small" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=" - "
+                                android:textColor="@color/dark_grey"
+                                android:textSize="@dimen/_7ssp" />
+
+                            <TextView
+                                android:id="@+id/tvTime"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="15 min"
+                                android:textColor="@color/dark_grey"
+                                android:textSize="@dimen/text_small" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=" "
+                                android:textColor="@color/dark_grey"
+                                android:textSize="@dimen/text_small" />
+
+                            <TextView
+                                android:id="@+id/tvTravelType"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="walk"
+                                android:textColor="@color/dark_grey"
+                                android:textSize="@dimen/text_small" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_tiny"
+                    android:text="Address"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="@dimen/text_small" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_tiny">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/margin_large"
+                        android:layout_weight="1"
+                        android:text="825 5th Street, Boss Pakistan, Lahore, Pakistan, 94152"
+                        android:textColor="@color/extra_dark_grey"
+                        android:textSize="@dimen/text_normal" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:src="@color/red" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:background="@drawable/bg_extra_dark_grey_bottom_rounded"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="@dimen/padding_large"
+                android:paddingVertical="@dimen/padding_normal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Hours"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_small" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:text="11 am - 9 pm"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_small" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:text="Open"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_small"
+                        android:layout_marginLeft="@dimen/_3sdp"
+                        android:background="@drawable/bg_white_circle_bordered"
+                        android:paddingHorizontal="@dimen/_5sdp"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Phone"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_small" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:text="+92 331 2254 321"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_small" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llClose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_dark_grey_circle"
+            android:gravity="center"
+            android:padding="@dimen/_3sdp"
+            app:layout_constraintBottom_toTopOf="@id/llStoreDetails"
+            app:layout_constraintRight_toRightOf="@id/llStoreDetails"
+            app:layout_constraintTop_toTopOf="@id/llStoreDetails"
+            android:layout_marginRight="@dimen/_8sdp">
+
+            <ImageView
+                android:layout_width="@dimen/_10sdp"
+                android:layout_height="@dimen/_10sdp"
+                android:src="@drawable/ic_close_white" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

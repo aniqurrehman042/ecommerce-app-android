@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <font
-        app:font="@font/futur"
+        app:font="@font/futura_medium_bt"
         app:fontWeight="400"
         app:fontStyle="normal" />
 

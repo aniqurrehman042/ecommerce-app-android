@@ -18,6 +18,7 @@
         android:layout_height="wrap_content"
         android:textSize="@dimen/text_small"
         android:text="abcd"
+        android:layout_marginTop="@dimen/margin_tiny"
         android:textColor="@color/black" />
 
 </LinearLayout>
