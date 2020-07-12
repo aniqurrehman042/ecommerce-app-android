@@ -52,7 +52,7 @@ class ProductsAdapter(val activity: Activity, val products: MutableList<ProductM
 
         holder.tvProductName.text = product.name
         holder.tvProductDesc.text = product.desc
-        holder.tvPrice.text = product.price.toString()
+        holder.tvPrice.text = product.price.toInt().toString()
         holder.tvDiscount.text = product.discount.toString()
         Picasso.get()
             .load(product.imgUrl)

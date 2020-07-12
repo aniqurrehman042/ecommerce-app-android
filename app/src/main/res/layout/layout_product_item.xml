@@ -5,15 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="@dimen/padding_small">
+    android:padding="@dimen/padding_small"
+    android:background="@color/light_grey"
+    android:layout_margin="@dimen/margin_tiny">
 
     <ImageView
         android:id="@+id/ivProductImg"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="380px"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent" />
 
     <ImageView
         android:id="@+id/ivLike"
@@ -40,6 +42,8 @@
             android:textSize="@dimen/text_item_details"
             android:layout_marginTop="@dimen/margin_tiny"
             android:ellipsize="end"
+            android:lines="1"
+            android:maxLines="1"
             android:textColor="@color/black" />
 
         <TextView
@@ -50,6 +54,8 @@
             android:textSize="@dimen/text_item_details"
             android:layout_marginTop="@dimen/margin_tiny"
             android:ellipsize="end"
+            android:lines="1"
+            android:maxLines="1"
             android:textColor="@color/black" />
 
         <LinearLayout
@@ -66,6 +72,8 @@
                 android:textSize="@dimen/text_currency"
                 android:layout_marginTop="@dimen/margin_tiny"
                 android:ellipsize="end"
+                android:lines="1"
+                android:maxLines="1"
                 android:textColor="@color/black" />
 
             <TextView
@@ -78,6 +86,8 @@
                 android:layout_marginLeft="@dimen/_3sdp"
                 android:textStyle="bold"
                 android:ellipsize="end"
+                android:lines="1"
+                android:maxLines="1"
                 android:textColor="@color/black" />
 
             <LinearLayout
@@ -95,6 +105,8 @@
                     android:textSize="@dimen/text_currency"
                     android:layout_marginTop="@dimen/margin_tiny"
                     android:ellipsize="end"
+                    android:lines="1"
+                    android:maxLines="1"
                     android:textColor="@color/black" />
 
                 <TextView
@@ -107,6 +119,8 @@
                     android:layout_marginLeft="@dimen/_3sdp"
                     android:textStyle="bold"
                     android:ellipsize="end"
+                    android:lines="1"
+                    android:maxLines="1"
                     android:textColor="@color/black" />
 
             </LinearLayout>
@@ -127,6 +141,8 @@
                 android:text="20"
                 android:textSize="@dimen/text_item_details"
                 android:ellipsize="end"
+                android:lines="1"
+                android:maxLines="1"
                 android:textStyle="bold"
                 android:textColor="@color/dark_green" />
 
@@ -136,6 +152,8 @@
                 android:text="% OFF"
                 android:textSize="@dimen/text_item_details"
                 android:ellipsize="end"
+                android:lines="1"
+                android:maxLines="1"
                 android:textColor="@color/black" />
 
         </LinearLayout>

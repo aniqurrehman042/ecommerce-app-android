@@ -72,55 +72,55 @@ class HomeFragment : Fragment() {
 
         mobiles.add(
             ProductModel(
-                "AC",
-                "Best AC",
-                "https://learningtoys.pk/wp-content/uploads/2019/08/1-4-300x300.jpg",
+                "DW-550 AF",
+                "Best Microwave",
+                "https://mygreatdubai.com/sahoolatkar/wp-content/uploads/2020/05/DW-550-AF.png",
+                30000f,
+                3
+            )
+        )
+        mobiles.add(
+            ProductModel(
+                "32D3000 A",
+                "Best LED TV",
+                "https://mygreatdubai.com/sahoolatkar/wp-content/uploads/2020/05/d3000fs_front.jpg",
+                35000f,
+                5
+            )
+        )
+        mobiles.add(
+            ProductModel(
+                "43D2900",
+                "Best LED TV",
+                "https://mygreatdubai.com/sahoolatkar/wp-content/uploads/2020/05/a__09932_zoom-310x310-1.jpg",
                 50000f,
                 10
             )
         )
         mobiles.add(
             ProductModel(
-                "AC",
+                "Active Cool 15 (H&C)",
                 "Best AC",
-                "https://learningtoys.pk/wp-content/uploads/2019/08/1-4-300x300.jpg",
+                "https://mygreatdubai.com/sahoolatkar/wp-content/uploads/2020/05/Pro-Active-inv.png",
+                70000f,
+                12
+            )
+        )
+        mobiles.add(
+            ProductModel(
+                "Aura Invertor 30",
+                "Best AC",
+                "https://mygreatdubai.com/sahoolatkar/wp-content/uploads/2020/05/download-7.jpg",
                 50000f,
                 10
             )
         )
         mobiles.add(
             ProductModel(
-                "AC",
-                "Best AC",
-                "https://learningtoys.pk/wp-content/uploads/2019/08/1-4-300x300.jpg",
-                50000f,
-                10
-            )
-        )
-        mobiles.add(
-            ProductModel(
-                "AC",
-                "Best AC",
-                "https://learningtoys.pk/wp-content/uploads/2019/08/1-4-300x300.jpg",
-                50000f,
-                10
-            )
-        )
-        mobiles.add(
-            ProductModel(
-                "AC",
-                "Best AC",
-                "https://learningtoys.pk/wp-content/uploads/2019/08/1-4-300x300.jpg",
-                50000f,
-                10
-            )
-        )
-        mobiles.add(
-            ProductModel(
-                "AC",
-                "Best AC",
-                "https://learningtoys.pk/wp-content/uploads/2019/08/1-4-300x300.jpg",
-                50000f,
+                "DW 298-G",
+                "Best Microwave",
+                "https://mygreatdubai.com/sahoolatkar/wp-content/uploads/2020/05/DW-132-S.png",
+                10000f,
                 10
             )
         )
@@ -134,55 +134,55 @@ class HomeFragment : Fragment() {
         val mobiles: MutableList<ProductModel> = ArrayList()
         mobiles.add(
             ProductModel(
-                "AC",
-                "Best AC",
-                "https://learningtoys.pk/wp-content/uploads/2019/08/1-4-300x300.jpg",
+                "DW-550 AF",
+                "Best Microwave",
+                "https://mygreatdubai.com/sahoolatkar/wp-content/uploads/2020/05/DW-550-AF.png",
+                30000f,
+                3
+            )
+        )
+        mobiles.add(
+            ProductModel(
+                "32D3000 A",
+                "Best LED TV",
+                "https://mygreatdubai.com/sahoolatkar/wp-content/uploads/2020/05/d3000fs_front.jpg",
+                35000f,
+                5
+            )
+        )
+        mobiles.add(
+            ProductModel(
+                "43D2900",
+                "Best LED TV",
+                "https://mygreatdubai.com/sahoolatkar/wp-content/uploads/2020/05/a__09932_zoom-310x310-1.jpg",
                 50000f,
                 10
             )
         )
         mobiles.add(
             ProductModel(
-                "AC",
+                "Active Cool 15 (H&C)",
                 "Best AC",
-                "https://learningtoys.pk/wp-content/uploads/2019/08/1-4-300x300.jpg",
+                "https://mygreatdubai.com/sahoolatkar/wp-content/uploads/2020/05/Pro-Active-inv.png",
+                70000f,
+                12
+            )
+        )
+        mobiles.add(
+            ProductModel(
+                "Aura Invertor 30",
+                "Best AC",
+                "https://mygreatdubai.com/sahoolatkar/wp-content/uploads/2020/05/download-7.jpg",
                 50000f,
                 10
             )
         )
         mobiles.add(
             ProductModel(
-                "AC",
-                "Best AC",
-                "https://learningtoys.pk/wp-content/uploads/2019/08/1-4-300x300.jpg",
-                50000f,
-                10
-            )
-        )
-        mobiles.add(
-            ProductModel(
-                "AC",
-                "Best AC",
-                "https://learningtoys.pk/wp-content/uploads/2019/08/1-4-300x300.jpg",
-                50000f,
-                10
-            )
-        )
-        mobiles.add(
-            ProductModel(
-                "AC",
-                "Best AC",
-                "https://learningtoys.pk/wp-content/uploads/2019/08/1-4-300x300.jpg",
-                50000f,
-                10
-            )
-        )
-        mobiles.add(
-            ProductModel(
-                "AC",
-                "Best AC",
-                "https://learningtoys.pk/wp-content/uploads/2019/08/1-4-300x300.jpg",
-                50000f,
+                "DW 298-G",
+                "Best Microwave",
+                "https://mygreatdubai.com/sahoolatkar/wp-content/uploads/2020/05/DW-132-S.png",
+                10000f,
                 10
             )
         )
