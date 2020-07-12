@@ -21,6 +21,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.maps.android.SphericalUtil
 import com.sahoolatkar.sahoolatkar.R
 import com.sahoolatkar.sahoolatkar.models.StoreModel
+import com.sahoolatkar.sahoolatkar.utils.ViewUtils
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_store_locator.*
 import okhttp3.MediaType
@@ -85,12 +86,31 @@ class StoreLocatorFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
         mapView.onCreate(savedInstanceState)
         mapView.onResume()
 
-        init()
-
         return view
     }
 
     private fun init() {
+        addStores()
+        setListeners()
+    }
+
+    private fun setListeners() {
+        llClose.setOnClickListener {
+            hideStoreDetails()
+        }
+    }
+
+    private fun hideStoreDetails() {
+        ViewUtils.hideView(llClose)
+        ViewUtils.hideView(llStoreDetails)
+    }
+
+    private fun showStoreDetails() {
+        ViewUtils.showView(llClose)
+        ViewUtils.showView(llStoreDetails)
+    }
+
+    private fun addStores() {
         stores.add(StoreModel("Sahooolat Kar Township", 31.456544, 74.301541, "Boss Sahoolat Kar, College Road, Township, Lahore", "9 am - 8 pm", "0323-4000062", "https://lh5.googleusercontent.com/p/AF1QipOBKUmL73b4UjnH3I6tO2sKaJ9gP5_8ne-P7b9V=w408-h669-k-no"))
         stores.add(StoreModel("Sahooolat Kar LOS", 31.542794, 74.316784, "Boss Sahoolat Kar, Firoz Pur Road, LOS Chowk, Lahore", "9 am - 8 pm", "0304-4855158", "https://lh5.googleusercontent.com/p/AF1QipOBKUmL73b4UjnH3I6tO2sKaJ9gP5_8ne-P7b9V=w408-h669-k-no"))
     }
@@ -99,6 +119,7 @@ class StoreLocatorFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
         super.onViewCreated(view, savedInstanceState)
 
         mapView.getMapAsync(this)
+        init()
 
     }
 
@@ -147,6 +168,7 @@ class StoreLocatorFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
         if (storeMarkers.contains(marker)) {
             var selectedStore = stores[storeMarkers.indexOf(marker)]
             setStoreDetails(selectedStore)
+            showStoreDetails()
         }
         return true
     }

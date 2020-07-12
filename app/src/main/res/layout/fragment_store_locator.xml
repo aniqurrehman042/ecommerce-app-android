@@ -29,7 +29,8 @@
             android:layout_height="wrap_content"
             android:background="@drawable/bg_white_rounded"
             android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:visibility="gone">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -233,7 +234,8 @@
             app:layout_constraintBottom_toTopOf="@id/llStoreDetails"
             app:layout_constraintRight_toRightOf="@id/llStoreDetails"
             app:layout_constraintTop_toTopOf="@id/llStoreDetails"
-            android:layout_marginRight="@dimen/_8sdp">
+            android:layout_marginRight="@dimen/_8sdp"
+            android:visibility="gone">
 
             <ImageView
                 android:layout_width="@dimen/_10sdp"
