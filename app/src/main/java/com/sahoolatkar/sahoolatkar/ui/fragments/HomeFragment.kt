@@ -12,17 +12,16 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sahoolatkar.sahoolatkar.R
-import com.sahoolatkar.sahoolatkar.adapters.LargeCategories2RecyclerAdapter
-import com.sahoolatkar.sahoolatkar.adapters.LargeCategoriesRecyclerAdapter
-import com.sahoolatkar.sahoolatkar.adapters.SliderAdapter
-import com.sahoolatkar.sahoolatkar.adapters.SmallCategoriesRecyclerAdapter
+import com.sahoolatkar.sahoolatkar.adapters.*
 import com.sahoolatkar.sahoolatkar.models.CategoryModel
+import com.sahoolatkar.sahoolatkar.models.ProductModel
 import com.sahoolatkar.sahoolatkar.models.SliderItemModel
 import com.sahoolatkar.sahoolatkar.ui.SplashActivity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import java.util.*
+import kotlin.collections.ArrayList
 
 class HomeFragment : Fragment() {
 
@@ -58,7 +57,7 @@ class HomeFragment : Fragment() {
 
     private fun setUp1stBanner() {
         Picasso.get()
-            .load("https://p.bigstockphoto.com/GeFvQkBbSLaMdpKXF1Zv_bigstock-Aerial-View-Of-Blue-Lakes-And--227291596.jpg")
+            .load("https://mygreatdubai.com/sahoolatkar/wp-content/uploads/2020/07/1-1-1030x472.png")
             .into(iv1stBanner)
     }
 
@@ -69,168 +68,132 @@ class HomeFragment : Fragment() {
     }
 
     private fun setUpMobilesRecycler() {
-        var mobiles: MutableList<CategoryModel> = ArrayList()
+        val mobiles: MutableList<ProductModel> = ArrayList()
+
         mobiles.add(
-            CategoryModel(
+            ProductModel(
                 "AC",
+                "Best AC",
                 "https://learningtoys.pk/wp-content/uploads/2019/08/1-4-300x300.jpg",
-                R.drawable.ic_cat_ac
+                50000f,
+                10
             )
         )
         mobiles.add(
-            CategoryModel(
-                "Cosmetics",
-                "https://youngwomenshealth.org/wp-content/uploads/2014/02/fast-food.jpg",
-                R.drawable.ic_cat_cosmetics
+            ProductModel(
+                "AC",
+                "Best AC",
+                "https://learningtoys.pk/wp-content/uploads/2019/08/1-4-300x300.jpg",
+                50000f,
+                10
             )
         )
         mobiles.add(
-            CategoryModel(
-                "Deep Freezer",
-                "https://newmobiles.com.pk/wp-content/uploads/2020/06/infinix-note-7-pakistan-300x300.jpg",
-                R.drawable.ic_cat_deepfreezer
+            ProductModel(
+                "AC",
+                "Best AC",
+                "https://learningtoys.pk/wp-content/uploads/2019/08/1-4-300x300.jpg",
+                50000f,
+                10
             )
         )
         mobiles.add(
-            CategoryModel(
-                "Furniture",
-                "https://newmobiles.com.pk/wp-content/uploads/2020/06/infinix-note-7-pakistan-300x300.jpg",
-                R.drawable.ic_cat_furniture
+            ProductModel(
+                "AC",
+                "Best AC",
+                "https://learningtoys.pk/wp-content/uploads/2019/08/1-4-300x300.jpg",
+                50000f,
+                10
             )
         )
         mobiles.add(
-            CategoryModel(
-                "Gaming",
-                "https://newmobiles.com.pk/wp-content/uploads/2020/06/infinix-note-7-pakistan-300x300.jpg",
-                R.drawable.ic_cat_gaming
+            ProductModel(
+                "AC",
+                "Best AC",
+                "https://learningtoys.pk/wp-content/uploads/2019/08/1-4-300x300.jpg",
+                50000f,
+                10
             )
         )
         mobiles.add(
-            CategoryModel(
-                "Gaming",
-                "https://newmobiles.com.pk/wp-content/uploads/2020/06/infinix-note-7-pakistan-300x300.jpg",
-                R.drawable.ic_cat_gaming
+            ProductModel(
+                "AC",
+                "Best AC",
+                "https://learningtoys.pk/wp-content/uploads/2019/08/1-4-300x300.jpg",
+                50000f,
+                10
             )
         )
-        mobiles.add(
-            CategoryModel(
-                "Gaming",
-                "https://newmobiles.com.pk/wp-content/uploads/2020/06/infinix-note-7-pakistan-300x300.jpg",
-                R.drawable.ic_cat_gaming
-            )
-        )
-        mobiles.add(
-            CategoryModel(
-                "Gaming",
-                "https://newmobiles.com.pk/wp-content/uploads/2020/06/infinix-note-7-pakistan-300x300.jpg",
-                R.drawable.ic_cat_gaming
-            )
-        )
-        mobiles.add(
-            CategoryModel(
-                "Gaming",
-                "https://newmobiles.com.pk/wp-content/uploads/2020/06/infinix-note-7-pakistan-300x300.jpg",
-                R.drawable.ic_cat_gaming
-            )
-        )
-        mobiles.add(
-            CategoryModel(
-                "Gaming",
-                "https://newmobiles.com.pk/wp-content/uploads/2020/06/infinix-note-7-pakistan-300x300.jpg",
-                R.drawable.ic_cat_gaming
-            )
-        )
-        mobiles.add(
-            CategoryModel(
-                "Gaming",
-                "https://newmobiles.com.pk/wp-content/uploads/2020/06/infinix-note-7-pakistan-300x300.jpg",
-                R.drawable.ic_cat_gaming
-            )
-        )
-        var mobilesAdapter = LargeCategoriesRecyclerAdapter(activity as Activity, mobiles)
+
+        val mobilesAdapter = ProductsAdapter(activity as Activity, mobiles)
         rvMobiles.layoutManager = GridLayoutManager(context, 3)
         rvMobiles.adapter = mobilesAdapter
     }
 
     private fun setUpMobiles2Recycler() {
-        var mobiles: MutableList<CategoryModel> = ArrayList()
+        val mobiles: MutableList<ProductModel> = ArrayList()
         mobiles.add(
-            CategoryModel(
+            ProductModel(
                 "AC",
+                "Best AC",
                 "https://learningtoys.pk/wp-content/uploads/2019/08/1-4-300x300.jpg",
-                R.drawable.ic_cat_ac
+                50000f,
+                10
             )
         )
         mobiles.add(
-            CategoryModel(
-                "Cosmetics",
-                "https://youngwomenshealth.org/wp-content/uploads/2014/02/fast-food.jpg",
-                R.drawable.ic_cat_cosmetics
+            ProductModel(
+                "AC",
+                "Best AC",
+                "https://learningtoys.pk/wp-content/uploads/2019/08/1-4-300x300.jpg",
+                50000f,
+                10
             )
         )
         mobiles.add(
-            CategoryModel(
-                "Deep Freezer",
-                "https://newmobiles.com.pk/wp-content/uploads/2020/06/infinix-note-7-pakistan-300x300.jpg",
-                R.drawable.ic_cat_deepfreezer
+            ProductModel(
+                "AC",
+                "Best AC",
+                "https://learningtoys.pk/wp-content/uploads/2019/08/1-4-300x300.jpg",
+                50000f,
+                10
             )
         )
         mobiles.add(
-            CategoryModel(
-                "Furniture",
-                "https://newmobiles.com.pk/wp-content/uploads/2020/06/infinix-note-7-pakistan-300x300.jpg",
-                R.drawable.ic_cat_furniture
+            ProductModel(
+                "AC",
+                "Best AC",
+                "https://learningtoys.pk/wp-content/uploads/2019/08/1-4-300x300.jpg",
+                50000f,
+                10
             )
         )
         mobiles.add(
-            CategoryModel(
-                "Gaming",
-                "https://newmobiles.com.pk/wp-content/uploads/2020/06/infinix-note-7-pakistan-300x300.jpg",
-                R.drawable.ic_cat_gaming
+            ProductModel(
+                "AC",
+                "Best AC",
+                "https://learningtoys.pk/wp-content/uploads/2019/08/1-4-300x300.jpg",
+                50000f,
+                10
             )
         )
         mobiles.add(
-            CategoryModel(
-                "Gaming",
-                "https://newmobiles.com.pk/wp-content/uploads/2020/06/infinix-note-7-pakistan-300x300.jpg",
-                R.drawable.ic_cat_gaming
+            ProductModel(
+                "AC",
+                "Best AC",
+                "https://learningtoys.pk/wp-content/uploads/2019/08/1-4-300x300.jpg",
+                50000f,
+                10
             )
         )
-        mobiles.add(
-            CategoryModel(
-                "Gaming",
-                "https://newmobiles.com.pk/wp-content/uploads/2020/06/infinix-note-7-pakistan-300x300.jpg",
-                R.drawable.ic_cat_gaming
-            )
-        )
-        mobiles.add(
-            CategoryModel(
-                "Gaming",
-                "https://newmobiles.com.pk/wp-content/uploads/2020/06/infinix-note-7-pakistan-300x300.jpg",
-                R.drawable.ic_cat_gaming
-            )
-        )
-        mobiles.add(
-            CategoryModel(
-                "Gaming",
-                "https://newmobiles.com.pk/wp-content/uploads/2020/06/infinix-note-7-pakistan-300x300.jpg",
-                R.drawable.ic_cat_gaming
-            )
-        )
-        mobiles.add(
-            CategoryModel(
-                "Gaming",
-                "https://newmobiles.com.pk/wp-content/uploads/2020/06/infinix-note-7-pakistan-300x300.jpg",
-                R.drawable.ic_cat_gaming
-            )
-        )
-        var mobilesAdapter = LargeCategories2RecyclerAdapter(activity as Activity, mobiles)
+
+        val mobilesAdapter = ProductsAdapter(activity as Activity, mobiles)
         rvMobiles2.layoutManager = GridLayoutManager(context, 2)
         rvMobiles2.adapter = mobilesAdapter
     }
 
     private fun setUpCategoriesRecycler() {
-        var categories: MutableList<CategoryModel> = ArrayList()
+        val categories: MutableList<CategoryModel> = ArrayList()
         categories.add(
             CategoryModel(
                 "AC",
@@ -308,7 +271,7 @@ class HomeFragment : Fragment() {
                 R.drawable.ic_cat_waterdespensor
             )
         )
-        var categoriesAdapter: SmallCategoriesRecyclerAdapter =
+        val categoriesAdapter =
             SmallCategoriesRecyclerAdapter(activity as Activity, categories)
         rvCategories.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
@@ -316,22 +279,17 @@ class HomeFragment : Fragment() {
     }
 
     private fun setUpSlider() {
-        var sliderAdapter = SliderAdapter(activity as Context)
-        sliderAdapter.addItem(SliderItemModel("https://mygreatdubai.com/sahoolatkar/wp-content/uploads/2020/07/1-1-1030x472.png"))
-        sliderAdapter.addItem(SliderItemModel("https://mygreatdubai.com/sahoolatkar/wp-content/uploads/2020/07/2-1.png"))
-        sliderAdapter.addItem(SliderItemModel("https://mygreatdubai.com/sahoolatkar/wp-content/uploads/2020/07/1-1-1030x472.png"))
-        imageSlider.setSliderAdapter(sliderAdapter)
-        imageSlider.startAutoCycle()
-    }
+        val offers = ArrayList<SliderItemModel>()
+        offers.add(SliderItemModel("https://mygreatdubai.com/sahoolatkar/wp-content/uploads/2020/07/1-1-1030x472.png"))
+        offers.add(SliderItemModel("https://mygreatdubai.com/sahoolatkar/wp-content/uploads/2020/07/2-1.png"))
+        offers.add(SliderItemModel("https://mygreatdubai.com/sahoolatkar/wp-content/uploads/2020/07/1-1-1030x472.png"))
+        val sliderAdapter = OffersSliderAdapter(activity as Context, offers, true)
+        imageSlider.adapter = sliderAdapter
 
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HomeFragment().apply {
-                arguments = Bundle().apply {
+        imageSlider.clipToPadding = false;
+        imageSlider.setPadding(70,0,70,0)
+        imageSlider.pageMargin = 20
 
-                }
-            }
     }
 
     override fun onDestroyView() {

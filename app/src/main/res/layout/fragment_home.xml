@@ -10,24 +10,36 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.smarteist.autoimageslider.SliderView
+<!--        <com.smarteist.autoimageslider.SliderView-->
+<!--            android:id="@+id/imageSlider"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="@dimen/_150sdp"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:sliderAnimationDuration="600"-->
+<!--            app:sliderAutoCycleDirection="back_and_forth"-->
+<!--            app:sliderAutoCycleEnabled="true"-->
+<!--            app:sliderIndicatorAnimationDuration="600"-->
+<!--            app:sliderIndicatorGravity="center_horizontal|bottom"-->
+<!--            app:sliderIndicatorMargin="15dp"-->
+<!--            app:sliderIndicatorOrientation="horizontal"-->
+<!--            app:sliderIndicatorPadding="3dp"-->
+<!--            app:sliderIndicatorRadius="2dp"-->
+<!--            app:sliderIndicatorSelectedColor="#5A5A5A"-->
+<!--            app:sliderIndicatorUnselectedColor="#FFF"-->
+<!--            app:sliderScrollTimeInSec="3"-->
+<!--            app:sliderStartAutoCycle="true" />-->
+
+        <com.asksira.loopingviewpager.LoopingViewPager
             android:id="@+id/imageSlider"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_150sdp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:sliderAnimationDuration="600"
-            app:sliderAutoCycleDirection="back_and_forth"
-            app:sliderAutoCycleEnabled="true"
-            app:sliderIndicatorAnimationDuration="600"
-            app:sliderIndicatorGravity="center_horizontal|bottom"
-            app:sliderIndicatorMargin="15dp"
-            app:sliderIndicatorOrientation="horizontal"
-            app:sliderIndicatorPadding="3dp"
-            app:sliderIndicatorRadius="2dp"
-            app:sliderIndicatorSelectedColor="#5A5A5A"
-            app:sliderIndicatorUnselectedColor="#FFF"
-            app:sliderScrollTimeInSec="3"
-            app:sliderStartAutoCycle="true" />
+            android:layout_height="@dimen/_140sdp"
+            app:isInfinite="true"
+            app:autoScroll="true"
+            app:scrollInterval="2000"
+            android:clipToPadding="false"
+            app:viewpagerAspectRatio="2"
+            app:itemAspectRatio="2"
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
             android:id="@+id/tvCategoriesHeading"
@@ -97,6 +109,7 @@
             android:layout_marginTop="@dimen/margin_tiny"
             android:clipToPadding="false"
             android:paddingHorizontal="@dimen/padding_normal"
+            android:paddingBottom="@dimen/padding_large"
             app:layout_constraintTop_toBottomOf="@id/iv1stBanner" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,7 +10,6 @@ import com.sahoolatkar.sahoolatkar.R
 import com.sahoolatkar.sahoolatkar.models.SliderItemModel
 import com.smarteist.autoimageslider.SliderViewAdapter
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.fragment_home.*
 
 
 class SliderAdapter(val context: Context) :
@@ -33,7 +32,7 @@ class SliderAdapter(val context: Context) :
 
     override fun onCreateViewHolder(parent: ViewGroup): SliderAdapterVH {
         val inflate: View = LayoutInflater.from(parent.context)
-            .inflate(R.layout.layout_home_top_slider_item, parent, false)
+            .inflate(R.layout.layout_home_top_slider_item1, parent, false)
         return SliderAdapterVH(inflate)
     }
 
