@@ -25,7 +25,9 @@
             android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".ui.RegistrationSuccessActivity" />
         <activity android:name=".ui.WorkInfoActivity"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan">
+
+        </activity>
         <activity android:name=".ui.OptionalInfoActivity"
             android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".ui.VerificationActivity"
