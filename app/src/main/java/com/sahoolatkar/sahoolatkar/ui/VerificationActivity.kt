@@ -3,6 +3,8 @@ package com.sahoolatkar.sahoolatkar.ui
 import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.text.Editable
+import android.text.TextWatcher
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import com.sahoolatkar.sahoolatkar.R
@@ -26,9 +28,14 @@ class VerificationActivity : AppCompatActivity() {
     }
 
     private fun init() {
-        setListeners()
         setupIndexLineNavigation()
+        setUpEtsOnFocusStatusBarToggle()
+        setListeners()
         setUpCountdown()
+    }
+
+    private fun setUpEtsOnFocusStatusBarToggle() {
+        EditTextUtils.setToggleStatusbarOnEtFocus(vCodeEts, window)
     }
 
     private fun setUpCountdown() {
@@ -51,6 +58,12 @@ class VerificationActivity : AppCompatActivity() {
         ivBack.setOnClickListener {
             onBackPressed()
         }
+
+        setHideKeyboardOnInputComplete()
+    }
+
+    private fun setHideKeyboardOnInputComplete() {
+        EditTextUtils.hideKeyboardOnInputSize(etVCode4, this@VerificationActivity, 1)
     }
 
     private fun continueClick() {

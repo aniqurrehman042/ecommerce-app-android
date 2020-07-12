@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/clMain"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".ui.SignInSignUpActivity"
     android:fitsSystemWindows="true">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        tools:context=".ui.SignInSignUpActivity">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -157,7 +154,8 @@
                     android:maxLines="1"
                     android:paddingHorizontal="@dimen/padding_large"
                     android:paddingVertical="@dimen/padding_normal"
-                    android:textSize="@dimen/text_normal" />
+                    android:textSize="@dimen/text_normal"
+                    android:nextFocusDown="@id/etDob"/>
 
                 <EditText
                     android:id="@+id/etDob"
@@ -242,6 +240,7 @@
 
             </LinearLayout>
 
+
             <View
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -264,24 +263,23 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_small"
-            android:layout_marginTop="@dimen/margin_large"
-            android:gravity="center"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_small"
+        android:layout_marginTop="@dimen/margin_large"
+        android:gravity="center"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/ivBack"
-                android:layout_width="@dimen/size_back_button"
-                android:layout_height="@dimen/size_back_button"
-                android:src="@drawable/ic_left_arrow_white" />
+        <ImageView
+            android:id="@+id/ivBack"
+            android:layout_width="@dimen/size_back_button"
+            android:layout_height="@dimen/size_back_button"
+            android:src="@drawable/ic_left_arrow_white" />
 
-        </LinearLayout>
+    </LinearLayout>
 
-        <include layout="@layout/layout_loader" />
+    <include layout="@layout/layout_loader" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,6 +9,7 @@ import com.sahoolatkar.sahoolatkar.utils.AlertDialogUtils
 import com.sahoolatkar.sahoolatkar.utils.EditTextUtils
 import com.sahoolatkar.sahoolatkar.utils.SyncEditTextUtils
 import com.sahoolatkar.sahoolatkar.utils.UIUtils
+import kotlinx.android.synthetic.main.activity_optional_info.*
 import kotlinx.android.synthetic.main.activity_pin_creation.*
 import kotlinx.android.synthetic.main.activity_pin_creation.ivBack
 import kotlinx.android.synthetic.main.activity_verification.tvContinue
@@ -29,8 +30,13 @@ class PinCreationActivity : AppCompatActivity() {
     }
 
     private fun init() {
-        setListeners()
         setupIndexLineNavigation()
+        setUpEtsOnFocusStatusBarToggle()
+        setListeners()
+    }
+
+    private fun setUpEtsOnFocusStatusBarToggle() {
+        EditTextUtils.setToggleStatusbarOnEtFocus(pCodeEts + pCodeConfirmEts, window)
     }
 
     private fun syncEditTexts() {
@@ -46,11 +52,14 @@ class PinCreationActivity : AppCompatActivity() {
         ivBack.setOnClickListener {
             onBackPressed()
         }
+
+        EditTextUtils.moveToEtOnInputComplete(etPCode4, etPCodeConfirm1, 1)
+        EditTextUtils.hideKeyboardOnInputSize(etPCodeConfirm4, this, 1)
     }
 
     private fun continueClick() {
-        var pinCode = EditTextUtils.getCombinedInputFromEtsArray(pCodeEts)
-        var pinCodeConfirm = EditTextUtils.getCombinedInputFromEtsArray(pCodeConfirmEts)
+        val pinCode = EditTextUtils.getCombinedInputFromEtsArray(pCodeEts)
+        val pinCodeConfirm = EditTextUtils.getCombinedInputFromEtsArray(pCodeConfirmEts)
 
         when {
             pinCode.length < 4 -> {
@@ -70,7 +79,6 @@ class PinCreationActivity : AppCompatActivity() {
     }
 
     private fun setupIndexLineNavigation() {
-
         populateEtsArrays()
         syncEditTexts()
     }

@@ -82,14 +82,12 @@ class DateUtils {
             return format.format(date)
         }
 
-//    fun isSameDay(firstDate: Date?, secondDate: Date?): Boolean {
-//        val firstDay: Int = DateFormat.format("dd", firstDate) as String?.toInt()
-//        val firstMonth: Int = DateFormat.format("MM", firstDate) as String?.toInt()
-//        val firstYear: Int = DateFormat.format("yyyy", firstDate) as String?.toInt()
-//        val secondDay: Int = DateFormat.format("dd", secondDate) as String?.toInt()
-//        val secondMonth: Int = DateFormat.format("MM", secondDate) as String?.toInt()
-//        val secondYear: Int = DateFormat.format("yyyy", secondDate) as String?.toInt()
-//        return firstYear == secondYear && firstMonth == secondMonth && firstDay == secondDay
-//    }
+        fun stringToCalendar(dateString: String) : Calendar {
+            val cal = Calendar.getInstance()
+            val sdf =
+                SimpleDateFormat("dd/MM/yy", Locale.US)
+            cal.time = sdf.parse(dateString)!!
+            return cal
+        }
     }
 }

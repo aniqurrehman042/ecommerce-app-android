@@ -21,20 +21,25 @@
 
         <meta-data android:name="com.google.android.geo.API_KEY" android:value="@string/MAPS_API_KEY"/>
 
-        <activity android:name=".ui.PinCreationActivity" />
+        <activity android:name=".ui.PinCreationActivity"
+            android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".ui.RegistrationSuccessActivity" />
         <activity android:name=".ui.WorkInfoActivity"
-            android:windowSoftInputMode="adjustPan|adjustResize" />
+            android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".ui.OptionalInfoActivity"
             android:windowSoftInputMode="adjustPan"/>
-        <activity android:name=".ui.VerificationActivity" />
+        <activity android:name=".ui.VerificationActivity"
+            android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".ui.SignInSignUpActivity"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustPan">
+
+        </activity>
         <activity android:name=".ui.GettingStartedActivity" />
         <activity android:name=".ui.SplashActivity">
 
         </activity>
-        <activity android:name=".ui.MainActivity">
+        <activity android:name=".ui.MainActivity"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

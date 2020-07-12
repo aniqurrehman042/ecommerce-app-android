@@ -8,8 +8,9 @@
     tools:context=".ui.MainActivity">
 
     <View
-        android:layout_width="@dimen/_420sdp"
-        android:layout_height="@dimen/_300sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleX="1.7"
         android:background="@drawable/bg_red_circle"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -20,10 +21,13 @@
         android:id="@+id/etSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_white_rounded_dark_grey_bordered"
+        android:background="@drawable/bg_white_circle_dark_grey_bordered"
         android:drawableLeft="@drawable/ic_search_dark_grey_18dp"
         android:paddingHorizontal="@dimen/padding_normal"
         android:paddingVertical="@dimen/_5sdp"
+        android:layout_marginHorizontal="@dimen/margin_large"
+        android:lines="1"
+        android:maxLines="1"
         android:hint="What are you looking for?"
         android:drawablePadding="@dimen/padding_small"
         android:textSize="@dimen/text_small"

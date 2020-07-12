@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.view.WindowManager
+import android.view.inputmethod.EditorInfo
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.sahoolatkar.sahoolatkar.R
 import com.sahoolatkar.sahoolatkar.utils.EditTextUtils
@@ -29,7 +31,33 @@ class SignInSignUpActivity : AppCompatActivity() {
     }
 
     private fun init() {
+        setUpEtsOnFocusStatusBarToggle()
         setListeners()
+    }
+
+    private fun setUpEditTextNavigation() {
+        etFatherName.setOnEditorActionListener { textView: TextView, actionId, keyEvent ->
+            if (actionId == EditorInfo.IME_ACTION_NEXT) {
+                EditTextUtils.hideKeyboardFrom(this)
+                ViewUtils.showDatePicker(etDob, this)
+                etFatherName.clearFocus()
+            }
+            true
+        }
+    }
+
+    private fun setUpEtsOnFocusStatusBarToggle() {
+        EditTextUtils.setToggleStatusbarOnEtFocus(
+            arrayOf(
+                etCnicNo,
+                etCusId,
+                etEmail,
+                etFatherName,
+                etDob,
+                etCnicExpiry,
+                etPhone
+            ), window
+        )
     }
 
     private fun setListeners() {
@@ -59,11 +87,19 @@ class SignInSignUpActivity : AppCompatActivity() {
             onBackPressed()
         }
 
-        EditTextUtils.setCnicHyphensAdder(etCnicNo)
+        setUpHideKeyboardOnPhoneInput()
+
+        EditTextUtils.setCnicHyphensAdder(etCnicNo, this)
+
+        setUpEditTextNavigation()
 
         ViewUtils.setDatePicker(etDob, this)
 
         ViewUtils.setDatePicker(etCnicExpiry, this)
+    }
+
+    private fun setUpHideKeyboardOnPhoneInput() {
+        EditTextUtils.hideKeyboardOnInputSize(etPhone, this@SignInSignUpActivity, 11)
     }
 
     private fun nextClick() {

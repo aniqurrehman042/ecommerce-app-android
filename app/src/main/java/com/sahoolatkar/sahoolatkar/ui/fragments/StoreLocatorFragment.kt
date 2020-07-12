@@ -23,6 +23,10 @@ import com.sahoolatkar.sahoolatkar.R
 import com.sahoolatkar.sahoolatkar.models.StoreModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_store_locator.*
+import okhttp3.MediaType
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody
 import java.util.ArrayList
 
 

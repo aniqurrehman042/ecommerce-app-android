@@ -103,7 +103,8 @@
                 android:textSize="@dimen/text_normal"
                 android:maxLength="1"
                 android:gravity="center"
-                android:inputType="number" />
+                android:inputType="number"
+                android:nextFocusDown="@id/etPCodeConfirm1"/>
 
         </LinearLayout>
 
