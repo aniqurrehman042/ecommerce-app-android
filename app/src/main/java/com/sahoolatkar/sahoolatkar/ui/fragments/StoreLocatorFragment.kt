@@ -10,12 +10,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
-import com.google.android.gms.common.util.MapUtils
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.maps.android.SphericalUtil
@@ -24,11 +24,7 @@ import com.sahoolatkar.sahoolatkar.models.StoreModel
 import com.sahoolatkar.sahoolatkar.utils.ViewUtils
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_store_locator.*
-import okhttp3.MediaType
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.RequestBody
-import java.util.ArrayList
+import java.util.*
 
 
 class StoreLocatorFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
@@ -111,8 +107,50 @@ class StoreLocatorFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
     }
 
     private fun addStores() {
-        stores.add(StoreModel("Sahooolat Kar Township", 31.456544, 74.301541, "Boss Sahoolat Kar, College Road, Township, Lahore", "9 am - 8 pm", "0323-4000062", "https://lh5.googleusercontent.com/p/AF1QipOBKUmL73b4UjnH3I6tO2sKaJ9gP5_8ne-P7b9V=w408-h669-k-no"))
-        stores.add(StoreModel("Sahooolat Kar LOS", 31.542794, 74.316784, "Boss Sahoolat Kar, Firoz Pur Road, LOS Chowk, Lahore", "9 am - 8 pm", "0304-4855158", "https://lh5.googleusercontent.com/p/AF1QipOBKUmL73b4UjnH3I6tO2sKaJ9gP5_8ne-P7b9V=w408-h669-k-no"))
+        stores.add(
+            StoreModel(
+                "Sahooolat Kar Township",
+                31.456544,
+                74.301541,
+                "Boss Sahoolat Kar, College Road, Township, Lahore",
+                "9 am - 8 pm",
+                "0323-4000062",
+                "https://lh5.googleusercontent.com/p/AF1QipOBKUmL73b4UjnH3I6tO2sKaJ9gP5_8ne-P7b9V=w408-h669-k-no"
+            )
+        )
+        stores.add(
+            StoreModel(
+                "Sahooolat Kar LOS",
+                31.542794,
+                74.316784,
+                "Boss Sahoolat Kar, Firoz Pur Road, LOS Chowk, Lahore",
+                "9 am - 8 pm",
+                "0304-4855158",
+                "https://lh5.googleusercontent.com/p/AF1QipOBKUmL73b4UjnH3I6tO2sKaJ9gP5_8ne-P7b9V=w408-h669-k-no"
+            )
+        )
+        stores.add(
+            StoreModel(
+                "Sahooolat Kar LOS",
+                38.502794,
+                70.296784,
+                "Boss Sahoolat Kar, Firoz Pur Road, LOS Chowk, Lahore",
+                "9 am - 8 pm",
+                "0304-4855158",
+                "https://lh5.googleusercontent.com/p/AF1QipOBKUmL73b4UjnH3I6tO2sKaJ9gP5_8ne-P7b9V=w408-h669-k-no"
+            )
+        )
+        stores.add(
+            StoreModel(
+                "Sahooolat Kar LOS",
+                33.602794,
+                78.306784,
+                "Boss Sahoolat Kar, Firoz Pur Road, LOS Chowk, Lahore",
+                "9 am - 8 pm",
+                "0304-4855158",
+                "https://lh5.googleusercontent.com/p/AF1QipOBKUmL73b4UjnH3I6tO2sKaJ9gP5_8ne-P7b9V=w408-h669-k-no"
+            )
+        )
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -140,26 +178,52 @@ class StoreLocatorFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
         addStoreMarkers()
 //        tvStoreTitle.text = SphericalUtil.computeDistanceBetween(storeMarkers[0].position, storeMarkers[1].position).toString()
 
-        val currentLocation = getCurrentLatLng()
-        if (currentLocation != null) {
-            moveToLocation(currentLocation)
-        } else {
-            moveCameraToShowAllStores()
-        }
+//        val currentLocation = getCurrentLatLng()
+//        if (currentLocation != null) {
+//            moveToLocation(currentLocation)
+//        } else {
+//            moveCameraToShowAllStores()
+//        }
+
+        setPositionAndZoom()
+    }
+
+    private fun setPositionAndZoom() {
+        moveCameraToShowAllStores()
     }
 
     private fun moveCameraToShowAllStores() {
+        val currentPosition = getCurrentLatLng()
+        val builder: LatLngBounds.Builder = LatLngBounds.Builder()
+        for (marker in storeMarkers) {
+            if (currentPosition == null || SphericalUtil.computeDistanceBetween(
+                    marker.position,
+                    currentPosition
+                ) < (80 * 1000)
+            ) {
+                builder.include(marker.position)
+            }
+        }
+        val bounds: LatLngBounds = builder.build()
 
+        val padding = 80 // offset from edges of the map in pixels
+
+        val cu = CameraUpdateFactory.newLatLngBounds(bounds, padding)
+
+        map?.moveCamera(cu)
+        map?.animateCamera(cu)
     }
 
     private fun addStoreMarkers() {
 
         for (store in stores) {
-            storeMarkers.add(map?.addMarker(
-                MarkerOptions()
-                    .position(LatLng(store.storeLat, store.storeLng))
-                    .title(store.storeTitle)
-            )!!)
+            storeMarkers.add(
+                map?.addMarker(
+                    MarkerOptions()
+                        .position(LatLng(store.storeLat, store.storeLng))
+                        .title(store.storeTitle)
+                )!!
+            )
         }
     }
 
@@ -201,6 +265,7 @@ class StoreLocatorFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
                 val currentLatLng = getCurrentLatLng();
                 if (currentLatLng != null) {
                     moveToLocation(currentLatLng)
+                    getCurrentLatLng()
                 }
             } else {
 
@@ -235,6 +300,7 @@ class StoreLocatorFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
                 locationManager.getLastKnownLocation(locationProvider)
             val userLat = lastKnownLocation!!.latitude
             val userLng = lastKnownLocation.longitude
+            map!!.isMyLocationEnabled = true
             return LatLng(userLat, userLng)
         }
     }
