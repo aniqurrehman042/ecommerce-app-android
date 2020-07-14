@@ -24,6 +24,23 @@
             android:name="com.google.android.gms.maps.SupportMapFragment" />
 
         <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_red_circle"
+            app:layout_constraintBottom_toTopOf="@id/llStoreDetails"
+            app:layout_constraintRight_toRightOf="@id/llStoreDetails"
+            android:layout_marginRight="@dimen/margin_tiny"
+            android:padding="@dimen/padding_small"
+            android:layout_marginBottom="@dimen/margin_small">
+
+            <ImageView
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:src="@drawable/ic_directions_white" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/llStoreDetails"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

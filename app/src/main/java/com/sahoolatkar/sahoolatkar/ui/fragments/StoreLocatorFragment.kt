@@ -29,6 +29,7 @@ import java.util.*
 
 class StoreLocatorFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
+    private val NEARBY_RADIUS = 80
     private lateinit var mapView: MapView
     private var map: GoogleMap? = null
     private val REQUEST_LOCATION: Int = 1
@@ -193,25 +194,50 @@ class StoreLocatorFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
     }
 
     private fun moveCameraToShowAllStores() {
-        val currentPosition = getCurrentLatLng()
-        val builder: LatLngBounds.Builder = LatLngBounds.Builder()
-        for (marker in storeMarkers) {
-            if (currentPosition == null || SphericalUtil.computeDistanceBetween(
-                    marker.position,
-                    currentPosition
-                ) < (80 * 1000)
-            ) {
-                builder.include(marker.position)
-            }
-        }
-        val bounds: LatLngBounds = builder.build()
+        val bounds: LatLngBounds = getBoundsAndSetNearestStoreDetails()
 
         val padding = 80 // offset from edges of the map in pixels
 
-        val cu = CameraUpdateFactory.newLatLngBounds(bounds, padding)
+        val cu = CameraUpdateFactory.newLatLngBounds(bounds, 800, 800, padding)
 
         map?.moveCamera(cu)
         map?.animateCamera(cu)
+    }
+
+    private fun getBoundsAndSetNearestStoreDetails(): LatLngBounds {
+        val currentPosition = getCurrentLatLng()
+        var nearestStore: StoreModel? = null
+        var nearestDistance: Int? = null
+        val builder: LatLngBounds.Builder = LatLngBounds.Builder()
+
+            storeMarkers.forEachIndexed { index, marker ->
+                if (currentPosition != null) {
+                    val distanceBtwMeAndStore = SphericalUtil.computeDistanceBetween(
+                        marker.position,
+                        currentPosition
+                    )
+                    if (distanceBtwMeAndStore < (NEARBY_RADIUS * 1000)
+                    ) {
+                        builder.include(marker.position)
+                    }
+                    if (nearestDistance == null || nearestDistance!! > distanceBtwMeAndStore.toInt()) {
+                        nearestDistance = distanceBtwMeAndStore.toInt()
+                        nearestStore = stores[index]
+                    }
+                } else {
+                    builder.include(marker.position)
+                }
+            }
+
+        if (nearestStore != null) {
+            setStoreDetails(nearestStore!!)
+        }
+
+        if (currentPosition != null) {
+            builder.include(currentPosition)
+        }
+
+        return builder.build()
     }
 
     private fun addStoreMarkers() {
@@ -243,6 +269,7 @@ class StoreLocatorFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
         tvStoreAddress.text = selectedStore.storeAddress
         tvStoreTiming.text = selectedStore.storeTiming
         tvStorePhone.text = selectedStore.storePhone
+        showStoreDetails()
     }
 
     private fun moveToLocation(currentLocation: LatLng) {
@@ -262,11 +289,7 @@ class StoreLocatorFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
             if (permissions[0] == Manifest.permission.ACCESS_COARSE_LOCATION && grantResults[0] == PackageManager.PERMISSION_GRANTED
                 && permissions[1] == Manifest.permission.ACCESS_FINE_LOCATION && grantResults[1] == PackageManager.PERMISSION_GRANTED
             ) {
-                val currentLatLng = getCurrentLatLng();
-                if (currentLatLng != null) {
-                    moveToLocation(currentLatLng)
-                    getCurrentLatLng()
-                }
+                moveCameraToShowAllStores()
             } else {
 
             }

@@ -1,5 +1,6 @@
 package com.sahoolatkar.sahoolatkar.ui.fragments
 
+import ProductApiModel
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -13,10 +14,12 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sahoolatkar.sahoolatkar.R
 import com.sahoolatkar.sahoolatkar.adapters.*
+import com.sahoolatkar.sahoolatkar.api_callbacks.IGetAllProductsCallback
 import com.sahoolatkar.sahoolatkar.models.CategoryModel
 import com.sahoolatkar.sahoolatkar.models.ProductModel
 import com.sahoolatkar.sahoolatkar.models.SliderItemModel
 import com.sahoolatkar.sahoolatkar.ui.SplashActivity
+import com.sahoolatkar.sahoolatkar.utils.SahoolatKarApiUtils
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -348,10 +351,19 @@ class HomeFragment : Fragment() {
                 10
             )
         )
+
+        var products: MutableList<ProductApiModel>? = null
+
+        SahoolatKarApiUtils.getAllProducts(requireContext(), object : IGetAllProductsCallback {
+            override fun onGetAllProducts(productsList: MutableList<ProductApiModel>) {
+                products = productsList
+            }
+        })
+
         val sliderAdapter = ProductsSliderAdapter(activity as Context, featuredProducts, true)
         featuredProductsSlider.adapter = sliderAdapter
 
-        featuredProductsSlider.clipToPadding = false;
+        featuredProductsSlider.clipToPadding = false
         featuredProductsSlider.setPadding(70,0,70,0)
         featuredProductsSlider.pageMargin = 20
 

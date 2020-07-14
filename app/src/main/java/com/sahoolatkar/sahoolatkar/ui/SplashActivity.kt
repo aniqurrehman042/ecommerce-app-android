@@ -30,21 +30,6 @@ class SplashActivity : AppCompatActivity() {
     private fun init() {
         hideNavigationBar()
         setTimeoutForNextActivity()
-        Log.d("ret response", "Started")
-        SahoolatkarClient.getProductService().getAllProducts()?.enqueue(object : Callback<List<ProductApiModel?>?> {
-            override fun onFailure(call: Call<List<ProductApiModel?>?>, t: Throwable) {
-                Log.d("ret response", t.message.toString())
-                Toast.makeText(this@SplashActivity, t.message.toString(), Toast.LENGTH_LONG).show()
-            }
-
-            override fun onResponse(
-                call: Call<List<ProductApiModel?>?>,
-                response: Response<List<ProductApiModel?>?>
-            ) {
-                Log.d("ret response", response.message())
-                Toast.makeText(this@SplashActivity, response.message(), Toast.LENGTH_LONG).show()
-            }
-        })
     }
 
     private fun hideNavigationBar() {

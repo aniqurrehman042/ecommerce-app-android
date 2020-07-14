@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragments.ProductDetailsFragment">
 
-    <com.smarteist.autoimageslider.SliderView
+    <com.asksira.loopingviewpager.LoopingViewPager
         android:id="@+id/productSlider"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_300sdp"
