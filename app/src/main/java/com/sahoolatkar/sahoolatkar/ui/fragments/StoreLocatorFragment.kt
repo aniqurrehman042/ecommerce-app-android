@@ -1,6 +1,7 @@
 package com.sahoolatkar.sahoolatkar.ui.fragments
 
 import android.Manifest
+import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageManager
 import android.location.LocationManager
@@ -29,6 +30,7 @@ class StoreLocatorFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
     private val NEARBY_RADIUS = 80
     private var map: GoogleMap? = null
     private val REQUEST_LOCATION: Int = 1
+    private lateinit var mainActivity: Activity
     private val stores: MutableList<StoreModel> = ArrayList()
     private val storeMarkers: MutableList<Marker> = ArrayList()
 
@@ -150,6 +152,8 @@ class StoreLocatorFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        mainActivity = activity as Activity
+
         //initialize before calling map onCreate
         MapsInitializer.initialize(activity)
         if (mapView != null) {
@@ -157,20 +161,15 @@ class StoreLocatorFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
             mapView.onCreate(savedInstanceState);
             mapView.onResume()
             mapView.getMapAsync(this)
+            mapReadyCode(activity)
         }
 
         init()
 
     }
 
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            StoreLocatorFragment().apply {
-                arguments = Bundle().apply {
+    private fun mapReadyCode(context: Context?) {
 
-                }
-            }
     }
 
     override fun onMapReady(map: GoogleMap?) {
@@ -300,11 +299,11 @@ class StoreLocatorFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
     private fun getCurrentLatLng(): LatLng? {
 
         if (ActivityCompat.checkSelfPermission(
-                requireContext(),
+                mainActivity,
                 Manifest.permission.ACCESS_FINE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED &&
             ActivityCompat.checkSelfPermission(
-                requireContext(),
+                mainActivity,
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
