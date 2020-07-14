@@ -10,10 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.MapView
-import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.Marker
@@ -30,7 +27,6 @@ import java.util.*
 class StoreLocatorFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
     private val NEARBY_RADIUS = 80
-    private lateinit var mapView: MapView
     private var map: GoogleMap? = null
     private val REQUEST_LOCATION: Int = 1
     private val stores: MutableList<StoreModel> = ArrayList()
@@ -79,9 +75,6 @@ class StoreLocatorFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_store_locator, container, false)
-        mapView = view.findViewById(R.id.mapView)
-        mapView.onCreate(savedInstanceState)
-        mapView.onResume()
 
         return view
     }
@@ -157,7 +150,15 @@ class StoreLocatorFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        mapView.getMapAsync(this)
+        //initialize before calling map onCreate
+        MapsInitializer.initialize(activity)
+        if (mapView != null) {
+            //instead of passing null its a good practice to use savedInstanceState
+            mapView.onCreate(savedInstanceState);
+            mapView.onResume()
+            mapView.getMapAsync(this)
+        }
+
         init()
 
     }

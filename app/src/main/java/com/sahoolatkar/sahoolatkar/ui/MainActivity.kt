@@ -2,6 +2,7 @@ package com.sahoolatkar.sahoolatkar.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
 import androidx.navigation.ui.setupWithNavController
 import com.sahoolatkar.sahoolatkar.R
@@ -30,7 +31,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setListeners() {
-
+        ivNotifications.setOnClickListener {
+            Navigation.createNavigateOnClickListener(R.id.notificationsFragment)
+        }
     }
 
     private fun setUpBottomBar() {

@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_home_to_productsCatalogFragment"
             app:destination="@id/productsCatalogFragment" />
+        <action
+            android:id="@+id/action_home_to_notificationsFragment2"
+            app:destination="@id/notificationsFragment" />
     </fragment>
 
     <fragment
@@ -53,5 +56,10 @@
         android:name="com.sahoolatkar.sahoolatkar.ui.fragments.ProductDetailsFragment"
         android:label="fragment_product_details"
         tools:layout="@layout/fragment_product_details" />
+    <fragment
+        android:id="@+id/notificationsFragment"
+        android:name="com.sahoolatkar.sahoolatkar.ui.fragments.NotificationsFragment"
+        android:label="fragment_notifications"
+        tools:layout="@layout/fragment_notifications" />
 
 </navigation>

@@ -93,6 +93,7 @@
                 android:layout_weight="1" />
 
             <ImageView
+                android:id="@+id/ivNotifications"
                 android:layout_width="@dimen/_25sdp"
                 android:layout_height="@dimen/_25sdp"
                 android:layout_marginRight="@dimen/margin_tiny"
