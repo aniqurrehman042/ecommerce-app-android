@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.fragments.NotificationsFragment"
-    android:orientation="vertical"
-    android:paddingHorizontal="@dimen/padding_notifications">
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="wrap_content"
@@ -19,6 +18,7 @@
         android:layout_marginTop="@dimen/margin_small"/>
     
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvNotifications"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingBottom="@dimen/padding_normal"

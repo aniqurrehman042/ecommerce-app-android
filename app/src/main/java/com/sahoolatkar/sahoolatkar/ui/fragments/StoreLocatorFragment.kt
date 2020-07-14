@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.LatLngBounds
@@ -18,11 +19,14 @@ import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.maps.android.SphericalUtil
 import com.sahoolatkar.sahoolatkar.R
+import com.sahoolatkar.sahoolatkar.adapters.CityFilterAdapter
+import com.sahoolatkar.sahoolatkar.models.CityFilterModel
 import com.sahoolatkar.sahoolatkar.models.StoreModel
 import com.sahoolatkar.sahoolatkar.utils.ViewUtils
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_store_locator.*
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class StoreLocatorFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
@@ -88,6 +92,16 @@ class StoreLocatorFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
     private fun init() {
         addStores()
         setListeners()
+        setUpCityFilterRecycler()
+    }
+
+    private fun setUpCityFilterRecycler() {
+        val cityFilters = ArrayList<CityFilterModel>()
+        cityFilters.add(CityFilterModel("Lahore", LatLng(31.5204, 74.3587)))
+        cityFilters.add(CityFilterModel("Gurjanwala", LatLng(32.1877, 74.1945)))
+        cityFilters.add(CityFilterModel("Sialkot", LatLng(32.4945, 74.5229)))
+        rvCityFilters.layoutManager = LinearLayoutManager(mainActivity, LinearLayoutManager.HORIZONTAL, false)
+        rvCityFilters.adapter = CityFilterAdapter(cityFilters, this@StoreLocatorFragment)
     }
 
     private fun setListeners() {
@@ -276,12 +290,15 @@ class StoreLocatorFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
         showStoreDetails()
     }
 
-    private fun moveToLocation(currentLocation: LatLng) {
+    fun moveToLocation(currentLocation: LatLng, zoom: Float) {
         map?.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 15f))
         // Zoom in, animating the camera.
         map?.animateCamera(CameraUpdateFactory.zoomIn())
         // Zoom out to zoom level 10, animating with a duration of 2 seconds.
-        map?.animateCamera(CameraUpdateFactory.zoomTo(15f), 2000, null)
+        map?.animateCamera(CameraUpdateFactory.zoomTo(zoom), 500, null)
+
+        // Hiding store details dialog
+        hideStoreDetails()
     }
 
     override fun onRequestPermissionsResult(

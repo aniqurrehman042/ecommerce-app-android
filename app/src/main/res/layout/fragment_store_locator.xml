@@ -23,6 +23,13 @@
             android:layout_height="match_parent"
             android:name="com.google.android.gms.maps.SupportMapFragment" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvCityFilters"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_tiny"
+            app:layout_constraintTop_toTopOf="@id/mapView" />
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

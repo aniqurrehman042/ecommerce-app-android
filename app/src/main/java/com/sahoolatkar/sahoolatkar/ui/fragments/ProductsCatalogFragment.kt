@@ -52,17 +52,7 @@ class ProductsCatalogFragment : Fragment() {
         products.add(ProductModel("Mobile", "Best Mobile in the world", "https://newmobiles.com.pk/wp-content/uploads/2020/06/infinix-note-7-pakistan-300x300.jpg", 20000f, 5))
         products.add(ProductModel("Mobile", "Best Mobile in the world", "https://newmobiles.com.pk/wp-content/uploads/2020/06/infinix-note-7-pakistan-300x300.jpg", 20000f, 5))
         rvProducts.layoutManager = GridLayoutManager(context, 2)
-        val productsAdapter: ProductsAdapter = ProductsAdapter(activity as Activity, products)
+        val productsAdapter = ProductsAdapter(activity as Activity, products)
         rvProducts.adapter = productsAdapter
-    }
-
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ProductsCatalogFragment().apply {
-                arguments = Bundle().apply {
-
-                }
-            }
     }
 }
