@@ -43,22 +43,26 @@ class StoreLocatorFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
 
     override fun onResume() {
         super.onResume()
-        mapView.onResume()
+        if (mapView != null)
+            mapView.onResume()
     }
 
     override fun onPause() {
         super.onPause()
-        mapView.onPause()
+        if (mapView != null)
+            mapView.onPause()
     }
 
     override fun onStop() {
         super.onStop()
-        mapView.onStop()
+        if (mapView != null)
+            mapView.onStop()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        mapView.onDestroy()
+        if (mapView != null)
+            mapView.onDestroy()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -210,24 +214,24 @@ class StoreLocatorFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
         var nearestDistance: Int? = null
         val builder: LatLngBounds.Builder = LatLngBounds.Builder()
 
-            storeMarkers.forEachIndexed { index, marker ->
-                if (currentPosition != null) {
-                    val distanceBtwMeAndStore = SphericalUtil.computeDistanceBetween(
-                        marker.position,
-                        currentPosition
-                    )
-                    if (distanceBtwMeAndStore < (NEARBY_RADIUS * 1000)
-                    ) {
-                        builder.include(marker.position)
-                    }
-                    if (nearestDistance == null || nearestDistance!! > distanceBtwMeAndStore.toInt()) {
-                        nearestDistance = distanceBtwMeAndStore.toInt()
-                        nearestStore = stores[index]
-                    }
-                } else {
+        storeMarkers.forEachIndexed { index, marker ->
+            if (currentPosition != null) {
+                val distanceBtwMeAndStore = SphericalUtil.computeDistanceBetween(
+                    marker.position,
+                    currentPosition
+                )
+                if (distanceBtwMeAndStore < (NEARBY_RADIUS * 1000)
+                ) {
                     builder.include(marker.position)
                 }
+                if (nearestDistance == null || nearestDistance!! > distanceBtwMeAndStore.toInt()) {
+                    nearestDistance = distanceBtwMeAndStore.toInt()
+                    nearestStore = stores[index]
+                }
+            } else {
+                builder.include(marker.position)
             }
+        }
 
         if (nearestStore != null) {
             setStoreDetails(nearestStore!!)
