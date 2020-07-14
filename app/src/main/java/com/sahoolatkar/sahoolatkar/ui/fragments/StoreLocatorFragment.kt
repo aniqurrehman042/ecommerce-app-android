@@ -345,7 +345,8 @@ class StoreLocatorFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
             return if (lastKnownLocation != null) {
                 val userLat = lastKnownLocation.latitude
                 val userLng = lastKnownLocation.longitude
-                map!!.isMyLocationEnabled = true
+                map?.isMyLocationEnabled = true
+                map?.uiSettings?.isMyLocationButtonEnabled = false
                 LatLng(userLat, userLng)
             } else {
                 null
