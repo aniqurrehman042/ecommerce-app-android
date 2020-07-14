@@ -31,9 +31,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setListeners() {
-        ivNotifications.setOnClickListener {
-            Navigation.createNavigateOnClickListener(R.id.notificationsFragment, null)
-        }
+        ivNotifications.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.notificationsFragment, null))
     }
 
     private fun setUpBottomBar() {
