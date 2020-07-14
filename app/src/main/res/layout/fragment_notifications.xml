@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.NotificationsFragment">
+    tools:context=".ui.fragments.NotificationsFragment"
+    android:orientation="vertical"
+    android:paddingHorizontal="@dimen/padding_notifications">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_white_circle"
+        android:text="Clear All"
+        android:textColor="@color/black"
+        android:paddingHorizontal="@dimen/padding_normal"
+        android:paddingVertical="@dimen/_3sdp"
+        android:layout_gravity="end"
+        android:layout_marginTop="@dimen/margin_small"/>
+    
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:paddingBottom="@dimen/padding_normal"
+        android:clipToPadding="false" />
 
-</FrameLayout>
+</LinearLayout>

@@ -2,14 +2,13 @@ package com.sahoolatkar.sahoolatkar.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.navigation.NavDirections
+import androidx.navigation.NavOptions
 import androidx.navigation.Navigation
 import androidx.navigation.ui.setupWithNavController
 import com.sahoolatkar.sahoolatkar.R
 import com.sahoolatkar.sahoolatkar.utils.EditTextUtils
 import com.sahoolatkar.sahoolatkar.utils.UIUtils
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_sign_in_sign_up.*
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,8 +30,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setListeners() {
+
+        var navOptions = NavOptions.Builder()
+            .setEnterAnim(R.anim.enter_from_left)
+            .setExitAnim(R.anim.exit_to_left)
+            .build()
+
         ivNotifications.setOnClickListener {
-            Navigation.findNavController(this@MainActivity, R.id.navHostFragment).navigate(R.id.notificationsFragment)
+            Navigation.findNavController(this@MainActivity, R.id.navHostFragment).navigate(R.id.notificationsFragment, null, navOptions, null)
         }
     }
 

@@ -27,7 +27,8 @@
             app:destination="@id/productsCatalogFragment" />
         <action
             android:id="@+id/action_home_to_notificationsFragment2"
-            app:destination="@id/notificationsFragment" />
+            app:destination="@id/notificationsFragment"
+            app:enterAnim="@anim/enter_from_left"/>
     </fragment>
 
     <fragment
