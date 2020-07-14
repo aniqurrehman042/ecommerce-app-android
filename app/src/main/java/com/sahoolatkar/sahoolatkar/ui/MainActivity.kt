@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setListeners() {
         ivNotifications.setOnClickListener {
-            Navigation.createNavigateOnClickListener(R.id.notificationsFragment)
+            Navigation.createNavigateOnClickListener(R.id.notificationsFragment, null)
         }
     }
 

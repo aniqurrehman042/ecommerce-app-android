@@ -321,7 +321,7 @@ class StoreLocatorFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
             return null
         } else {
             val locationManager =
-                requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
+                mainActivity.getSystemService(Context.LOCATION_SERVICE) as LocationManager
             val locationProvider = LocationManager.NETWORK_PROVIDER
             val lastKnownLocation =
                 locationManager.getLastKnownLocation(locationProvider)
