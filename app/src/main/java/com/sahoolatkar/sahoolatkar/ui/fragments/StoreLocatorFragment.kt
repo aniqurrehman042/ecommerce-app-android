@@ -325,13 +325,13 @@ class StoreLocatorFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
             val locationProvider = LocationManager.NETWORK_PROVIDER
             val lastKnownLocation =
                 locationManager.getLastKnownLocation(locationProvider)
-            if (lastKnownLocation != null) {
-                val userLat = lastKnownLocation!!.latitude
+            return if (lastKnownLocation != null) {
+                val userLat = lastKnownLocation.latitude
                 val userLng = lastKnownLocation.longitude
                 map!!.isMyLocationEnabled = true
-                return LatLng(userLat, userLng)
+                LatLng(userLat, userLng)
             } else {
-                return null
+                null
             }
 
         }
