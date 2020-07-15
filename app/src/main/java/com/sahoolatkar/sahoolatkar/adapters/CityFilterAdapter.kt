@@ -58,8 +58,18 @@ class CityFilterAdapter(
         // Set the text of each item of
         // Recycler view with the list items
         holder.cityName.text = cityList[position].cityName
-        holder.cityName.setOnClickListener {
-            storeLocatorFragment.moveToLocation(cityList[position].cityLoc, 11f)
+
+        when (holder.cityName.text) {
+            "Nearby" -> {
+                holder.cityName.setOnClickListener {
+                    storeLocatorFragment.showNearestStoreAndDetails()
+                }
+            }
+            else -> {
+                holder.cityName.setOnClickListener {
+                    storeLocatorFragment.moveToLocation(cityList[position].cityLoc, 11f)
+                }
+            }
         }
     }
 

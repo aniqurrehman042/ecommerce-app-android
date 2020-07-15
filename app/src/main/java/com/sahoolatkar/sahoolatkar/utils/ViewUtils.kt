@@ -1,5 +1,6 @@
 package com.sahoolatkar.sahoolatkar.utils
 
+import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.Context
 import android.view.View
@@ -21,6 +22,7 @@ class ViewUtils {
         fun setDatePicker(editText: EditText, context: Context) {
             editText.setOnClickListener {
                 showDatePicker(editText, context)
+                EditTextUtils.hideKeyboardFrom(context as Activity)
             }
         }
 

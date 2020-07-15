@@ -31,13 +31,44 @@
             android:layout_height="@dimen/_150sdp"
             android:scaleType="centerCrop"
             app:layout_constraintTop_toTopOf="parent"
-            android:src="@color/red"/>
+            android:src="@color/red" />
+
+        <LinearLayout
+            android:id="@+id/llLanguage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_dark_grey_rounded"
+            android:layout_marginTop="@dimen/margin_small"
+            app:layout_constraintTop_toBottomOf="@id/ivProfileImg"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginRight="@dimen/margin_tiny">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ENG"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_normal"
+                android:background="@drawable/bg_red_rounded"
+                android:paddingVertical="@dimen/_3sdp"
+                android:paddingHorizontal="@dimen/padding_normal" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="اردو"
+                android:textColor="@color/red"
+                android:textSize="@dimen/text_normal"
+                android:paddingVertical="@dimen/_3sdp"
+                android:paddingHorizontal="@dimen/padding_normal" />
+
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvMenuItems"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/ivProfileImg"
+            app:layout_constraintTop_toBottomOf="@id/llLanguage"
             android:layout_marginTop="@dimen/margin_tiny"/>
 
         <LinearLayout

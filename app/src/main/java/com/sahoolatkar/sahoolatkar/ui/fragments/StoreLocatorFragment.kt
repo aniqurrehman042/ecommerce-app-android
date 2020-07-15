@@ -97,10 +97,12 @@ class StoreLocatorFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
 
     private fun setUpCityFilterRecycler() {
         val cityFilters = ArrayList<CityFilterModel>()
+        cityFilters.add(CityFilterModel("Nearby", LatLng(31.5204, 74.3587)))
         cityFilters.add(CityFilterModel("Lahore", LatLng(31.5204, 74.3587)))
         cityFilters.add(CityFilterModel("Gurjanwala", LatLng(32.1877, 74.1945)))
         cityFilters.add(CityFilterModel("Sialkot", LatLng(32.4945, 74.5229)))
-        rvCityFilters.layoutManager = LinearLayoutManager(mainActivity, LinearLayoutManager.HORIZONTAL, false)
+        rvCityFilters.layoutManager =
+            LinearLayoutManager(mainActivity, LinearLayoutManager.HORIZONTAL, false)
         rvCityFilters.adapter = CityFilterAdapter(cityFilters, this@StoreLocatorFragment)
     }
 
@@ -220,6 +222,45 @@ class StoreLocatorFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
 
         map?.moveCamera(cu)
         map?.animateCamera(cu)
+    }
+
+    fun showNearestStoreAndDetails() {
+        val currentPosition = getCurrentLatLng()
+        var nearestDistance: Int? = null
+        var nearestStoreMarker: Marker? = null
+        var nearestStore: StoreModel? = null
+        val builder: LatLngBounds.Builder = LatLngBounds.Builder()
+
+        if (currentPosition != null) {
+            storeMarkers.forEachIndexed { index, marker ->
+                val distanceBtwMeAndStore = SphericalUtil.computeDistanceBetween(
+                    marker.position,
+                    currentPosition
+                )
+                if (nearestDistance == null || nearestDistance!! > distanceBtwMeAndStore.toInt()) {
+                    nearestDistance = distanceBtwMeAndStore.toInt()
+                    nearestStoreMarker = marker
+                    nearestStore = stores[index]
+                }
+            }
+
+            if (nearestStoreMarker != null) {
+                val bounds = builder.apply {
+                    include(nearestStoreMarker?.position)
+                    include(currentPosition)
+                }
+                .build()
+                val padding = 120
+
+                val cu = CameraUpdateFactory.newLatLngBounds(bounds, 800, 800, padding)
+
+                map?.moveCamera(cu)
+                map?.animateCamera(cu)
+
+                setStoreDetails(nearestStore!!)
+            }
+
+        }
     }
 
     private fun getBoundsAndSetNearestStoreDetails(): LatLngBounds {

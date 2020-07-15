@@ -96,6 +96,10 @@ class SignInSignUpActivity : AppCompatActivity() {
         ViewUtils.setDatePicker(etDob, this)
 
         ViewUtils.setDatePicker(etCnicExpiry, this)
+
+        llSignInSignUp.setOnClickListener {
+            EditTextUtils.hideKeyboardFrom(this)
+        }
     }
 
     private fun setUpHideKeyboardOnPhoneInput() {
