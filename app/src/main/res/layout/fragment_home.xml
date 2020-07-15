@@ -34,6 +34,21 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/offersSlider" />
 
+        <TextView
+            android:id="@+id/tvCategoriesViewAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:text="View All"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_small"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/tvCategoriesHeading"
+            android:paddingHorizontal="@dimen/padding_normal"
+            android:paddingVertical="@dimen/_3sdp"
+            android:layout_marginRight="@dimen/margin_small"
+            android:background="@drawable/bg_white_circle_red_bordered"/>
+
         <androidx.cardview.widget.CardView
             android:id="@+id/cvCategories"
             android:layout_width="match_parent"
@@ -65,6 +80,21 @@
             android:textSize="@dimen/text_heading"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cvCategories" />
+
+        <TextView
+            android:id="@+id/tvFeaturedProductsViewAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:text="View All"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_small"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/tvFeaturedProductsHeading"
+            android:paddingHorizontal="@dimen/padding_normal"
+            android:paddingVertical="@dimen/_3sdp"
+            android:layout_marginRight="@dimen/margin_small"
+            android:background="@drawable/bg_white_circle_red_bordered"/>
 
         <com.asksira.loopingviewpager.LoopingViewPager
             android:id="@+id/featuredProductsSlider"
@@ -98,6 +128,21 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv1stBanner" />
 
+        <TextView
+            android:id="@+id/tvHomeAppliancesViewAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:text="View All"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_small"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/tvHomeAppliances"
+            android:paddingHorizontal="@dimen/padding_normal"
+            android:paddingVertical="@dimen/_3sdp"
+            android:layout_marginRight="@dimen/margin_small"
+            android:background="@drawable/bg_white_circle_red_bordered"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvMobiles"
             android:layout_width="match_parent"
@@ -118,6 +163,21 @@
             android:textSize="@dimen/text_heading"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/rvMobiles" />
+
+        <TextView
+            android:id="@+id/tvMobilesViewAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:text="View All"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_small"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/tvMobiles"
+            android:paddingHorizontal="@dimen/padding_normal"
+            android:paddingVertical="@dimen/_3sdp"
+            android:layout_marginRight="@dimen/margin_small"
+            android:background="@drawable/bg_white_circle_red_bordered"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvMobiles2"

@@ -73,7 +73,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_small"
         android:layout_marginBottom="@dimen/_40sdp"
-        android:background="@drawable/bg_red_circle_bordered"
+        android:background="@drawable/bg_white_circle_red_bordered"
         android:paddingHorizontal="@dimen/_20sdp"
         android:paddingVertical="@dimen/_4sdp"
         android:text="Skip"

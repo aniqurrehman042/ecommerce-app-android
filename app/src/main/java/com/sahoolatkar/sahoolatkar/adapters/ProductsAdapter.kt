@@ -44,6 +44,7 @@ class ProductsAdapter(val activity: Activity, val products: MutableList<ProductM
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val product = products[position]
+        var liked = false
 
         holder.tvOldCurrency.paintFlags =
             holder.tvOldCurrency.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
@@ -57,9 +58,16 @@ class ProductsAdapter(val activity: Activity, val products: MutableList<ProductM
         Picasso.get()
             .load(product.imgUrl)
             .into(holder.ivProductImg)
-        Picasso.get()
-            .load("https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Heart_icon_red_hollow.svg/1083px-Heart_icon_red_hollow.svg.png")
-            .into(holder.ivLike)
+
+        holder.ivLike.setOnClickListener {
+            liked = if (liked) {
+                holder.ivLike.setImageResource(R.drawable.ic_like_off)
+                false
+            } else {
+                holder.ivLike.setImageResource(R.drawable.ic_like_on)
+                true
+            }
+        }
 
         holder.clProduct.setOnClickListener {
             startProductDetailsFragment()

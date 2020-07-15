@@ -12,6 +12,7 @@ import com.sahoolatkar.sahoolatkar.R
 import com.sahoolatkar.sahoolatkar.models.ProductModel
 import com.sahoolatkar.sahoolatkar.models.SliderItemModel
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.layout_product_item.view.*
 
 class ProductsSliderAdapter(
     context: Context,
@@ -38,13 +39,25 @@ class ProductsSliderAdapter(
         listPosition: Int,
         viewType: Int
     ) {
+
+        var liked = false
+
         Picasso.get().load(products[listPosition].imgUrl)
             .into(convertView.findViewById<ImageView>(R.id.ivProductImg))
 
-        Picasso.get().load("https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Heart_icon_red_hollow.svg/1083px-Heart_icon_red_hollow.svg.png").into(convertView.findViewById<ImageView>(R.id.ivLike))
         convertView.findViewById<TextView>(R.id.tvProductName).text = products[listPosition].name
         convertView.findViewById<TextView>(R.id.tvProductDesc).text = products[listPosition].desc
         convertView.findViewById<TextView>(R.id.tvPrice).text = products[listPosition].price.toInt().toString()
         convertView.findViewById<TextView>(R.id.tvDiscount).text = products[listPosition].discount.toString()
+
+        convertView.ivLike.setOnClickListener {
+            liked = if (liked) {
+                convertView.ivLike.setImageResource(R.drawable.ic_like_off)
+                false
+            } else {
+                convertView.ivLike.setImageResource(R.drawable.ic_like_on)
+                true
+            }
+        }
     }
 }

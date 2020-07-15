@@ -13,4 +13,5 @@
     <color name="dark_green">#005500</color>
     <color name="light_green">#4400aa00</color>
     <color name="extra_dark_grey">#4d4d4d</color>
+    <color name="semi_trans_black">#88000000</color>
 </resources>
