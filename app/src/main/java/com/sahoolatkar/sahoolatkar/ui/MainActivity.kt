@@ -9,7 +9,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavOptions
 import androidx.navigation.Navigation
 import androidx.navigation.ui.setupWithNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.sahoolatkar.sahoolatkar.R
+import com.sahoolatkar.sahoolatkar.adapters.MenuAdapter
+import com.sahoolatkar.sahoolatkar.models.MenuItemModel
 import com.sahoolatkar.sahoolatkar.utils.EditTextUtils
 import com.sahoolatkar.sahoolatkar.utils.UIUtils
 import kotlinx.android.synthetic.main.activity_main.*
@@ -36,6 +39,19 @@ class MainActivity : AppCompatActivity() {
         setUpBottomBar()
         setListeners()
         setMenuAnimations()
+        setUpMenuRecycler()
+    }
+
+    private fun setUpMenuRecycler() {
+        val menuItems = ArrayList<MenuItemModel>()
+        menuItems.add(MenuItemModel("Country", ""))
+        menuItems.add(MenuItemModel("Language", ""))
+        menuItems.add(MenuItemModel("Language", ""))
+        menuItems.add(MenuItemModel("Language", ""))
+        menuItems.add(MenuItemModel("Language", ""))
+        menuItems.add(MenuItemModel("Language", ""))
+        rvMenuItems.layoutManager = LinearLayoutManager(this)
+        rvMenuItems.adapter = MenuAdapter(menuItems)
     }
 
     private fun setMenuAnimations() {
