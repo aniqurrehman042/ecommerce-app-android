@@ -128,7 +128,7 @@ class HomeFragment : Fragment() {
             )
         )
 
-        val mobilesAdapter = ProductsAdapter(activity as Activity, mobiles)
+        val mobilesAdapter = ProductsAdapter(activity as Activity, mobiles, getString(R.string.fragment_home))
         rvMobiles.layoutManager = GridLayoutManager(context, 2)
         rvMobiles.adapter = mobilesAdapter
     }
@@ -190,7 +190,7 @@ class HomeFragment : Fragment() {
             )
         )
 
-        val mobilesAdapter = ProductsAdapter(activity as Activity, mobiles)
+        val mobilesAdapter = ProductsAdapter(activity as Activity, mobiles, getString(R.string.fragment_home))
         rvMobiles2.layoutManager = GridLayoutManager(context, 2)
         rvMobiles2.adapter = mobilesAdapter
     }

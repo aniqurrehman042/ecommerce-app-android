@@ -6,7 +6,6 @@ import android.text.TextWatcher
 import android.view.Window
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
-import kotlinx.android.synthetic.main.activity_verification.*
 
 
 class EditTextUtils {
@@ -58,9 +57,11 @@ class EditTextUtils {
         }
 
         fun hideKeyboardFrom(activity: Activity) {
-            val imm: InputMethodManager =
-                activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.hideSoftInputFromWindow(activity.currentFocus!!.windowToken, 0)
+            try {
+                (activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager).hideSoftInputFromWindow(activity.currentFocus!!.windowToken, 0)
+            } catch (e: Exception) {
+
+            }
         }
 
         fun hideKeyboardOnInputSize(et: EditText, activity: Activity, size: Int) {

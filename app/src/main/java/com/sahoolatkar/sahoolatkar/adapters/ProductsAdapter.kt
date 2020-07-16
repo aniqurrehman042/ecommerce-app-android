@@ -14,8 +14,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.sahoolatkar.sahoolatkar.R
 import com.sahoolatkar.sahoolatkar.models.ProductModel
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_main.*
 
-class ProductsAdapter(val activity: Activity, val products: MutableList<ProductModel>) :
+class ProductsAdapter(val activity: Activity, val products: MutableList<ProductModel>, val parentFragment: String) :
     RecyclerView.Adapter<ProductsAdapter.ViewHolder>() {
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val ivProductImg = itemView.findViewById<ImageView>(R.id.ivProductImg)
@@ -75,7 +76,16 @@ class ProductsAdapter(val activity: Activity, val products: MutableList<ProductM
     }
 
     private fun startProductDetailsFragment() {
-        Navigation.findNavController(activity.findViewById(R.id.navHostFragment))
-            .navigate(R.id.action_productsCatalogFragment_to_productDetailsFragment)
+        when (parentFragment) {
+            activity.getString(R.string.fragment_home) -> {
+                Navigation.findNavController(activity.findViewById(R.id.navHostFragment))
+                    .navigate(R.id.action_home_to_productDetailsFragment)
+            }
+
+            activity.getString(R.string.fragment_products_catalog) -> {
+                Navigation.findNavController(activity.findViewById(R.id.navHostFragment))
+                    .navigate(R.id.action_productsCatalogFragment_to_productDetailsFragment)
+            }
+        }
     }
 }

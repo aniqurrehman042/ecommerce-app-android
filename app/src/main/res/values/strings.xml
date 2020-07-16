@@ -12,5 +12,9 @@
         <item>Policeman</item>
     </array>
 
+<!--    Fragment Labels-->
+    <string name="fragment_home">fragment_home</string>
+    <string name="fragment_products_catalog">fragment_products_catalog</string>
+
     <string name="MAPS_API_KEY">AIzaSyAfxKvRo5qENv-HbPJacjEH_sSDDs8pWpA</string>
 </resources>

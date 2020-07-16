@@ -19,9 +19,9 @@
 
     <ImageView
         android:layout_width="@dimen/_320sdp"
-        android:layout_height="@dimen/_180sdp"
+        android:layout_height="@dimen/_280sdp"
         android:layout_gravity="center_horizontal"
-        android:src="@drawable/img_sucess" />
+        android:src="@drawable/ic_img_success" />
 
     <TextView
         android:layout_width="wrap_content"

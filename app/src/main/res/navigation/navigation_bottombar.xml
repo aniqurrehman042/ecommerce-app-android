@@ -20,15 +20,14 @@
     <fragment
         android:id="@+id/home"
         android:name="com.sahoolatkar.sahoolatkar.ui.fragments.HomeFragment"
-        android:label="Home Fragment"
-        tools:layout="@layout/fragment_home" >
+        android:label="@string/fragment_home"
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_home_to_productsCatalogFragment"
             app:destination="@id/productsCatalogFragment" />
         <action
-            android:id="@+id/action_home_to_notificationsFragment2"
-            app:destination="@id/notificationsFragment"
-            app:enterAnim="@anim/enter_from_left"/>
+            android:id="@+id/action_home_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment" />
     </fragment>
 
     <fragment
@@ -46,8 +45,8 @@
     <fragment
         android:id="@+id/productsCatalogFragment"
         android:name="com.sahoolatkar.sahoolatkar.ui.fragments.ProductsCatalogFragment"
-        android:label="fragment_products_catalog"
-        tools:layout="@layout/fragment_products_catalog" >
+        android:label="@string/fragment_products_catalog"
+        tools:layout="@layout/fragment_products_catalog">
         <action
             android:id="@+id/action_productsCatalogFragment_to_productDetailsFragment"
             app:destination="@id/productDetailsFragment" />

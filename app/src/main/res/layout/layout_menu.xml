@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:id="@+id/clMenuContainer"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/clMenuContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clipChildren="true"
@@ -20,64 +19,137 @@
         android:id="@+id/clMenu"
         android:layout_width="0dp"
         android:layout_height="match_parent"
+        android:background="@color/white"
+        android:paddingHorizontal="@dimen/padding_large"
         app:layout_constraintHorizontal_weight="0.7"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/vPlaceholder"
-        android:background="@color/white">
+        app:layout_constraintRight_toLeftOf="@id/vPlaceholder">
 
-        <ImageView
-            android:id="@+id/ivProfileImg"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clProfileDetails"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_150sdp"
+            android:layout_height="wrap_content"
+            android:paddingVertical="@dimen/_40sdp"
             android:scaleType="centerCrop"
-            app:layout_constraintTop_toTopOf="parent"
-            android:src="@color/red" />
+            android:src="@color/red"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/ivProfileImg"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_gift"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:riv_corner_radius="100dp" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_tiny"
+                android:orientation="vertical"
+                app:layout_constraintLeft_toRightOf="@id/ivProfileImg"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/ivProfileImg">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Syed Abdul Waheed"
+                    android:textAllCaps="true"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_heading"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="03315274666"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_small" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Register Your Email"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="@dimen/text_small" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/light_grey"
+            app:layout_constraintTop_toBottomOf="@id/clProfileDetails"
+            android:layout_marginHorizontal="@dimen/margin_large"/>
 
         <LinearLayout
             android:id="@+id/llLanguage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_dark_grey_rounded"
             android:layout_marginTop="@dimen/margin_small"
-            app:layout_constraintTop_toBottomOf="@id/ivProfileImg"
+            android:layout_marginRight="@dimen/margin_tiny"
+            android:background="@drawable/bg_light_grey_rounded_5dp"
             app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginRight="@dimen/margin_tiny">
+            app:layout_constraintTop_toBottomOf="@id/clProfileDetails">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/bg_red_rounded"
+                android:paddingHorizontal="@dimen/padding_normal"
+                android:paddingVertical="@dimen/_3sdp"
                 android:text="ENG"
                 android:textColor="@color/white"
-                android:textSize="@dimen/text_normal"
-                android:background="@drawable/bg_red_rounded"
-                android:paddingVertical="@dimen/_3sdp"
-                android:paddingHorizontal="@dimen/padding_normal" />
+                android:textSize="@dimen/text_normal" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/padding_normal"
+                android:paddingVertical="@dimen/_3sdp"
                 android:text="اردو"
                 android:textColor="@color/red"
-                android:textSize="@dimen/text_normal"
-                android:paddingVertical="@dimen/_3sdp"
-                android:paddingHorizontal="@dimen/padding_normal" />
+                android:textSize="@dimen/text_normal" />
 
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvRewards"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_small"
+            android:background="@drawable/bg_light_grey_circle"
+            android:drawableLeft="@drawable/ic_gift"
+            android:drawablePadding="@dimen/padding_normal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="@dimen/padding_large"
+            android:paddingVertical="@dimen/padding_small"
+            android:text="Goals &amp; Rewards"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_normal"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/llLanguage" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvMenuItems"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/llLanguage"
-            android:layout_marginTop="@dimen/margin_tiny"/>
+            android:layout_marginTop="@dimen/margin_tiny"
+            android:isScrollContainer="false"
+            app:layout_constraintTop_toBottomOf="@id/tvRewards" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/rvMenuItems"
+            android:layout_marginTop="@dimen/margin_large"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginTop="@dimen/margin_large">
+            app:layout_constraintTop_toBottomOf="@id/rvMenuItems">
 
             <ImageView
                 android:layout_width="@dimen/_20sdp"
@@ -87,20 +159,20 @@
             <ImageView
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
-                android:src="@color/black"
-                android:layout_marginLeft="@dimen/margin_tiny"/>
+                android:layout_marginLeft="@dimen/margin_tiny"
+                android:src="@color/black" />
 
             <ImageView
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
-                android:src="@color/blue"
-                android:layout_marginLeft="@dimen/margin_tiny"/>
+                android:layout_marginLeft="@dimen/margin_tiny"
+                android:src="@color/blue" />
 
             <ImageView
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
-                android:src="@color/dark_grey"
-                android:layout_marginLeft="@dimen/margin_tiny"/>
+                android:layout_marginLeft="@dimen/margin_tiny"
+                android:src="@color/dark_grey" />
 
         </LinearLayout>
 
