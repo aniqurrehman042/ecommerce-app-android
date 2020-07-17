@@ -36,12 +36,13 @@
             android:src="@color/red"
             app:layout_constraintTop_toTopOf="parent">
 
-            <com.makeramen.roundedimageview.RoundedImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/ivProfileImg"
                 android:layout_width="@dimen/_50sdp"
                 android:layout_height="@dimen/_50sdp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_gift"
+
+                android:src="@drawable/ic_emp_name"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:riv_corner_radius="100dp" />
