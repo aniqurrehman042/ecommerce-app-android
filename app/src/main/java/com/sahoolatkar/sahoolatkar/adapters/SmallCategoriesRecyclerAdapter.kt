@@ -7,15 +7,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.fragment.app.FragmentManager
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.sahoolatkar.sahoolatkar.R
-import com.sahoolatkar.sahoolatkar.globals.GlobalVariables
 import com.sahoolatkar.sahoolatkar.models.CategoryModel
-import com.sahoolatkar.sahoolatkar.ui.fragments.ProductsCatalogFragment
-import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_main.*
 
 
 class SmallCategoriesRecyclerAdapter(var activity: Activity, var horizontalItems: MutableList<CategoryModel>) :
@@ -48,11 +43,11 @@ class SmallCategoriesRecyclerAdapter(var activity: Activity, var horizontalItems
         holder.tvItemName.text = horizontalItem.name
 
         holder.llMain.setOnClickListener {
-            startProductsCatalogFragment(horizontalItem)
+            startProductsCatalogFragment()
         }
     }
 
-    private fun startProductsCatalogFragment(category: CategoryModel) {
+    private fun startProductsCatalogFragment() {
         Navigation.findNavController(activity.findViewById(R.id.navHostFragment)).navigate(R.id.action_home_to_productsCatalogFragment)
     }
 }

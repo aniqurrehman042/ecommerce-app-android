@@ -23,14 +23,4 @@ class ApplyLoanFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_apply_loan, container, false)
     }
-
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ApplyLoanFragment().apply {
-                arguments = Bundle().apply {
-
-                }
-            }
-    }
 }

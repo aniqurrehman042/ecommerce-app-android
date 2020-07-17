@@ -22,6 +22,16 @@
             app:itemAspectRatio="2.2"
             app:layout_constraintTop_toTopOf="parent"/>
 
+        <com.asksira.loopingviewpager.indicator.CustomShapePagerIndicator
+            android:id="@+id/offersIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/offersSlider"
+            app:layout_constraintLeft_toLeftOf="@id/offersSlider"
+            app:layout_constraintRight_toRightOf="@id/offersSlider"
+            android:layout_marginBottom="@dimen/margin_tiny"
+            app:indicator_spacing="@dimen/margin_tiny"/>
+
         <TextView
             android:id="@+id/tvCategoriesHeading"
             android:layout_width="wrap_content"

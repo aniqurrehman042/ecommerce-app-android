@@ -23,14 +23,4 @@ class InstallmentsFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_installments, container, false)
     }
-
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            InstallmentsFragment().apply {
-                arguments = Bundle().apply {
-                    
-                }
-            }
-    }
 }

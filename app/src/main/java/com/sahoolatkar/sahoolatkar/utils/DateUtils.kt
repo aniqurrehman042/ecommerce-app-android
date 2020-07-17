@@ -14,7 +14,7 @@ class DateUtils {
             val format =
                 SimpleDateFormat("dd/MM/yy " + dotUnicode.toChar() + " hh:mm a", Locale.US)
             try {
-                date = format.parse(dateString)
+                date = format.parse(dateString!!)
             } catch (e: ParseException) {
                 e.printStackTrace()
             }
@@ -25,7 +25,7 @@ class DateUtils {
             var date: Date? = null
             val format = SimpleDateFormat("hh:mm a", Locale.US)
             try {
-                date = format.parse(dateString)
+                date = format.parse(dateString!!)
             } catch (e: ParseException) {
                 e.printStackTrace()
             }
@@ -36,7 +36,7 @@ class DateUtils {
             var date: Date? = null
             val format = SimpleDateFormat("dd/MM/yy", Locale.US)
             try {
-                date = format.parse(dateString)
+                date = format.parse(dateString!!)
             } catch (e: ParseException) {
                 e.printStackTrace()
             }
@@ -47,7 +47,7 @@ class DateUtils {
             var date: Date? = null
             val format = SimpleDateFormat("MM/dd/yy", Locale.US)
             try {
-                date = format.parse(dateString)
+                date = format.parse(dateString!!)
             } catch (e: ParseException) {
                 e.printStackTrace()
             }
@@ -58,22 +58,22 @@ class DateUtils {
             val dotUnicode = 0x00B7
             val format =
                 SimpleDateFormat("dd/MM/yy " + dotUnicode.toChar() + " hh:mm a", Locale.US)
-            return format.format(date)
+            return format.format(date!!)
         }
 
         fun dateToTimeString(date: Date?): String? {
             val format = SimpleDateFormat("hh:mm a", Locale.US)
-            return format.format(date)
+            return format.format(date!!)
         }
 
         fun dateToString(date: Date?): String? {
             val format = SimpleDateFormat("dd/MM/yy", Locale.US)
-            return format.format(date)
+            return format.format(date!!)
         }
 
         fun dateToOfferString(date: Date?): String? {
             val format = SimpleDateFormat("MM/dd/yy", Locale.US)
-            return format.format(date)
+            return format.format(date!!)
         }
 
         fun getCurrentDateInString(): String? {

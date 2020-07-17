@@ -11,7 +11,7 @@ import retrofit2.Response
 class SahoolatKarApiUtils {
 
     companion object {
-        fun getAllProducts(context: Context, getAllProductsCallback: IGetAllProductsCallback) {
+        fun getAllProducts(getAllProductsCallback: IGetAllProductsCallback) {
 
             SahoolatkarClient.getProductService().getAllProducts()?.enqueue(object :
                 Callback<List<ProductApiModel?>?> {

@@ -23,14 +23,4 @@ class ProductDetailsFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_product_details, container, false)
     }
-
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ProductDetailsFragment().apply {
-                arguments = Bundle().apply {
-
-                }
-            }
-    }
 }

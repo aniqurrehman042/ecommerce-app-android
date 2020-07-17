@@ -46,7 +46,7 @@ class EditTextUtils {
 
         fun setToggleStatusbarOnEtFocus(ets : Array<EditText>, window: Window) {
             for (et in ets) {
-                et.setOnFocusChangeListener { view, hasFocus ->
+                et.setOnFocusChangeListener { _, hasFocus ->
                     if (hasFocus) {
                         UIUtils.unsetFullScreen(window)
                     } else {

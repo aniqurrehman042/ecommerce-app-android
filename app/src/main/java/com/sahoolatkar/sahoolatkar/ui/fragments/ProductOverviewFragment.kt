@@ -23,14 +23,4 @@ class ProductOverviewFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_product_overview, container, false)
     }
-
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ProductOverviewFragment().apply {
-                arguments = Bundle().apply {
-
-                }
-            }
-    }
 }

@@ -181,14 +181,9 @@ class StoreLocatorFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
             mapView.onCreate(savedInstanceState);
             mapView.onResume()
             mapView.getMapAsync(this)
-            mapReadyCode(activity)
         }
 
         init()
-
-    }
-
-    private fun mapReadyCode(context: Context?) {
 
     }
 

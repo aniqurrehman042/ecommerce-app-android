@@ -8,7 +8,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.ImageView
+import android.widget.LinearLayout
+import androidx.core.content.ContextCompat.getColor
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,6 +21,7 @@ import com.sahoolatkar.sahoolatkar.api_callbacks.IGetAllProductsCallback
 import com.sahoolatkar.sahoolatkar.models.CategoryModel
 import com.sahoolatkar.sahoolatkar.models.ProductModel
 import com.sahoolatkar.sahoolatkar.models.SliderItemModel
+import com.sahoolatkar.sahoolatkar.ui.MainActivity
 import com.sahoolatkar.sahoolatkar.ui.SplashActivity
 import com.sahoolatkar.sahoolatkar.utils.SahoolatKarApiUtils
 import com.squareup.picasso.Picasso
@@ -28,11 +32,13 @@ import kotlin.collections.ArrayList
 class HomeFragment : Fragment() {
 
     private lateinit var mainView: View
+    private lateinit var mainActivity: MainActivity
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        mainActivity = requireActivity() as MainActivity
         // Inflate the layout for this fragment
         mainView = inflater.inflate(R.layout.fragment_home, container, false)
         return mainView
@@ -56,6 +62,29 @@ class HomeFragment : Fragment() {
         setUpFeaturedProductsSlider()
         setUpRecyclers()
         setUp1stBanner()
+        setUpTopSliderIndicator()
+    }
+
+    private fun setUpTopSliderIndicator() {
+        offersIndicator.highlighterViewDelegate = {
+            val highlighter = View(mainActivity)
+            highlighter.layoutParams = FrameLayout.LayoutParams(16, 4)
+            highlighter.setBackgroundColor(getColor(mainActivity, R.color.red))
+            highlighter
+        }
+        offersIndicator.unselectedViewDelegate = {
+            val unselected = View(mainActivity)
+            unselected.layoutParams = LinearLayout.LayoutParams(16, 4)
+            unselected.setBackgroundColor(getColor(mainActivity, R.color.dark_grey))
+            unselected.alpha = 0.4f
+            unselected
+        }
+
+        offersSlider.onIndicatorProgress = { selectingPosition, progress ->
+            offersIndicator.onPageScrolled(selectingPosition, progress)
+        }
+
+        offersIndicator.updateIndicatorCounts(offersSlider.indicatorCount)
     }
 
     private fun setUp1stBanner() {
@@ -352,11 +381,11 @@ class HomeFragment : Fragment() {
             )
         )
 
-        var products: MutableList<ProductApiModel>? = null
+        var productsList: MutableList<ProductApiModel>? = null
 
-        SahoolatKarApiUtils.getAllProducts(requireContext(), object : IGetAllProductsCallback {
-            override fun onGetAllProducts(productsList: MutableList<ProductApiModel>) {
-                products = productsList
+        SahoolatKarApiUtils.getAllProducts(object : IGetAllProductsCallback {
+            override fun onGetAllProducts(products: MutableList<ProductApiModel>) {
+                productsList = products
             }
         })
 

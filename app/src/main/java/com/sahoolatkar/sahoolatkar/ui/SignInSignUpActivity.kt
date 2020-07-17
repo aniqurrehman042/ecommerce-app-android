@@ -36,7 +36,7 @@ class SignInSignUpActivity : AppCompatActivity() {
     }
 
     private fun setUpEditTextNavigation() {
-        etFatherName.setOnEditorActionListener { textView: TextView, actionId, keyEvent ->
+        etFatherName.setOnEditorActionListener { _: TextView, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_NEXT) {
                 EditTextUtils.hideKeyboardFrom(this)
                 ViewUtils.showDatePicker(etDob, this)

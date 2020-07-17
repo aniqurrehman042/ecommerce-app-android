@@ -12,7 +12,7 @@ class AlertDialogUtils {
             AlertDialog.Builder(context)
                 .setTitle("Pin Confirmation")
                 .setMessage(message)
-                .setNeutralButton("Retry") { dialogInterface, i ->
+                .setNeutralButton("Retry") { dialogInterface, _ ->
                     dialogInterface.dismiss()
                 }.show()
         }
