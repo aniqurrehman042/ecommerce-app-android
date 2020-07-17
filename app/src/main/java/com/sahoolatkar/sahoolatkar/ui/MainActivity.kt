@@ -15,6 +15,7 @@ import com.sahoolatkar.sahoolatkar.adapters.MenuAdapter
 import com.sahoolatkar.sahoolatkar.models.MenuItemModel
 import com.sahoolatkar.sahoolatkar.utils.EditTextUtils
 import com.sahoolatkar.sahoolatkar.utils.UIUtils
+import com.sahoolatkar.sahoolatkar.utils.ViewUtils
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_menu.*
 
@@ -36,10 +37,15 @@ class MainActivity : AppCompatActivity() {
 
     private fun init() {
 //        setUpEtsOnFocusStatusBarToggle()
+        showMenu()
         setUpBottomBar()
         setListeners()
         setMenuAnimations()
         setUpMenuRecycler()
+    }
+
+    private fun showMenu() {
+        ViewUtils.showView(clMenuContainer)
     }
 
     private fun setUpMenuRecycler() {
@@ -132,5 +138,29 @@ class MainActivity : AppCompatActivity() {
                 R.id.navHostFragment
             )
         )
+    }
+
+    fun hideTopBar() {
+        ViewUtils.hideView(vTopOval)
+        ViewUtils.hideView(ll_topbar)
+        hideSearchBar()
+    }
+
+    fun hideSearchBar() {
+        ViewUtils.hideView(vEtVerticalLine)
+        ViewUtils.hideView(ivSearchFilter)
+        ViewUtils.hideView(etSearch)
+    }
+
+    fun showSearchBar() {
+        ViewUtils.showView(vEtVerticalLine)
+        ViewUtils.showView(ivSearchFilter)
+        ViewUtils.showView(etSearch)
+    }
+
+    fun showTopBar() {
+        ViewUtils.showView(vTopOval)
+        ViewUtils.showView(ll_topbar)
+        showSearchBar()
     }
 }

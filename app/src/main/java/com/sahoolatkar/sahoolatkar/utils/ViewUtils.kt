@@ -17,6 +17,10 @@ class ViewUtils {
             view.visibility = View.GONE
         }
 
+        fun hideViewKeepSpace(view: View) {
+            view.visibility = View.INVISIBLE
+        }
+
         fun isVisible(view: View): Boolean = view.visibility == View.VISIBLE
 
         fun setDatePicker(editText: EditText, context: Context) {
@@ -38,6 +42,7 @@ class ViewUtils {
                     calendar.set(Calendar.MONTH, monthOfYear)
                     calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
                     editText.setText(DateUtils.dateToString(calendar.time))
+                    editText.error = null
                 },
                 calendar.get(Calendar.YEAR),
                 calendar.get(Calendar.MONTH),

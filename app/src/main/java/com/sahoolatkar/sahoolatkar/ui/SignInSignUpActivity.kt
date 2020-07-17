@@ -68,6 +68,7 @@ class SignInSignUpActivity : AppCompatActivity() {
         tvNewCustomer.setOnClickListener {
             ViewUtils.showView(llInitialDetails)
             ViewUtils.showView(etCnicNo)
+            ViewUtils.showView(tvNext)
             ViewUtils.hideView(etCusId)
             ViewUtils.hideView(llMoreDetails)
             hideCustomerName()
@@ -77,6 +78,7 @@ class SignInSignUpActivity : AppCompatActivity() {
         tvExistingCustomer.setOnClickListener {
             ViewUtils.showView(llInitialDetails)
             ViewUtils.showView(etCusId)
+            ViewUtils.showView(tvNext)
             ViewUtils.hideView(etCnicNo)
             ViewUtils.hideView(llMoreDetails)
             hideCustomerName()
@@ -234,12 +236,17 @@ class SignInSignUpActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         if (ViewUtils.isVisible(llMoreDetails)) {
-            ViewUtils.hideView(llMoreDetails)
-            ViewUtils.showView(llCustomerType)
+            setInitialViews()
             hideCustomerName()
             return
         }
 
         super.onBackPressed()
+    }
+
+    private fun setInitialViews() {
+        ViewUtils.hideView(llMoreDetails)
+        ViewUtils.showView(llCustomerType)
+        ViewUtils.hideView(tvNext)
     }
 }

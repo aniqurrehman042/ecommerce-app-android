@@ -14,14 +14,14 @@
         android:textColor="@color/black"
         android:paddingHorizontal="@dimen/padding_normal"
         android:paddingVertical="@dimen/_3sdp"
-        android:layout_gravity="end"
-        android:layout_marginTop="@dimen/margin_small"/>
+        android:layout_marginRight="@dimen/margin_small"
+        android:layout_gravity="end" />
     
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvNotifications"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="@dimen/padding_normal"
+        android:paddingTop="@dimen/padding_normal"
         android:clipToPadding="false"
         android:layoutAnimation="@anim/recycler_layout_animation"/>
 

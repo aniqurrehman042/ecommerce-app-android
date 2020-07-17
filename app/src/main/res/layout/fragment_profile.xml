@@ -54,19 +54,21 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvAccountHeading"
-            android:src="@drawable/ic_profile" />
+            android:src="@drawable/ic_user" />
 
         <com.makeramen.roundedimageview.RoundedImageView
-            android:id="@+id/ibAddPic"
-            android:layout_width="@dimen/_10sdp"
-            android:layout_height="@dimen/_10sdp"
+            android:id="@+id/ivAddPic"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
             app:layout_constraintTop_toBottomOf="@+id/ivProfileImg"
             app:layout_constraintBottom_toBottomOf="@id/ivProfileImg"
             app:layout_constraintLeft_toLeftOf="@id/ivProfileImg"
             app:layout_constraintRight_toRightOf="@id/ivProfileImg"
             app:riv_corner_radius="100dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_home" />
+            android:src="@drawable/ic_camera_red"
+            android:padding="@dimen/_3sdp"
+            android:background="@drawable/bg_white_circle"/>
 
         <TextView
             android:id="@+id/tvUserName"
@@ -78,7 +80,7 @@
             android:textSize="@dimen/text_super_normal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivProfileImg" />
+            app:layout_constraintTop_toBottomOf="@+id/ivAddPic" />
 
         <TextView
             android:id="@+id/tvUserNumnber"

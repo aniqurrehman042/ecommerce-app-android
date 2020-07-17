@@ -6,9 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.sahoolatkar.sahoolatkar.R
+import com.sahoolatkar.sahoolatkar.ui.MainActivity
 import com.sahoolatkar.sahoolatkar.utils.ViewUtils
 
 class ProfileFragment : Fragment() {
+
+    private lateinit var mainActivity: MainActivity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,6 +24,7 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        mainActivity = requireActivity() as MainActivity
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_profile, container, false)
     }
@@ -37,19 +41,11 @@ class ProfileFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        ViewUtils.hideView(activity?.findViewById(R.id.vTopOval)!!)
-        ViewUtils.hideView(activity?.findViewById(R.id.ll_topbar)!!)
-        ViewUtils.hideView(activity?.findViewById(R.id.vEtVerticalLine)!!)
-        ViewUtils.hideView(activity?.findViewById(R.id.ivSearchFilter)!!)
-        ViewUtils.hideView(activity?.findViewById(R.id.etSearch)!!)
+        mainActivity.hideTopBar()
     }
 
     override fun onPause() {
         super.onPause()
-        ViewUtils.showView(activity?.findViewById(R.id.vTopOval)!!)
-        ViewUtils.showView(activity?.findViewById(R.id.ll_topbar)!!)
-        ViewUtils.showView(activity?.findViewById(R.id.vEtVerticalLine)!!)
-        ViewUtils.showView(activity?.findViewById(R.id.ivSearchFilter)!!)
-        ViewUtils.showView(activity?.findViewById(R.id.etSearch)!!)
+        mainActivity.showTopBar()
     }
 }

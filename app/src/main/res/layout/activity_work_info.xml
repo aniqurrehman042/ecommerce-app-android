@@ -12,7 +12,7 @@
     tools:context=".ui.SignInSignUpActivity">
 
     <ImageView
-        android:id="@+id/ivTopBanner"
+        android:id="@+id/ivTopBg"
         android:layout_width="@dimen/_320sdp"
         android:layout_height="@dimen/_120sdp"
         android:src="@color/red"
@@ -20,10 +20,19 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/ivTopIcon"
+        android:layout_width="@dimen/size_top_icon"
+        android:layout_height="@dimen/size_top_icon"
+        android:src="@drawable/ic_icon_login_top"
+        app:layout_constraintBottom_toBottomOf="@id/ivTopBg"
+        app:layout_constraintLeft_toLeftOf="@id/ivTopBg"
+        app:layout_constraintRight_toRightOf="@id/ivTopBg" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@+id/ivTopBanner"
+        app:layout_constraintTop_toBottomOf="@+id/ivTopBg"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
@@ -85,6 +94,7 @@
                     android:lines="1"
                     android:maxLength="10"
                     android:maxLines="1"
+                    android:drawableRight="@drawable/ic_salary"
                     android:paddingHorizontal="@dimen/padding_large"
                     android:paddingVertical="@dimen/padding_normal"
                     android:textSize="@dimen/text_normal" />
@@ -102,6 +112,7 @@
                     android:inputType="none"
                     android:lines="1"
                     android:maxLines="1"
+                    android:drawableRight="@drawable/ic_dob"
                     android:paddingHorizontal="@dimen/padding_large"
                     android:paddingVertical="@dimen/padding_normal"
                     android:textIsSelectable="false"
@@ -133,6 +144,7 @@
                     android:lines="1"
                     android:maxLength="30"
                     android:maxLines="1"
+                    android:drawableRight="@drawable/ic_company"
                     android:paddingHorizontal="@dimen/padding_large"
                     android:paddingVertical="@dimen/padding_normal"
                     android:textSize="@dimen/text_normal" />
@@ -148,6 +160,7 @@
                     android:lines="1"
                     android:maxLength="100"
                     android:maxLines="1"
+                    android:drawableRight="@drawable/ic_address"
                     android:paddingHorizontal="@dimen/padding_large"
                     android:paddingVertical="@dimen/padding_normal"
                     android:textSize="@dimen/text_normal" />
@@ -163,6 +176,7 @@
                     android:lines="1"
                     android:maxLength="13"
                     android:maxLines="1"
+                    android:drawableRight="@drawable/ic_mobile"
                     android:paddingHorizontal="@dimen/padding_large"
                     android:paddingVertical="@dimen/padding_normal"
                     android:textSize="@dimen/text_normal" />
@@ -178,6 +192,7 @@
                     android:lines="1"
                     android:maxLength="20"
                     android:maxLines="1"
+                    android:drawableRight="@drawable/ic_position"
                     android:paddingHorizontal="@dimen/padding_large"
                     android:paddingVertical="@dimen/padding_normal"
                     android:textSize="@dimen/text_normal" />

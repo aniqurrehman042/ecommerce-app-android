@@ -7,7 +7,15 @@
     android:background="@color/white"
     tools:context=".ui.GettingStartedActivity">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:src="@drawable/ic_img_welcome"
+        app:layout_constraintTop_toTopOf="@id/llWelcomeHolder"
+        app:layout_constraintBottom_toBottomOf="@id/llWelcomeHolder" />
+
     <LinearLayout
+        android:id="@+id/llWelcomeHolder"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@id/llNext"

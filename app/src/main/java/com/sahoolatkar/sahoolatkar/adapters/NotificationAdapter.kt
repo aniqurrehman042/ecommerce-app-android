@@ -1,18 +1,20 @@
 package com.sahoolatkar.sahoolatkar.adapters
 
+import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.sahoolatkar.sahoolatkar.R
 import com.sahoolatkar.sahoolatkar.models.NotificationModel
-import com.squareup.picasso.Picasso
 
 
 class NotificationAdapter //Constructor For Adapter
     (// List with String type
+    private val activity: Activity,
     private val notificationList: MutableList<NotificationModel>
 ) :
     RecyclerView.Adapter<NotificationAdapter.MyView>() {
@@ -24,6 +26,7 @@ class NotificationAdapter //Constructor For Adapter
         var notificationDescription: TextView = view.findViewById(R.id.tvNotificationDescription)
         var notificationTime: TextView = view.findViewById(R.id.tvNotificationTime)
         var notificationIcon: ImageView = view.findViewById(R.id.ivIcon)
+        var clNotification: ConstraintLayout = view.findViewById(R.id.clNotification)
     }
 
     // Override onCreateViewHolder which deals
@@ -60,6 +63,12 @@ class NotificationAdapter //Constructor For Adapter
         holder.notificationDescription.text = notificationList[position].description
         holder.notificationTime.text = notificationList[position].time
         holder.notificationIcon.setImageResource(R.drawable.ic_cat_ac)
+
+        if (position % 2 == 0) {
+            holder.clNotification.background = activity.getDrawable(R.color.blue)
+        } else if (position % 3 == 0) {
+            holder.clNotification.background = activity.getDrawable(R.color.red)
+        }
     }
 
     // Override getItemCount which Returns

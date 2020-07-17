@@ -10,11 +10,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.sahoolatkar.sahoolatkar.R
 import com.sahoolatkar.sahoolatkar.adapters.NotificationAdapter
 import com.sahoolatkar.sahoolatkar.models.NotificationModel
+import com.sahoolatkar.sahoolatkar.ui.MainActivity
 import kotlinx.android.synthetic.main.fragment_notifications.*
 
 class NotificationsFragment : Fragment() {
 
-    private lateinit var mainActivity: Activity
+    private lateinit var mainActivity: MainActivity
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,7 +27,7 @@ class NotificationsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mainActivity = requireActivity()
+        mainActivity = requireActivity() as MainActivity
 
         init()
     }
@@ -47,7 +48,17 @@ class NotificationsFragment : Fragment() {
         notifications.add(NotificationModel("Sahoolat Kar Installments", "With no credit required, you can apply using our intuitive online procss in-store or at home while shopping online.", "02:30 pm", "Installment"))
         notifications.add(NotificationModel("Sahoolat Kar Installments", "With no credit required, you can apply using our intuitive online procss in-store or at home while shopping online.", "02:30 pm", "Installment"))
         rvNotifications.layoutManager = LinearLayoutManager(requireContext())
-        rvNotifications.adapter = NotificationAdapter(notifications)
+        rvNotifications.adapter = NotificationAdapter(mainActivity, notifications)
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mainActivity.hideSearchBar()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        mainActivity.showSearchBar()
     }
 }

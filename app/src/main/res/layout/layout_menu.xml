@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/clMenuContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clipChildren="true"
-    android:elevation="10dp">
+    android:elevation="10dp"
+    android:visibility="gone">
 
     <View
         android:id="@+id/vOverlay"
@@ -154,25 +156,25 @@
             <ImageView
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
-                android:src="@color/red" />
+                android:src="@drawable/ic_facebook" />
 
             <ImageView
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_marginLeft="@dimen/margin_tiny"
-                android:src="@color/black" />
+                android:src="@drawable/ic_instagram" />
 
             <ImageView
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_marginLeft="@dimen/margin_tiny"
-                android:src="@color/blue" />
+                android:src="@drawable/ic_youtube" />
 
             <ImageView
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_marginLeft="@dimen/margin_tiny"
-                android:src="@color/dark_grey" />
+                android:src="@drawable/ic_twitter" />
 
         </LinearLayout>
 

@@ -7,16 +7,25 @@
     android:background="@color/white"
     tools:context=".ui.MainActivity">
 
-    <View
+    <LinearLayout
         android:id="@+id/vTopOval"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/_320sdp"
+        android:layout_height="@dimen/_320sdp"
         android:scaleX="1.7"
         android:background="@drawable/bg_red_circle"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/etSearch"
-        android:layout_marginBottom="2dp"/>
+        app:layout_constraintBottom_toBottomOf="@id/ll_topbar"
+        android:translationY="@dimen/_50sdp"
+        android:layout_marginBottom="2dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/bg_home" />
+
+    </LinearLayout>
 
     <EditText
         android:id="@+id/etSearch"
@@ -34,7 +43,7 @@
         android:drawablePadding="@dimen/padding_small"
         android:textSize="@dimen/_11sdp"
         app:layout_constraintTop_toBottomOf="@id/ll_topbar"
-        android:layout_marginTop="@dimen/margin_tiny"/>
+        android:layout_marginTop="@dimen/margin_normal"/>
 
     <ImageView
         android:id="@+id/ivSearchFilter"
@@ -85,10 +94,10 @@
 
             <ImageView
                 android:id="@+id/ivLogo"
-                android:layout_width="@dimen/_50sdp"
-                android:layout_height="@dimen/_50sdp"
+                android:layout_width="@dimen/_175sdp"
+                android:layout_height="@dimen/_40sdp"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_app_logo" />
+                android:src="@drawable/ic_logo_app_top" />
 
             <View
                 android:layout_width="0dp"

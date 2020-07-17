@@ -27,4 +27,5 @@
     <dimen name="margin_extra_large">@dimen/_25sdp</dimen>
     <dimen name="padding_notifications">@dimen/_30sdp</dimen>
     <dimen name="text_super_normal">@dimen/_14ssp</dimen>
+    <dimen name="size_top_icon">@dimen/_80sdp</dimen>
 </resources>
