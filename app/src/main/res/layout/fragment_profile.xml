@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/dark_grey"
     tools:context=".ui.fragments.ProfileFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -48,25 +49,27 @@
 
         <ImageView
             android:id="@+id/ivProfileImg"
-            android:layout_width="@dimen/_80sdp"
-            android:layout_height="@dimen/_80sdp"
+            android:layout_width="93dp"
+            android:layout_height="92dp"
             android:layout_marginTop="@dimen/margin_tiny"
+            android:src="@drawable/ic_profile"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvAccountHeading"
-            android:src="@drawable/ic_profile" />
+            app:layout_constraintTop_toBottomOf="@+id/tvAccountHeading" />
 
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/ibAddPic"
             android:layout_width="@dimen/_10sdp"
             android:layout_height="@dimen/_10sdp"
-            app:layout_constraintTop_toBottomOf="@+id/ivProfileImg"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_home"
             app:layout_constraintBottom_toBottomOf="@id/ivProfileImg"
+            app:layout_constraintHorizontal_bias="0.494"
             app:layout_constraintLeft_toLeftOf="@id/ivProfileImg"
             app:layout_constraintRight_toRightOf="@id/ivProfileImg"
-            app:riv_corner_radius="100dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_home" />
+            app:layout_constraintTop_toBottomOf="@+id/ivProfileImg"
+            app:layout_constraintVertical_bias="1.0"
+            app:riv_corner_radius="100dp" />
 
         <TextView
             android:id="@+id/tvUserName"
@@ -101,7 +104,7 @@
             android:paddingHorizontal="@dimen/padding_normal"
             android:paddingVertical="@dimen/_3sdp"
             android:text="Tap to view"
-            android:textSize="@dimen/text_button"
+            android:textSize="@dimen/text_small"
             app:layout_constraintBottom_toBottomOf="@+id/clProfileDetails"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -154,11 +157,13 @@
         android:id="@+id/cvAccountPin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_extratiny"
         app:layout_constraintTop_toBottomOf="@+id/cvAccountInfo">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_tiny"
             android:padding="@dimen/padding_small">
 
             <TextView
@@ -190,6 +195,7 @@
         android:id="@+id/cvOrderCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_extratiny"
         app:layout_constraintTop_toBottomOf="@+id/cvAccountPin">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -226,6 +232,7 @@
         android:id="@+id/cvManageCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_extratiny"
         app:layout_constraintTop_toBottomOf="@+id/cvOrderCard">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -262,6 +269,7 @@
         android:id="@+id/cvAddDebitCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_extratiny"
         app:layout_constraintTop_toBottomOf="@+id/cvManageCard">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -298,6 +306,7 @@
         android:id="@+id/cvLinkTelenor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_extratiny"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cvAddDebitCard">
@@ -336,6 +345,7 @@
         android:id="@+id/cvNotifications"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_extratiny"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cvLinkTelenor">
