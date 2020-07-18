@@ -17,4 +17,6 @@
     <string name="fragment_products_catalog">fragment_products_catalog</string>
 
     <string name="MAPS_API_KEY">AIzaSyAfxKvRo5qENv-HbPJacjEH_sSDDs8pWpA</string>
+    <string name="WOOCOMMERCE_CONSUMER_KEY">ck_c4de78791e7f9fe20faeb4b1f002dba5fa9de608</string>
+    <string name="WOOCOMMERCE_CONSUMER_SECRET">cs_07eac28ae6e191926a68558cfd4f2aa4f75c6287</string>
 </resources>

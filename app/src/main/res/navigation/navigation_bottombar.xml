@@ -24,7 +24,13 @@
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_home_to_productsCatalogFragment"
-            app:destination="@id/productsCatalogFragment" />
+            app:destination="@id/productsCatalogFragment">
+
+            <argument
+                android:name="category"
+                app:argType="string" />
+
+        </action>
         <action
             android:id="@+id/action_home_to_productDetailsFragment"
             app:destination="@id/productDetailsFragment" />
@@ -50,6 +56,10 @@
         <action
             android:id="@+id/action_productsCatalogFragment_to_productDetailsFragment"
             app:destination="@id/productDetailsFragment" />
+        <argument
+            android:name="category"
+            android:defaultValue="none"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/productDetailsFragment"

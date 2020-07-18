@@ -4,6 +4,6 @@ import ProductApiModel
 
 interface IGetAllProductsCallback {
 
-    fun onGetAllProducts(products: MutableList<ProductApiModel>)
+    fun onGetProducts(products: MutableList<ProductApiModel>)
 
 }

@@ -1,22 +1,14 @@
 package com.sahoolatkar.sahoolatkar.ui
 
-import ProductApiModel
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.view.View
 import android.view.WindowInsetsController
-import android.view.WindowManager
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.sahoolatkar.sahoolatkar.R
-import com.sahoolatkar.sahoolatkar.http_clients.SahoolatkarClient
 import com.sahoolatkar.sahoolatkar.utils.UIUtils
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

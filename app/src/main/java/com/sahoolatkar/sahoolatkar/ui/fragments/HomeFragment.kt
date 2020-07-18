@@ -1,6 +1,5 @@
 package com.sahoolatkar.sahoolatkar.ui.fragments
 
-import ProductApiModel
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -17,13 +16,11 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sahoolatkar.sahoolatkar.R
 import com.sahoolatkar.sahoolatkar.adapters.*
-import com.sahoolatkar.sahoolatkar.api_callbacks.IGetAllProductsCallback
 import com.sahoolatkar.sahoolatkar.models.CategoryModel
 import com.sahoolatkar.sahoolatkar.models.ProductModel
 import com.sahoolatkar.sahoolatkar.models.SliderItemModel
 import com.sahoolatkar.sahoolatkar.ui.MainActivity
 import com.sahoolatkar.sahoolatkar.ui.SplashActivity
-import com.sahoolatkar.sahoolatkar.utils.SahoolatKarApiUtils
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -81,7 +78,8 @@ class HomeFragment : Fragment() {
         }
 
         offersSlider.onIndicatorProgress = { selectingPosition, progress ->
-            offersIndicator.onPageScrolled(selectingPosition, progress)
+            if (offersIndicator != null)
+                offersIndicator.onPageScrolled(selectingPosition, progress)
         }
 
         offersIndicator.updateIndicatorCounts(offersSlider.indicatorCount)
@@ -157,7 +155,8 @@ class HomeFragment : Fragment() {
             )
         )
 
-        val mobilesAdapter = ProductsAdapter(activity as Activity, mobiles, getString(R.string.fragment_home))
+        val mobilesAdapter =
+            ProductsAdapter(activity as Activity, mobiles, getString(R.string.fragment_home))
         rvMobiles.layoutManager = GridLayoutManager(context, 2)
         rvMobiles.adapter = mobilesAdapter
     }
@@ -219,7 +218,8 @@ class HomeFragment : Fragment() {
             )
         )
 
-        val mobilesAdapter = ProductsAdapter(activity as Activity, mobiles, getString(R.string.fragment_home))
+        val mobilesAdapter =
+            ProductsAdapter(activity as Activity, mobiles, getString(R.string.fragment_home))
         rvMobiles2.layoutManager = GridLayoutManager(context, 2)
         rvMobiles2.adapter = mobilesAdapter
     }
@@ -229,6 +229,7 @@ class HomeFragment : Fragment() {
         categories.add(
             CategoryModel(
                 "Plastic Furniture",
+                "",
                 "https://learningtoys.pk/wp-content/uploads/2019/08/1-4-300x300.jpg",
                 R.drawable.ic_ic1_cat_furniture
             )
@@ -236,6 +237,7 @@ class HomeFragment : Fragment() {
         categories.add(
             CategoryModel(
                 "Mobile Phones",
+                "21",
                 "https://youngwomenshealth.org/wp-content/uploads/2014/02/fast-food.jpg",
                 R.drawable.ic_ic2_cat_mobile
             )
@@ -243,6 +245,7 @@ class HomeFragment : Fragment() {
         categories.add(
             CategoryModel(
                 "Deep Freezers",
+                "218",
                 "https://newmobiles.com.pk/wp-content/uploads/2020/06/infinix-note-7-pakistan-300x300.jpg",
                 R.drawable.ic_ic3_cat_deepfreezer
             )
@@ -250,13 +253,15 @@ class HomeFragment : Fragment() {
         categories.add(
             CategoryModel(
                 "Home Appliances",
+                "242",
                 "https://newmobiles.com.pk/wp-content/uploads/2020/06/infinix-note-7-pakistan-300x300.jpg",
                 R.drawable.ic_ic4_cat_home_appliances
             )
         )
         categories.add(
             CategoryModel(
-                "AC",
+                "Air Conditioners",
+                "233",
                 "https://newmobiles.com.pk/wp-content/uploads/2020/06/infinix-note-7-pakistan-300x300.jpg",
                 R.drawable.ic_ic5_cat_ac
             )
@@ -264,6 +269,7 @@ class HomeFragment : Fragment() {
         categories.add(
             CategoryModel(
                 "Room Coolers",
+                "238",
                 "https://newmobiles.com.pk/wp-content/uploads/2020/06/infinix-note-7-pakistan-300x300.jpg",
                 R.drawable.ic_ic6_cat_roomcooler
             )
@@ -271,6 +277,7 @@ class HomeFragment : Fragment() {
         categories.add(
             CategoryModel(
                 "Water Dispenser",
+                "62",
                 "https://newmobiles.com.pk/wp-content/uploads/2020/06/infinix-note-7-pakistan-300x300.jpg",
                 R.drawable.ic_ic7_cat_waterdespensor
             )
@@ -278,6 +285,7 @@ class HomeFragment : Fragment() {
         categories.add(
             CategoryModel(
                 "Motorcycle",
+                "41",
                 "https://newmobiles.com.pk/wp-content/uploads/2020/06/infinix-note-7-pakistan-300x300.jpg",
                 R.drawable.ic_ic8_cat_motorcycle
             )
@@ -285,6 +293,7 @@ class HomeFragment : Fragment() {
         categories.add(
             CategoryModel(
                 "Cosmetics",
+                "239",
                 "https://newmobiles.com.pk/wp-content/uploads/2020/06/infinix-note-7-pakistan-300x300.jpg",
                 R.drawable.ic_ic9_cat_cosmetics
             )
@@ -292,6 +301,7 @@ class HomeFragment : Fragment() {
         categories.add(
             CategoryModel(
                 "Travels",
+                "240",
                 "https://newmobiles.com.pk/wp-content/uploads/2020/06/infinix-note-7-pakistan-300x300.jpg",
                 R.drawable.ic_ic10_cat_travels
             )
@@ -299,6 +309,7 @@ class HomeFragment : Fragment() {
         categories.add(
             CategoryModel(
                 "Gaming",
+                "241",
                 "https://newmobiles.com.pk/wp-content/uploads/2020/06/infinix-note-7-pakistan-300x300.jpg",
                 R.drawable.ic_ic11_cat_gaming
             )
@@ -319,7 +330,7 @@ class HomeFragment : Fragment() {
         offersSlider.adapter = sliderAdapter
 
         offersSlider.clipToPadding = false;
-        offersSlider.setPadding(70,0,70,0)
+        offersSlider.setPadding(70, 0, 70, 0)
         offersSlider.pageMargin = 20
 
     }
@@ -381,19 +392,19 @@ class HomeFragment : Fragment() {
             )
         )
 
-        var productsList: MutableList<ProductApiModel>? = null
-
-        SahoolatKarApiUtils.getAllProducts(object : IGetAllProductsCallback {
-            override fun onGetAllProducts(products: MutableList<ProductApiModel>) {
-                productsList = products
-            }
-        })
+//        var productsList: MutableList<ProductApiModel>? = null
+//
+//        SahoolatKarApiUtils.getAllProducts(mainActivity, object : IGetAllProductsCallback {
+//            override fun onGetAllProducts(products: MutableList<ProductApiModel>) {
+//                productsList = products
+//            }
+//        })
 
         val sliderAdapter = ProductsSliderAdapter(activity as Context, featuredProducts, true)
         featuredProductsSlider.adapter = sliderAdapter
 
         featuredProductsSlider.clipToPadding = false
-        featuredProductsSlider.setPadding(70,0,70,0)
+        featuredProductsSlider.setPadding(70, 0, 70, 0)
         featuredProductsSlider.pageMargin = 20
 
     }

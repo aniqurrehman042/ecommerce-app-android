@@ -1,4 +1,3 @@
-import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 /*
@@ -13,15 +12,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 For support, please feel free to contact me at https://www.linkedin.com/in/syedabsar */
 
 
-data class Images (
+data class Brands (
 
 	@SerializedName("id") val id : Int,
-	@SerializedName("date_created") val date_created : String,
-	@SerializedName("date_created_gmt") val date_created_gmt : String,
-	@SerializedName("date_modified") val date_modified : String,
-	@SerializedName("date_modified_gmt") val date_modified_gmt : String,
-	@Expose @SerializedName("src") val src : String,
 	@SerializedName("name") val name : String,
-	@Expose @SerializedName("alt") val alt : String,
-	@SerializedName("position") val position : Int
+	@SerializedName("slug") val slug : String
 )
