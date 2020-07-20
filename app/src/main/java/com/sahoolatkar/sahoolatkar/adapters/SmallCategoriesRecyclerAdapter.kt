@@ -48,7 +48,7 @@ class SmallCategoriesRecyclerAdapter(var activity: Activity, var horizontalItems
         }
     }
 
-    private fun startProductsCatalogFragment(name: String) {
-        Navigation.findNavController(activity.findViewById(R.id.navHostFragment)).navigate(HomeFragmentDirections.actionHomeToProductsCatalogFragment(name))
+    private fun startProductsCatalogFragment(categoryId: String) {
+        Navigation.findNavController(activity.findViewById(R.id.navHostFragment)).navigate(HomeFragmentDirections.actionHomeToProductsCatalogFragment(categoryId))
     }
 }

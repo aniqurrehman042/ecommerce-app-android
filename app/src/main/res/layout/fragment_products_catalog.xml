@@ -6,9 +6,25 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragments.ProductsCatalogFragment">
 
+    <TextView
+        android:id="@+id/tvCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_small"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:text="Category"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_heading"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvProducts"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/tvCategory"
+        android:layout_marginTop="@dimen/margin_tiny"/>
+
+    <include layout="@layout/layout_loader" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

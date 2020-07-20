@@ -14,4 +14,7 @@ interface SahoolatkarApiClient {
     @GET("products")
     fun getProductsByCategory(@Query("category") categoryId: String): Call<List<ProductApiModel?>?>?
 
+    @GET("products")
+    suspend fun getProductsByCategoryWithCo(@Query("category") categoryId: String): List<ProductApiModel?>?
+
 }

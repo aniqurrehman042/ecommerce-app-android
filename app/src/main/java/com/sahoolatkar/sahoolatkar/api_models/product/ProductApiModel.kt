@@ -25,7 +25,7 @@ data class ProductApiModel (
 	@SerializedName("date_modified_gmt") val date_modified_gmt : String,
 	@SerializedName("type") val type : String,
 	@SerializedName("status") val status : String,
-	@SerializedName("featured") val featured : Boolean,
+	@Expose @SerializedName("featured") val featured : Boolean,
 	@SerializedName("catalog_visibility") val catalog_visibility : String,
 	@Expose @SerializedName("description") val description : String,
 	@SerializedName("short_description") val short_description : String,

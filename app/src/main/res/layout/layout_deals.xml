@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <EditText
+        android:id="@+id/etSearchBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_large"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_white_circle_dark_grey_bordered"
+        android:drawableLeft="@drawable/ic_search_dark_grey_18dp"
+        android:drawablePadding="@dimen/padding_small"
+        android:hint="What are you looking for?"
+        android:lines="1"
+        android:maxLines="1"
+        android:paddingVertical="@dimen/_10sdp"
+        android:paddingLeft="@dimen/padding_normal"
+        android:paddingRight="@dimen/padding_large"
+        android:textSize="@dimen/_11sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivDealFilter"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:background="@color/light_grey"
+        android:src="@drawable/ic_filter_red"
+        app:layout_constraintBottom_toBottomOf="@+id/etSearchBar"
+        app:layout_constraintTop_toTopOf="@+id/etSearchBar"
+        tools:layout_editor_absoluteX="348dp"
+        tools:ignore="MissingConstraints" />
+
+    <View
+        android:id="@+id/vLine"
+        android:layout_width="@dimen/_2sdp"
+        android:layout_height="@dimen/_18sdp"
+        android:background="@color/light_grey"
+        app:layout_constraintBottom_toBottomOf="@+id/etSearchBar"
+        app:layout_constraintEnd_toStartOf="@+id/ivDealFilter"
+        app:layout_constraintHorizontal_bias="0.968"
+        app:layout_constraintStart_toStartOf="@+id/etSearchBar"
+        app:layout_constraintTop_toTopOf="@+id/etSearchBar" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvDeals"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/etSearchBar"
+        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintStart_toStartOf="@+id/etSearchBar"
+        app:layout_constraintTop_toBottomOf="@+id/etSearchBar" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

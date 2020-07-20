@@ -32,33 +32,6 @@
             android:layout_marginBottom="@dimen/margin_tiny"
             app:indicator_spacing="@dimen/margin_tiny"/>
 
-        <TextView
-            android:id="@+id/tvCategoriesHeading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_small"
-            android:layout_marginTop="@dimen/margin_normal"
-            android:text="Categories"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_heading"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/offersSlider" />
-
-        <TextView
-            android:id="@+id/tvCategoriesViewAll"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_normal"
-            android:text="View All"
-            android:textColor="@color/red"
-            android:textSize="@dimen/text_small"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintBottom_toBottomOf="@id/tvCategoriesHeading"
-            android:paddingHorizontal="@dimen/padding_normal"
-            android:paddingVertical="@dimen/_3sdp"
-            android:layout_marginRight="@dimen/margin_small"
-            android:background="@drawable/bg_white_circle_red_bordered"/>
-
         <androidx.cardview.widget.CardView
             android:id="@+id/cvCategories"
             android:layout_width="match_parent"
@@ -66,7 +39,7 @@
             android:background="@color/black"
             android:layout_marginTop="@dimen/margin_small"
             app:cardElevation="5dp"
-            app:layout_constraintTop_toBottomOf="@id/tvCategoriesHeading">
+            app:layout_constraintTop_toBottomOf="@id/offersSlider">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvCategories"
@@ -154,7 +127,7 @@
             android:background="@drawable/bg_white_circle_red_bordered"/>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvMobiles"
+            android:id="@+id/rvHomeAppliances"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_tiny"
@@ -172,7 +145,7 @@
             android:textColor="@color/black"
             android:textSize="@dimen/text_heading"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rvMobiles" />
+            app:layout_constraintTop_toBottomOf="@id/rvHomeAppliances" />
 
         <TextView
             android:id="@+id/tvMobilesViewAll"
@@ -190,7 +163,7 @@
             android:background="@drawable/bg_white_circle_red_bordered"/>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvMobiles2"
+            android:id="@+id/rvMobiles"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_tiny"

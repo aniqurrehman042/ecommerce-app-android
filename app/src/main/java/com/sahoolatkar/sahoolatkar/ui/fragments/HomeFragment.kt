@@ -1,5 +1,6 @@
 package com.sahoolatkar.sahoolatkar.ui.fragments
 
+import ProductApiModel
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -12,24 +13,33 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat.getColor
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sahoolatkar.sahoolatkar.R
-import com.sahoolatkar.sahoolatkar.adapters.*
+import com.sahoolatkar.sahoolatkar.adapters.OffersSliderAdapter
+import com.sahoolatkar.sahoolatkar.adapters.ProductsAdapter
+import com.sahoolatkar.sahoolatkar.adapters.ProductsSliderAdapter
+import com.sahoolatkar.sahoolatkar.adapters.SmallCategoriesRecyclerAdapter
+import com.sahoolatkar.sahoolatkar.api_callbacks.IGetAllProductsCallback
+import com.sahoolatkar.sahoolatkar.api_utils.SahoolatKarApiUtils
+import com.sahoolatkar.sahoolatkar.globals.GlobalVariables
 import com.sahoolatkar.sahoolatkar.models.CategoryModel
 import com.sahoolatkar.sahoolatkar.models.ProductModel
 import com.sahoolatkar.sahoolatkar.models.SliderItemModel
 import com.sahoolatkar.sahoolatkar.ui.MainActivity
 import com.sahoolatkar.sahoolatkar.ui.SplashActivity
+import com.sahoolatkar.sahoolatkar.viewmodels.ProductViewModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlin.collections.ArrayList
 
 class HomeFragment : Fragment() {
 
     private lateinit var mainView: View
     private lateinit var mainActivity: MainActivity
+    private lateinit var mobilesViewModel: ProductViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,6 +49,34 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         mainView = inflater.inflate(R.layout.fragment_home, container, false)
         return mainView
+    }
+
+    private fun setUpViewModels() {
+        mobilesViewModel = ProductViewModel(GlobalVariables.CATEGORY_MOBILES_ID)
+        mobilesViewModel.getProducts().observe(mainActivity, Observer<List<ProductApiModel>> {
+            val mobiles: MutableList<ProductModel> = ArrayList()
+
+            for (productItem in it) {
+                mobiles.add(
+                    ProductModel(
+                        productItem.name,
+                        productItem.description,
+                        productItem.images[0].src,
+                        0f,
+                        0
+                    )
+                )
+            }
+
+            val mobilesAdapter =
+                ProductsAdapter(
+                    mainActivity,
+                    mobiles,
+                    GlobalVariables.HOME_FRAGMENT
+                )
+            rvMobiles.layoutManager = GridLayoutManager(context, 2)
+            rvMobiles.adapter = mobilesAdapter
+        })
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -55,11 +93,25 @@ class HomeFragment : Fragment() {
     }
 
     private fun init() {
+        setUpViewModels()
         setUpOffersSlider()
         setUpFeaturedProductsSlider()
         setUpRecyclers()
         setUp1stBanner()
         setUpTopSliderIndicator()
+        setListeners()
+    }
+
+    private fun setListeners() {
+        tvMobilesViewAll.setOnClickListener {
+            Navigation.findNavController(mainActivity, R.id.navHostFragment)
+                .navigate(HomeFragmentDirections.actionHomeToProductsCatalogFragment(GlobalVariables.CATEGORY_MOBILES_ID))
+        }
+
+        tvHomeAppliancesViewAll.setOnClickListener {
+            Navigation.findNavController(mainActivity, R.id.navHostFragment)
+                .navigate(HomeFragmentDirections.actionHomeToProductsCatalogFragment(GlobalVariables.CATEGORY_HOME_APPLIANCES_ID))
+        }
     }
 
     private fun setUpTopSliderIndicator() {
@@ -93,135 +145,65 @@ class HomeFragment : Fragment() {
 
     private fun setUpRecyclers() {
         setUpCategoriesRecycler()
+        setUpHomeAppliancesRecycler()
         setUpMobilesRecycler()
-        setUpMobiles2Recycler()
+    }
+
+    private fun setUpHomeAppliancesRecycler() {
+        val homeAppliances: MutableList<ProductModel> = ArrayList()
+
+        SahoolatKarApiUtils.getProductsByCategory(
+            mainActivity,
+            GlobalVariables.CATEGORY_HOME_APPLIANCES_ID,
+            object :
+                IGetAllProductsCallback {
+                override fun onGetProducts(products: MutableList<ProductApiModel>) {
+
+                    if (products.isNotEmpty()) {
+                        for (productItem in products) {
+                            homeAppliances.add(
+                                ProductModel(
+                                    productItem.name,
+                                    productItem.description,
+                                    productItem.images[0].src,
+                                    0f,
+                                    0
+                                )
+                            )
+                        }
+                    }
+
+                    val mobilesAdapter =
+                        ProductsAdapter(
+                            mainActivity,
+                            homeAppliances,
+                            GlobalVariables.HOME_FRAGMENT
+                        )
+                    rvMobiles.layoutManager = GridLayoutManager(context, 2)
+                    rvMobiles.adapter = mobilesAdapter
+                }
+            })
     }
 
     private fun setUpMobilesRecycler() {
-        val mobiles: MutableList<ProductModel> = ArrayList()
-
-        mobiles.add(
-            ProductModel(
-                "DW-550 AF",
-                "Best Microwave",
-                "https://mygreatdubai.com/sahoolatkar/wp-content/uploads/2020/05/DW-550-AF.png",
-                30000f,
-                3
-            )
-        )
-        mobiles.add(
-            ProductModel(
-                "32D3000 A",
-                "Best LED TV",
-                "https://mygreatdubai.com/sahoolatkar/wp-content/uploads/2020/05/d3000fs_front.jpg",
-                35000f,
-                5
-            )
-        )
-        mobiles.add(
-            ProductModel(
-                "43D2900",
-                "Best LED TV",
-                "https://mygreatdubai.com/sahoolatkar/wp-content/uploads/2020/05/a__09932_zoom-310x310-1.jpg",
-                50000f,
-                10
-            )
-        )
-        mobiles.add(
-            ProductModel(
-                "Active Cool 15 (H&C)",
-                "Best AC",
-                "https://mygreatdubai.com/sahoolatkar/wp-content/uploads/2020/05/Pro-Active-inv.png",
-                70000f,
-                12
-            )
-        )
-        mobiles.add(
-            ProductModel(
-                "Aura Invertor 30",
-                "Best AC",
-                "https://mygreatdubai.com/sahoolatkar/wp-content/uploads/2020/05/download-7.jpg",
-                50000f,
-                10
-            )
-        )
-        mobiles.add(
-            ProductModel(
-                "DW 298-G",
-                "Best Microwave",
-                "https://mygreatdubai.com/sahoolatkar/wp-content/uploads/2020/05/DW-132-S.png",
-                10000f,
-                10
-            )
-        )
-
-        val mobilesAdapter =
-            ProductsAdapter(activity as Activity, mobiles, getString(R.string.fragment_home))
-        rvMobiles.layoutManager = GridLayoutManager(context, 2)
-        rvMobiles.adapter = mobilesAdapter
-    }
-
-    private fun setUpMobiles2Recycler() {
-        val mobiles: MutableList<ProductModel> = ArrayList()
-        mobiles.add(
-            ProductModel(
-                "DW-550 AF",
-                "Best Microwave",
-                "https://mygreatdubai.com/sahoolatkar/wp-content/uploads/2020/05/DW-550-AF.png",
-                30000f,
-                3
-            )
-        )
-        mobiles.add(
-            ProductModel(
-                "32D3000 A",
-                "Best LED TV",
-                "https://mygreatdubai.com/sahoolatkar/wp-content/uploads/2020/05/d3000fs_front.jpg",
-                35000f,
-                5
-            )
-        )
-        mobiles.add(
-            ProductModel(
-                "43D2900",
-                "Best LED TV",
-                "https://mygreatdubai.com/sahoolatkar/wp-content/uploads/2020/05/a__09932_zoom-310x310-1.jpg",
-                50000f,
-                10
-            )
-        )
-        mobiles.add(
-            ProductModel(
-                "Active Cool 15 (H&C)",
-                "Best AC",
-                "https://mygreatdubai.com/sahoolatkar/wp-content/uploads/2020/05/Pro-Active-inv.png",
-                70000f,
-                12
-            )
-        )
-        mobiles.add(
-            ProductModel(
-                "Aura Invertor 30",
-                "Best AC",
-                "https://mygreatdubai.com/sahoolatkar/wp-content/uploads/2020/05/download-7.jpg",
-                50000f,
-                10
-            )
-        )
-        mobiles.add(
-            ProductModel(
-                "DW 298-G",
-                "Best Microwave",
-                "https://mygreatdubai.com/sahoolatkar/wp-content/uploads/2020/05/DW-132-S.png",
-                10000f,
-                10
-            )
-        )
-
-        val mobilesAdapter =
-            ProductsAdapter(activity as Activity, mobiles, getString(R.string.fragment_home))
-        rvMobiles2.layoutManager = GridLayoutManager(context, 2)
-        rvMobiles2.adapter = mobilesAdapter
+//        val mobiles: MutableList<ProductModel> = ArrayList()
+//
+//        SahoolatKarApiUtils.getProductsByCategory(mainActivity, GlobalVariables.CATEGORY_MOBILES_ID, object :
+//            IGetAllProductsCallback {
+//            override fun onGetProducts(products: MutableList<ProductApiModel>) {
+//
+//                if (products.isNotEmpty()) {
+//                    for (productItem in products) {
+//                        mobiles.add(ProductModel(productItem.name, productItem.description, productItem.images[0].src, 0f, 0))
+//                    }
+//                }
+//
+//                val mobilesAdapter =
+//                    ProductsAdapter(mainActivity, mobiles, getString(R.string.fragment_home))
+//                rvMobiles.layoutManager = GridLayoutManager(context, 2)
+//                rvMobiles.adapter = mobilesAdapter
+//            }
+//        })
     }
 
     private fun setUpCategoriesRecycler() {
@@ -290,30 +272,7 @@ class HomeFragment : Fragment() {
                 R.drawable.ic_ic8_cat_motorcycle
             )
         )
-        categories.add(
-            CategoryModel(
-                "Cosmetics",
-                "239",
-                "https://newmobiles.com.pk/wp-content/uploads/2020/06/infinix-note-7-pakistan-300x300.jpg",
-                R.drawable.ic_ic9_cat_cosmetics
-            )
-        )
-        categories.add(
-            CategoryModel(
-                "Travels",
-                "240",
-                "https://newmobiles.com.pk/wp-content/uploads/2020/06/infinix-note-7-pakistan-300x300.jpg",
-                R.drawable.ic_ic10_cat_travels
-            )
-        )
-        categories.add(
-            CategoryModel(
-                "Gaming",
-                "241",
-                "https://newmobiles.com.pk/wp-content/uploads/2020/06/infinix-note-7-pakistan-300x300.jpg",
-                R.drawable.ic_ic11_cat_gaming
-            )
-        )
+
         val categoriesAdapter =
             SmallCategoriesRecyclerAdapter(activity as Activity, categories)
         rvCategories.layoutManager =

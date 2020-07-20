@@ -27,7 +27,7 @@
             app:destination="@id/productsCatalogFragment">
 
             <argument
-                android:name="category"
+                android:name="categoryId"
                 app:argType="string" />
 
         </action>
