@@ -13,9 +13,7 @@ import com.sahoolatkar.sahoolatkar.ui.fragments.StoreLocatorFragment
 class CityFilterAdapter(
     private val cityList: MutableList<CityFilterModel>,
     private val storeLocatorFragment: StoreLocatorFragment
-) :
-    RecyclerView.Adapter<CityFilterAdapter.MyView>() {
-
+) : RecyclerView.Adapter<CityFilterAdapter.MyView>() {
     // View Holder class which
     // extends RecyclerView.ViewHolder
     inner class MyView(view: View) : RecyclerView.ViewHolder(view) {

@@ -27,9 +27,9 @@ class ProductsAdapter(val activity: Activity, val products: MutableList<ProductM
         val tvPrice = itemView.findViewById<TextView>(R.id.tvPrice)
         val tvOldCurrency = itemView.findViewById<TextView>(R.id.tvOldCurrency)
         val tvOldPrice = itemView.findViewById<TextView>(R.id.tvOldPrice)
-        val tvDiscount = itemView.findViewById<TextView>(R.id.tvDiscount)
+      //  val tvDiscount = itemView.findViewById<TextView>(R.id.tvDiscount)
         val llOldPrice = itemView.findViewById<LinearLayout>(R.id.llOldPrice)
-        val llDiscount = itemView.findViewById<LinearLayout>(R.id.llDiscount)
+       // val llDiscount = itemView.findViewById<LinearLayout>(R.id.llDiscount)
         val clProduct = itemView.findViewById<ConstraintLayout>(R.id.clProduct)
     }
 
@@ -55,7 +55,7 @@ class ProductsAdapter(val activity: Activity, val products: MutableList<ProductM
         holder.tvProductName.text = product.name
         holder.tvProductDesc.text = product.desc
         holder.tvPrice.text = product.price.toInt().toString()
-        holder.tvDiscount.text = product.discount.toString()
+       // holder.tvDiscount.text = product.discount.toString()
         Picasso.get()
             .load(product.imgUrl)
             .into(holder.ivProductImg)
