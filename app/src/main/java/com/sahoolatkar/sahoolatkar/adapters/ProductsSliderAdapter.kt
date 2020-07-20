@@ -48,7 +48,7 @@ class ProductsSliderAdapter(
         convertView.findViewById<TextView>(R.id.tvProductName).text = products[listPosition].name
         convertView.findViewById<TextView>(R.id.tvProductDesc).text = products[listPosition].desc
         convertView.findViewById<TextView>(R.id.tvPrice).text = products[listPosition].price.toInt().toString()
-        convertView.findViewById<TextView>(R.id.tvDiscount).text = products[listPosition].discount.toString()
+        //convertView.findViewById<TextView>(R.id.tvDiscount).text = products[listPosition].discount.toString()
 
         convertView.ivLike.setOnClickListener {
             liked = if (liked) {
