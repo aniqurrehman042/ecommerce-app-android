@@ -17,6 +17,6 @@ interface SahoolatkarApiClient {
     fun getProductsByCategory(@Query("category") categoryId: String): Call<List<ProductApiModel?>?>?
 
     @GET("products")
-    suspend fun getProductsByCategoryWithCo(@Query("category") categoryId: String, @Query("page") pageNo: Int, @Query("page_size") pageSize: Int = GlobalVariables.PRODUCTS_PAGE_SIZE): Response<List<ProductApiModel>>
+    suspend fun getProductsByCategoryWithCo(@Query("category") categoryId: String, @Query("page") pageNo: Int, @Query("per_page") pageSize: Int = GlobalVariables.PRODUCTS_PAGE_SIZE): Response<List<ProductApiModel>>
 
 }

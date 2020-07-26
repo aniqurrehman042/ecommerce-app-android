@@ -3,7 +3,7 @@ package com.sahoolatkar.sahoolatkar.globals
 class GlobalVariables {
     companion object {
 
-        const val PRODUCTS_PAGE_SIZE: Int = 40
+        const val PRODUCTS_PAGE_SIZE: Int = 10
         const val PRODUCT_CATALOG_FRAGMENT: String = "Products Catalog Fragment"
         const val APPLY_LOAD_FRAGMENT: String = "Apply Loan Fragment"
         const val GETTING_STARTED_PAY_LATER_FRAGMENT: String = "Getting Started Pay Later Fragment"
