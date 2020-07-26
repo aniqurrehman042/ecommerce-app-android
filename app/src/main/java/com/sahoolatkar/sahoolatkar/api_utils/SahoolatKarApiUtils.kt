@@ -2,6 +2,7 @@ package com.sahoolatkar.sahoolatkar.api_utils
 
 import ProductApiModel
 import android.content.Context
+import android.widget.Toast
 import com.sahoolatkar.sahoolatkar.R
 import com.sahoolatkar.sahoolatkar.api_callbacks.IGetAllProductsCallback
 import com.sahoolatkar.sahoolatkar.apis_clients.SahoolatkarApiClient
@@ -40,17 +41,14 @@ class SahoolatKarApiUtils {
             })
         }
 
-        fun getProductsByCategory(context: Context, category: String, getProductsByCategoryCallback: IGetAllProductsCallback) {
-
-//            return withContext(Dispatchers.IO) {
-//
-//            }
+        fun getProductsByCategory(context: Context, categoryId: String, getProductsByCategoryCallback: IGetAllProductsCallback) {
             SahoolatkarRestApiService.createService(SahoolatkarApiClient::class.java, context.getString(
                 R.string.WOOCOMMERCE_CONSUMER_KEY), context.getString(
-                R.string.WOOCOMMERCE_CONSUMER_SECRET)).getProductsByCategory(category)?.enqueue(object :
+                R.string.WOOCOMMERCE_CONSUMER_SECRET)).getProductsByCategory(categoryId)?.enqueue(object :
                 Callback<List<ProductApiModel?>?> {
                 override fun onFailure(call: Call<List<ProductApiModel?>?>, t: Throwable) {
                     getProductsByCategoryCallback.onGetProducts(ArrayList())
+                    Toast.makeText(context, t.message, Toast.LENGTH_LONG).show()
                 }
 
                 override fun onResponse(
@@ -66,7 +64,7 @@ class SahoolatKarApiUtils {
             })
         }
 
-        suspend fun getProductsByCategoryWithCo(categoryId: String) = sahoolatkarApiClient.getProductsByCategoryWithCo(categoryId)
+        suspend fun getProductsByCategoryWithCo(categoryId: String, pageNo: Int) : Response<List<ProductApiModel>> = sahoolatkarApiClient.getProductsByCategoryWithCo(categoryId, pageNo)
 
     }
 

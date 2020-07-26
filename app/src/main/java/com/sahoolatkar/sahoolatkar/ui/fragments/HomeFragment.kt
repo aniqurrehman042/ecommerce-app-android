@@ -13,6 +13,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat.getColor
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
@@ -30,7 +31,7 @@ import com.sahoolatkar.sahoolatkar.models.ProductModel
 import com.sahoolatkar.sahoolatkar.models.SliderItemModel
 import com.sahoolatkar.sahoolatkar.ui.MainActivity
 import com.sahoolatkar.sahoolatkar.ui.SplashActivity
-import com.sahoolatkar.sahoolatkar.viewmodels.ProductViewModel
+import com.sahoolatkar.sahoolatkar.viewmodels.HomeViewModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -39,7 +40,7 @@ class HomeFragment : Fragment() {
 
     private lateinit var mainView: View
     private lateinit var mainActivity: MainActivity
-    private lateinit var mobilesViewModel: ProductViewModel
+    private lateinit var mobilesViewModel: HomeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,8 +53,8 @@ class HomeFragment : Fragment() {
     }
 
     private fun setUpViewModels() {
-        mobilesViewModel = ProductViewModel(GlobalVariables.CATEGORY_MOBILES_ID)
-        mobilesViewModel.getProducts().observe(mainActivity, Observer<List<ProductApiModel>> {
+        mobilesViewModel = HomeViewModel()
+        mobilesViewModel.getMobiles().observe(viewLifecycleOwner, Observer<List<ProductApiModel>> {
             val mobiles: MutableList<ProductModel> = ArrayList()
 
             for (productItem in it) {
@@ -104,14 +105,18 @@ class HomeFragment : Fragment() {
 
     private fun setListeners() {
         tvMobilesViewAll.setOnClickListener {
-            Navigation.findNavController(mainActivity, R.id.navHostFragment)
-                .navigate(HomeFragmentDirections.actionHomeToProductsCatalogFragment(GlobalVariables.CATEGORY_MOBILES_ID))
+            startProductsCatalogFragment(GlobalVariables.CATEGORY_MOBILES_ID)
         }
 
         tvHomeAppliancesViewAll.setOnClickListener {
-            Navigation.findNavController(mainActivity, R.id.navHostFragment)
-                .navigate(HomeFragmentDirections.actionHomeToProductsCatalogFragment(GlobalVariables.CATEGORY_HOME_APPLIANCES_ID))
+            startProductsCatalogFragment(GlobalVariables.CATEGORY_HOME_APPLIANCES_ID)
         }
+    }
+
+    private fun startProductsCatalogFragment(categoryId: String) {
+        val action = HomeFragmentDirections.actionHomeToProductsCatalogFragment(categoryId)
+        Navigation.findNavController(mainActivity, R.id.navHostFragment)
+            .navigate(action)
     }
 
     private fun setUpTopSliderIndicator() {
@@ -173,14 +178,14 @@ class HomeFragment : Fragment() {
                         }
                     }
 
-                    val mobilesAdapter =
+                    val homeAppliancesAdapter =
                         ProductsAdapter(
                             mainActivity,
                             homeAppliances,
                             GlobalVariables.HOME_FRAGMENT
                         )
-                    rvMobiles.layoutManager = GridLayoutManager(context, 2)
-                    rvMobiles.adapter = mobilesAdapter
+//                    rvHomeAppliances.layoutManager = GridLayoutManager(context, 2)
+//                    rvHomeAppliances.adapter = homeAppliancesAdapter
                 }
             })
     }

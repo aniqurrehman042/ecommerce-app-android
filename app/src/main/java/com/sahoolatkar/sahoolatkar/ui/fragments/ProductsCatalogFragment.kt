@@ -1,6 +1,5 @@
 package com.sahoolatkar.sahoolatkar.ui.fragments
 
-import ProductApiModel
 import android.app.Activity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,21 +7,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.sahoolatkar.sahoolatkar.R
 import com.sahoolatkar.sahoolatkar.adapters.ProductsAdapter
-import com.sahoolatkar.sahoolatkar.api_callbacks.IGetAllProductsCallback
+import com.sahoolatkar.sahoolatkar.adapters.ProductsPagedRecyclerAdapter
+import com.sahoolatkar.sahoolatkar.globals.GlobalVariables
 import com.sahoolatkar.sahoolatkar.models.ProductModel
 import com.sahoolatkar.sahoolatkar.ui.MainActivity
-import com.sahoolatkar.sahoolatkar.api_utils.SahoolatKarApiUtils
 import com.sahoolatkar.sahoolatkar.utils.ViewUtils
+import com.sahoolatkar.sahoolatkar.viewmodels.ProductCatalogViewModel
 import kotlinx.android.synthetic.main.fragment_products_catalog.*
 import kotlinx.android.synthetic.main.layout_loader.*
 
 class ProductsCatalogFragment : Fragment() {
 
     private lateinit var mainActivity: MainActivity
+    private lateinit var productsCatalogViewModel: ProductCatalogViewModel
+    private lateinit var productsPagedRecyclerAdapter: ProductsPagedRecyclerAdapter
 
     val args: ProductsCatalogFragmentArgs by navArgs()
 
@@ -42,34 +45,27 @@ class ProductsCatalogFragment : Fragment() {
     }
 
     private fun init() {
+        initializeAdapter()
         setUpProductsRecycler()
+        setUpViewModel()
+    }
+
+    private fun initializeAdapter() {
+        productsPagedRecyclerAdapter = ProductsPagedRecyclerAdapter(mainActivity, GlobalVariables.PRODUCT_CATALOG_FRAGMENT)
+    }
+
+    private fun setUpViewModel() {
+        productsCatalogViewModel = ProductCatalogViewModel(args.categoryId)
+        showLoader("Loading Products...")
+        productsCatalogViewModel.products.observe(viewLifecycleOwner, Observer {
+            productsPagedRecyclerAdapter.submitList(it)
+            hideLoader()
+        })
     }
 
     private fun setUpProductsRecycler() {
-        val products: MutableList<ProductModel> = ArrayList()
-
-        var productsList: MutableList<ProductApiModel>?
-
-        showLoader("Loading Products...")
-
-        SahoolatKarApiUtils.getProductsByCategory(mainActivity, args.category, object : IGetAllProductsCallback {
-            override fun onGetProducts(productItems: MutableList<ProductApiModel>) {
-                productsList = productItems
-
-                if (productsList!!.isNotEmpty()) {
-                    for (productItem in productsList!!) {
-                        products.add(ProductModel(productItem.name, productItem.description, productItem.images[0].src, 0f, 0))
-                    }
-                }
-
-                rvProducts.layoutManager = GridLayoutManager(context, 2)
-                val productsAdapter = ProductsAdapter(activity as Activity, products, getString(R.string.fragment_products_catalog))
-                rvProducts.adapter = productsAdapter
-                hideLoader()
-            }
-        })
-
-
+        rvProducts.layoutManager = GridLayoutManager(context, 2)
+        rvProducts.adapter = productsPagedRecyclerAdapter
     }
 
     private fun showLoader(loadingText: String) {
@@ -80,7 +76,6 @@ class ProductsCatalogFragment : Fragment() {
 
     private fun hideLoader() {
         ViewUtils.hideView(llLoader)
-        tvLoadingMsg.text = "Loading..."
         enableUserInteraction()
     }
 
