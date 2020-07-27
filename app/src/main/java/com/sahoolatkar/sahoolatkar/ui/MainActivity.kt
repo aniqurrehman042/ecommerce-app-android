@@ -22,7 +22,9 @@ import kotlinx.android.synthetic.main.layout_menu.*
 class MainActivity : AppCompatActivity() {
 
     private lateinit var animEnterFromLeft: Animation
+    private lateinit var animEnterFromRight: Animation
     private lateinit var animExitToLeft: Animation
+    private lateinit var animExitToRight: Animation
     private lateinit var animFadeIn: Animation
     private lateinit var animFadeOut: Animation
     private var menuOpen = false
@@ -40,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         showMenu()
         setUpBottomBar()
         setListeners()
-        setMenuAnimations()
+        setAnimations()
         setUpMenuRecycler()
     }
 
@@ -60,7 +62,9 @@ class MainActivity : AppCompatActivity() {
         rvMenuItems.adapter = MenuAdapter(menuItems)
     }
 
-    private fun setMenuAnimations() {
+    private fun setAnimations() {
+        animEnterFromRight = AnimationUtils.loadAnimation(this, R.anim.enter_from_right).apply { fillAfter = true }
+        animExitToRight = AnimationUtils.loadAnimation(this, R.anim.exit_to_right).apply { fillAfter = true }
         animEnterFromLeft =
             AnimationUtils.loadAnimation(this, R.anim.enter_from_left).apply { fillAfter = true }
         animExitToLeft =
@@ -83,6 +87,7 @@ class MainActivity : AppCompatActivity() {
             AnimationUtils.loadAnimation(this, R.anim.exit_to_left_fast).apply { fillAfter = true }
         val animFadeOutFast = AlphaAnimation(1f, 0f).apply { fillAfter = true; duration = 0 }
 
+        cvCart.startAnimation(animEnterFromRight)
         clMenu.startAnimation(animExitToLeftFast)
         vOverlay.startAnimation(animFadeOutFast)
         clMenuContainer.visibility = View.GONE
@@ -100,8 +105,10 @@ class MainActivity : AppCompatActivity() {
             .build()
 
         ivNotifications.setOnClickListener {
-            Navigation.findNavController(this@MainActivity, R.id.navHostFragment)
-                .navigate(R.id.notificationsFragment, null, navOptions, null)
+            if (navHostFragment.childFragmentManager.fragments[0].javaClass.simpleName != "NotificationsFragment") {
+                Navigation.findNavController(this@MainActivity, R.id.navHostFragment)
+                    .navigate(R.id.notificationsFragment, null, navOptions, null)
+            }
         }
 
         ivMenu.setOnClickListener {

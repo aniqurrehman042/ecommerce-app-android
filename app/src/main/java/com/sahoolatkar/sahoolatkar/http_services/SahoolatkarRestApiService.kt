@@ -2,12 +2,12 @@ package com.sahoolatkar.sahoolatkar.http_services
 
 import android.text.TextUtils
 import com.google.gson.GsonBuilder
-import com.sahoolatkar.sahoolatkar.apis_clients.SahoolatkarApiClient
 import com.sahoolatkar.sahoolatkar.interceptors.AuthenticationInterceptor
 import okhttp3.Credentials
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 
 class SahoolatkarRestApiService {
@@ -15,10 +15,16 @@ class SahoolatkarRestApiService {
     companion object {
 
         private const val API_BASE_URL = "https://mygreatdubai.com/sahoolatkar/wp-json/wc/v2/"
-        private val httpClient = OkHttpClient.Builder()
+        private val httpClient = OkHttpClient.Builder().connectTimeout(20, TimeUnit.SECONDS)
+            .callTimeout(20, TimeUnit.SECONDS).readTimeout(20, TimeUnit.SECONDS)
+            .writeTimeout(20, TimeUnit.SECONDS)
         private val builder: Retrofit.Builder = Retrofit.Builder()
             .baseUrl(API_BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create(GsonBuilder().excludeFieldsWithoutExposeAnnotation().create()))
+            .addConverterFactory(
+                GsonConverterFactory.create(
+                    GsonBuilder().excludeFieldsWithoutExposeAnnotation().create()
+                )
+            )
         private var retrofit = builder.build()
 
         fun <S> createService(
