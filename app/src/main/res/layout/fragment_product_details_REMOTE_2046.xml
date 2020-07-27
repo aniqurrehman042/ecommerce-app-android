@@ -5,9 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.fragments.ProductDetailsFragment">
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+
     <com.asksira.loopingviewpager.LoopingViewPager
         android:id="@+id/productSlider"
         android:layout_width="match_parent"
@@ -73,8 +71,6 @@
         android:layout_marginTop="@dimen/margin_tiny"
         android:textColor="@color/black"/>
 
-    =======
->>>>>>> 49b70799ae53f488b61408f184991f3668de34de
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/vpProductDetails"
         android:layout_width="match_parent"
@@ -88,7 +84,7 @@
             android:layout_height="wrap_content" />
 
     </androidx.viewpager.widget.ViewPager>
-</ScrollView>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/llAddOrder"
         android:layout_width="match_parent"
@@ -99,9 +95,9 @@
 
         <ImageButton
             android:id="@+id/imageButton"
-            android:layout_width="@dimen/_35sdp"
-            android:layout_height="@dimen/_35sdp"
-            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_width="@dimen/size_back_button"
+            android:layout_height="@dimen/size_back_button"
+            android:layout_marginStart="@dimen/_20sdp"
             android:src="@android:drawable/btn_plus"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -110,18 +106,18 @@
             android:id="@+id/tvItemCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_2sdp"
             android:text="2"
-            android:textSize="@dimen/text_super_normal"
+            android:textSize="@dimen/text_normal"
             app:layout_constraintBottom_toBottomOf="@+id/imageButton"
             app:layout_constraintStart_toEndOf="@+id/imageButton"
             app:layout_constraintTop_toTopOf="@+id/imageButton" />
 
         <ImageButton
             android:id="@+id/imageButton2"
-            android:layout_width="@dimen/_35sdp"
-            android:layout_height="@dimen/_35sdp"
-            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_width="@dimen/size_back_button"
+            android:layout_height="@dimen/size_back_button"
+            android:layout_marginStart="@dimen/_2sdp"
             android:src="@android:drawable/btn_plus"
             app:layout_constraintBottom_toBottomOf="@+id/imageButton"
             app:layout_constraintStart_toEndOf="@+id/tvItemCount"
@@ -131,7 +127,7 @@
             android:id="@+id/button2"
             android:layout_width="@dimen/_170sdp"
             android:layout_height="@dimen/_35sdp"
-            android:layout_marginStart="@dimen/_35sdp"
+            android:layout_marginStart="@dimen/_75sdp"
             android:text="Add To Cart"
             app:layout_constraintBottom_toBottomOf="@+id/imageButton2"
             app:layout_constraintEnd_toEndOf="parent"
