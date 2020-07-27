@@ -15,7 +15,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/ll_topbar"
-        android:translationY="@dimen/_50sdp"
+        android:translationY="@dimen/_46sdp"
         android:layout_marginBottom="2dp">
 
         <ImageView
@@ -42,7 +42,7 @@
         android:drawablePadding="@dimen/padding_small"
         android:textSize="@dimen/_11sdp"
         app:layout_constraintTop_toBottomOf="@id/ll_topbar"
-        android:layout_marginTop="@dimen/margin_normal"/>
+        android:layout_marginTop="@dimen/margin_small"/>
 
     <ImageView
         android:id="@+id/ivSearchFilter"
@@ -69,7 +69,7 @@
         android:id="@+id/ll_topbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_25sdp"
         android:paddingHorizontal="@dimen/padding_large"
         app:layout_constraintTop_toTopOf="parent"
         android:orientation="vertical">
@@ -141,7 +141,8 @@
         app:itemIconSize="@dimen/_20sdp"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/menu_bottom_bar" />
+        app:menu="@menu/menu_bottom_bar"
+        app:elevation="15dp"/>
 
     <include layout="@layout/layout_menu" />
 

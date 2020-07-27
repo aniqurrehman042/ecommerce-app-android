@@ -12,6 +12,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.sahoolatkar.sahoolatkar.R
+import com.sahoolatkar.sahoolatkar.globals.GlobalVariables
 import com.sahoolatkar.sahoolatkar.models.ProductModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
@@ -77,12 +78,12 @@ class ProductsAdapter(val activity: Activity, val products: MutableList<ProductM
 
     private fun startProductDetailsFragment() {
         when (parentFragment) {
-            activity.getString(R.string.fragment_home) -> {
+            GlobalVariables.HOME_FRAGMENT -> {
                 Navigation.findNavController(activity.findViewById(R.id.navHostFragment))
                     .navigate(R.id.action_home_to_productDetailsFragment)
             }
 
-            activity.getString(R.string.fragment_products_catalog) -> {
+            GlobalVariables.PRODUCT_CATALOG_FRAGMENT -> {
                 Navigation.findNavController(activity.findViewById(R.id.navHostFragment))
                     .navigate(R.id.action_productsCatalogFragment_to_productDetailsFragment)
             }

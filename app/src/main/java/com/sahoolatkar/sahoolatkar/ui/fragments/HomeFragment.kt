@@ -364,7 +364,7 @@ class HomeFragment : Fragment() {
 //            }
 //        })
 
-        val sliderAdapter = ProductsSliderAdapter(activity as Context, featuredProducts, true)
+        val sliderAdapter = ProductsSliderAdapter(mainActivity, featuredProducts, true)
         featuredProductsSlider.adapter = sliderAdapter
 
         featuredProductsSlider.clipToPadding = false
