@@ -2,11 +2,13 @@ package com.sahoolatkar.sahoolatkar.ui.fragments
 
 import android.app.Activity
 import android.os.Bundle
+import android.text.InputFilter
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
@@ -36,11 +38,18 @@ class ProductsCatalogFragment : Fragment() {
         mainActivity = requireActivity() as MainActivity
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_products_catalog, container, false)
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        when (args.categoryId) {
+            GlobalVariables.CATEGORY_MOBILES_ID -> (tvCategory.setText("Mobiles"))
+            GlobalVariables.CATEGORY_HOME_APPLIANCES_ID -> (tvCategory.setText("Home Appliances"))
+            else -> { // Note the block
+                tvCategory.setText("Category");
+            }
+        }
         init()
     }
 
