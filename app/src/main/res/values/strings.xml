@@ -12,7 +12,7 @@
         <item>Policeman</item>
     </array>
 
-<!--    Fragment Labels-->
+    <!--    Fragment Labels-->
     <string name="fragment_home">fragment_home</string>
     <string name="fragment_products_catalog">fragment_products_catalog</string>
 
