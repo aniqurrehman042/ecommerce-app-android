@@ -140,8 +140,11 @@
         android:paddingHorizontal="@dimen/padding_small"
         app:itemIconSize="@dimen/_20sdp"
         app:labelVisibilityMode="labeled"
+
         app:layout_constraintBottom_toBottomOf="parent"
+    
         app:menu="@menu/menu_bottom_bar" />
+
 
     <include layout="@layout/layout_menu" />
 

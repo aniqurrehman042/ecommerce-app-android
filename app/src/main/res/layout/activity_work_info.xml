@@ -13,18 +13,31 @@
 
     <ImageView
         android:id="@+id/ivTopBg"
-        android:layout_width="@dimen/_320sdp"
-        android:layout_height="@dimen/_120sdp"
-        android:src="@color/red"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_200sdp"
+        android:src="@drawable/bg_home"
+        android:scaleType="fitXY"
+        android:background="@color/red"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+        android:id="@+id/ivTopBottomBg"
+        android:layout_width="match_parent"
+        android:scaleType="fitXY"
+        android:layout_height="@dimen/_40sdp"
+        android:src="@drawable/ic_login_top_bg"
+        app:layout_constraintLeft_toLeftOf="@+id/ivTopBg"
+        app:layout_constraintRight_toRightOf="@+id/ivTopBg"
+        app:layout_constraintBottom_toBottomOf="@+id/ivTopBg"
+        android:translationY="@dimen/_2sdp"/>
 
     <ImageView
         android:id="@+id/ivTopIcon"
         android:layout_width="@dimen/size_top_icon"
         android:layout_height="@dimen/size_top_icon"
         android:src="@drawable/ic_icon_login_top"
+        android:layout_marginBottom="@dimen/_30sdp"
         app:layout_constraintBottom_toBottomOf="@id/ivTopBg"
         app:layout_constraintLeft_toLeftOf="@id/ivTopBg"
         app:layout_constraintRight_toRightOf="@id/ivTopBg" />
