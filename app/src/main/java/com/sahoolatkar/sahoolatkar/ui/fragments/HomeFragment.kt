@@ -13,7 +13,6 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat.getColor
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
@@ -105,16 +104,16 @@ class HomeFragment : Fragment() {
 
     private fun setListeners() {
         tvMobilesViewAll.setOnClickListener {
-            startProductsCatalogFragment(GlobalVariables.CATEGORY_MOBILES_ID)
+            startProductsCatalogFragment(GlobalVariables.CATEGORY_MOBILES_ID, "Mobiles")
         }
 
         tvHomeAppliancesViewAll.setOnClickListener {
-            startProductsCatalogFragment(GlobalVariables.CATEGORY_HOME_APPLIANCES_ID)
+            startProductsCatalogFragment(GlobalVariables.CATEGORY_HOME_APPLIANCES_ID, "Home Appliances")
         }
     }
 
-    private fun startProductsCatalogFragment(categoryId: String) {
-        val action = HomeFragmentDirections.actionHomeToProductsCatalogFragment(categoryId)
+    private fun startProductsCatalogFragment(categoryId: String, categoryName: String) {
+        val action = HomeFragmentDirections.actionHomeToProductsCatalogFragment(categoryId, categoryName)
         Navigation.findNavController(mainActivity, R.id.navHostFragment)
             .navigate(action)
     }

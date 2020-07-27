@@ -44,11 +44,11 @@ class SmallCategoriesRecyclerAdapter(var activity: Activity, var horizontalItems
         holder.tvItemName.text = horizontalItem.name
 
         holder.llMain.setOnClickListener {
-            startProductsCatalogFragment(horizontalItem.id)
+            startProductsCatalogFragment(horizontalItem.id, horizontalItem.name)
         }
     }
 
-    private fun startProductsCatalogFragment(categoryId: String) {
-        Navigation.findNavController(activity.findViewById(R.id.navHostFragment)).navigate(HomeFragmentDirections.actionHomeToProductsCatalogFragment(categoryId))
+    private fun startProductsCatalogFragment(categoryId: String, categoryName: String) {
+        Navigation.findNavController(activity.findViewById(R.id.navHostFragment)).navigate(HomeFragmentDirections.actionHomeToProductsCatalogFragment(categoryId, categoryName))
     }
 }

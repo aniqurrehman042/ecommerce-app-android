@@ -43,20 +43,18 @@ class ProductsCatalogFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        when (args.categoryId) {
-            GlobalVariables.CATEGORY_MOBILES_ID -> (tvCategory.setText("Mobiles"))
-            GlobalVariables.CATEGORY_HOME_APPLIANCES_ID -> (tvCategory.setText("Home Appliances"))
-            else -> { // Note the block
-                tvCategory.setText("Category");
-            }
-        }
         init()
     }
 
     private fun init() {
+        setCategoryText()
         initializeAdapter()
         setUpProductsRecycler()
         setUpViewModel()
+    }
+
+    private fun setCategoryText() {
+        tvCategory.text = args.categoryName
     }
 
     private fun initializeAdapter() {
