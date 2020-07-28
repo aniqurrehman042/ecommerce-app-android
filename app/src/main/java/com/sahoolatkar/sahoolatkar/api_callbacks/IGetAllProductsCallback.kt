@@ -1,6 +1,6 @@
 package com.sahoolatkar.sahoolatkar.api_callbacks
 
-import ProductApiModel
+import com.sahoolatkar.sahoolatkar.api_models.product.ProductApiModel
 
 interface IGetAllProductsCallback {
 

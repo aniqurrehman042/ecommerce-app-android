@@ -1,6 +1,5 @@
 package com.sahoolatkar.sahoolatkar.adapters
 
-import ProductApiModel
 import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.sahoolatkar.sahoolatkar.R
+import com.sahoolatkar.sahoolatkar.api_models.product.ProductApiModel
 import com.squareup.picasso.Picasso
 
 class CartRecyclerAdapter(val activity: Activity, val products: MutableList<ProductApiModel>) :
@@ -39,6 +39,8 @@ class CartRecyclerAdapter(val activity: Activity, val products: MutableList<Prod
 
         holder.tvRemove.setOnClickListener {
             products.removeAt(position)
+            notifyItemRemoved(position)
+            notifyItemRangeChanged(position, products.size)
         }
     }
 }

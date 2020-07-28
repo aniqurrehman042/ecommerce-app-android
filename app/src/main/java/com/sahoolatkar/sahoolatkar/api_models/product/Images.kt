@@ -1,3 +1,5 @@
+package com.sahoolatkar.sahoolatkar.api_models.product
+
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 

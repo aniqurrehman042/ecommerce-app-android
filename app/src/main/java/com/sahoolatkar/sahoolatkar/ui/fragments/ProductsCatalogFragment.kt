@@ -1,22 +1,17 @@
 package com.sahoolatkar.sahoolatkar.ui.fragments
 
-import android.app.Activity
 import android.os.Bundle
-import android.text.InputFilter
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
-import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.sahoolatkar.sahoolatkar.R
-import com.sahoolatkar.sahoolatkar.adapters.ProductsAdapter
 import com.sahoolatkar.sahoolatkar.adapters.ProductsPagedRecyclerAdapter
 import com.sahoolatkar.sahoolatkar.globals.GlobalVariables
-import com.sahoolatkar.sahoolatkar.models.ProductModel
 import com.sahoolatkar.sahoolatkar.ui.MainActivity
 import com.sahoolatkar.sahoolatkar.utils.ViewUtils
 import com.sahoolatkar.sahoolatkar.viewmodels.ProductCatalogViewModel
@@ -58,7 +53,8 @@ class ProductsCatalogFragment : Fragment() {
     }
 
     private fun initializeAdapter() {
-        productsPagedRecyclerAdapter = ProductsPagedRecyclerAdapter(mainActivity, GlobalVariables.PRODUCT_CATALOG_FRAGMENT)
+        productsPagedRecyclerAdapter =
+            ProductsPagedRecyclerAdapter(mainActivity, GlobalVariables.PRODUCT_CATALOG_FRAGMENT)
     }
 
     private fun setUpViewModel() {

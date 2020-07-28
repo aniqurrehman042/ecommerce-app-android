@@ -1,16 +1,23 @@
 package com.sahoolatkar.sahoolatkar.viewmodels
 
-import ProductApiModel
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.sahoolatkar.sahoolatkar.api_models.product.ProductApiModel
 import com.sahoolatkar.sahoolatkar.api_utils.SahoolatKarApiUtils
 import com.sahoolatkar.sahoolatkar.globals.GlobalVariables
 import kotlinx.coroutines.launch
 
 class HomeViewModel : ViewModel() {
-    private val mobiles: MutableLiveData<List<ProductApiModel>> by lazy {
+    val mobiles: LiveData<List<ProductApiModel>> by lazy<LiveData<List<ProductApiModel>>> {
         MutableLiveData<List<ProductApiModel>>().also {
             viewModelScope.launch {
-                val response = SahoolatKarApiUtils.getProductsByCategoryWithCo(GlobalVariables.CATEGORY_MOBILES_ID, 1)
+                val response = SahoolatKarApiUtils.getProductsWithCo(
+                    GlobalVariables.CATEGORY_MOBILES_ID,
+                    null,
+                    1
+                )
                 if (response.isSuccessful) {
                     it.value = response.body()
                 }
@@ -18,7 +25,33 @@ class HomeViewModel : ViewModel() {
         }
     }
 
-    fun getMobiles(): LiveData<List<ProductApiModel>> {
-        return mobiles
+    val featuredProducts: LiveData<List<ProductApiModel>> by lazy<LiveData<List<ProductApiModel>>> {
+        MutableLiveData<List<ProductApiModel>>().also {
+            viewModelScope.launch {
+                val response = SahoolatKarApiUtils.getProductsWithCo(
+                    null,
+                    true,
+                    1
+                )
+                if (response.isSuccessful) {
+                    it.value = response.body()
+                }
+            }
+        }
+    }
+
+    val offers: LiveData<List<ProductApiModel>> by lazy<LiveData<List<ProductApiModel>>> {
+        MutableLiveData<List<ProductApiModel>>().also {
+            viewModelScope.launch {
+                val response = SahoolatKarApiUtils.getProductsWithCo(
+                    GlobalVariables.CATEGORY_OFFERS,
+                    null,
+                    1
+                )
+                if (response.isSuccessful) {
+                    it.value = response.body()
+                }
+            }
+        }
     }
 }

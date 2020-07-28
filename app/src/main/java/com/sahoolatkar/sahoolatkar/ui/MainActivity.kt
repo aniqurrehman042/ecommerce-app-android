@@ -85,9 +85,11 @@ class MainActivity : AppCompatActivity() {
         animFadeOut = AlphaAnimation(1f, 0f).apply { fillAfter = true; duration = 500 }
         val animExitToLeftFast =
             AnimationUtils.loadAnimation(this, R.anim.exit_to_left_fast).apply { fillAfter = true }
+        val animExitToRightFast =
+            AnimationUtils.loadAnimation(this, R.anim.exit_to_right_fast).apply { fillAfter = true }
         val animFadeOutFast = AlphaAnimation(1f, 0f).apply { fillAfter = true; duration = 0 }
 
-        cvCart.startAnimation(animEnterFromRight)
+        cvCart.startAnimation(animExitToRightFast)
         clMenu.startAnimation(animExitToLeftFast)
         vOverlay.startAnimation(animFadeOutFast)
         clMenuContainer.visibility = View.GONE
@@ -141,6 +143,14 @@ class MainActivity : AppCompatActivity() {
         clMenu.startAnimation(animExitToLeft)
         vOverlay.startAnimation(animFadeOut)
         menuOpen = false
+    }
+
+    fun showCart() {
+        cvCart.startAnimation(animEnterFromRight)
+    }
+
+    fun hideCart() {
+        cvCart.startAnimation(animExitToRight)
     }
 
     private fun setUpBottomBar() {
