@@ -12,135 +12,142 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <com.asksira.loopingviewpager.LoopingViewPager
-            android:id="@+id/productSlider"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_300sdp"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/tvCompanyName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_tiny"
-            android:layout_marginTop="@dimen/margin_tiny"
-            android:text="Company Name"
-            android:textColor="@color/blue"
-            android:textSize="@dimen/text_extra_small"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/productSlider" />
-
-        <TextView
-            android:id="@+id/tvProductName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_tiny"
-            android:layout_marginTop="@dimen/margin_tiny"
-            android:text="Product name"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_small"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvCompanyName" />
-
-        <TextView
-            android:id="@+id/tvCurrency"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_tiny"
-            android:layout_marginTop="@dimen/margin_tiny"
-            android:text="PKR"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_small"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvProductName" />
-
-        <TextView
-            android:id="@+id/tvPrice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_3sdp"
-            android:text="10000"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_normal"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/tvCurrency"
-            app:layout_constraintLeft_toRightOf="@id/tvCurrency" />
-
-        <TextView
-            android:id="@+id/tvDeliverTo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_tiny"
-            android:paddingHorizontal="@dimen/padding_small"
-            android:paddingVertical="@dimen/_3sdp"
-            android:text="Deliver to Dubai"
-            android:textColor="@color/black"
-            app:layout_constraintTop_toBottomOf="@id/tvPrice" />
-
-
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/vpProductDetails"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_tiny"
-            app:layout_constraintTop_toBottomOf="@id/tvDeliverTo">
-
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tlProductDetails"
+            <com.asksira.loopingviewpager.LoopingViewPager
+                android:id="@+id/productSlider"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="@dimen/_300sdp"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        </androidx.viewpager.widget.ViewPager>
+            <TextView
+                android:id="@+id/tvCompanyName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_tiny"
+                android:layout_marginTop="@dimen/margin_tiny"
+                android:text="Company Name"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/text_extra_small"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/productSlider" />
+
+            <TextView
+                android:id="@+id/tvProductName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_tiny"
+                android:layout_marginTop="@dimen/margin_tiny"
+                android:text="Product name"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_small"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvCompanyName" />
+
+            <TextView
+                android:id="@+id/tvCurrency"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_tiny"
+                android:layout_marginTop="@dimen/margin_tiny"
+                android:text="PKR"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_small"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvProductName" />
+
+            <TextView
+                android:id="@+id/tvPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_3sdp"
+                android:text="10000"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_normal"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/tvCurrency"
+                app:layout_constraintLeft_toRightOf="@id/tvCurrency" />
+
+            <TextView
+                android:id="@+id/tvDeliverTo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_tiny"
+                android:paddingHorizontal="@dimen/padding_small"
+                android:paddingVertical="@dimen/_3sdp"
+                android:text="Deliver to Dubai"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/tvPrice" />
+
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/vpProductDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_tiny"
+                app:layout_constraintTop_toBottomOf="@id/tvDeliverTo">
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tlProductDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </androidx.viewpager.widget.ViewPager>
 
         </LinearLayout>
 
     </ScrollView>
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <LinearLayout
         android:id="@+id/llAddOrder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="@dimen/_270sdp"
-            android:layout_height="match_parent"
-            android:background="@color/red"
-            android:text="Add To Cart"
-            app:layout_constraintBottom_toBottomOf="@+id/llQty"
-            app:layout_constraintTop_toTopOf="@+id/llQty"
-            tools:layout_editor_absoluteX="57dp" />
-
         <LinearLayout
             android:id="@+id/llQty"
-            android:layout_width="@dimen/_45sdp"
-            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="0.2"
+            android:layout_height="wrap_content"
             android:background="@color/light_grey"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight="1"
-                android:gravity="center|center_vertical"
+                android:gravity="center"
                 android:text="Qty"
-                android:textSize="@dimen/text_super_normal" />
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_normal" />
 
             <TextView
-                android:id="@+id/textView11"
+                android:id="@+id/tvQuantity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:gravity="center"
                 android:text="1"
+                android:textStyle="bold"
+                android:textColor="@color/black"
                 android:textSize="@dimen/text_super_normal" />
+
         </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tvAddToCart"
+            android:layout_width="0dp"
+            android:layout_weight="0.8"
+            android:layout_height="match_parent"
+            android:background="@color/red"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_button"
+            android:gravity="center"
+            android:text="Add To Cart"
+            app:layout_constraintBottom_toBottomOf="@+id/llQty"
+            app:layout_constraintTop_toTopOf="@+id/llQty" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -80,5 +80,10 @@
         android:name="com.sahoolatkar.sahoolatkar.ui.fragments.NotificationsFragment"
         android:label="fragment_notifications"
         tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.sahoolatkar.sahoolatkar.ui.fragments.CartFragment"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart" />
 
 </navigation>

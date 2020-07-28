@@ -99,9 +99,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun setListeners() {
 
-        var navOptions = NavOptions.Builder()
+        val navOptions = NavOptions.Builder()
             .setEnterAnim(R.anim.enter_from_left)
-            .setExitAnim(R.anim.exit_to_left)
+            .setExitAnim(R.anim.exit_to_right)
             .build()
 
         ivNotifications.setOnClickListener {
@@ -121,6 +121,11 @@ class MainActivity : AppCompatActivity() {
 
         vPlaceholder.setOnClickListener {
             closeMenu()
+        }
+
+        cvCart.setOnClickListener {
+            Navigation.findNavController(this@MainActivity, R.id.navHostFragment)
+                .navigate(R.id.cartFragment, null, navOptions, null)
         }
 
     }
