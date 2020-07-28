@@ -104,46 +104,42 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="@dimen/_35sdp"
-            android:layout_height="@dimen/_35sdp"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:src="@android:drawable/btn_plus"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/tvItemCount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:text="2"
-            android:textSize="@dimen/text_super_normal"
-            app:layout_constraintBottom_toBottomOf="@+id/imageButton"
-            app:layout_constraintStart_toEndOf="@+id/imageButton"
-            app:layout_constraintTop_toTopOf="@+id/imageButton" />
-
-        <ImageButton
-            android:id="@+id/imageButton2"
-            android:layout_width="@dimen/_35sdp"
-            android:layout_height="@dimen/_35sdp"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:src="@android:drawable/btn_plus"
-            app:layout_constraintBottom_toBottomOf="@+id/imageButton"
-            app:layout_constraintStart_toEndOf="@+id/tvItemCount"
-            app:layout_constraintTop_toTopOf="@+id/imageButton" />
-
         <Button
             android:id="@+id/button2"
-            android:layout_width="@dimen/_170sdp"
-            android:layout_height="@dimen/_35sdp"
-            android:layout_marginStart="@dimen/_35sdp"
+            android:layout_width="@dimen/_270sdp"
+            android:layout_height="match_parent"
+            android:background="@color/red"
             android:text="Add To Cart"
-            app:layout_constraintBottom_toBottomOf="@+id/imageButton2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageButton2"
-            app:layout_constraintTop_toTopOf="@+id/imageButton2" />
+            app:layout_constraintBottom_toBottomOf="@+id/llQty"
+            app:layout_constraintTop_toTopOf="@+id/llQty"
+            tools:layout_editor_absoluteX="57dp" />
+
+        <LinearLayout
+            android:id="@+id/llQty"
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="match_parent"
+            android:background="@color/light_grey"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center|center_vertical"
+                android:text="Qty"
+                android:textSize="@dimen/text_super_normal" />
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="1"
+                android:textSize="@dimen/text_super_normal" />
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
