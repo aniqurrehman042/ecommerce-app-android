@@ -84,7 +84,7 @@
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/vpProductDetails"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_200sdp"
                 android:layout_marginTop="@dimen/margin_tiny"
                 app:layout_constraintTop_toBottomOf="@id/tvDeliverTo">
 

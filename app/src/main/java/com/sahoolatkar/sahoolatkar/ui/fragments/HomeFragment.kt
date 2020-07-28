@@ -64,6 +64,7 @@ class HomeFragment : Fragment() {
 
         homeViewModel.offers.observe(viewLifecycleOwner, Observer {
             setUpOffersSlider(it)
+            offersIndicator.updateIndicatorCounts(offersSlider.indicatorCount)
         })
     }
 

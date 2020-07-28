@@ -9,12 +9,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
 import com.sahoolatkar.sahoolatkar.R
+import com.sahoolatkar.sahoolatkar.adapters.ProductDetailsPagerAdapter
 import com.sahoolatkar.sahoolatkar.adapters.ProductImgsSliderAdapter
 import com.sahoolatkar.sahoolatkar.ui.MainActivity
 import com.sahoolatkar.sahoolatkar.viewmodels.MainViewModel
 import kotlinx.android.synthetic.main.fragment_product_details.*
 
 class ProductDetailsFragment : Fragment() {
+    private lateinit var pagerAdapter: ProductDetailsPagerAdapter
 
     private val args: ProductDetailsFragmentArgs by navArgs()
     private lateinit var mainActivity: MainActivity
@@ -37,6 +39,7 @@ class ProductDetailsFragment : Fragment() {
 
     private fun init() {
         setViewValues()
+        initViewPager()
         setUpTopSlider()
         setListeners()
     }
@@ -60,5 +63,10 @@ class ProductDetailsFragment : Fragment() {
     private fun setViewValues() {
         tvProductName.text = args.product.name
         tvPrice.text = args.product.price
+    }
+
+    private fun initViewPager() {
+        pagerAdapter = ProductDetailsPagerAdapter(mainActivity.supportFragmentManager)
+        vpProductDetails.adapter = pagerAdapter
     }
 }
