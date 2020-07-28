@@ -8,6 +8,8 @@ import com.sahoolatkar.sahoolatkar.api_callbacks.IGetAllProductsCallback
 import com.sahoolatkar.sahoolatkar.apis_clients.SahoolatkarApiClient
 import com.sahoolatkar.sahoolatkar.globals.GlobalVariables
 import com.sahoolatkar.sahoolatkar.http_services.SahoolatkarRestApiService
+import okhttp3.MediaType
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -20,51 +22,61 @@ class SahoolatKarApiUtils {
 
         fun getAllProducts(context: Context, getAllProductsCallback: IGetAllProductsCallback) {
 
-            SahoolatkarRestApiService.createService(SahoolatkarApiClient::class.java, context.getString(
-                R.string.WOOCOMMERCE_CONSUMER_KEY), context.getString(
-                R.string.WOOCOMMERCE_CONSUMER_SECRET)).getAllProducts()?.enqueue(object :
-                Callback<List<ProductApiModel?>?> {
-                override fun onFailure(call: Call<List<ProductApiModel?>?>, t: Throwable) {
-                    getAllProductsCallback.onGetProducts(ArrayList())
-                }
-
-                override fun onResponse(
-                    call: Call<List<ProductApiModel?>?>,
-                    response: Response<List<ProductApiModel?>?>
-                ) {
-                    if (response.body() != null) {
-                        getAllProductsCallback.onGetProducts(response.body() as MutableList<ProductApiModel>)
-                    } else {
+            try {
+                sahoolatkarApiClient.getAllProducts()?.enqueue(object :
+                    Callback<List<ProductApiModel?>?> {
+                    override fun onFailure(call: Call<List<ProductApiModel?>?>, t: Throwable) {
                         getAllProductsCallback.onGetProducts(ArrayList())
                     }
-                }
-            })
+
+                    override fun onResponse(
+                        call: Call<List<ProductApiModel?>?>,
+                        response: Response<List<ProductApiModel?>?>
+                    ) {
+                        if (response.body() != null) {
+                            getAllProductsCallback.onGetProducts(response.body() as MutableList<ProductApiModel>)
+                        } else {
+                            getAllProductsCallback.onGetProducts(ArrayList())
+                        }
+                    }
+                })
+            } catch (e: Exception) {
+                getAllProducts(context, getAllProductsCallback)
+            }
         }
 
         fun getProductsByCategory(context: Context, categoryId: String, getProductsByCategoryCallback: IGetAllProductsCallback) {
-            SahoolatkarRestApiService.createService(SahoolatkarApiClient::class.java, context.getString(
-                R.string.WOOCOMMERCE_CONSUMER_KEY), context.getString(
-                R.string.WOOCOMMERCE_CONSUMER_SECRET)).getProductsByCategory(categoryId)?.enqueue(object :
-                Callback<List<ProductApiModel?>?> {
-                override fun onFailure(call: Call<List<ProductApiModel?>?>, t: Throwable) {
-                    getProductsByCategoryCallback.onGetProducts(ArrayList())
-                    Toast.makeText(context, t.message, Toast.LENGTH_LONG).show()
-                }
-
-                override fun onResponse(
-                    call: Call<List<ProductApiModel?>?>,
-                    response: Response<List<ProductApiModel?>?>
-                ) {
-                    if (response.body() != null) {
-                        getProductsByCategoryCallback.onGetProducts(response.body() as MutableList<ProductApiModel>)
-                    } else {
+            try {
+                sahoolatkarApiClient.getProductsByCategory(categoryId)?.enqueue(object :
+                    Callback<List<ProductApiModel?>?> {
+                    override fun onFailure(call: Call<List<ProductApiModel?>?>, t: Throwable) {
                         getProductsByCategoryCallback.onGetProducts(ArrayList())
+                        Toast.makeText(context, t.message, Toast.LENGTH_LONG).show()
                     }
-                }
-            })
+
+                    override fun onResponse(
+                        call: Call<List<ProductApiModel?>?>,
+                        response: Response<List<ProductApiModel?>?>
+                    ) {
+                        if (response.body() != null) {
+                            getProductsByCategoryCallback.onGetProducts(response.body() as MutableList<ProductApiModel>)
+                        } else {
+                            getProductsByCategoryCallback.onGetProducts(ArrayList())
+                        }
+                    }
+                })
+            } catch (e: Exception) {
+                getProductsByCategory(context, categoryId, getProductsByCategoryCallback)
+            }
         }
 
-        suspend fun getProductsByCategoryWithCo(categoryId: String, pageNo: Int) : Response<List<ProductApiModel>> = sahoolatkarApiClient.getProductsByCategoryWithCo(categoryId, pageNo)
+        suspend fun getProductsByCategoryWithCo(categoryId: String, pageNo: Int) : Response<List<ProductApiModel>> {
+            return try {
+                sahoolatkarApiClient.getProductsByCategoryWithCo(categoryId, pageNo)
+            } catch (e: Exception) {
+                getProductsByCategoryWithCo(categoryId, pageNo)
+            }
+        }
 
     }
 
