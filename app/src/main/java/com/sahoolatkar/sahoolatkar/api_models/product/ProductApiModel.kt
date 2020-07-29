@@ -16,7 +16,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 For support, please feel free to contact me at https://www.linkedin.com/in/syedabsar */
 
 data class ProductApiModel (
-
 	@Expose @SerializedName("id") val id : Int,
 	@Expose @SerializedName("name") val name : String,
 	@Expose @SerializedName("slug") val slug : String,

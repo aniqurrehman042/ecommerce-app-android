@@ -1,6 +1,7 @@
 package com.sahoolatkar.sahoolatkar.api_models.product
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 /*
 Copyright (c) 2020 Kotlin Data Classes Generated from JSON powered by http://www.json2kotlin.com
@@ -15,8 +16,7 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 
 
 data class Brands (
-
 	@SerializedName("id") val id : Int,
 	@SerializedName("name") val name : String,
 	@SerializedName("slug") val slug : String
-)
+) : Serializable

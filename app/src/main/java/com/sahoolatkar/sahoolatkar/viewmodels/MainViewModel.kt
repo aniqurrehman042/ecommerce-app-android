@@ -7,4 +7,6 @@ class MainViewModel : ViewModel() {
 
     val cartProducts: MutableList<ProductApiModel> = ArrayList()
 
+    val wishListProducts: MutableList<ProductApiModel> = ArrayList()
+
 }

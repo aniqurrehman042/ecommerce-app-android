@@ -107,5 +107,21 @@
         android:name="com.sahoolatkar.sahoolatkar.ui.fragments.CartFragment"
         android:label="fragment_cart"
         tools:layout="@layout/fragment_cart" />
+    <fragment
+        android:id="@+id/wishListFragment"
+        android:name="com.sahoolatkar.sahoolatkar.ui.fragments.WishListFragment"
+        android:label="fragment_wishlist"
+        tools:layout="@layout/fragment_wishlist" >
+        <action
+            android:id="@+id/action_wishListFragment_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment">
+
+            <argument
+                android:name="product"
+                app:argType="com.sahoolatkar.sahoolatkar.api_models.product.ProductApiModel"
+                app:nullable="false" />
+
+        </action>
+    </fragment>
 
 </navigation>
