@@ -7,14 +7,15 @@ import android.view.ViewGroup
 import com.asksira.loopingviewpager.LoopingPagerAdapter
 import com.makeramen.roundedimageview.RoundedImageView
 import com.sahoolatkar.sahoolatkar.R
+import com.sahoolatkar.sahoolatkar.api_models.product.ProductApiModel
 import com.sahoolatkar.sahoolatkar.models.SliderItemModel
 import com.squareup.picasso.Picasso
 
 class OffersSliderAdapter(
     context: Context,
-    var offers: ArrayList<SliderItemModel>,
+    var offers: List<ProductApiModel>,
     isInfinite: Boolean
-) : LoopingPagerAdapter<SliderItemModel>(context, offers, isInfinite) {
+) : LoopingPagerAdapter<ProductApiModel>(context, offers, isInfinite) {
 
     //This method will be triggered if the item View has not been inflated before.
     override fun inflateView(
@@ -27,15 +28,13 @@ class OffersSliderAdapter(
     }
 
     //Bind your data with your item View here.
-    //Below is just an example in the demo app.
     //You can assume convertView will not be null here.
-    //You may also consider using a ViewHolder pattern.
     override fun bindView(
         convertView: View,
         listPosition: Int,
         viewType: Int
     ) {
-        Picasso.get().load(offers[listPosition].imageUrl)
+        Picasso.get().load(offers[listPosition].images[0].src)
             .into(convertView.findViewById<RoundedImageView>(R.id.ivSliderImg))
     }
 }

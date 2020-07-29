@@ -16,7 +16,7 @@
             android:orientation="vertical">
 
             <com.asksira.loopingviewpager.LoopingViewPager
-                android:id="@+id/productSlider"
+                android:id="@+id/productImgSlider"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_300sdp"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -31,7 +31,7 @@
                 android:textColor="@color/blue"
                 android:textSize="@dimen/text_extra_small"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/productSlider" />
+                app:layout_constraintTop_toBottomOf="@id/productImgSlider" />
 
             <TextView
                 android:id="@+id/tvProductName"
@@ -84,7 +84,7 @@
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/vpProductDetails"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_200sdp"
                 android:layout_marginTop="@dimen/margin_tiny"
                 app:layout_constraintTop_toBottomOf="@id/tvDeliverTo">
 
@@ -111,7 +111,6 @@
             android:layout_width="0dp"
             android:layout_weight="0.2"
             android:layout_height="wrap_content"
-            android:background="@color/light_grey"
             android:orientation="vertical">
 
             <TextView

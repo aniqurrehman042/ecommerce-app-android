@@ -1,7 +1,6 @@
 package com.sahoolatkar.sahoolatkar.adapters
 
 import android.app.Activity
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,15 +10,16 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.Navigation
 import com.asksira.loopingviewpager.LoopingPagerAdapter
 import com.sahoolatkar.sahoolatkar.R
-import com.sahoolatkar.sahoolatkar.models.ProductModel
+import com.sahoolatkar.sahoolatkar.api_models.product.ProductApiModel
+import com.sahoolatkar.sahoolatkar.ui.fragments.HomeFragmentDirections
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.layout_product_item.view.*
 
 class ProductsSliderAdapter(
     val activity: Activity,
-    private val products: ArrayList<ProductModel>,
+    private val products: List<ProductApiModel>,
     isInfinite: Boolean
-) : LoopingPagerAdapter<ProductModel>(activity, products, isInfinite) {
+) : LoopingPagerAdapter<ProductApiModel>(activity, products, isInfinite) {
 
     //This method will be triggered if the item View has not been inflated before.
     override fun inflateView(
@@ -41,15 +41,15 @@ class ProductsSliderAdapter(
 
         var liked = false
 
-        Picasso.get().load(products[listPosition].imgUrl)
+        Picasso.get().load(products[listPosition].images[0].src)
             .into(convertView.findViewById<ImageView>(R.id.ivProductImg))
 
         convertView.findViewById<TextView>(R.id.tvProductName).text = products[listPosition].name
-        convertView.findViewById<TextView>(R.id.tvProductDesc).text = products[listPosition].desc
+        convertView.findViewById<TextView>(R.id.tvProductDesc).text = products[listPosition].description
         convertView.findViewById<TextView>(R.id.tvPrice).text =
-            products[listPosition].price.toInt().toString()
+            products[listPosition].price
         convertView.findViewById<ConstraintLayout>(R.id.clProduct).setOnClickListener {
-            startProductDetailsFragment()
+            startProductDetailsFragment(products[listPosition])
         }
 
 
@@ -64,8 +64,8 @@ class ProductsSliderAdapter(
         }
     }
 
-    private fun startProductDetailsFragment() {
+    private fun startProductDetailsFragment(product: ProductApiModel) {
         Navigation.findNavController(activity.findViewById(R.id.navHostFragment))
-            .navigate(R.id.action_home_to_productDetailsFragment)
+            .navigate(HomeFragmentDirections.actionHomeToProductDetailsFragment(product))
     }
 }

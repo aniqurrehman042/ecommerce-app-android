@@ -37,7 +37,14 @@
         </action>
         <action
             android:id="@+id/action_home_to_productDetailsFragment"
-            app:destination="@id/productDetailsFragment" />
+            app:destination="@id/productDetailsFragment">
+
+            <argument
+                android:name="product"
+                app:argType="com.sahoolatkar.sahoolatkar.api_models.product.ProductApiModel"
+                app:nullable="false" />
+
+        </action>
     </fragment>
 
     <fragment
@@ -59,7 +66,15 @@
         tools:layout="@layout/fragment_products_catalog">
         <action
             android:id="@+id/action_productsCatalogFragment_to_productDetailsFragment"
-            app:destination="@id/productDetailsFragment" />
+            app:destination="@id/productDetailsFragment">
+
+            <argument
+                android:name="product"
+                app:argType="com.sahoolatkar.sahoolatkar.api_models.product.ProductApiModel"
+                app:nullable="false" />
+
+        </action>
+
         <argument
             android:name="categoryId"
             android:defaultValue="none"
@@ -74,7 +89,14 @@
         android:id="@+id/productDetailsFragment"
         android:name="com.sahoolatkar.sahoolatkar.ui.fragments.ProductDetailsFragment"
         android:label="fragment_product_details"
-        tools:layout="@layout/fragment_product_details" />
+        tools:layout="@layout/fragment_product_details">
+
+        <argument
+            android:name="product"
+            app:argType="com.sahoolatkar.sahoolatkar.api_models.product.ProductApiModel"
+            app:nullable="false" />
+
+    </fragment>
     <fragment
         android:id="@+id/notificationsFragment"
         android:name="com.sahoolatkar.sahoolatkar.ui.fragments.NotificationsFragment"

@@ -1,6 +1,6 @@
 package com.sahoolatkar.sahoolatkar.apis_clients
 
-import ProductApiModel
+import com.sahoolatkar.sahoolatkar.api_models.product.ProductApiModel
 import com.sahoolatkar.sahoolatkar.globals.GlobalVariables
 import retrofit2.Call
 import retrofit2.Response
@@ -17,6 +17,6 @@ interface SahoolatkarApiClient {
     fun getProductsByCategory(@Query("category") categoryId: String): Call<List<ProductApiModel?>?>?
 
     @GET("products")
-    suspend fun getProductsByCategoryWithCo(@Query("category") categoryId: String, @Query("page") pageNo: Int, @Query("per_page") pageSize: Int = GlobalVariables.PRODUCTS_PAGE_SIZE): Response<List<ProductApiModel>>
+    suspend fun getProductsWithCo(@Query("category") categoryId: String?, @Query("featured") featured: Boolean?, @Query("page") pageNo: Int, @Query("per_page") pageSize: Int = GlobalVariables.PRODUCTS_PAGE_SIZE): Response<List<ProductApiModel>>
 
 }
