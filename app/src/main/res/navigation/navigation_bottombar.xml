@@ -106,6 +106,15 @@
         android:id="@+id/cartFragment"
         android:name="com.sahoolatkar.sahoolatkar.ui.fragments.CartFragment"
         android:label="fragment_cart"
-        tools:layout="@layout/fragment_cart" />
+        tools:layout="@layout/fragment_cart" >
+        <action
+            android:id="@+id/action_cartFragment_to_paymentOptionsFragment"
+            app:destination="@id/paymentOptionsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/paymentOptionsFragment"
+        android:name="com.sahoolatkar.sahoolatkar.ui.fragments.PaymentOptionsFragment"
+        android:label="fragment_payment_options"
+        tools:layout="@layout/fragment_payment_options" />
 
 </navigation>
