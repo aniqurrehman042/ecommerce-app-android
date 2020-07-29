@@ -49,6 +49,12 @@ class ProductDetailsFragment : Fragment() {
             mainViewModel.cartProducts.add(args.product)
             mainActivity.addCartItem()
         }
+        tvPlus.setOnClickListener{
+         addQty();
+        }
+        tvMinus.setOnClickListener{
+            minusQty();
+        }
     }
 
     private fun setUpTopSlider() {
@@ -68,5 +74,20 @@ class ProductDetailsFragment : Fragment() {
     private fun initViewPager() {
         pagerAdapter = ProductDetailsPagerAdapter(mainActivity.supportFragmentManager)
         vpProductDetails.adapter = pagerAdapter
+    }
+    private fun minusQty()
+    {
+        var num :Int;
+        num = (tvQuantity.text).toString().toInt();
+        if(num>1)
+        num--;
+        tvQuantity.text  = num.toString();
+    }
+    private fun addQty()
+    {
+        var num :Int;
+        num = (tvQuantity.text).toString().toInt();
+        num++;
+        tvQuantity.text  = num.toString();
     }
 }
