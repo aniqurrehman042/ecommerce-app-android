@@ -46,8 +46,8 @@ class ProductDetailsFragment : Fragment() {
 
     private fun setListeners() {
         tvAddToCart.setOnClickListener {
-            mainActivity.showCart()
             mainViewModel.cartProducts.add(args.product)
+            mainActivity.addCartItem()
         }
     }
 

@@ -1,6 +1,5 @@
 package com.sahoolatkar.sahoolatkar.adapters
 
-import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,9 +8,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.sahoolatkar.sahoolatkar.R
 import com.sahoolatkar.sahoolatkar.api_models.product.ProductApiModel
+import com.sahoolatkar.sahoolatkar.ui.MainActivity
 import com.squareup.picasso.Picasso
 
-class CartRecyclerAdapter(val activity: Activity, val products: MutableList<ProductApiModel>) :
+class CartRecyclerAdapter(val mainActivity: MainActivity, val products: MutableList<ProductApiModel>) :
     RecyclerView.Adapter<CartRecyclerAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -22,7 +22,7 @@ class CartRecyclerAdapter(val activity: Activity, val products: MutableList<Prod
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(activity).inflate(R.layout.layout_cart_item, parent, false)
+        val view = LayoutInflater.from(mainActivity).inflate(R.layout.layout_cart_item, parent, false)
         return ViewHolder(view)
     }
 
@@ -41,6 +41,7 @@ class CartRecyclerAdapter(val activity: Activity, val products: MutableList<Prod
             products.removeAt(position)
             notifyItemRemoved(position)
             notifyItemRangeChanged(position, products.size)
+            mainActivity.removeCartItem()
         }
     }
 }
