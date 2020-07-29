@@ -1,6 +1,5 @@
 package com.sahoolatkar.sahoolatkar.adapters
 
-import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,15 +11,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.sahoolatkar.sahoolatkar.R
 import com.sahoolatkar.sahoolatkar.api_models.product.ProductApiModel
 import com.sahoolatkar.sahoolatkar.globals.GlobalVariables
+import com.sahoolatkar.sahoolatkar.ui.MainActivity
 import com.sahoolatkar.sahoolatkar.ui.fragments.HomeFragmentDirections
+import com.sahoolatkar.sahoolatkar.ui.fragments.ProductsCatalogFragmentDirections
+import com.sahoolatkar.sahoolatkar.ui.fragments.WishListFragmentDirections
 import com.squareup.picasso.Picasso
 
 class ProductsAdapter(
-    val activity: Activity,
+    val mainActivity: MainActivity,
     val products: List<ProductApiModel>,
     private val parentFragment: String
 ) :
     RecyclerView.Adapter<ProductsAdapter.ViewHolder>() {
+
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val ivProductImg: ImageView = itemView.findViewById(R.id.ivProductImg)
         val ivLike: ImageView = itemView.findViewById(R.id.ivLike)
@@ -52,12 +55,18 @@ class ProductsAdapter(
             .load(product.images[0].src)
             .into(holder.ivProductImg)
 
+        if (parentFragment == GlobalVariables.WISH_LIST_FRAGMENT) {
+            holder.ivLike.visibility = View.GONE
+        }
+
         holder.ivLike.setOnClickListener {
             liked = if (liked) {
                 holder.ivLike.setImageResource(R.drawable.ic_like_off)
+                mainActivity.removeProductFromWishList(product)
                 false
             } else {
                 holder.ivLike.setImageResource(R.drawable.ic_like_on)
+                mainActivity.addProductToWishList(product)
                 true
             }
         }
@@ -70,13 +79,18 @@ class ProductsAdapter(
     private fun startProductDetailsFragment(product: ProductApiModel) {
         when (parentFragment) {
             GlobalVariables.HOME_FRAGMENT -> {
-                Navigation.findNavController(activity.findViewById(R.id.navHostFragment))
+                Navigation.findNavController(mainActivity.findViewById(R.id.navHostFragment))
                     .navigate(HomeFragmentDirections.actionHomeToProductDetailsFragment(product))
             }
 
             GlobalVariables.PRODUCT_CATALOG_FRAGMENT -> {
-                Navigation.findNavController(activity.findViewById(R.id.navHostFragment))
-                    .navigate(HomeFragmentDirections.actionHomeToProductDetailsFragment(product))
+                Navigation.findNavController(mainActivity.findViewById(R.id.navHostFragment))
+                    .navigate(ProductsCatalogFragmentDirections.actionProductsCatalogFragmentToProductDetailsFragment(product))
+            }
+
+            GlobalVariables.WISH_LIST_FRAGMENT -> {
+                Navigation.findNavController(mainActivity.findViewById(R.id.navHostFragment))
+                    .navigate(WishListFragmentDirections.actionWishListFragmentToProductDetailsFragment(product))
             }
         }
     }

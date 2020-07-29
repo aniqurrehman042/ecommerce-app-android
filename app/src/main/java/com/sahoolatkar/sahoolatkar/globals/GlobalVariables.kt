@@ -17,6 +17,9 @@ class GlobalVariables {
         const val PRODUCT_SPECIFICATIONS_FRAGMENT: String = "Products Specifications Fragment"
         const val PROFILE_FRAGMENT: String = "Profile Fragment"
         const val STORE_LOCATOR_FRAGMENT: String = "Store Locator Fragment"
+        const val WISH_LIST_FRAGMENT: String = "Wish List Fragment"
+
+        // Woocommerce Api Keys
         const val WOOCOMMERCE_CONSUMER_KEY = "ck_c4de78791e7f9fe20faeb4b1f002dba5fa9de608"
         const val WOOCOMMERCE_CONSUMER_SECRET = "cs_07eac28ae6e191926a68558cfd4f2aa4f75c6287"
 

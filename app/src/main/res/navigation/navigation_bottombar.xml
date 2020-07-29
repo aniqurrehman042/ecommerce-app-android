@@ -106,11 +106,30 @@
         android:id="@+id/cartFragment"
         android:name="com.sahoolatkar.sahoolatkar.ui.fragments.CartFragment"
         android:label="fragment_cart"
-        tools:layout="@layout/fragment_cart" >
+        tools:layout="@layout/fragment_cart">
+
         <action
             android:id="@+id/action_cartFragment_to_paymentOptionsFragment"
             app:destination="@id/paymentOptionsFragment" />
+
     </fragment>
+    <fragment
+        android:id="@+id/wishListFragment"
+        android:name="com.sahoolatkar.sahoolatkar.ui.fragments.WishListFragment"
+        android:label="fragment_wishlist"
+        tools:layout="@layout/fragment_wishlist" >
+        <action
+            android:id="@+id/action_wishListFragment_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment">
+
+            <argument
+                android:name="product"
+                app:argType="com.sahoolatkar.sahoolatkar.api_models.product.ProductApiModel"
+                app:nullable="false" />
+
+        </action>
+    </fragment>
+
     <fragment
         android:id="@+id/paymentOptionsFragment"
         android:name="com.sahoolatkar.sahoolatkar.ui.fragments.PaymentOptionsFragment"

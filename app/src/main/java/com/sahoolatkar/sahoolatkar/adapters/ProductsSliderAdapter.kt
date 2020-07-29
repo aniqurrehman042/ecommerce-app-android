@@ -1,6 +1,5 @@
 package com.sahoolatkar.sahoolatkar.adapters
 
-import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,15 +10,16 @@ import androidx.navigation.Navigation
 import com.asksira.loopingviewpager.LoopingPagerAdapter
 import com.sahoolatkar.sahoolatkar.R
 import com.sahoolatkar.sahoolatkar.api_models.product.ProductApiModel
+import com.sahoolatkar.sahoolatkar.ui.MainActivity
 import com.sahoolatkar.sahoolatkar.ui.fragments.HomeFragmentDirections
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.layout_product_item.view.*
 
 class ProductsSliderAdapter(
-    val activity: Activity,
+    val mainActivity: MainActivity,
     private val products: List<ProductApiModel>,
     isInfinite: Boolean
-) : LoopingPagerAdapter<ProductApiModel>(activity, products, isInfinite) {
+) : LoopingPagerAdapter<ProductApiModel>(mainActivity, products, isInfinite) {
 
     //This method will be triggered if the item View has not been inflated before.
     override fun inflateView(
@@ -45,7 +45,8 @@ class ProductsSliderAdapter(
             .into(convertView.findViewById<ImageView>(R.id.ivProductImg))
 
         convertView.findViewById<TextView>(R.id.tvProductName).text = products[listPosition].name
-        convertView.findViewById<TextView>(R.id.tvProductDesc).text = products[listPosition].description
+        convertView.findViewById<TextView>(R.id.tvProductDesc).text =
+            products[listPosition].description
         convertView.findViewById<TextView>(R.id.tvPrice).text =
             products[listPosition].price
         convertView.findViewById<ConstraintLayout>(R.id.clProduct).setOnClickListener {
@@ -56,16 +57,18 @@ class ProductsSliderAdapter(
         convertView.ivLike.setOnClickListener {
             liked = if (liked) {
                 convertView.ivLike.setImageResource(R.drawable.ic_like_off)
+                mainActivity.removeProductFromWishList(products[listPosition])
                 false
             } else {
                 convertView.ivLike.setImageResource(R.drawable.ic_like_on)
+                mainActivity.addProductToWishList(products[listPosition])
                 true
             }
         }
     }
 
     private fun startProductDetailsFragment(product: ProductApiModel) {
-        Navigation.findNavController(activity.findViewById(R.id.navHostFragment))
+        Navigation.findNavController(mainActivity.findViewById(R.id.navHostFragment))
             .navigate(HomeFragmentDirections.actionHomeToProductDetailsFragment(product))
     }
 }

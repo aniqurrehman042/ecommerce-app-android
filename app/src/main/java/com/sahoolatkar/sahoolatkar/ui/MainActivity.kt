@@ -5,6 +5,7 @@ import android.view.View
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavOptions
 import androidx.navigation.Navigation
@@ -12,6 +13,7 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sahoolatkar.sahoolatkar.R
 import com.sahoolatkar.sahoolatkar.adapters.MenuAdapter
+import com.sahoolatkar.sahoolatkar.api_models.product.ProductApiModel
 import com.sahoolatkar.sahoolatkar.models.MenuItemModel
 import com.sahoolatkar.sahoolatkar.utils.UIUtils
 import com.sahoolatkar.sahoolatkar.utils.ViewUtils
@@ -19,7 +21,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_menu.*
 
 class MainActivity : AppCompatActivity() {
-
     private lateinit var animEnterFromLeft: Animation
     private lateinit var animEnterFromRight: Animation
     private lateinit var animExitToLeft: Animation
@@ -30,6 +31,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var animFadeIn: Animation
     private lateinit var animFadeOut: Animation
     private var menuOpen = false
+
+    private val mainViewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,7 +63,7 @@ class MainActivity : AppCompatActivity() {
         menuItems.add(MenuItemModel("Language", ""))
         menuItems.add(MenuItemModel("Language", ""))
         rvMenuItems.layoutManager = LinearLayoutManager(this)
-        rvMenuItems.adapter = MenuAdapter(menuItems)
+        rvMenuItems.adapter = MenuAdapter(this, menuItems)
     }
 
     private fun setAnimations() {
@@ -141,14 +144,14 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun openMenu() {
+    fun openMenu() {
         clMenu.startAnimation(animEnterFromLeft)
         vOverlay.startAnimation(animFadeIn)
         clMenuContainer.visibility = View.VISIBLE
         menuOpen = true
     }
 
-    private fun closeMenu() {
+    fun closeMenu() {
         clMenu.startAnimation(animExitToLeft)
         vOverlay.startAnimation(animFadeOut)
         menuOpen = false
@@ -213,5 +216,15 @@ class MainActivity : AppCompatActivity() {
         ViewUtils.showView(vTopOval)
         ViewUtils.showView(ll_topbar)
         showSearchBar()
+    }
+
+    fun removeProductFromWishList(product: ProductApiModel) {
+        if (mainViewModel.wishListProducts.contains(product))
+            mainViewModel.wishListProducts.remove(product)
+    }
+
+    fun addProductToWishList(product: ProductApiModel) {
+        if (!mainViewModel.wishListProducts.contains(product))
+            mainViewModel.wishListProducts.add(product)
     }
 }

@@ -2,6 +2,7 @@ package com.sahoolatkar.sahoolatkar.api_models.product
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 /*
 Copyright (c) 2020 Kotlin Data Classes Generated from JSON powered by http://www.json2kotlin.com
@@ -16,8 +17,7 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 
 
 data class Meta_data (
-
 	@Expose(deserialize = false, serialize = false) @SerializedName("id") val id : Int,
 	@Expose(deserialize = false, serialize = false) @SerializedName("key") val key : String,
 	@Expose(deserialize = false, serialize = false) @SerializedName("value") val value : String
-)
+) : Serializable
