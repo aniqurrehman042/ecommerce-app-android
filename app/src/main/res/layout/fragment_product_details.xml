@@ -109,28 +109,45 @@
         <LinearLayout
             android:id="@+id/llQty"
             android:layout_width="0dp"
-            android:layout_weight="0.2"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_weight="0.3"
+            android:background="@color/white">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/tvMinus"
+                android:layout_width="@dimen/size_back_button"
+                android:layout_height="@dimen/size_back_button"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="Qty"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_normal" />
+                android:text="-"
+                android:textColor="@color/red"
+                android:textSize="@dimen/text_button"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tvQuantity"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/margin_small"
                 android:gravity="center"
                 android:text="1"
-                android:textStyle="bold"
                 android:textColor="@color/black"
-                android:textSize="@dimen/text_super_normal" />
+                android:textSize="@dimen/text_normal"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvPlus"
+                android:layout_width="@dimen/size_back_button"
+                android:layout_height="@dimen/size_back_button"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/margin_small"
+                android:background="@color/red"
+                android:gravity="center"
+                android:text="+"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_button"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
@@ -138,7 +155,7 @@
             android:id="@+id/tvAddToCart"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.8"
+            android:layout_weight="0.7"
             android:background="@color/red"
             android:gravity="center"
             android:text="Add To Cart"
