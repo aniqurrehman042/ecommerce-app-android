@@ -10,48 +10,5 @@ import com.sahoolatkar.sahoolatkar.globals.GlobalVariables
 import kotlinx.coroutines.launch
 
 class HomeViewModel : ViewModel() {
-    val mobiles: LiveData<List<ProductApiModel>> by lazy<LiveData<List<ProductApiModel>>> {
-        MutableLiveData<List<ProductApiModel>>().also {
-            viewModelScope.launch {
-                val response = SahoolatKarApiUtils.getProductsWithCo(
-                    GlobalVariables.CATEGORY_MOBILES_ID,
-                    null,
-                    1
-                )
-                if (response.isSuccessful) {
-                    it.value = response.body()
-                }
-            }
-        }
-    }
 
-    val featuredProducts: LiveData<List<ProductApiModel>> by lazy<LiveData<List<ProductApiModel>>> {
-        MutableLiveData<List<ProductApiModel>>().also {
-            viewModelScope.launch {
-                val response = SahoolatKarApiUtils.getProductsWithCo(
-                    null,
-                    true,
-                    1
-                )
-                if (response.isSuccessful) {
-                    it.value = response.body()
-                }
-            }
-        }
-    }
-
-    val offers: LiveData<List<ProductApiModel>> by lazy<LiveData<List<ProductApiModel>>> {
-        MutableLiveData<List<ProductApiModel>>().also {
-            viewModelScope.launch {
-                val response = SahoolatKarApiUtils.getProductsWithCo(
-                    GlobalVariables.CATEGORY_OFFERS,
-                    null,
-                    1
-                )
-                if (response.isSuccessful) {
-                    it.value = response.body()
-                }
-            }
-        }
-    }
 }
