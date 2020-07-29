@@ -108,6 +108,9 @@
         android:label="fragment_cart"
         tools:layout="@layout/fragment_cart">
 
+        <action
+            android:id="@+id/action_cartFragment_to_paymentOptionsFragment"
+            app:destination="@id/paymentOptionsFragment" />
 
     </fragment>
     <fragment
@@ -126,9 +129,7 @@
 
         </action>
     </fragment>
-        tools:layout="@layout/fragment_cart" >
 
-    </fragment>
     <fragment
         android:id="@+id/paymentOptionsFragment"
         android:name="com.sahoolatkar.sahoolatkar.ui.fragments.PaymentOptionsFragment"

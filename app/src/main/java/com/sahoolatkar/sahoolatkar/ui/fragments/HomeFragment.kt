@@ -39,8 +39,8 @@ import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
 
-    private lateinit var mainView: View
     private lateinit var mainActivity: MainActivity
+    private val mainViewModel: MainViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,21 +48,19 @@ class HomeFragment : Fragment() {
     ): View? {
         mainActivity = requireActivity() as MainActivity
         // Inflate the layout for this fragment
-        mainView = inflater.inflate(R.layout.fragment_home, container, false)
-        return mainView
+        return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
     private fun setUpViewModels() {
-        val homeViewModel: HomeViewModel by viewModels()
-        homeViewModel.mobiles.observe(viewLifecycleOwner, Observer<List<ProductApiModel>> {
+        mainViewModel.mobiles.observe(viewLifecycleOwner, Observer<List<ProductApiModel>> {
             setUpMobilesRecycler(it)
         })
 
-        homeViewModel.featuredProducts.observe(viewLifecycleOwner, Observer {
+        mainViewModel.featuredProducts.observe(viewLifecycleOwner, Observer {
             setUpFeaturedProductsSlider(it)
         })
 
-        homeViewModel.offers.observe(viewLifecycleOwner, Observer {
+        mainViewModel.offers.observe(viewLifecycleOwner, Observer {
             setUpOffersSlider(it)
             offersIndicator.updateIndicatorCounts(offersSlider.indicatorCount)
         })
