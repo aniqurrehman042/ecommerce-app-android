@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.sahoolatkar.sahoolatkar.R
 import com.sahoolatkar.sahoolatkar.adapters.MenuAdapter
 import com.sahoolatkar.sahoolatkar.models.MenuItemModel
-import com.sahoolatkar.sahoolatkar.utils.EditTextUtils
 import com.sahoolatkar.sahoolatkar.utils.UIUtils
 import com.sahoolatkar.sahoolatkar.utils.ViewUtils
 import kotlinx.android.synthetic.main.activity_main.*
@@ -25,6 +24,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var animEnterFromRight: Animation
     private lateinit var animExitToLeft: Animation
     private lateinit var animExitToRight: Animation
+    private lateinit var animFadeInScaleUp: Animation
+    private lateinit var animFadeOutScaleDown: Animation
+    private lateinit var animFadeOutScaleDownFast: Animation
     private lateinit var animFadeIn: Animation
     private lateinit var animFadeOut: Animation
     private var menuOpen = false
@@ -38,7 +40,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun init() {
-//        setUpEtsOnFocusStatusBarToggle()
         showMenu()
         setUpBottomBar()
         setListeners()
@@ -52,7 +53,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setUpMenuRecycler() {
         val menuItems = ArrayList<MenuItemModel>()
-        menuItems.add(MenuItemModel("Country", ""))
+        menuItems.add(MenuItemModel("Wish List", ""))
         menuItems.add(MenuItemModel("Language", ""))
         menuItems.add(MenuItemModel("Language", ""))
         menuItems.add(MenuItemModel("Language", ""))
@@ -63,12 +64,22 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setAnimations() {
-        animEnterFromRight = AnimationUtils.loadAnimation(this, R.anim.enter_from_right).apply { fillAfter = true }
-        animExitToRight = AnimationUtils.loadAnimation(this, R.anim.exit_to_right).apply { fillAfter = true }
+        animEnterFromRight =
+            AnimationUtils.loadAnimation(this, R.anim.enter_from_right).apply { fillAfter = true }
+        animExitToRight =
+            AnimationUtils.loadAnimation(this, R.anim.exit_to_right).apply { fillAfter = true }
         animEnterFromLeft =
             AnimationUtils.loadAnimation(this, R.anim.enter_from_left).apply { fillAfter = true }
+        animFadeInScaleUp =
+            AnimationUtils.loadAnimation(this, R.anim.fade_in_scale_up).apply { fillAfter = true }
+        animFadeOutScaleDown = AnimationUtils.loadAnimation(this, R.anim.fade_out_scale_down)
+            .apply { fillAfter = true }
+        animFadeOutScaleDownFast =
+            AnimationUtils.loadAnimation(this, R.anim.fade_out_scale_down_fast)
+                .apply { fillAfter = true }
         animExitToLeft =
-            AnimationUtils.loadAnimation(this, R.anim.exit_to_left).apply { fillAfter = true; setAnimationListener(object : Animation.AnimationListener {
+            AnimationUtils.loadAnimation(this, R.anim.exit_to_left).apply {
+                fillAfter = true; setAnimationListener(object : Animation.AnimationListener {
                 override fun onAnimationRepeat(p0: Animation?) {
 
                 }
@@ -80,7 +91,8 @@ class MainActivity : AppCompatActivity() {
                 override fun onAnimationStart(p0: Animation?) {
 
                 }
-            }) }
+            })
+            }
         animFadeIn = AlphaAnimation(0f, 1f).apply { fillAfter = true; duration = 500 }
         animFadeOut = AlphaAnimation(1f, 0f).apply { fillAfter = true; duration = 500 }
         val animExitToLeftFast =
@@ -89,14 +101,10 @@ class MainActivity : AppCompatActivity() {
             AnimationUtils.loadAnimation(this, R.anim.exit_to_right_fast).apply { fillAfter = true }
         val animFadeOutFast = AlphaAnimation(1f, 0f).apply { fillAfter = true; duration = 0 }
 
-        cvCart.startAnimation(animExitToRightFast)
+        llCart.startAnimation(animFadeOutScaleDownFast)
         clMenu.startAnimation(animExitToLeftFast)
         vOverlay.startAnimation(animFadeOutFast)
         clMenuContainer.visibility = View.GONE
-    }
-
-    private fun setUpEtsOnFocusStatusBarToggle() {
-        EditTextUtils.setToggleStatusbarOnEtFocus(arrayOf(etSearch), window)
     }
 
     private fun setListeners() {
@@ -125,9 +133,10 @@ class MainActivity : AppCompatActivity() {
             closeMenu()
         }
 
-        cvCart.setOnClickListener {
-            Navigation.findNavController(this@MainActivity, R.id.navHostFragment)
-                .navigate(R.id.cartFragment, null, navOptions, null)
+        llCart.setOnClickListener {
+            if (navHostFragment.childFragmentManager.fragments[0].javaClass.simpleName != "CartFragment")
+                Navigation.findNavController(this@MainActivity, R.id.navHostFragment)
+                    .navigate(R.id.cartFragment, null, navOptions, null)
         }
 
     }
@@ -145,12 +154,32 @@ class MainActivity : AppCompatActivity() {
         menuOpen = false
     }
 
-    fun showCart() {
-        cvCart.startAnimation(animEnterFromRight)
+    fun updateCartIcon(cartItems: Int) {
+        tvCartItems.text = cartItems.toString()
     }
 
-    fun hideCart() {
-        cvCart.startAnimation(animExitToRight)
+    fun addCartItem() {
+        val cartItems = tvCartItems.text.toString().toInt()
+        updateCartIcon(cartItems + 1)
+        if (cartItems == 0) {
+            showCart()
+        }
+    }
+
+    fun removeCartItem() {
+        val cartItems = tvCartItems.text.toString().toInt()
+        updateCartIcon(cartItems - 1)
+        if (cartItems == 1) {
+            hideCart()
+        }
+    }
+
+    private fun showCart() {
+        llCart.startAnimation(animFadeInScaleUp)
+    }
+
+    private fun hideCart() {
+        llCart.startAnimation(animFadeOutScaleDown)
     }
 
     private fun setUpBottomBar() {
