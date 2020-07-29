@@ -17,6 +17,7 @@ import com.sahoolatkar.sahoolatkar.api_models.product.ProductApiModel
 import com.sahoolatkar.sahoolatkar.models.MenuItemModel
 import com.sahoolatkar.sahoolatkar.utils.UIUtils
 import com.sahoolatkar.sahoolatkar.utils.ViewUtils
+import com.sahoolatkar.sahoolatkar.viewmodels.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_menu.*
 

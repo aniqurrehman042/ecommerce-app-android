@@ -12,6 +12,7 @@ import com.sahoolatkar.sahoolatkar.R
 import com.sahoolatkar.sahoolatkar.adapters.ProductDetailsPagerAdapter
 import com.sahoolatkar.sahoolatkar.adapters.ProductImgsSliderAdapter
 import com.sahoolatkar.sahoolatkar.ui.MainActivity
+import com.sahoolatkar.sahoolatkar.viewmodels.MainViewModel
 import kotlinx.android.synthetic.main.fragment_product_details.*
 
 class ProductDetailsFragment : Fragment() {
