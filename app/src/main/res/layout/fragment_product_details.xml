@@ -138,13 +138,13 @@
         <TextView
             android:id="@+id/tvAddToCart"
             android:layout_width="0dp"
-            android:layout_weight="0.8"
             android:layout_height="match_parent"
+            android:layout_weight="0.8"
             android:background="@color/red"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_button"
             android:gravity="center"
             android:text="Add To Cart"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_button"
             app:layout_constraintBottom_toBottomOf="@+id/llQty"
             app:layout_constraintTop_toTopOf="@+id/llQty" />
 
