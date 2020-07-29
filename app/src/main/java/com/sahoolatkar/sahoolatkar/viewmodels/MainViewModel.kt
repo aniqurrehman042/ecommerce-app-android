@@ -12,7 +12,9 @@ import kotlinx.coroutines.launch
 
 class MainViewModel : ViewModel() {
 
-    val mobiles: LiveData<List<ProductApiModel>> by lazy<LiveData<List<ProductApiModel>>> {
+
+    val mobiles: LiveData<List<ProductApiModel>> by lazy<LiveData<List<ProductApiModel>>>{
+
         MutableLiveData<List<ProductApiModel>>().also {
             viewModelScope.launch {
                 val response = SahoolatKarApiUtils.getProductsWithCo(
