@@ -13,7 +13,6 @@ import android.widget.LinearLayout
 import androidx.core.content.ContextCompat.getColor
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
@@ -28,10 +27,8 @@ import com.sahoolatkar.sahoolatkar.api_models.product.ProductApiModel
 import com.sahoolatkar.sahoolatkar.api_utils.SahoolatKarApiUtils
 import com.sahoolatkar.sahoolatkar.globals.GlobalVariables
 import com.sahoolatkar.sahoolatkar.models.CategoryModel
-import com.sahoolatkar.sahoolatkar.models.SliderItemModel
 import com.sahoolatkar.sahoolatkar.ui.MainActivity
 import com.sahoolatkar.sahoolatkar.ui.SplashActivity
-import com.sahoolatkar.sahoolatkar.viewmodels.HomeViewModel
 import com.sahoolatkar.sahoolatkar.viewmodels.MainViewModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.*

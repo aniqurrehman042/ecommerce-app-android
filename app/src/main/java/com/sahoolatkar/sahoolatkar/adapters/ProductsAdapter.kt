@@ -46,7 +46,6 @@ class ProductsAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val product = products[position]
-        var liked = false
 
         holder.tvProductName.text = product.name
         holder.tvProductDesc.text = product.description
@@ -55,20 +54,27 @@ class ProductsAdapter(
             .load(product.images[0].src)
             .into(holder.ivProductImg)
 
-        if (parentFragment == GlobalVariables.WISH_LIST_FRAGMENT) {
-            holder.ivLike.visibility = View.GONE
-        }
-
         holder.ivLike.setOnClickListener {
-            liked = if (liked) {
+            if (product.wishListed) {
                 holder.ivLike.setImageResource(R.drawable.ic_like_off)
+                product.wishListed = false
                 mainActivity.removeProductFromWishList(product)
-                false
+                if (parentFragment == GlobalVariables.WISH_LIST_FRAGMENT) {
+                    notifyItemRemoved(position)
+                    notifyItemRangeChanged(position, products.size)
+                    mainActivity.removeCartItem()
+                }
             } else {
                 holder.ivLike.setImageResource(R.drawable.ic_like_on)
+                product.wishListed = true
                 mainActivity.addProductToWishList(product)
-                true
             }
+        }
+
+        if (product.wishListed) {
+            holder.ivLike.setImageResource(R.drawable.ic_like_on)
+        } else {
+            holder.ivLike.setImageResource(R.drawable.ic_like_off)
         }
 
         holder.clProduct.setOnClickListener {

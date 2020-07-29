@@ -11,6 +11,7 @@ import androidx.navigation.fragment.navArgs
 import com.sahoolatkar.sahoolatkar.R
 import com.sahoolatkar.sahoolatkar.adapters.ProductDetailsPagerAdapter
 import com.sahoolatkar.sahoolatkar.adapters.ProductImgsSliderAdapter
+import com.sahoolatkar.sahoolatkar.models.CartProduct
 import com.sahoolatkar.sahoolatkar.ui.MainActivity
 import com.sahoolatkar.sahoolatkar.viewmodels.MainViewModel
 import kotlinx.android.synthetic.main.fragment_product_details.*
@@ -46,14 +47,33 @@ class ProductDetailsFragment : Fragment() {
 
     private fun setListeners() {
         tvAddToCart.setOnClickListener {
-            mainViewModel.cartProducts.add(args.product)
-            mainActivity.addCartItem()
+            addCartItem()
         }
         tvPlus.setOnClickListener{
-         addQty();
+         addQty()
         }
         tvMinus.setOnClickListener{
-            minusQty();
+            minusQty()
+        }
+    }
+
+    private fun addCartItem() {
+        var found = false
+        for (cartProduct in mainViewModel.cartProducts) {
+            if (cartProduct.product === args.product) {
+                cartProduct.quantity = tvQty.text.toString().toInt()
+                found = true
+            }
+        }
+
+        if (!found) {
+            mainViewModel.cartProducts.add(
+                CartProduct(
+                    args.product,
+                    tvQty.text.toString().toInt()
+                )
+            )
+            mainActivity.addCartItem()
         }
     }
 
@@ -77,17 +97,15 @@ class ProductDetailsFragment : Fragment() {
     }
     private fun minusQty()
     {
-        var num :Int;
-        num = (tvQuantity.text).toString().toInt();
+        var num :Int = (tvQty.text).toString().toInt()
         if(num>1)
-        num--;
-        tvQuantity.text  = num.toString();
+        num--
+        tvQty.text  = num.toString()
     }
     private fun addQty()
     {
-        var num :Int;
-        num = (tvQuantity.text).toString().toInt();
-        num++;
-        tvQuantity.text  = num.toString();
+        var num :Int = (tvQty.text).toString().toInt()
+        num++
+        tvQty.text  = num.toString()
     }
 }

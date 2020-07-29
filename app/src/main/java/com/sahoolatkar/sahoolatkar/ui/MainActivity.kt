@@ -23,9 +23,7 @@ import kotlinx.android.synthetic.main.layout_menu.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var animEnterFromLeft: Animation
-    private lateinit var animEnterFromRight: Animation
     private lateinit var animExitToLeft: Animation
-    private lateinit var animExitToRight: Animation
     private lateinit var animFadeInScaleUp: Animation
     private lateinit var animFadeOutScaleDown: Animation
     private lateinit var animFadeOutScaleDownFast: Animation
@@ -68,10 +66,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setAnimations() {
-        animEnterFromRight =
-            AnimationUtils.loadAnimation(this, R.anim.enter_from_right).apply { fillAfter = true }
-        animExitToRight =
-            AnimationUtils.loadAnimation(this, R.anim.exit_to_right).apply { fillAfter = true }
         animEnterFromLeft =
             AnimationUtils.loadAnimation(this, R.anim.enter_from_left).apply { fillAfter = true }
         animFadeInScaleUp =
@@ -101,8 +95,6 @@ class MainActivity : AppCompatActivity() {
         animFadeOut = AlphaAnimation(1f, 0f).apply { fillAfter = true; duration = 500 }
         val animExitToLeftFast =
             AnimationUtils.loadAnimation(this, R.anim.exit_to_left_fast).apply { fillAfter = true }
-        val animExitToRightFast =
-            AnimationUtils.loadAnimation(this, R.anim.exit_to_right_fast).apply { fillAfter = true }
         val animFadeOutFast = AlphaAnimation(1f, 0f).apply { fillAfter = true; duration = 0 }
 
         llCart.startAnimation(animFadeOutScaleDownFast)

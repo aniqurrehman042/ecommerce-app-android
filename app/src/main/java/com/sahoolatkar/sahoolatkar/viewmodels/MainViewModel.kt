@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.sahoolatkar.sahoolatkar.api_models.product.ProductApiModel
 import com.sahoolatkar.sahoolatkar.api_utils.SahoolatKarApiUtils
 import com.sahoolatkar.sahoolatkar.globals.GlobalVariables
+import com.sahoolatkar.sahoolatkar.models.CartProduct
 import kotlinx.coroutines.launch
 
 class MainViewModel : ViewModel() {
@@ -58,6 +59,6 @@ class MainViewModel : ViewModel() {
 
     val wishListProducts: MutableList<ProductApiModel> = ArrayList()
 
-    val cartProducts: MutableList<ProductApiModel> = ArrayList()
+    val cartProducts: MutableList<CartProduct> = ArrayList()
 
 }

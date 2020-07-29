@@ -82,5 +82,6 @@ data class ProductApiModel (
 	@SerializedName("menu_order") val menu_order : Int,
 	@SerializedName("meta_data") val meta_data : List<Meta_data>,
 	@SerializedName("brands") val brands : List<Brands>,
-	@SerializedName("_links") val _links : _links
+	@SerializedName("_links") val _links : _links,
+	var wishListed: Boolean = false
 ) : Serializable

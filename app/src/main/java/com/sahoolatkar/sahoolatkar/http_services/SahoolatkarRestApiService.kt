@@ -15,9 +15,7 @@ class SahoolatkarRestApiService {
     companion object {
 
         private const val API_BASE_URL = "https://mygreatdubai.com/sahoolatkar/wp-json/wc/v2/"
-        private val httpClient = OkHttpClient.Builder().connectTimeout(20, TimeUnit.SECONDS)
-            .callTimeout(20, TimeUnit.SECONDS).readTimeout(20, TimeUnit.SECONDS)
-            .writeTimeout(20, TimeUnit.SECONDS)
+        private val httpClient = OkHttpClient.Builder()
         private val builder: Retrofit.Builder = Retrofit.Builder()
             .baseUrl(API_BASE_URL)
             .addConverterFactory(

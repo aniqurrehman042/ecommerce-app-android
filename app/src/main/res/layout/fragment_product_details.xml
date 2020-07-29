@@ -18,7 +18,7 @@
             <com.asksira.loopingviewpager.LoopingViewPager
                 android:id="@+id/productImgSlider"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_300sdp"
+                android:layout_height="@dimen/_200sdp"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -104,7 +104,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/white"
+        android:paddingBottom="@dimen/padding_small"
+        android:paddingTop="@dimen/padding_small">
 
         <LinearLayout
             android:id="@+id/llQty"
@@ -115,8 +118,8 @@
 
             <TextView
                 android:id="@+id/tvMinus"
-                android:layout_width="@dimen/size_back_button"
-                android:layout_height="@dimen/size_back_button"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="@dimen/margin_small"
                 android:background="@color/red"
@@ -128,7 +131,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tvQuantity"
+                android:id="@+id/tvQty"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -141,8 +144,8 @@
 
             <TextView
                 android:id="@+id/tvPlus"
-                android:layout_width="@dimen/size_back_button"
-                android:layout_height="@dimen/size_back_button"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="@dimen/margin_small"
                 android:background="@color/red"
@@ -157,7 +160,7 @@
         <TextView
             android:id="@+id/tvAddToCart"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="@dimen/_30sdp"
             android:layout_marginRight="@dimen/margin_small"
             android:layout_weight="0.6"
             android:background="@color/red"
