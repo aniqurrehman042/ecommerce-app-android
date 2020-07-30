@@ -3,20 +3,27 @@ package com.sahoolatkar.sahoolatkar.ui.fragments
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.transition.Slide
+import android.transition.TransitionManager
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.PopupWindow
 import androidx.core.content.ContextCompat.getColor
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.sahoolatkar.sahoolatkar.R
 import com.sahoolatkar.sahoolatkar.adapters.OffersSliderAdapter
 import com.sahoolatkar.sahoolatkar.adapters.ProductsAdapter
@@ -32,6 +39,7 @@ import com.sahoolatkar.sahoolatkar.ui.SplashActivity
 import com.sahoolatkar.sahoolatkar.viewmodels.MainViewModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.*
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
@@ -74,6 +82,7 @@ class HomeFragment : Fragment() {
             )
         }
         init()
+
     }
 
     private fun init() {
