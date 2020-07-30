@@ -31,7 +31,7 @@ data class ProductApiModel (
 	@Expose @SerializedName("description") val description : String,
 	@SerializedName("short_description") val short_description : String,
 	@SerializedName("sku") val sku : String,
-	@SerializedName("price") val price : String,
+	@Expose @SerializedName("price") val price : String,
 	@SerializedName("regular_price") val regular_price : String,
 	@SerializedName("sale_price") val sale_price : String,
 	@SerializedName("date_on_sale_from") val date_on_sale_from : String,

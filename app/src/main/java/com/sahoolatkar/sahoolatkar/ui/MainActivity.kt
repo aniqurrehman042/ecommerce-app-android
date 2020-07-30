@@ -1,5 +1,6 @@
 package com.sahoolatkar.sahoolatkar.ui
 
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -155,7 +156,7 @@ class MainActivity : AppCompatActivity() {
         tvCartItems.text = cartItems.toString()
     }
 
-    fun addCartItem() {
+    fun onAddCartItem() {
         val cartItems = tvCartItems.text.toString().toInt()
         updateCartIcon(cartItems + 1)
         if (cartItems == 0) {
@@ -163,7 +164,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun removeCartItem() {
+    fun onRemoveCartItem() {
         val cartItems = tvCartItems.text.toString().toInt()
         updateCartIcon(cartItems - 1)
         if (cartItems == 1) {
@@ -177,6 +178,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun hideCart() {
         llCart.startAnimation(animFadeOutScaleDown)
+    }
+
+    fun blinkCart() {
+        llCart.startAnimation(animFadeOut)
+        llCart.startAnimation(animFadeIn)
     }
 
     private fun setUpBottomBar() {
@@ -220,5 +226,12 @@ class MainActivity : AppCompatActivity() {
     fun addProductToWishList(product: ProductApiModel) {
         if (!mainViewModel.wishListProducts.contains(product))
             mainViewModel.wishListProducts.add(product)
+    }
+
+    fun playThrowSound() {
+        val mpThrow = MediaPlayer.create(this, R.raw.snap)
+        if (mpThrow.isPlaying)
+            mpThrow.stop()
+        mpThrow.start()
     }
 }

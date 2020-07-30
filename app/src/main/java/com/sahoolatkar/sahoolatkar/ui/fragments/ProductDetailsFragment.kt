@@ -73,8 +73,11 @@ class ProductDetailsFragment : Fragment() {
                     tvQty.text.toString().toInt()
                 )
             )
-            mainActivity.addCartItem()
+            mainActivity.onAddCartItem()
+        } else {
+            mainActivity.blinkCart()
         }
+        mainActivity.playThrowSound()
     }
 
     private fun setUpTopSlider() {

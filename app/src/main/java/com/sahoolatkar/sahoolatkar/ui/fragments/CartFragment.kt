@@ -32,7 +32,6 @@ class CartFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         init()
-
     }
 
     private fun init() {
@@ -51,6 +50,4 @@ class CartFragment : Fragment() {
         rvCart.layoutManager = LinearLayoutManager(mainActivity)
         rvCart.adapter = CartRecyclerAdapter(mainActivity, mainViewModel.cartProducts)
     }
-
-
 }

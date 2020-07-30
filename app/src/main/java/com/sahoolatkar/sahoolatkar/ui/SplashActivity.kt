@@ -24,6 +24,7 @@ class SplashActivity : AppCompatActivity() {
         setTimeoutForNextActivity()
     }
 
+    @Suppress("DEPRECATION")
     private fun hideNavigationBar() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             window.setDecorFitsSystemWindows(false)

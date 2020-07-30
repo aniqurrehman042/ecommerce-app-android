@@ -3,6 +3,7 @@ package com.sahoolatkar.sahoolatkar.api_utils
 import android.content.Context
 import android.widget.Toast
 import com.sahoolatkar.sahoolatkar.api_callbacks.IGetAllProductsCallback
+import com.sahoolatkar.sahoolatkar.api_models.order.OrderApiModel
 import com.sahoolatkar.sahoolatkar.api_models.product.ProductApiModel
 import com.sahoolatkar.sahoolatkar.apis_clients.SahoolatkarApiClient
 import com.sahoolatkar.sahoolatkar.globals.GlobalVariables
@@ -85,6 +86,14 @@ class SahoolatKarApiUtils {
                 sahoolatkarApiClient.getProductsWithCo(categoryId, featured, pageNo)
             } catch (e: Exception) {
                 getProductsWithCo(categoryId, featured, pageNo)
+            }
+        }
+
+        suspend fun postOrder(order: OrderApiModel) : Response<OrderApiModel> {
+            return try {
+                sahoolatkarApiClient.postOrder(order)
+            } catch (e: Exception) {
+                postOrder(order)
             }
         }
 

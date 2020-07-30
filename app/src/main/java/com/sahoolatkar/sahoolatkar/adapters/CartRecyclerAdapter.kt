@@ -15,11 +15,13 @@ class CartRecyclerAdapter(val mainActivity: MainActivity, val products: MutableL
     RecyclerView.Adapter<CartRecyclerAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var tvProductName = itemView.findViewById<TextView>(R.id.tvProductName)
-        var tvPrice = itemView.findViewById<TextView>(R.id.tvPrice)
-        var tvQty = itemView.findViewById<TextView>(R.id.tvQty)
-        var tvRemove = itemView.findViewById<TextView>(R.id.tvRemove)
-        var ivProductImg = itemView.findViewById<ImageView>(R.id.ivProductImg)
+        var tvProductName: TextView = itemView.findViewById(R.id.tvProductName)
+        var tvPrice: TextView = itemView.findViewById(R.id.tvPrice)
+        var tvQty: TextView = itemView.findViewById(R.id.tvQty)
+        var tvPlus: TextView = itemView.findViewById(R.id.tvPlus)
+        var tvMinus: TextView = itemView.findViewById(R.id.tvMinus)
+        var tvRemove: TextView = itemView.findViewById(R.id.tvRemove)
+        var ivProductImg: ImageView = itemView.findViewById(R.id.ivProductImg)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -39,11 +41,35 @@ class CartRecyclerAdapter(val mainActivity: MainActivity, val products: MutableL
         holder.tvQty.text = cartProduct.quantity.toString()
         Picasso.get().load(cartProduct.product.images[0].src).into(holder.ivProductImg)
 
+        holder.tvPlus.setOnClickListener{
+            addQty(holder.tvQty)
+            cartProduct.quantity++
+        }
+        holder.tvMinus.setOnClickListener{
+            minusQty(holder.tvQty)
+            cartProduct.quantity--
+        }
+
         holder.tvRemove.setOnClickListener {
             products.removeAt(position)
             notifyItemRemoved(position)
             notifyItemRangeChanged(position, products.size)
-            mainActivity.removeCartItem()
+            mainActivity.onRemoveCartItem()
+            mainActivity.blinkCart()
         }
+    }
+
+    private fun minusQty(tvQty: TextView)
+    {
+        var num :Int = (tvQty.text).toString().toInt()
+        if(num>1)
+            num--
+        tvQty.text  = num.toString()
+    }
+    private fun addQty(tvQty: TextView)
+    {
+        var num :Int = (tvQty.text).toString().toInt()
+        num++
+        tvQty.text  = num.toString()
     }
 }

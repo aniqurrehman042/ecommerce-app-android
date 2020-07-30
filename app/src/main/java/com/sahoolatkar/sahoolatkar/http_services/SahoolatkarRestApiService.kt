@@ -14,7 +14,7 @@ class SahoolatkarRestApiService {
 
     companion object {
 
-        private const val API_BASE_URL = "https://sahoolatkar.com/wp-json/wc/v2/"
+        private const val API_BASE_URL = "https://mygreatdubai.com/sahoolatkar/wp-json/wc/v2/"
         private val httpClient = OkHttpClient.Builder()
         private val builder: Retrofit.Builder = Retrofit.Builder()
             .baseUrl(API_BASE_URL)

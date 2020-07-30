@@ -62,7 +62,7 @@ class ProductsAdapter(
                 if (parentFragment == GlobalVariables.WISH_LIST_FRAGMENT) {
                     notifyItemRemoved(position)
                     notifyItemRangeChanged(position, products.size)
-                    mainActivity.removeCartItem()
+                    mainActivity.onRemoveCartItem()
                 }
             } else {
                 holder.ivLike.setImageResource(R.drawable.ic_like_on)
