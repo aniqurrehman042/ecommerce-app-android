@@ -10,6 +10,7 @@ import androidx.navigation.Navigation
 import com.asksira.loopingviewpager.LoopingPagerAdapter
 import com.sahoolatkar.sahoolatkar.R
 import com.sahoolatkar.sahoolatkar.api_models.product.ProductApiModel
+import com.sahoolatkar.sahoolatkar.globals.GlobalVariables
 import com.sahoolatkar.sahoolatkar.ui.MainActivity
 import com.sahoolatkar.sahoolatkar.ui.fragments.HomeFragmentDirections
 import com.squareup.picasso.Picasso
@@ -38,9 +39,6 @@ class ProductsSliderAdapter(
         listPosition: Int,
         viewType: Int
     ) {
-
-        var liked = false
-
         Picasso.get().load(products[listPosition].images[0].src)
             .into(convertView.findViewById<ImageView>(R.id.ivProductImg))
 
@@ -55,14 +53,14 @@ class ProductsSliderAdapter(
 
 
         convertView.ivLike.setOnClickListener {
-            liked = if (liked) {
-                convertView.ivLike.setImageResource(R.drawable.ic_like_off)
+            if (products[listPosition].wishListed) {
+                convertView.findViewById<ImageView>(R.id.ivLike).ivLike.setImageResource(R.drawable.ic_like_off)
+                products[listPosition].wishListed = false
                 mainActivity.removeProductFromWishList(products[listPosition])
-                false
             } else {
-                convertView.ivLike.setImageResource(R.drawable.ic_like_on)
+                convertView.findViewById<ImageView>(R.id.ivLike).ivLike.setImageResource(R.drawable.ic_like_on)
+                products[listPosition].wishListed = true
                 mainActivity.addProductToWishList(products[listPosition])
-                true
             }
         }
     }

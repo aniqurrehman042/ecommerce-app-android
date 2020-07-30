@@ -24,7 +24,6 @@ class SahoolatKarApiUtils {
             )
 
         fun getAllProducts(context: Context, getAllProductsCallback: IGetAllProductsCallback) {
-
             try {
                 sahoolatkarApiClient.getAllProducts()?.enqueue(object :
                     Callback<List<ProductApiModel?>?> {
