@@ -9,7 +9,7 @@
     android:background="@color/white"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context=".ui.BillingInfoActivity">
+    tools:context=".ui.LoginActivity">
 
     <ImageView
         android:id="@+id/ivTopBg"
@@ -21,6 +21,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:id="@+id/ivTopBottomBg"
         android:layout_width="match_parent"
@@ -61,7 +62,7 @@
                 android:layout_marginTop="@dimen/_15sdp"
                 android:gravity="center_horizontal"
                 android:paddingHorizontal="@dimen/_10sdp"
-                android:text="Billing Information"
+                android:text="Register"
                 android:textColor="@color/red"
                 android:textSize="@dimen/text_heading" />
 
@@ -79,7 +80,7 @@
                     android:layout_marginTop="@dimen/margin_small"
                     android:background="@drawable/bg_circle_light_grey_bordered"
                     android:hint="First Name"
-                    android:inputType="textPersonName"
+                    android:inputType="textCapWords"
                     android:lines="1"
                     android:maxLength="30"
                     android:maxLines="1"
@@ -94,13 +95,58 @@
                     android:layout_marginTop="@dimen/margin_small"
                     android:background="@drawable/bg_circle_light_grey_bordered"
                     android:hint="Last Name"
-                    android:inputType="textPersonName"
+                    android:inputType="textCapWords"
                     android:lines="1"
                     android:maxLines="1"
                     android:maxLength="30"
                     android:paddingHorizontal="@dimen/padding_large"
                     android:paddingVertical="@dimen/padding_normal"
                     android:textIsSelectable="false"
+                    android:textSize="@dimen/text_normal" />
+
+                <EditText
+                    android:id="@+id/etEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:background="@drawable/bg_circle_light_grey_bordered"
+                    android:hint="Email"
+                    android:inputType="textEmailAddress"
+                    android:lines="1"
+                    android:maxLength="100"
+                    android:maxLines="1"
+                    android:paddingHorizontal="@dimen/padding_large"
+                    android:paddingVertical="@dimen/padding_normal"
+                    android:textSize="@dimen/text_normal" />
+
+                <EditText
+                    android:id="@+id/etUsername"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:background="@drawable/bg_circle_light_grey_bordered"
+                    android:hint="Username"
+                    android:inputType="textPersonName"
+                    android:lines="1"
+                    android:maxLength="30"
+                    android:maxLines="1"
+                    android:paddingHorizontal="@dimen/padding_large"
+                    android:paddingVertical="@dimen/padding_normal"
+                    android:textSize="@dimen/text_normal" />
+
+                <EditText
+                    android:id="@+id/etPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:background="@drawable/bg_circle_light_grey_bordered"
+                    android:hint="Password"
+                    android:inputType="textPassword"
+                    android:lines="1"
+                    android:maxLength="50"
+                    android:maxLines="1"
+                    android:paddingHorizontal="@dimen/padding_large"
+                    android:paddingVertical="@dimen/padding_normal"
                     android:textSize="@dimen/text_normal" />
 
                 <EditText
@@ -134,21 +180,6 @@
                     android:textSize="@dimen/text_normal" />
 
                 <EditText
-                    android:id="@+id/etEmail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_small"
-                    android:background="@drawable/bg_circle_light_grey_bordered"
-                    android:hint="Email"
-                    android:inputType="textEmailAddress"
-                    android:lines="1"
-                    android:maxLength="100"
-                    android:maxLines="1"
-                    android:paddingHorizontal="@dimen/padding_large"
-                    android:paddingVertical="@dimen/padding_normal"
-                    android:textSize="@dimen/text_normal" />
-
-                <EditText
                     android:id="@+id/etPhone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -173,7 +204,7 @@
                 android:gravity="center_horizontal">
 
                 <TextView
-                    android:id="@+id/tvPlaceOrder"
+                    android:id="@+id/tvRegister"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -182,7 +213,7 @@
                     android:gravity="center_horizontal"
                     android:paddingHorizontal="@dimen/padding_large"
                     android:paddingVertical="@dimen/padding_normal"
-                    android:text="Place Order"
+                    android:text="Register"
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_button" />
 

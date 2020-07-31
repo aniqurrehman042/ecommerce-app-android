@@ -1,26 +1,29 @@
 package com.sahoolatkar.sahoolatkar.ui
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.sahoolatkar.sahoolatkar.R
+import com.sahoolatkar.sahoolatkar.api_models.customer.Customer
 import com.sahoolatkar.sahoolatkar.api_models.order.Billing
 import com.sahoolatkar.sahoolatkar.api_models.order.LineItems
-import com.sahoolatkar.sahoolatkar.api_models.order.OrderApiModel
+import com.sahoolatkar.sahoolatkar.api_models.order.Order
 import com.sahoolatkar.sahoolatkar.api_models.order.Shipping
 import com.sahoolatkar.sahoolatkar.api_utils.SahoolatKarApiUtils
 import com.sahoolatkar.sahoolatkar.models.CartProduct
+import com.sahoolatkar.sahoolatkar.utils.ViewUtils
 import kotlinx.android.synthetic.main.activity_billing_info.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.coroutineScope
+import kotlinx.android.synthetic.main.layout_loader.*
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import retrofit2.Response
 
 class BillingInfoActivity : AppCompatActivity() {
 
-    private var cartProducts: List<CartProduct>? = null
+    private var cartProducts: MutableList<CartProduct>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +39,7 @@ class BillingInfoActivity : AppCompatActivity() {
 
     private fun getIntentValues() {
         if (intent.extras != null)
-            cartProducts = intent.extras?.get("cartProducts") as List<CartProduct>
+            cartProducts = intent.extras?.getSerializable("cartProducts") as MutableList<CartProduct>
     }
 
     private fun setListeners() {
@@ -52,13 +55,13 @@ class BillingInfoActivity : AppCompatActivity() {
             var billing = Billing(
                 etFirstName.text.toString(), etLastName.text.toString(),
                 etAddress.text.toString(), "", etCity.text.toString(),
-                "", 54000, "Pakistan", etEmail.text.toString(),
+                "", "54000", "Pakistan", etEmail.text.toString(),
                 etPhone.text.toString()
             )
             var shipping = Shipping(
                 etFirstName.text.toString(), etLastName.text.toString(),
                 etAddress.text.toString(), "", etCity.text.toString(),
-                "", 54000, "Pakistan"
+                "", "54000", "Pakistan"
             )
             val lineItems = ArrayList<LineItems>()
 
@@ -66,15 +69,20 @@ class BillingInfoActivity : AppCompatActivity() {
                 lineItems.add(LineItems(cartProduct.product.id,  cartProduct.quantity))
             }
             val order =
-                OrderApiModel(billing, shipping, "cod", "Cash on delivery", false, lineItems, ArrayList())
+                Order(billing, shipping, "cod", "Cash on delivery", false, lineItems, ArrayList())
+
+            showLoader("Placing your order...")
 
             lifecycleScope.launch {
-                val response: Response<OrderApiModel> = SahoolatKarApiUtils.postOrder(order)
+                val response: Response<Order> = SahoolatKarApiUtils.postOrder(order)
+                hideLoader()
                 if (response.isSuccessful) {
                     Toast.makeText(this@BillingInfoActivity, "Order Placed Successfully", Toast.LENGTH_LONG).show()
+                    setResult(Activity.RESULT_OK, Intent().apply { putExtra("orderPlacementSuccessful", true) })
                     finish()
+                    response.errorBody()!!.string()
                 } else {
-                    Toast.makeText(this@BillingInfoActivity, "Failed to place order. Error: " + response.message(), Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@BillingInfoActivity, "Failed to place order. Error: " + response.message().toString(), Toast.LENGTH_LONG).show()
                 }
             }
         }
@@ -99,5 +107,27 @@ class BillingInfoActivity : AppCompatActivity() {
             }
             else -> !etPhone.text.isNullOrEmpty()
         }
+    }
+
+    private fun showLoader(loadingText: String) {
+        ViewUtils.showView(llLoader)
+        tvLoadingMsg.text = loadingText
+        disableUserInteraction()
+    }
+
+    private fun hideLoader() {
+        ViewUtils.hideView(llLoader)
+        enableUserInteraction()
+    }
+
+    private fun disableUserInteraction() {
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+        )
+    }
+
+    private fun enableUserInteraction() {
+        window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
     }
 }

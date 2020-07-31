@@ -3,7 +3,8 @@ package com.sahoolatkar.sahoolatkar.api_utils
 import android.content.Context
 import android.widget.Toast
 import com.sahoolatkar.sahoolatkar.api_callbacks.IGetAllProductsCallback
-import com.sahoolatkar.sahoolatkar.api_models.order.OrderApiModel
+import com.sahoolatkar.sahoolatkar.api_models.customer.Customer
+import com.sahoolatkar.sahoolatkar.api_models.order.Order
 import com.sahoolatkar.sahoolatkar.api_models.product.ProductApiModel
 import com.sahoolatkar.sahoolatkar.apis_clients.SahoolatkarApiClient
 import com.sahoolatkar.sahoolatkar.globals.GlobalVariables
@@ -89,11 +90,27 @@ class SahoolatKarApiUtils {
             }
         }
 
-        suspend fun postOrder(order: OrderApiModel) : Response<OrderApiModel> {
+        suspend fun postOrder(order: Order) : Response<Order> {
             return try {
                 sahoolatkarApiClient.postOrder(order)
             } catch (e: Exception) {
                 postOrder(order)
+            }
+        }
+
+        suspend fun createCustomer(customer: Customer) : Response<Customer> {
+            return try {
+                sahoolatkarApiClient.createCustomer(customer)
+            } catch (e: Exception) {
+                createCustomer(customer)
+            }
+        }
+
+        suspend fun getAllCustomers() : Response<List<Customer>> {
+            return try {
+                sahoolatkarApiClient.getAllCustomers()
+            } catch (e: Exception) {
+                getAllCustomers()
             }
         }
 

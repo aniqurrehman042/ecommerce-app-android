@@ -12,6 +12,6 @@ data class Shipping (
 	@Expose() @SerializedName("address_2") val address_2 : String,
 	@Expose() @SerializedName("city") val city : String,
 	@Expose() @SerializedName("state") val state : String,
-	@Expose() @SerializedName("postcode") val postcode : Int,
+	@Expose() @SerializedName("postcode") val postcode : String,
 	@Expose() @SerializedName("country") val country : String
 )

@@ -73,14 +73,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        requireActivity().findViewById<ImageView>(R.id.ivLogo).setOnClickListener {
-            startActivity(
-                Intent(
-                    requireContext(),
-                    SplashActivity::class.java
-                )
-            )
-        }
+
         init()
 
     }
@@ -272,6 +265,18 @@ class HomeFragment : Fragment() {
         featuredProductsSlider.setPadding(70, 0, 70, 0)
         featuredProductsSlider.pageMargin = 20
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mainActivity.findViewById<ImageView>(R.id.ivLogo).setOnClickListener {
+            startActivity(
+                Intent(
+                    requireContext(),
+                    SplashActivity::class.java
+                )
+            )
+        }
     }
 
     override fun onDestroyView() {

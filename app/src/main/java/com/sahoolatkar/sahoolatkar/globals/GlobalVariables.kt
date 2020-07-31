@@ -3,6 +3,9 @@ package com.sahoolatkar.sahoolatkar.globals
 class GlobalVariables {
     companion object {
 
+        // Request Codes
+        const val BILLING_INFO_REQUEST_CODE: Int = 1
+
         // Fragment Names
         const val PRODUCT_CATALOG_FRAGMENT: String = "Products Catalog Fragment"
         const val APPLY_LOAD_FRAGMENT: String = "Apply Loan Fragment"

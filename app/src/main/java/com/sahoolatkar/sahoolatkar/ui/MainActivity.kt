@@ -173,7 +173,7 @@ class MainActivity : AppCompatActivity() {
         tvCartItems.text = cartItems.toString()
     }
 
-    fun addCartItem() {
+    fun onAddCartItem() {
         val cartItems = tvCartItems.text.toString().toInt()
         updateCartIcon(cartItems + 1)
         if (cartItems == 0) {
@@ -181,11 +181,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun removeCartItem() {
+    fun onRemoveCartItem() {
         val cartItems = tvCartItems.text.toString().toInt()
         updateCartIcon(cartItems - 1)
         if (cartItems == 1) {
             hideCart()
+        } else {
+            blinkCart()
         }
     }
 
@@ -193,7 +195,7 @@ class MainActivity : AppCompatActivity() {
         llCart.startAnimation(animFadeInScaleUp)
     }
 
-    private fun hideCart() {
+    fun hideCart() {
         llCart.startAnimation(animFadeOutScaleDown)
     }
 
@@ -346,6 +348,15 @@ class MainActivity : AppCompatActivity() {
             )
         )
         return categories
+    }
+
+    fun resetCart() {
+        updateCartIcon(0)
+        hideCart()
+    }
+
+    fun goBackToHomeFragment() {
+        Navigation.findNavController(this, R.id.navHostFragment).popBackStack(R.id.home, false)
     }
 }
 

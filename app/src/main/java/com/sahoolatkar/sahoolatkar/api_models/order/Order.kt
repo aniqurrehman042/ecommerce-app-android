@@ -3,7 +3,7 @@ package com.sahoolatkar.sahoolatkar.api_models.order
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class OrderApiModel (
+data class Order (
 
 //	@Expose(serialize = false, deserialize = true) @SerializedName("id") val id : Int,
 //	@SerializedName("parent_id") val parent_id : Int,

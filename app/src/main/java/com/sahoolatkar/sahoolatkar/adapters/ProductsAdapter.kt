@@ -50,9 +50,11 @@ class ProductsAdapter(
         holder.tvProductName.text = product.name
         holder.tvProductDesc.text = product.description
         holder.tvPrice.text = product.price
-        Picasso.get()
-            .load(product.images[0].src)
-            .into(holder.ivProductImg)
+        if (!product.images.isNullOrEmpty()) {
+            Picasso.get()
+                .load(product.images[0].src)
+                .into(holder.ivProductImg)
+        }
 
         holder.ivLike.setOnClickListener {
             if (product.wishListed) {

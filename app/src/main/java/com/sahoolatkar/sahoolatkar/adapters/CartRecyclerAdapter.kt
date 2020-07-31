@@ -39,7 +39,9 @@ class CartRecyclerAdapter(val mainActivity: MainActivity, val products: MutableL
         holder.tvProductName.text = cartProduct.product.name
         holder.tvPrice.text = cartProduct.product.price
         holder.tvQty.text = cartProduct.quantity.toString()
-        Picasso.get().load(cartProduct.product.images[0].src).into(holder.ivProductImg)
+        if (!cartProduct.product.images.isNullOrEmpty()) {
+            Picasso.get().load(cartProduct.product.images[0].src).into(holder.ivProductImg)
+        }
 
         holder.tvPlus.setOnClickListener{
             addQty(holder.tvQty)
@@ -55,7 +57,6 @@ class CartRecyclerAdapter(val mainActivity: MainActivity, val products: MutableL
             notifyItemRemoved(position)
             notifyItemRangeChanged(position, products.size)
             mainActivity.onRemoveCartItem()
-            mainActivity.blinkCart()
         }
     }
 

@@ -107,11 +107,11 @@
                 android:id="@+id/llCart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:layout_marginRight="@dimen/margin_tiny"
+                android:clipToPadding="false"
+                android:gravity="center"
                 android:paddingVertical="@dimen/_7sdp"
-                android:paddingLeft="@dimen/_7sdp"
-                android:clipToPadding="false">
+                android:paddingLeft="@dimen/_7sdp">
 
                 <ImageView
                     android:id="@+id/ivCart"
@@ -119,23 +119,23 @@
                     android:layout_height="@dimen/_25sdp"
                     android:src="@drawable/ic_cart_red"
                     android:tint="@color/white"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"/>
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tvCartItems"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0"
-                    android:textColor="@color/red"
                     android:background="@drawable/bg_white_circle"
                     android:paddingHorizontal="@dimen/_5sdp"
                     android:paddingVertical="@dimen/_1sdp"
+                    android:text="0"
+                    android:textColor="@color/red"
                     android:textSize="@dimen/text_extra_small"
-                    app:layout_constraintTop_toTopOf="@id/ivCart"
                     app:layout_constraintBottom_toTopOf="@id/ivCart"
                     app:layout_constraintLeft_toLeftOf="@id/ivCart"
-                    app:layout_constraintRight_toLeftOf="@id/ivCart"/>
+                    app:layout_constraintRight_toLeftOf="@id/ivCart"
+                    app:layout_constraintTop_toTopOf="@id/ivCart" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -150,21 +150,18 @@
 
     </LinearLayout>
 
-    <LinearLayout
+
+    <fragment
+        android:id="@+id/navHostFragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_weight="1"
+        app:defaultNavHost="true"
         app:layout_constraintBottom_toTopOf="@id/bnv_bottom_bar"
-        app:layout_constraintTop_toBottomOf="@id/etSearch">
+        app:layout_constraintTop_toBottomOf="@id/etSearch"
+        app:navGraph="@navigation/navigation_bottombar" />
 
-        <fragment
-            android:id="@+id/navHostFragment"
-            android:name="androidx.navigation.fragment.NavHostFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            app:defaultNavHost="true"
-            app:navGraph="@navigation/navigation_bottombar" />
-    </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bnv_bottom_bar"

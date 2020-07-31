@@ -39,28 +39,33 @@ class ProductsSliderAdapter(
         listPosition: Int,
         viewType: Int
     ) {
-        Picasso.get().load(products[listPosition].images[0].src)
-            .into(convertView.findViewById<ImageView>(R.id.ivProductImg))
 
-        convertView.findViewById<TextView>(R.id.tvProductName).text = products[listPosition].name
+        val product = products[listPosition]
+
+        if (!product.images.isNullOrEmpty()) {
+            Picasso.get().load(product.images[0].src)
+                .into(convertView.findViewById<ImageView>(R.id.ivProductImg))
+        }
+
+        convertView.findViewById<TextView>(R.id.tvProductName).text = product.name
         convertView.findViewById<TextView>(R.id.tvProductDesc).text =
-            products[listPosition].description
+            product.description
         convertView.findViewById<TextView>(R.id.tvPrice).text =
-            products[listPosition].price
+            product.price
         convertView.findViewById<ConstraintLayout>(R.id.clProduct).setOnClickListener {
-            startProductDetailsFragment(products[listPosition])
+            startProductDetailsFragment(product)
         }
 
 
         convertView.ivLike.setOnClickListener {
-            if (products[listPosition].wishListed) {
+            if (product.wishListed) {
                 convertView.findViewById<ImageView>(R.id.ivLike).ivLike.setImageResource(R.drawable.ic_like_off)
-                products[listPosition].wishListed = false
-                mainActivity.removeProductFromWishList(products[listPosition])
+                product.wishListed = false
+                mainActivity.removeProductFromWishList(product)
             } else {
                 convertView.findViewById<ImageView>(R.id.ivLike).ivLike.setImageResource(R.drawable.ic_like_on)
-                products[listPosition].wishListed = true
-                mainActivity.addProductToWishList(products[listPosition])
+                product.wishListed = true
+                mainActivity.addProductToWishList(product)
             }
         }
     }

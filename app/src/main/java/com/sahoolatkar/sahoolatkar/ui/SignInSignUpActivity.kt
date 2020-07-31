@@ -19,9 +19,6 @@ import java.util.*
 
 class SignInSignUpActivity : AppCompatActivity() {
 
-    private val dobCalendar = Calendar.getInstance()
-    private val cnicExpiryCalendar = Calendar.getInstance()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in_sign_up)
