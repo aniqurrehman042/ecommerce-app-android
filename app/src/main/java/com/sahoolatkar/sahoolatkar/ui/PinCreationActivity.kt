@@ -1,18 +1,17 @@
 package com.sahoolatkar.sahoolatkar.ui
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.sahoolatkar.sahoolatkar.R
-import com.sahoolatkar.sahoolatkar.utils.AlertDialogUtils
-import com.sahoolatkar.sahoolatkar.utils.EditTextUtils
-import com.sahoolatkar.sahoolatkar.utils.SyncEditTextUtils
-import com.sahoolatkar.sahoolatkar.utils.UIUtils
-import kotlinx.android.synthetic.main.activity_optional_info.*
+import com.sahoolatkar.sahoolatkar.api_utils.SahoolatKarApiUtils
+import com.sahoolatkar.sahoolatkar.utils.*
 import kotlinx.android.synthetic.main.activity_pin_creation.*
 import kotlinx.android.synthetic.main.activity_pin_creation.ivBack
 import kotlinx.android.synthetic.main.activity_verification.tvContinue
+import kotlinx.coroutines.launch
 
 class PinCreationActivity : AppCompatActivity() {
 
@@ -58,18 +57,62 @@ class PinCreationActivity : AppCompatActivity() {
     }
 
     private fun continueClick() {
+        if (validateFields()) {
+
+            lifecycleScope.launch {
+                val customer = SharedPrefsUtils.getCustomer(this@PinCreationActivity)
+                if (customer != null) {
+                    customer.pin = EditTextUtils.getCombinedInputFromEtsArray(pCodeEts)
+                    val response = SahoolatKarApiUtils.createCustomerPin(customer)
+
+                    if (response.isSuccessful) {
+                        if (response.body() != null && response.body()!!) {
+                            SharedPrefsUtils.saveCustomerPin(this@PinCreationActivity, customer.pin)
+                            startRegistrationSuccessActivity()
+                        } else {
+                            ToastUtils.showLongToast(
+                                this@PinCreationActivity,
+                                "Failed To Create Pin. Please Try Again."
+                            )
+                        }
+                    } else {
+                        ToastUtils.showLongToast(
+                            this@PinCreationActivity,
+                            "Failed To Create Pin. Please Try Again."
+                        )
+                    }
+                } else {
+                    SharedPrefsUtils.deleteCustomer(this@PinCreationActivity)
+                    ToastUtils.showLongToast(
+                        this@PinCreationActivity,
+                        "Failed To Register. Please Try Again."
+                    )
+                    startLoginActivity()
+                }
+            }
+        }
+    }
+
+    private fun startLoginActivity() {
+        startActivity(Intent(this, LoginActivity::class.java))
+        finish()
+    }
+
+    private fun validateFields(): Boolean {
         val pinCode = EditTextUtils.getCombinedInputFromEtsArray(pCodeEts)
         val pinCodeConfirm = EditTextUtils.getCombinedInputFromEtsArray(pCodeConfirmEts)
 
-        when {
+        return when {
             pinCode.length < 4 -> {
                 AlertDialogUtils.showAlertWithMessage("Please enter a pin code", this)
+                false
             }
             pinCode != pinCodeConfirm -> {
                 AlertDialogUtils.showAlertWithMessage("Pins don't match. Please try again.", this)
+                false
             }
             else -> {
-                startRegistrationSuccessActivity()
+                true
             }
         }
     }

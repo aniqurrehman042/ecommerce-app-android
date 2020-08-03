@@ -8,6 +8,7 @@ import android.view.View
 import android.view.WindowInsetsController
 import androidx.appcompat.app.AppCompatActivity
 import com.sahoolatkar.sahoolatkar.R
+import com.sahoolatkar.sahoolatkar.utils.SharedPrefsUtils
 import com.sahoolatkar.sahoolatkar.utils.UIUtils
 
 class SplashActivity : AppCompatActivity() {
@@ -35,8 +36,13 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun setTimeoutForNextActivity() {
-        Handler().postDelayed(Runnable() {
-            startActivity(Intent(this@SplashActivity, GettingStartedActivity::class.java))
+        Handler().postDelayed({
+            if (SharedPrefsUtils.isLoggedIn(this@SplashActivity)) {
+                startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+            } else {
+                startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
+            }
+            finish()
         }, 2000)
     }
 }

@@ -1,15 +1,18 @@
 package com.sahoolatkar.sahoolatkar.api_models.customer
 
+import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import com.sahoolatkar.sahoolatkar.api_models.order.Billing
 import com.sahoolatkar.sahoolatkar.api_models.order.Shipping
 
 data class Customer(
-    @SerializedName("email") var email: String,
-    @SerializedName("first_name") var firstName: String,
-    @SerializedName("last_name") var lastName: String,
-    @SerializedName("username") var username: String,
-    @SerializedName("password") var password: String,
-    @SerializedName("billing") var billing: Billing,
-    @SerializedName("shipping") var shipping: Shipping
+    @Expose @SerializedName("email") var email: String,
+    @Expose @SerializedName("first_name") var firstName: String,
+    @Expose @SerializedName("last_name") var lastName: String,
+    @Expose @SerializedName("username") var username: String,
+    @Expose @SerializedName("password") var password: String,
+    @Expose @SerializedName("pin") var pin: String,
+    @Expose @SerializedName("cnic") var cnic: String,
+    @Expose @SerializedName("billing") var billing: Billing,
+    @Expose @SerializedName("shipping") var shipping: Shipping
 )

@@ -3,6 +3,21 @@ package com.sahoolatkar.sahoolatkar.globals
 class GlobalVariables {
     companion object {
 
+        // Shared Preferences File Keys
+        const val CUSTOMER_PREFS_KEY: String = "customer"
+
+        // Shared Preferences Variable Keys
+        const val CUSTOMER_FIRST_NAME: String = "customerFirstName"
+        const val CUSTOMER_LAST_NAME: String = "customerLastName"
+        const val CUSTOMER_EMAIL: String = "customerEmail"
+        const val CUSTOMER_USERNAME: String = "customerUsername"
+        const val CUSTOMER_CNIC: String = "customerCnic"
+        const val CUSTOMER_PIN: String = "customerPin"
+        const val CUSTOMER_ADDRESS: String = "customerAddress"
+        const val CUSTOMER_CITY: String = "customerCity"
+        const val CUSTOMER_STATE: String = "customerState"
+        const val CUSTOMER_PHONE: String = "customerPhone"
+
         // Request Codes
         const val BILLING_INFO_REQUEST_CODE: Int = 1
 
