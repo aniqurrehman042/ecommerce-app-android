@@ -3,6 +3,7 @@ package com.sahoolatkar.sahoolatkar.api_utils
 import android.content.Context
 import android.widget.Toast
 import com.sahoolatkar.sahoolatkar.api_callbacks.IGetAllProductsCallback
+import com.sahoolatkar.sahoolatkar.api_models.NadraResponse
 import com.sahoolatkar.sahoolatkar.api_models.customer.Customer
 import com.sahoolatkar.sahoolatkar.api_models.order.Order
 import com.sahoolatkar.sahoolatkar.api_models.product.ProductApiModel
@@ -124,6 +125,22 @@ class SahoolatKarApiUtils {
                 sahoolatkarCustomersApiClient.createCustomerPin(customer)
             } catch (e: Exception) {
                 createCustomerPin(customer)
+            }
+        }
+
+        suspend fun getNadraDetails(cnic: String) : Response<NadraResponse> {
+            return try{
+                sahoolatkarCustomersApiClient.getNadraDetails(cnic)
+            } catch (e: Exception) {
+                getNadraDetails(cnic)
+            }
+        }
+
+        suspend fun isCustomerRegistered(cnic: String) : Response<Boolean> {
+            return try{
+                sahoolatkarCustomersApiClient.isCustomerRegistered(cnic)
+            } catch (e: Exception) {
+                isCustomerRegistered(cnic)
             }
         }
 

@@ -25,7 +25,7 @@ data class Order (
 //	@SerializedName("total") val total : Double,
 //	@SerializedName("total_tax") val total_tax : Double,
 //	@SerializedName("prices_include_tax") val prices_include_tax : Boolean,
-//	@SerializedName("customer_id") val customer_id : Int,
+	@Expose() @SerializedName("customer_id") val customer_id : Int,
 //	@SerializedName("customer_ip_address") val customer_ip_address : String,
 //	@SerializedName("customer_user_agent") val customer_user_agent : String,
 //	@SerializedName("customer_note") val customer_note : String,

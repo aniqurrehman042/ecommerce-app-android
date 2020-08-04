@@ -37,10 +37,14 @@ class SplashActivity : AppCompatActivity() {
 
     private fun setTimeoutForNextActivity() {
         Handler().postDelayed({
-            if (SharedPrefsUtils.isLoggedIn(this@SplashActivity)) {
-                startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+            if (SharedPrefsUtils.isFirstRun(this@SplashActivity)) {
+                startActivity(Intent(this@SplashActivity, GettingStartedActivity::class.java))
             } else {
-                startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
+                if (SharedPrefsUtils.isLoggedIn(this@SplashActivity)) {
+                    startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+                } else {
+                    startActivity(Intent(this@SplashActivity, SignInSignUpActivity::class.java))
+                }
             }
             finish()
         }, 2000)

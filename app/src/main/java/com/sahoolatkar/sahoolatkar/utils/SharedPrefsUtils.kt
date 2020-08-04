@@ -10,7 +10,7 @@ import com.sahoolatkar.sahoolatkar.globals.GlobalVariables
 class SharedPrefsUtils {
     companion object {
 
-        private val customerKeys = arrayOf(GlobalVariables.CUSTOMER_FIRST_NAME, GlobalVariables.CUSTOMER_LAST_NAME,
+        private val customerKeys = arrayOf(GlobalVariables.CUSTOMER_ID, GlobalVariables.CUSTOMER_FIRST_NAME, GlobalVariables.CUSTOMER_LAST_NAME,
             GlobalVariables.CUSTOMER_EMAIL, GlobalVariables.CUSTOMER_USERNAME,
             GlobalVariables.CUSTOMER_CNIC, GlobalVariables.CUSTOMER_PIN,
             GlobalVariables.CUSTOMER_ADDRESS, GlobalVariables.CUSTOMER_CITY,
@@ -19,7 +19,7 @@ class SharedPrefsUtils {
         @SuppressLint("ApplySharedPref")
         fun saveCustomer(context: Context, customer: Customer) {
             val sharedPreferences = context.getSharedPreferences(GlobalVariables.CUSTOMER_PREFS_KEY, Context.MODE_PRIVATE).edit()
-            val values = arrayOf(customer.firstName, customer.lastName, customer.email, customer.username, customer.cnic, customer.pin,
+            val values = arrayOf(customer.id.toString(), customer.firstName, customer.lastName, customer.email, customer.username, customer.cnic, customer.pin,
                 customer.billing.address_1, customer.billing.city, customer.billing.state, customer.billing.phone)
 
             for (i in customerKeys.indices) {
@@ -59,9 +59,10 @@ class SharedPrefsUtils {
                 customerValues[GlobalVariables.CUSTOMER_ADDRESS]!!, "", customerValues[GlobalVariables.CUSTOMER_CITY]!!,
                 customerValues[GlobalVariables.CUSTOMER_STATE]!!, "", "Pakistan")
 
-            return Customer(customerValues[GlobalVariables.CUSTOMER_EMAIL]!!, customerValues[GlobalVariables.CUSTOMER_FIRST_NAME]!!,
-                customerValues[GlobalVariables.CUSTOMER_LAST_NAME]!!, customerValues[GlobalVariables.CUSTOMER_USERNAME]!!, "",
-                customerValues[GlobalVariables.CUSTOMER_PIN]!!, customerValues[GlobalVariables.CUSTOMER_CNIC]!!, billing, shipping)
+            return Customer(customerValues[GlobalVariables.CUSTOMER_ID]!!.toInt(), customerValues[GlobalVariables.CUSTOMER_EMAIL]!!,
+                customerValues[GlobalVariables.CUSTOMER_FIRST_NAME]!!, customerValues[GlobalVariables.CUSTOMER_LAST_NAME]!!,
+                customerValues[GlobalVariables.CUSTOMER_USERNAME]!!, "", customerValues[GlobalVariables.CUSTOMER_PIN]!!,
+                customerValues[GlobalVariables.CUSTOMER_CNIC]!!, billing, shipping)
 
         }
 
@@ -76,6 +77,17 @@ class SharedPrefsUtils {
             val username = sharedPreferences.getString(GlobalVariables.CUSTOMER_USERNAME, "")
             val pin = sharedPreferences.getString(GlobalVariables.CUSTOMER_PIN, "")
             return !username.isNullOrEmpty() && !pin.isNullOrEmpty()
+        }
+
+        fun isFirstRun(context: Context) : Boolean {
+            val sharedPreferences = context.getSharedPreferences(GlobalVariables.CUSTOMER_PREFS_KEY, Context.MODE_PRIVATE)
+            return sharedPreferences.getBoolean(GlobalVariables.FIRST_RUN, true)
+        }
+
+        fun setFirstRun(context: Context) {
+            val sharedPreferences = context.getSharedPreferences(GlobalVariables.CUSTOMER_PREFS_KEY, Context.MODE_PRIVATE).edit()
+            sharedPreferences.putBoolean(GlobalVariables.FIRST_RUN, false)
+            sharedPreferences.apply()
         }
 
     }

@@ -6,6 +6,7 @@ import com.sahoolatkar.sahoolatkar.api_models.order.Billing
 import com.sahoolatkar.sahoolatkar.api_models.order.Shipping
 
 data class Customer(
+    @Expose @SerializedName("id") var id: Int,
     @Expose @SerializedName("email") var email: String,
     @Expose @SerializedName("first_name") var firstName: String,
     @Expose @SerializedName("last_name") var lastName: String,

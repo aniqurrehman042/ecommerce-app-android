@@ -54,6 +54,7 @@ class RegisterActivity : AppCompatActivity() {
         val shipping = Shipping(firstName, lastName, address, "", city, province, "", "Pakistan")
 
         val customer = Customer(
+            0,
             email,
             firstName,
             lastName,
@@ -74,6 +75,7 @@ class RegisterActivity : AppCompatActivity() {
                     this@RegisterActivity,
                     "Registered Successfully. Please Create Your Pin."
                 )
+                customer.id = response.body()!!.id
                 SharedPrefsUtils.saveCustomer(this@RegisterActivity, customer)
                 startPinCreationActivity()
             } else {

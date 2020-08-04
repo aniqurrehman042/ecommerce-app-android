@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentPagerAdapter
 import com.sahoolatkar.sahoolatkar.R
 import com.sahoolatkar.sahoolatkar.adapters.GettingStartedPagerAdapter
 import com.sahoolatkar.sahoolatkar.utils.GettingStartedIndicatorUtils
+import com.sahoolatkar.sahoolatkar.utils.SharedPrefsUtils
 import com.sahoolatkar.sahoolatkar.utils.UIUtils
 import kotlinx.android.synthetic.main.activity_getting_started.*
 
@@ -58,6 +59,7 @@ class GettingStartedActivity : AppCompatActivity() {
     }
 
     private fun startSignInSignUpActivity() {
+        SharedPrefsUtils.setFirstRun(this)
         startActivity(Intent(this, SignInSignUpActivity::class.java))
     }
 

@@ -7,6 +7,7 @@ class GlobalVariables {
         const val CUSTOMER_PREFS_KEY: String = "customer"
 
         // Shared Preferences Variable Keys
+        const val CUSTOMER_ID: String = "customerId"
         const val CUSTOMER_FIRST_NAME: String = "customerFirstName"
         const val CUSTOMER_LAST_NAME: String = "customerLastName"
         const val CUSTOMER_EMAIL: String = "customerEmail"
@@ -17,6 +18,8 @@ class GlobalVariables {
         const val CUSTOMER_CITY: String = "customerCity"
         const val CUSTOMER_STATE: String = "customerState"
         const val CUSTOMER_PHONE: String = "customerPhone"
+
+        const val FIRST_RUN: String = "firstRun"
 
         // Request Codes
         const val BILLING_INFO_REQUEST_CODE: Int = 1
@@ -38,8 +41,8 @@ class GlobalVariables {
         const val WISH_LIST_FRAGMENT: String = "Wish List Fragment"
 
         // Woocommerce Api Keys
-        const val WOOCOMMERCE_CONSUMER_KEY = "ck_c4de78791e7f9fe20faeb4b1f002dba5fa9de608"
-        const val WOOCOMMERCE_CONSUMER_SECRET = "cs_07eac28ae6e191926a68558cfd4f2aa4f75c6287"
+        const val WOOCOMMERCE_CONSUMER_KEY = "ck_b97e6cc6aed641a5710cb3c593043a620549bf04"
+        const val WOOCOMMERCE_CONSUMER_SECRET = "cs_f1497609313036ace6c276a12a50683245555069"
 
         // Woocommerce API global settings
         const val PRODUCTS_PAGE_SIZE: Int = 10

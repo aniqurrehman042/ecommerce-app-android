@@ -190,7 +190,8 @@
                 android:nextFocusDown="@id/etDob"
                 android:paddingHorizontal="@dimen/padding_large"
                 android:paddingVertical="@dimen/padding_normal"
-                android:textSize="@dimen/text_normal" />
+                android:textSize="@dimen/text_normal"
+                android:visibility="gone"/>
 
             <EditText
                 android:id="@+id/etDob"
@@ -209,7 +210,8 @@
                 android:paddingHorizontal="@dimen/padding_large"
                 android:paddingVertical="@dimen/padding_normal"
                 android:textIsSelectable="false"
-                android:textSize="@dimen/text_normal" />
+                android:textSize="@dimen/text_normal"
+                android:visibility="gone"/>
 
             <EditText
                 android:id="@+id/etCnicExpiry"
@@ -228,7 +230,8 @@
                 android:paddingHorizontal="@dimen/padding_large"
                 android:paddingVertical="@dimen/padding_normal"
                 android:textIsSelectable="false"
-                android:textSize="@dimen/text_normal" />
+                android:textSize="@dimen/text_normal"
+                android:visibility="gone"/>
 
             <EditText
                 android:id="@+id/etPhone"

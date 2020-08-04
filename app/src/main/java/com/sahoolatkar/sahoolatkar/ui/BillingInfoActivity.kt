@@ -69,7 +69,7 @@ class BillingInfoActivity : AppCompatActivity() {
                 lineItems.add(LineItems(cartProduct.product.id,  cartProduct.quantity))
             }
             val order =
-                Order(billing, shipping, "cod", "Cash on delivery", false, lineItems, ArrayList())
+                Order(0, billing, shipping, "cod", "Cash on delivery", false, lineItems, ArrayList())
 
             showLoader("Placing your order...")
 
@@ -80,7 +80,6 @@ class BillingInfoActivity : AppCompatActivity() {
                     Toast.makeText(this@BillingInfoActivity, "Order Placed Successfully", Toast.LENGTH_LONG).show()
                     setResult(Activity.RESULT_OK, Intent().apply { putExtra("orderPlacementSuccessful", true) })
                     finish()
-                    response.errorBody()!!.string()
                 } else {
                     Toast.makeText(this@BillingInfoActivity, "Failed to place order. Error: " + response.message().toString(), Toast.LENGTH_LONG).show()
                 }
