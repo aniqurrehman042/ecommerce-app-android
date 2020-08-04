@@ -103,6 +103,15 @@ tools:context=".ui.LoginActivity">
                 android:paddingVertical="@dimen/padding_normal"
                 android:textSize="@dimen/text_normal" />
 
+            <TextView
+                android:id="@+id/tvRegister"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:text="Register"
+                android:textColor="@color/red"
+                android:layout_marginTop="@dimen/margin_tiny" />
+
         </LinearLayout>
 
         <LinearLayout

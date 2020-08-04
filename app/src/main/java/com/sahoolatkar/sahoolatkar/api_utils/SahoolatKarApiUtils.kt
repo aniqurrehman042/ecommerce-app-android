@@ -7,8 +7,10 @@ import com.sahoolatkar.sahoolatkar.api_models.customer.Customer
 import com.sahoolatkar.sahoolatkar.api_models.order.Order
 import com.sahoolatkar.sahoolatkar.api_models.product.ProductApiModel
 import com.sahoolatkar.sahoolatkar.apis_clients.SahoolatkarApiClient
+import com.sahoolatkar.sahoolatkar.apis_clients.SahoolatkarCustomersApiClient
 import com.sahoolatkar.sahoolatkar.globals.GlobalVariables
-import com.sahoolatkar.sahoolatkar.http_services.SahoolatkarRestApiService
+import com.sahoolatkar.sahoolatkar.http_services.SahoolatkarCustomersService
+import com.sahoolatkar.sahoolatkar.http_services.SahoolatkarWoocommerceApiService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -19,11 +21,14 @@ class SahoolatKarApiUtils {
     companion object {
 
         private val sahoolatkarApiClient: SahoolatkarApiClient =
-            SahoolatkarRestApiService.createService(
+            SahoolatkarWoocommerceApiService.createService(
                 SahoolatkarApiClient::class.java,
                 GlobalVariables.WOOCOMMERCE_CONSUMER_KEY,
                 GlobalVariables.WOOCOMMERCE_CONSUMER_SECRET
             )
+
+        private val sahoolatkarCustomersApiClient: SahoolatkarCustomersApiClient =
+            SahoolatkarCustomersService.createService(SahoolatkarCustomersApiClient::class.java)
 
         fun getAllProducts(context: Context, getAllProductsCallback: IGetAllProductsCallback) {
             try {
@@ -111,6 +116,14 @@ class SahoolatKarApiUtils {
                 sahoolatkarApiClient.getAllCustomers()
             } catch (e: Exception) {
                 getAllCustomers()
+            }
+        }
+
+        suspend fun createCustomerPin(customer: Customer) : Response<Boolean> {
+            return try{
+                sahoolatkarCustomersApiClient.createCustomerPin(customer)
+            } catch (e: Exception) {
+                createCustomerPin(customer)
             }
         }
 
