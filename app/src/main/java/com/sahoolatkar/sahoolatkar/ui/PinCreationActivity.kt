@@ -87,7 +87,7 @@ class PinCreationActivity : AppCompatActivity() {
                         this@PinCreationActivity,
                         "Failed To Register. Please Try Again."
                     )
-                    startLoginActivity()
+                    finish()
                 }
             }
         }

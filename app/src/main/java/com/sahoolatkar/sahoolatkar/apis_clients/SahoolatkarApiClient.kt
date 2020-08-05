@@ -29,4 +29,7 @@ interface SahoolatkarApiClient {
     @GET("customers")
     suspend fun getAllCustomers() : Response<List<Customer>>
 
+    @GET("customers/{id}")
+    suspend fun getCustomer(@Path("id") id: Int) : Response<Customer>
+
 }

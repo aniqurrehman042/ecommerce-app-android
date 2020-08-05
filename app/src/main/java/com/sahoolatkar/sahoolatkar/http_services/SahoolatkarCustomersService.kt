@@ -16,7 +16,7 @@ class SahoolatkarCustomersService {
             .baseUrl(API_BASE_URL)
             .addConverterFactory(
                 GsonConverterFactory.create(
-                    GsonBuilder().excludeFieldsWithoutExposeAnnotation().create()
+                    GsonBuilder().excludeFieldsWithoutExposeAnnotation().setDateFormat("yyyy-MM-dd").create()
                 )
             )
         private var retrofit = builder.build()

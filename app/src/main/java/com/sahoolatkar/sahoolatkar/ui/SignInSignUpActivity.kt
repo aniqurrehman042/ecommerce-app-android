@@ -22,6 +22,8 @@ import kotlinx.coroutines.launch
 
 class SignInSignUpActivity : AppCompatActivity() {
 
+    private lateinit var nadraResponse: NadraResponse
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in_sign_up)
@@ -126,61 +128,14 @@ class SignInSignUpActivity : AppCompatActivity() {
         val cusId = etCusId.text.toString()
 
         if (ViewUtils.isVisible(etCnicNo)) {
-            if (cnicNo.isEmpty()) {
-                etCnicNo.error = "This field is required"
-            } else if (!ValidationUtils.validateCnic(cnicNo)) {
-                etCnicNo.error = "CNIC format is not valid"
-            } else {
+            proceedWithCnic(cnicNo)
+        } else if (ViewUtils.isVisible(etCusId)) {
+            proceedWithCusId(cusId)
+        }
+    }
 
-                lifecycleScope.launch {
-
-                    showLoader("Verifying if user already exists")
-
-                    val customerRegisteredResponse = SahoolatKarApiUtils.isCustomerRegistered(cnicNo)
-
-                    if (customerRegisteredResponse.isSuccessful) {
-                        if (customerRegisteredResponse.body()!!) {
-
-                        } else {
-                            showLoader("Verifying CNIC from Nadra")
-
-                            val nadraDetailsResponse = SahoolatKarApiUtils.getNadraDetails(cnicNo)
-                            if (nadraDetailsResponse.isSuccessful) {
-                                val nadraResponse: NadraResponse = nadraDetailsResponse.body()!!
-                                when (nadraResponse.name) {
-                                    "not found" -> {
-                                        ToastUtils.showLongToast(
-                                            this@SignInSignUpActivity,
-                                            "Cnic doesn't exist."
-                                        )
-                                    }
-
-                                    "no cnic" -> {
-                                        ToastUtils.showLongToast(
-                                            this@SignInSignUpActivity,
-                                            "Cnic wasn't received by Nadra server."
-                                        )
-                                    }
-
-                                    else -> {
-                                        sendCreateCustomerRequest(nadraResponse)
-                                    }
-                                }
-                            } else {
-                                ToastUtils.showLongToast(
-                                    this@SignInSignUpActivity,
-                                    "Failed to get data from Nadra. Please try again."
-                                )
-                            }
-                            hideLoader()
-                        }
-
-                    } else {
-
-                    }
-                }
-            }
-        } else if (ViewUtils.isVisible(etCusId) && cusId.isNotEmpty()) {
+    private fun proceedWithCusId(cusId: String) {
+        if (cusId.isNotEmpty()) {
             showLoader("Validating if user exists")
             Handler().postDelayed(Runnable {
                 hideLoader()
@@ -192,9 +147,104 @@ class SignInSignUpActivity : AppCompatActivity() {
         }
     }
 
-    private fun sendCreateCustomerRequest(nadraResponse: NadraResponse) {
+    private fun proceedWithCnic(cnicNo: String) {
+        if (cnicNo.isEmpty()) {
+            etCnicNo.error = "This field is required"
+        } else if (!ValidationUtils.validateCnic(cnicNo)) {
+            etCnicNo.error = "CNIC format is not valid"
+        } else {
+
+            lifecycleScope.launch {
+
+                showLoader("Verifying if user already exists")
+
+                val getCustomerResponse = SahoolatKarApiUtils.getCustomer(cnicNo)
+
+                if (getCustomerResponse.isSuccessful) {
+                    val customer = getCustomerResponse.body()!!
+                    when (customer.cnic) {
+                        "not found" -> {
+                            showLoader("Verifying CNIC from Nadra")
+
+                            verifyFromNadraAndProceed(cnicNo)
+                        }
+                        "no cnic" -> {
+                            ToastUtils.showLongToast(
+                                this@SignInSignUpActivity,
+                                "Server didn't receive cnic"
+                            )
+                        }
+                        else -> {
+                            loginCustomer(customer)
+                        }
+                    }
+
+                } else {
+                    ToastUtils.showLongToast(
+                        this@SignInSignUpActivity,
+                        "Failed ${getCustomerResponse.message()}"
+                    )
+                }
+
+                hideLoader()
+            }
+        }
+    }
+
+    private suspend fun verifyFromNadraAndProceed(cnicNo: String) {
+        val nadraDetailsResponse =
+            SahoolatKarApiUtils.getNadraDetails(cnicNo)
+        if (nadraDetailsResponse.isSuccessful) {
+            val nadraResponse: NadraResponse = nadraDetailsResponse.body()!!
+            when (nadraResponse.name) {
+                "not found" -> {
+                    ToastUtils.showLongToast(
+                        this@SignInSignUpActivity,
+                        "Cnic doesn't exist."
+                    )
+                }
+
+                "no cnic" -> {
+                    ToastUtils.showLongToast(
+                        this@SignInSignUpActivity,
+                        "Cnic wasn't received by Nadra server."
+                    )
+                }
+
+                else -> {
+                    hideTypeInitialShowMore()
+                    showCustomerName(nadraResponse.name)
+                    this.nadraResponse = nadraResponse
+                }
+            }
+        } else {
+            ToastUtils.showLongToast(
+                this@SignInSignUpActivity,
+                "Failed to get data from Nadra. Please try again."
+            )
+        }
+    }
+
+    private suspend fun loginCustomer(customer: Customer) {
+        val wooCommerceCustomerResponse = SahoolatKarApiUtils.getWooCommerceCustomer(customer.id)
+        if (wooCommerceCustomerResponse.isSuccessful) {
+            val wooCommerceCustomer = wooCommerceCustomerResponse.body()!!
+            wooCommerceCustomer.pin = customer.pin
+            wooCommerceCustomer.cnic = customer.cnic
+            SharedPrefsUtils.saveCustomer(this@SignInSignUpActivity, wooCommerceCustomer)
+            SharedPrefsUtils.saveCustomerPin(this, customer.pin)
+            startMainActivity()
+        } else {
+            ToastUtils.showLongToast(
+                this@SignInSignUpActivity,
+                "Failed ${wooCommerceCustomerResponse.message()}"
+            )
+        }
+    }
+
+    private fun sendCreateCustomerRequest() {
         val firstName = nadraResponse.name
-        val lastName = ""
+        val lastName = firstName
         val email = etEmail.text.toString()
         val cnic = etCnicNo.text.toString()
         val address = nadraResponse.confirmAddress
@@ -232,7 +282,7 @@ class SignInSignUpActivity : AppCompatActivity() {
                 )
                 customer.id = response.body()!!.id
                 SharedPrefsUtils.saveCustomer(this@SignInSignUpActivity, customer)
-                startPinCreationActivity()
+                startVerificationActivity()
             } else {
                 ToastUtils.showLongToast(
                     this@SignInSignUpActivity,
@@ -243,8 +293,8 @@ class SignInSignUpActivity : AppCompatActivity() {
         }
     }
 
-    private fun startPinCreationActivity() {
-        startActivity(Intent(this, PinCreationActivity::class.java))
+    private fun startMainActivity() {
+        startActivity(Intent(this, MainActivity::class.java))
         finish()
     }
 
@@ -322,10 +372,7 @@ class SignInSignUpActivity : AppCompatActivity() {
 
         if (validationSuccess) {
             showLoader("Verifying Details")
-            Handler().postDelayed(Runnable {
-                hideLoader()
-                startVerificationActivity()
-            }, 2000)
+            sendCreateCustomerRequest()
         }
     }
 

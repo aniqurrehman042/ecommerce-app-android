@@ -3,8 +3,6 @@ package com.sahoolatkar.sahoolatkar.ui
 import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.text.Editable
-import android.text.TextWatcher
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import com.sahoolatkar.sahoolatkar.R
@@ -70,12 +68,12 @@ class VerificationActivity : AppCompatActivity() {
         if (EditTextUtils.getCombinedInputFromEtsArray(vCodeEts).length < 4) {
             AlertDialogUtils.showAlertWithMessage("Please enter a pin code.", this)
         } else {
-            startOptionalInfoActivity()
+            startPinCreationActivity()
         }
     }
 
-    private fun startOptionalInfoActivity() {
-        startActivity(Intent(this, OptionalInfoActivity::class.java))
+    private fun startPinCreationActivity() {
+        startActivity(Intent(this, PinCreationActivity::class.java))
     }
 
     private fun setupIndexLineNavigation() {

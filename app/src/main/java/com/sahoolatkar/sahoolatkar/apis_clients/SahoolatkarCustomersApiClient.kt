@@ -18,7 +18,7 @@ interface SahoolatkarCustomersApiClient {
     suspend fun getNadraDetails(@Field("cnic") cnic: String) : Response<NadraResponse>
 
     @FormUrlEncoded
-    @POST("is_customer_registered.php")
-    suspend fun isCustomerRegistered(@Field("cnic") cnic: String) : Response<Boolean>
+    @POST("get_customer.php")
+    suspend fun getCustomer(@Field("cnic") cnic: String) : Response<Customer>
 
 }

@@ -41,6 +41,7 @@ class GettingStartedActivity : AppCompatActivity() {
             when {
                 llWelcome.visibility == View.VISIBLE -> {
                     llWelcome.visibility = View.GONE
+                    ivWelcome.visibility = View.GONE
                     gettingStartedIndicatorUtils.nextClicked()
                     llIndicators.visibility = View.VISIBLE
                 }

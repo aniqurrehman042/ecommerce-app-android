@@ -136,11 +136,19 @@ class SahoolatKarApiUtils {
             }
         }
 
-        suspend fun isCustomerRegistered(cnic: String) : Response<Boolean> {
+        suspend fun getCustomer(cnic: String) : Response<Customer> {
             return try{
-                sahoolatkarCustomersApiClient.isCustomerRegistered(cnic)
+                sahoolatkarCustomersApiClient.getCustomer(cnic)
             } catch (e: Exception) {
-                isCustomerRegistered(cnic)
+                getCustomer(cnic)
+            }
+        }
+
+        suspend fun getWooCommerceCustomer(id: Int) : Response<Customer> {
+            return try{
+                sahoolatkarApiClient.getCustomer(id)
+            } catch (e: Exception) {
+                getWooCommerceCustomer(id)
             }
         }
 
