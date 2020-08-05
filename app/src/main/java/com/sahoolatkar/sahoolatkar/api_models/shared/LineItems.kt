@@ -1,4 +1,4 @@
-package com.sahoolatkar.sahoolatkar.api_models.order
+package com.sahoolatkar.sahoolatkar.api_models.shared
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName

@@ -8,11 +8,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.sahoolatkar.sahoolatkar.R
-import com.sahoolatkar.sahoolatkar.api_models.customer.Customer
-import com.sahoolatkar.sahoolatkar.api_models.order.Billing
-import com.sahoolatkar.sahoolatkar.api_models.order.LineItems
+import com.sahoolatkar.sahoolatkar.api_models.shared.Billing
+import com.sahoolatkar.sahoolatkar.api_models.shared.LineItems
 import com.sahoolatkar.sahoolatkar.api_models.order.Order
-import com.sahoolatkar.sahoolatkar.api_models.order.Shipping
+import com.sahoolatkar.sahoolatkar.api_models.shared.Shipping
 import com.sahoolatkar.sahoolatkar.api_utils.SahoolatKarApiUtils
 import com.sahoolatkar.sahoolatkar.models.CartProduct
 import com.sahoolatkar.sahoolatkar.utils.ViewUtils
@@ -58,15 +57,21 @@ class BillingInfoActivity : AppCompatActivity() {
                 "", "54000", "Pakistan", etEmail.text.toString(),
                 etPhone.text.toString()
             )
-            var shipping = Shipping(
-                etFirstName.text.toString(), etLastName.text.toString(),
-                etAddress.text.toString(), "", etCity.text.toString(),
-                "", "54000", "Pakistan"
-            )
+            var shipping =
+                Shipping(
+                    etFirstName.text.toString(), etLastName.text.toString(),
+                    etAddress.text.toString(), "", etCity.text.toString(),
+                    "", "54000", "Pakistan"
+                )
             val lineItems = ArrayList<LineItems>()
 
             for (cartProduct in cartProducts!!) {
-                lineItems.add(LineItems(cartProduct.product.id,  cartProduct.quantity))
+                lineItems.add(
+                    LineItems(
+                        cartProduct.product.id,
+                        cartProduct.quantity
+                    )
+                )
             }
             val order =
                 Order(0, billing, shipping, "cod", "Cash on delivery", false, lineItems, ArrayList())

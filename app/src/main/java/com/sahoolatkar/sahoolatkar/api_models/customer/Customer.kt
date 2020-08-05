@@ -2,8 +2,8 @@ package com.sahoolatkar.sahoolatkar.api_models.customer
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-import com.sahoolatkar.sahoolatkar.api_models.order.Billing
-import com.sahoolatkar.sahoolatkar.api_models.order.Shipping
+import com.sahoolatkar.sahoolatkar.api_models.shared.Billing
+import com.sahoolatkar.sahoolatkar.api_models.shared.Shipping
 
 data class Customer(
     @Expose @SerializedName("id") var id: Int,

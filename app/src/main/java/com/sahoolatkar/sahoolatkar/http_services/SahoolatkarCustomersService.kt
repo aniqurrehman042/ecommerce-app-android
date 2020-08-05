@@ -10,7 +10,7 @@ class SahoolatkarCustomersService {
     companion object {
 
         //        private const val API_BASE_URL = "https://mygreatdubai.com/sahoolatkar/api/"
-        private const val API_BASE_URL = "http://192.168.42.13:8080/sahoolatkar/api/"
+        private const val API_BASE_URL = "https://sahoolatkar.com/api/"
         private val httpClient = OkHttpClient.Builder()
         private val builder: Retrofit.Builder = Retrofit.Builder()
             .baseUrl(API_BASE_URL)

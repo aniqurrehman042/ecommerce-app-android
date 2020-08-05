@@ -3,8 +3,8 @@ package com.sahoolatkar.sahoolatkar.utils
 import android.annotation.SuppressLint
 import android.content.Context
 import com.sahoolatkar.sahoolatkar.api_models.customer.Customer
-import com.sahoolatkar.sahoolatkar.api_models.order.Billing
-import com.sahoolatkar.sahoolatkar.api_models.order.Shipping
+import com.sahoolatkar.sahoolatkar.api_models.shared.Billing
+import com.sahoolatkar.sahoolatkar.api_models.shared.Shipping
 import com.sahoolatkar.sahoolatkar.globals.GlobalVariables
 
 class SharedPrefsUtils {
@@ -51,13 +51,29 @@ class SharedPrefsUtils {
                 }
             }
 
-            val billing = Billing(customerValues[GlobalVariables.CUSTOMER_FIRST_NAME]!!, customerValues[GlobalVariables.CUSTOMER_LAST_NAME]!!,
-                customerValues[GlobalVariables.CUSTOMER_ADDRESS]!!, "", customerValues[GlobalVariables.CUSTOMER_CITY]!!,
-                customerValues[GlobalVariables.CUSTOMER_STATE]!!, "", "Pakistan", customerValues[GlobalVariables.CUSTOMER_EMAIL]!!,
-                customerValues[GlobalVariables.CUSTOMER_PHONE]!!)
-            val shipping = Shipping(customerValues[GlobalVariables.CUSTOMER_FIRST_NAME]!!, customerValues[GlobalVariables.CUSTOMER_LAST_NAME]!!,
-                customerValues[GlobalVariables.CUSTOMER_ADDRESS]!!, "", customerValues[GlobalVariables.CUSTOMER_CITY]!!,
-                customerValues[GlobalVariables.CUSTOMER_STATE]!!, "", "Pakistan")
+            val billing = Billing(
+                customerValues[GlobalVariables.CUSTOMER_FIRST_NAME]!!,
+                customerValues[GlobalVariables.CUSTOMER_LAST_NAME]!!,
+                customerValues[GlobalVariables.CUSTOMER_ADDRESS]!!,
+                "",
+                customerValues[GlobalVariables.CUSTOMER_CITY]!!,
+                customerValues[GlobalVariables.CUSTOMER_STATE]!!,
+                "",
+                "Pakistan",
+                customerValues[GlobalVariables.CUSTOMER_EMAIL]!!,
+                customerValues[GlobalVariables.CUSTOMER_PHONE]!!
+            )
+            val shipping =
+                Shipping(
+                    customerValues[GlobalVariables.CUSTOMER_FIRST_NAME]!!,
+                    customerValues[GlobalVariables.CUSTOMER_LAST_NAME]!!,
+                    customerValues[GlobalVariables.CUSTOMER_ADDRESS]!!,
+                    "",
+                    customerValues[GlobalVariables.CUSTOMER_CITY]!!,
+                    customerValues[GlobalVariables.CUSTOMER_STATE]!!,
+                    "",
+                    "Pakistan"
+                )
 
             return Customer(customerValues[GlobalVariables.CUSTOMER_ID]!!.toInt(), customerValues[GlobalVariables.CUSTOMER_EMAIL]!!,
                 customerValues[GlobalVariables.CUSTOMER_FIRST_NAME]!!, customerValues[GlobalVariables.CUSTOMER_LAST_NAME]!!,

@@ -11,8 +11,8 @@ import androidx.lifecycle.lifecycleScope
 import com.sahoolatkar.sahoolatkar.R
 import com.sahoolatkar.sahoolatkar.api_models.NadraResponse
 import com.sahoolatkar.sahoolatkar.api_models.customer.Customer
-import com.sahoolatkar.sahoolatkar.api_models.order.Billing
-import com.sahoolatkar.sahoolatkar.api_models.order.Shipping
+import com.sahoolatkar.sahoolatkar.api_models.shared.Billing
+import com.sahoolatkar.sahoolatkar.api_models.shared.Shipping
 import com.sahoolatkar.sahoolatkar.api_utils.SahoolatKarApiUtils
 import com.sahoolatkar.sahoolatkar.utils.*
 import kotlinx.android.synthetic.main.activity_sign_in_sign_up.*
@@ -255,8 +255,28 @@ class SignInSignUpActivity : AppCompatActivity() {
         val password = PasswordUtils.getRandomPassword()
 
         val billing =
-            Billing(firstName, lastName, address, "", city, province, "", "Pakistan", email, phone)
-        val shipping = Shipping(firstName, lastName, address, "", city, province, "", "Pakistan")
+            Billing(
+                firstName,
+                lastName,
+                address,
+                "",
+                city,
+                province,
+                "",
+                "Pakistan",
+                email,
+                phone
+            )
+        val shipping = Shipping(
+            firstName,
+            lastName,
+            address,
+            "",
+            city,
+            province,
+            "",
+            "Pakistan"
+        )
 
         val customer = Customer(
             0,
