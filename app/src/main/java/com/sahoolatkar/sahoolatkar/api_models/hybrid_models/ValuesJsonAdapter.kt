@@ -6,6 +6,7 @@ import com.google.gson.stream.JsonToken
 import com.google.gson.stream.JsonWriter
 import com.sahoolatkar.sahoolatkar.api_models.shared.Value
 import java.io.IOException
+import java.lang.Exception
 
 class ValuesJsonAdapter : TypeAdapter<Value>() {
 
@@ -16,30 +17,36 @@ class ValuesJsonAdapter : TypeAdapter<Value>() {
         // If you need you can check
         // com.google.gson.internal.bind.ObjectTypeAdapter class
         // read method for a basic object serialize implementation
+
     }
 
     @Throws(IOException::class)
     override fun read(`in`: JsonReader): Value? {
-        val deserializedObject = Value(0)
+        val deserializedObject = Value(0, "")
 
         // type of next token
         val peek: JsonToken = `in`.peek()
 
         // if the json field is string
         if (JsonToken.STRING == peek) {
-            val stringValue: String = `in`.nextString()
-            // convert string to integer and add to list as a value
-            deserializedObject.add(Integer.valueOf(stringValue))
+            try {
+                val stringValue: String = `in`.nextString()
+                // convert string to integer and add to list as a value
+                deserializedObject.value = stringValue
+            } catch (e: Exception) {
+
+            }
         }
 
         // if it is array then implement normal array deserialization
+        if (JsonToken.BEGIN_OBJECT == peek) {
+            while (`in`.hasNext())
+                `in`.skipValue()
+        }
+
         if (JsonToken.BEGIN_ARRAY == peek) {
-            `in`.beginArray()
-            while (`in`.hasNext()) {
-                val element: String = `in`.nextString()
-                deserializedObject.add(Integer.valueOf(element))
-            }
-            `in`.endArray()
+            while (`in`.hasNext())
+                `in`.skipValue()
         }
         return deserializedObject
     }

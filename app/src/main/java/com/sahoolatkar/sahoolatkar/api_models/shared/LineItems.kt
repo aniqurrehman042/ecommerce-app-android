@@ -8,8 +8,8 @@ data class LineItems (
 //	@SerializedName("id") val id : Int,
 //	@SerializedName("name") val name : String,
 	@Expose() @SerializedName("product_id") val product_id : Int,
-//	@SerializedName("variation_id") val variation_id : Int,
-	@Expose() @SerializedName("quantity") val quantity : Int
+	@Expose() @SerializedName("quantity") val quantity : Int,
+	@Expose() @SerializedName("variation_id") var variation_id : Int = 0
 //	@SerializedName("tax_class") val tax_class : String,
 //	@SerializedName("subtotal") val subtotal : Double,
 //	@SerializedName("subtotal_tax") val subtotal_tax : Double,

@@ -11,8 +11,10 @@ import androidx.navigation.fragment.navArgs
 import com.sahoolatkar.sahoolatkar.R
 import com.sahoolatkar.sahoolatkar.adapters.ProductDetailsPagerAdapter
 import com.sahoolatkar.sahoolatkar.adapters.ProductImgsSliderAdapter
+import com.sahoolatkar.sahoolatkar.globals.GlobalVariables
 import com.sahoolatkar.sahoolatkar.models.CartProduct
 import com.sahoolatkar.sahoolatkar.ui.MainActivity
+import com.sahoolatkar.sahoolatkar.utils.ViewUtils
 import com.sahoolatkar.sahoolatkar.viewmodels.MainViewModel
 import kotlinx.android.synthetic.main.fragment_product_details.*
 
@@ -42,26 +44,53 @@ class ProductDetailsFragment : Fragment() {
         setViewValues()
         initViewPager()
         setUpTopSlider()
+        setInstallments()
         setListeners()
+    }
+
+    private fun setInstallments() {
+        if (args.product.meta_data.isNotEmpty() && args.product.meta_data[0].value.value[0] != '{') {
+            ViewUtils.hideView(rgInstallments)
+        } else {
+
+        }
     }
 
     private fun setListeners() {
         tvAddToCart.setOnClickListener {
             addCartItem()
         }
-        tvPlus.setOnClickListener{
-         addQty()
+        tvPlus.setOnClickListener {
+            addQty()
         }
-        tvMinus.setOnClickListener{
+        tvMinus.setOnClickListener {
             minusQty()
+        }
+        rgInstallments.setOnCheckedChangeListener { radioGroup, i ->
+            when (i) {
+                rb1Installments.id -> tvPrice.text = args.product.price
+                rb3Installments.id -> tvPrice.text = args.product.price
+                rb6Installments.id -> tvPrice.text = args.product.price
+                rb9Installments.id -> tvPrice.text = args.product.price
+                rb12Installments.id -> tvPrice.text = args.product.price
+            }
         }
     }
 
     private fun addCartItem() {
         var found = false
+        val installments = when {
+            rb3Installments.isChecked -> GlobalVariables.INSTALLMENTS_3
+            rb6Installments.isChecked -> GlobalVariables.INSTALLMENTS_6
+            rb9Installments.isChecked -> GlobalVariables.INSTALLMENTS_9
+            rb12Installments.isChecked -> GlobalVariables.INSTALLMENTS_12
+            else -> GlobalVariables.INSTALLMENTS_1
+        }
+
         for (cartProduct in mainViewModel.cartProducts) {
             if (cartProduct.product === args.product) {
                 cartProduct.quantity = tvQty.text.toString().toInt()
+                cartProduct.installments = installments
                 found = true
             }
         }
@@ -70,7 +99,8 @@ class ProductDetailsFragment : Fragment() {
             mainViewModel.cartProducts.add(
                 CartProduct(
                     args.product,
-                    tvQty.text.toString().toInt()
+                    tvQty.text.toString().toInt(),
+                    installments
                 )
             )
             mainActivity.onAddCartItem()
@@ -98,17 +128,17 @@ class ProductDetailsFragment : Fragment() {
         pagerAdapter = ProductDetailsPagerAdapter(mainActivity.supportFragmentManager)
         vpProductDetails.adapter = pagerAdapter
     }
-    private fun minusQty()
-    {
-        var num :Int = (tvQty.text).toString().toInt()
-        if(num>1)
-        num--
-        tvQty.text  = num.toString()
+
+    private fun minusQty() {
+        var num: Int = (tvQty.text).toString().toInt()
+        if (num > 1)
+            num--
+        tvQty.text = num.toString()
     }
-    private fun addQty()
-    {
-        var num :Int = (tvQty.text).toString().toInt()
+
+    private fun addQty() {
+        var num: Int = (tvQty.text).toString().toInt()
         num++
-        tvQty.text  = num.toString()
+        tvQty.text = num.toString()
     }
 }

@@ -74,7 +74,7 @@ class BillingInfoActivity : AppCompatActivity() {
                 )
             }
             val order =
-                Order(0, billing, shipping, "cod", "Cash on delivery", false, lineItems, ArrayList())
+                Order(0, 0, billing, shipping, "cod", "Cash on delivery", false, lineItems, ArrayList())
 
             showLoader("Placing your order...")
 

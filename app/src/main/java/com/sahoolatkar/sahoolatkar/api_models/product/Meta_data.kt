@@ -1,7 +1,10 @@
 package com.sahoolatkar.sahoolatkar.api_models.product
 
 import com.google.gson.annotations.Expose
+import com.google.gson.annotations.JsonAdapter
 import com.google.gson.annotations.SerializedName
+import com.sahoolatkar.sahoolatkar.api_models.hybrid_models.ValuesJsonAdapter
+import com.sahoolatkar.sahoolatkar.api_models.shared.Value
 import java.io.Serializable
 
 /*
@@ -17,7 +20,10 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 
 
 data class Meta_data (
-	@Expose(deserialize = false, serialize = false) @SerializedName("id") val id : Int,
-	@Expose(deserialize = false, serialize = false) @SerializedName("key") val key : String,
-	@Expose(deserialize = false, serialize = false) @SerializedName("value") val value : String
+	@SerializedName("id") val id : Int,
+	@SerializedName("key") val key : String,
+	@JsonAdapter(value = ValuesJsonAdapter::class)
+	@SerializedName("value")
+	@Expose(serialize = false, deserialize = true)
+	val value : Value
 ) : Serializable

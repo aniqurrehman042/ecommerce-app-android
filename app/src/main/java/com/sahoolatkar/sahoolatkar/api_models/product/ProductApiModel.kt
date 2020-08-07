@@ -2,6 +2,7 @@ package com.sahoolatkar.sahoolatkar.api_models.product
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import com.sahoolatkar.sahoolatkar.globals.GlobalVariables
 import java.io.Serializable
 
 /*
@@ -77,10 +78,10 @@ data class ProductApiModel (
 	@Expose @SerializedName("images") val images : List<Images>,
 	@SerializedName("attributes") val attributes : List<Attributes>,
 	@SerializedName("default_attributes") val default_attributes : List<String>,
-	@SerializedName("variations") val variations : List<String>,
+	@Expose @SerializedName("variations") val variations : List<Int>,
 	@SerializedName("grouped_products") val grouped_products : List<String>,
 	@SerializedName("menu_order") val menu_order : Int,
-	@SerializedName("meta_data") val meta_data : List<Meta_data>,
+	@Expose @SerializedName("meta_data") val meta_data : List<Meta_data>,
 	@SerializedName("brands") val brands : List<Brands>,
 	@SerializedName("_links") val _links : _links,
 	var wishListed: Boolean = false

@@ -8,7 +8,9 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/llAddOrder">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -94,6 +96,81 @@
                     android:layout_height="wrap_content" />
 
             </androidx.viewpager.widget.ViewPager>
+
+            <RadioGroup
+                android:id="@+id/rgInstallments"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/rb1Installments"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Cash"
+                    android:background="@drawable/bg_white_rounded_dark_grey_bordered"
+                    android:textColor="@color/black"
+                    android:paddingVertical="@dimen/padding_small"
+                    android:textSize="@dimen/text_button"
+                    android:checked="true"
+                    android:paddingLeft="@dimen/padding_large"
+                    android:layout_marginHorizontal="@dimen/margin_small"
+                    android:layout_marginTop="@dimen/margin_small" />
+
+                <RadioButton
+                    android:id="@+id/rb3Installments"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="3 Installments"
+                    android:background="@drawable/bg_white_rounded_dark_grey_bordered"
+                    android:textColor="@color/black"
+                    android:paddingVertical="@dimen/padding_small"
+                    android:textSize="@dimen/text_button"
+                    android:paddingLeft="@dimen/padding_large"
+                    android:layout_marginHorizontal="@dimen/margin_small"
+                    android:layout_marginTop="@dimen/margin_small" />
+
+                <RadioButton
+                    android:id="@+id/rb6Installments"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="6 Installments"
+                    android:background="@drawable/bg_white_rounded_dark_grey_bordered"
+                    android:textColor="@color/black"
+                    android:paddingVertical="@dimen/padding_small"
+                    android:textSize="@dimen/text_button"
+                    android:paddingLeft="@dimen/padding_large"
+                    android:layout_marginHorizontal="@dimen/margin_small"
+                    android:layout_marginTop="@dimen/margin_small" />
+
+                <RadioButton
+                    android:id="@+id/rb9Installments"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="9 Installments"
+                    android:background="@drawable/bg_white_rounded_dark_grey_bordered"
+                    android:textColor="@color/black"
+                    android:paddingVertical="@dimen/padding_small"
+                    android:textSize="@dimen/text_button"
+                    android:paddingLeft="@dimen/padding_large"
+                    android:layout_marginHorizontal="@dimen/margin_small"
+                    android:layout_marginTop="@dimen/margin_small" />
+
+                <RadioButton
+                    android:id="@+id/rb12Installments"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="12 Installments"
+                    android:background="@drawable/bg_white_rounded_dark_grey_bordered"
+                    android:textColor="@color/black"
+                    android:paddingVertical="@dimen/padding_small"
+                    android:textSize="@dimen/text_button"
+                    android:paddingLeft="@dimen/padding_large"
+                    android:layout_marginHorizontal="@dimen/margin_small"
+                    android:layout_marginTop="@dimen/margin_small" />
+
+            </RadioGroup>
 
         </LinearLayout>
 

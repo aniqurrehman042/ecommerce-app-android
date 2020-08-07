@@ -22,17 +22,21 @@ class ProductsPagedRecyclerAdapter(val activity: Activity, val parentFragment: S
     PagedListAdapter<ProductApiModel, ProductsPagedRecyclerAdapter.ViewHolder>(
         ProductsDiffUtilCallback()
     ) {
-    class ViewHolder(itemView: View, private val parentFragment: String, private val activity: Activity) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(
+        itemView: View,
+        private val parentFragment: String,
+        private val activity: Activity
+    ) : RecyclerView.ViewHolder(itemView) {
         fun bindProduct(product: ProductApiModel) {
             var liked = false
 
             tvProductName.text = product.name
             tvProductDesc.text = product.description
             tvPrice.text = product.price
-            // tvDiscount.text = product.discount.toString()
-            Picasso.get()
-                .load(product.images[0].src)
-                .into(ivProductImg)
+            if (!product.images.isNullOrEmpty())
+                Picasso.get()
+                    .load(product.images[0].src)
+                    .into(ivProductImg)
 
             ivLike.setOnClickListener {
                 liked = if (liked) {
@@ -58,7 +62,11 @@ class ProductsPagedRecyclerAdapter(val activity: Activity, val parentFragment: S
 
                 GlobalVariables.PRODUCT_CATALOG_FRAGMENT -> {
                     Navigation.findNavController(activity.findViewById(R.id.navHostFragment))
-                        .navigate(ProductsCatalogFragmentDirections.actionProductsCatalogFragmentToProductDetailsFragment(product))
+                        .navigate(
+                            ProductsCatalogFragmentDirections.actionProductsCatalogFragmentToProductDetailsFragment(
+                                product
+                            )
+                        )
                 }
             }
         }

@@ -7,6 +7,7 @@ import com.sahoolatkar.sahoolatkar.api_models.NadraResponse
 import com.sahoolatkar.sahoolatkar.api_models.customer.Customer
 import com.sahoolatkar.sahoolatkar.api_models.order.Order
 import com.sahoolatkar.sahoolatkar.api_models.product.ProductApiModel
+import com.sahoolatkar.sahoolatkar.api_models.subscription.Subscription
 import com.sahoolatkar.sahoolatkar.apis_clients.SahoolatkarApiClient
 import com.sahoolatkar.sahoolatkar.apis_clients.SahoolatkarCustomersApiClient
 import com.sahoolatkar.sahoolatkar.globals.GlobalVariables
@@ -149,6 +150,14 @@ class SahoolatKarApiUtils {
                 sahoolatkarApiClient.getCustomer(id)
             } catch (e: Exception) {
                 getWooCommerceCustomer(id)
+            }
+        }
+
+        suspend fun createSubscription(subscription: Subscription) : Response<Subscription> {
+            return try{
+                sahoolatkarApiClient.createSubscription(subscription)
+            } catch (e: Exception) {
+                createSubscription(subscription)
             }
         }
 
