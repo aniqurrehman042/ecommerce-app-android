@@ -65,10 +65,10 @@ class ProductDetailsFragment : Fragment() {
 
     private fun setPrices() {
         rb1Installments.text = rb1Installments.text.toString() + " " + prices[0]
-        rb3Installments.text = rb1Installments.text.toString() + " " + prices[1]
-        rb6Installments.text = rb1Installments.text.toString() + " " + prices[2]
-        rb9Installments.text = rb1Installments.text.toString() + " " + prices[3]
-        rb12Installments.text = rb1Installments.text.toString() + " " + prices[4]
+        rb3Installments.text = rb3Installments.text.toString() + " " + prices[1]
+        rb6Installments.text = rb6Installments.text.toString() + " " + prices[2]
+        rb9Installments.text = rb9Installments.text.toString() + " " + prices[3]
+        rb12Installments.text = rb12Installments.text.toString() + " " + prices[4]
     }
 
     private fun getPrices() {
