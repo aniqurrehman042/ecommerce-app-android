@@ -41,7 +41,19 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_tiny"
                 android:layout_marginTop="@dimen/margin_tiny"
+                android:layout_marginBottom="@dimen/margin_tiny"
                 android:text="Product name"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_small"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvCompanyName" />
+
+            <TextView
+                android:id="@+id/tvStartingFrom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_tiny"
+                android:text="Starting From"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_small"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -52,7 +64,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_tiny"
-                android:layout_marginTop="@dimen/margin_tiny"
                 android:text="PKR"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_small"
@@ -82,20 +93,17 @@
                 android:textColor="@color/black"
                 app:layout_constraintTop_toBottomOf="@id/tvPrice" />
 
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tlProductDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-            <androidx.viewpager.widget.ViewPager
+            <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/vpProductDetails"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_200sdp"
                 android:layout_marginTop="@dimen/margin_tiny"
-                app:layout_constraintTop_toBottomOf="@id/tvDeliverTo">
-
-                <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/tlProductDetails"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-            </androidx.viewpager.widget.ViewPager>
+                app:layout_constraintTop_toBottomOf="@id/tvDeliverTo" />
 
             <RadioGroup
                 android:id="@+id/rgInstallments"

@@ -10,10 +10,10 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Highlights"
+        android:text="Description"
         android:textColor="@color/black"
-        android:textStyle="bold"
-        android:textSize="@dimen/text_item_details" />
+        android:textSize="@dimen/text_item_details"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tvHighlights"

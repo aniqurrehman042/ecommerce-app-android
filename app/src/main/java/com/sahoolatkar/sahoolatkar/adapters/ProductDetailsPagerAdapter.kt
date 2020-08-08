@@ -3,31 +3,26 @@ package com.sahoolatkar.sahoolatkar.adapters
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import androidx.lifecycle.Lifecycle
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.sahoolatkar.sahoolatkar.api_models.product.ProductApiModel
 import com.sahoolatkar.sahoolatkar.ui.fragments.ProductOverviewFragment
 import com.sahoolatkar.sahoolatkar.ui.fragments.ProductSpecificationsFragment
 
-class ProductDetailsPagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+class ProductDetailsPagerAdapter(
+    fragment: Fragment,
+    val product: ProductApiModel
+) : FragmentStateAdapter(fragment) {
 
-    private val productOverviewFragment: ProductOverviewFragment = ProductOverviewFragment()
-    private val productSpecificationsFragment: ProductSpecificationsFragment = ProductSpecificationsFragment()
-
-    override fun getItem(position: Int): Fragment {
-        return when (position) {
-            0 -> productOverviewFragment
-            1 -> productSpecificationsFragment
-            else -> productOverviewFragment
-        }
-    }
-
-    override fun getPageTitle(position: Int): CharSequence? {
-        return when (position) {
-            0 -> "Overview"
-            1 -> "Specifications"
-            else -> super.getPageTitle(position)
-        }
-    }
-
-    override fun getCount(): Int {
+    override fun getItemCount(): Int {
         return 2
+    }
+
+    override fun createFragment(position: Int): Fragment {
+        return when (position) {
+            0 -> ProductOverviewFragment(product.short_description)
+            1 -> ProductSpecificationsFragment(product.attributes)
+            else -> ProductOverviewFragment(product.short_description)
+        }
     }
 }

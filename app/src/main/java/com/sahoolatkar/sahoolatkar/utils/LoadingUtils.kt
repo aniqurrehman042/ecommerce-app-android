@@ -16,9 +16,11 @@ class LoadingUtils {
             disableUserInteraction(activity)
         }
 
-        fun hideLoader(activity: Activity, llLoader: View) {
-            ViewUtils.hideView(llLoader)
-            enableUserInteraction(activity)
+        fun hideLoader(activity: Activity, llLoader: View?) {
+            if (llLoader != null) {
+                ViewUtils.hideView(llLoader)
+                enableUserInteraction(activity)
+            }
         }
 
         fun disableUserInteraction(activity: Activity) {

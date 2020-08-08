@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.tabs.TabLayoutMediator
 import com.sahoolatkar.sahoolatkar.R
 import com.sahoolatkar.sahoolatkar.adapters.ProductDetailsPagerAdapter
 import com.sahoolatkar.sahoolatkar.adapters.ProductImgsSliderAdapter
@@ -17,6 +18,7 @@ import com.sahoolatkar.sahoolatkar.ui.MainActivity
 import com.sahoolatkar.sahoolatkar.utils.ViewUtils
 import com.sahoolatkar.sahoolatkar.viewmodels.MainViewModel
 import kotlinx.android.synthetic.main.fragment_product_details.*
+import org.json.JSONObject
 
 class ProductDetailsFragment : Fragment() {
     private lateinit var pagerAdapter: ProductDetailsPagerAdapter
@@ -24,6 +26,7 @@ class ProductDetailsFragment : Fragment() {
     private val args: ProductDetailsFragmentArgs by navArgs()
     private lateinit var mainActivity: MainActivity
     private val mainViewModel: MainViewModel by activityViewModels()
+    private var prices: MutableList<String> = ArrayList()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,8 +54,32 @@ class ProductDetailsFragment : Fragment() {
     private fun setInstallments() {
         if (args.product.meta_data.isNotEmpty() && args.product.meta_data[0].value.value[0] != '{') {
             ViewUtils.hideView(rgInstallments)
+            ViewUtils.hideView(tvStartingFrom)
         } else {
+            if (!args.product.variations.isNullOrEmpty()) {
+                getPrices()
+                setPrices()
+            }
+        }
+    }
 
+    private fun setPrices() {
+        rb1Installments.text = rb1Installments.text.toString() + " " + prices[0]
+        rb3Installments.text = rb1Installments.text.toString() + " " + prices[1]
+        rb6Installments.text = rb1Installments.text.toString() + " " + prices[2]
+        rb9Installments.text = rb1Installments.text.toString() + " " + prices[3]
+        rb12Installments.text = rb1Installments.text.toString() + " " + prices[4]
+    }
+
+    private fun getPrices() {
+        val valueJsonString = args.product.meta_data[0].value.value
+        val valueJsonObject = JSONObject(valueJsonString)
+        val variationIdObjectsContainer = valueJsonObject.getJSONObject(valueJsonObject.keys().next()).getJSONObject("r")
+
+        for (variationIdObjectKey in variationIdObjectsContainer.keys()) {
+            val variationIdObject = variationIdObjectsContainer.getJSONObject(variationIdObjectKey)
+            val variationObject = variationIdObject.getJSONObject(variationIdObject.keys().next())
+            prices.add(variationObject.getString("p"))
         }
     }
 
@@ -68,11 +95,11 @@ class ProductDetailsFragment : Fragment() {
         }
         rgInstallments.setOnCheckedChangeListener { radioGroup, i ->
             when (i) {
-                rb1Installments.id -> tvPrice.text = args.product.price
-                rb3Installments.id -> tvPrice.text = args.product.price
-                rb6Installments.id -> tvPrice.text = args.product.price
-                rb9Installments.id -> tvPrice.text = args.product.price
-                rb12Installments.id -> tvPrice.text = args.product.price
+                rb1Installments.id -> tvPrice.text = prices[0]
+                rb3Installments.id -> tvPrice.text = prices[1]
+                rb6Installments.id -> tvPrice.text = prices[2]
+                rb9Installments.id -> tvPrice.text = prices[3]
+                rb12Installments.id -> tvPrice.text = prices[4]
             }
         }
     }
@@ -125,8 +152,14 @@ class ProductDetailsFragment : Fragment() {
     }
 
     private fun initViewPager() {
-        pagerAdapter = ProductDetailsPagerAdapter(mainActivity.supportFragmentManager)
+        pagerAdapter = ProductDetailsPagerAdapter(this, args.product)
         vpProductDetails.adapter = pagerAdapter
+        TabLayoutMediator(tlProductDetails, vpProductDetails) { tab, pos ->
+            tab.text = when (pos) {
+                1 -> "Specifications"
+                else -> "Overview"
+            }
+        }.attach()
     }
 
     private fun minusQty() {

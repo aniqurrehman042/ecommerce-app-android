@@ -13,6 +13,8 @@
         android:layout_height="wrap_content"
         android:layout_weight="0.5"
         android:text="Colour Name"
+        android:paddingLeft="@dimen/padding_small"
+        android:background="@color/light_grey"
         android:textColor="@color/black"
         android:textSize="@dimen/text_item_details" />
 
@@ -22,6 +24,8 @@
         android:layout_height="wrap_content"
         android:layout_weight="0.5"
         android:text="Black"
+        android:paddingLeft="@dimen/padding_small"
+        android:background="@color/dark_grey"
         android:textColor="@color/black"
         android:textSize="@dimen/text_item_details" />
 

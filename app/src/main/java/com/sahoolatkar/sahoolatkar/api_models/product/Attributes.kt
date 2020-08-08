@@ -1,5 +1,6 @@
 package com.sahoolatkar.sahoolatkar.api_models.product
 
+import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
@@ -17,9 +18,9 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 
 data class Attributes (
 	@SerializedName("id") val id : Int,
-	@SerializedName("name") val name : String,
+	@Expose @SerializedName("name") val name : String,
 	@SerializedName("position") val position : Int,
 	@SerializedName("visible") val visible : Boolean,
 	@SerializedName("variation") val variation : Boolean,
-	@SerializedName("options") val options : List<String>
+	@Expose @SerializedName("options") val options : List<String>
 ) : Serializable

@@ -13,6 +13,7 @@ import com.sahoolatkar.sahoolatkar.api_models.product.ProductApiModel
 import com.sahoolatkar.sahoolatkar.globals.GlobalVariables
 import com.sahoolatkar.sahoolatkar.ui.MainActivity
 import com.sahoolatkar.sahoolatkar.ui.fragments.HomeFragmentDirections
+import com.sahoolatkar.sahoolatkar.utils.ViewUtils
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.layout_product_item.view.*
 
@@ -45,13 +46,22 @@ class ProductsSliderAdapter(
         if (!product.images.isNullOrEmpty()) {
             Picasso.get().load(product.images[0].src)
                 .into(convertView.findViewById<ImageView>(R.id.ivProductImg))
+        } else {
+            convertView.findViewById<ImageView>(R.id.ivProductImg).setImageResource(0)
         }
 
         convertView.findViewById<TextView>(R.id.tvProductName).text = product.name
-        convertView.findViewById<TextView>(R.id.tvProductDesc).text =
-            product.description
-        convertView.findViewById<TextView>(R.id.tvPrice).text =
-            product.price
+        val tvPrice = convertView.findViewById<TextView>(R.id.tvPrice)
+        val tvStartingFrom = convertView.findViewById<TextView>(R.id.tvStartingFrom)
+        val tvInstallments = convertView.findViewById<TextView>(R.id.tvInstallments)
+        if (product.meta_data[0].value.value[0] == '{' && !product.variations.isNullOrEmpty()) {
+            ViewUtils.showView(tvStartingFrom)
+            ViewUtils.showView(tvInstallments)
+        } else {
+            ViewUtils.hideView(tvStartingFrom)
+            ViewUtils.hideView(tvInstallments)
+        }
+        tvPrice.text = product.price
         convertView.findViewById<ConstraintLayout>(R.id.clProduct).setOnClickListener {
             startProductDetailsFragment(product)
         }

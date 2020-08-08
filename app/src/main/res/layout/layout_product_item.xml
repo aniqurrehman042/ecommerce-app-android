@@ -7,7 +7,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="@dimen/padding_normal"
     android:background="@drawable/bg_white_rounded_dark_grey_bordered_10dp"
-    android:layout_margin="@dimen/margin_tiny">
+    android:layout_margin="@dimen/margin_tiny"
+    android:clipToPadding="false">
 
     <ImageView
         android:id="@+id/ivProductImg"
@@ -16,6 +17,24 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:id="@+id/tvInstallments"
+        android:layout_width="@dimen/_180sdp"
+        android:layout_height="wrap_content"
+        android:text="Available In Installments"
+        android:rotation="-40"
+        android:textSize="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:background="@drawable/bg_red_rounded"
+        app:layout_constraintTop_toTopOf="@id/ivProductImg"
+        app:layout_constraintRight_toLeftOf="@id/ivProductImg"
+        android:textColor="@color/white"
+        android:paddingVertical="@dimen/_2sdp"
+        android:gravity="center_horizontal"
+        android:translationX="@dimen/_125sdp"/>
 
     <ImageView
         android:id="@+id/ivLike"
@@ -43,20 +62,7 @@
             android:textSize="@dimen/text_item_details"
             android:layout_marginTop="@dimen/margin_tiny"
             android:ellipsize="end"
-            android:lines="1"
-            android:maxLines="1"
-            android:textColor="@color/black" />
-
-        <TextView
-            android:id="@+id/tvProductDesc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Product Description"
-            android:textSize="@dimen/text_item_details"
-            android:layout_marginTop="@dimen/margin_tiny"
-            android:ellipsize="end"
-            android:lines="1"
-            android:maxLines="1"
+            android:maxLines="2"
             android:textColor="@color/black" />
 
         <LinearLayout
@@ -64,6 +70,18 @@
             android:layout_height="wrap_content"
             android:gravity="bottom"
             android:layout_marginTop="@dimen/margin_tiny">
+
+            <TextView
+                android:id="@+id/tvStartingFrom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Starting From "
+                android:textSize="@dimen/text_price"
+                android:layout_marginTop="@dimen/margin_tiny"
+                android:ellipsize="end"
+                android:lines="1"
+                android:maxLines="1"
+                android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/tvCurrency"

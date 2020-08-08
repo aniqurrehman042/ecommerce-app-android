@@ -45,7 +45,7 @@ class GlobalVariables {
         const val WOOCOMMERCE_CONSUMER_SECRET = "cs_f1497609313036ace6c276a12a50683245555069"
 
         // Woocommerce API global settings
-        const val PRODUCTS_PAGE_SIZE: Int = 10
+        const val PRODUCTS_PAGE_SIZE: Int = 20
 
         // Woocommerce API category IDs
         const val CATEGORY_MOBILES_ID = "21"

@@ -15,6 +15,7 @@ import com.sahoolatkar.sahoolatkar.ui.MainActivity
 import com.sahoolatkar.sahoolatkar.ui.fragments.HomeFragmentDirections
 import com.sahoolatkar.sahoolatkar.ui.fragments.ProductsCatalogFragmentDirections
 import com.sahoolatkar.sahoolatkar.ui.fragments.WishListFragmentDirections
+import com.sahoolatkar.sahoolatkar.utils.ViewUtils
 import com.squareup.picasso.Picasso
 
 class ProductsAdapter(
@@ -28,9 +29,10 @@ class ProductsAdapter(
         val ivProductImg: ImageView = itemView.findViewById(R.id.ivProductImg)
         val ivLike: ImageView = itemView.findViewById(R.id.ivLike)
         val tvProductName: TextView = itemView.findViewById(R.id.tvProductName)
-        val tvProductDesc: TextView = itemView.findViewById(R.id.tvProductDesc)
         val tvCurrency: TextView = itemView.findViewById(R.id.tvCurrency)
         val tvPrice: TextView = itemView.findViewById(R.id.tvPrice)
+        val tvStartingFrom: TextView = itemView.findViewById(R.id.tvStartingFrom)
+        val tvInstallments: TextView = itemView.findViewById(R.id.tvInstallments)
         val clProduct: ConstraintLayout = itemView.findViewById(R.id.clProduct)
     }
 
@@ -48,12 +50,20 @@ class ProductsAdapter(
         val product = products[position]
 
         holder.tvProductName.text = product.name
-        holder.tvProductDesc.text = product.description
+        if (product.meta_data[0].value.value[0] == '{' && !product.variations.isNullOrEmpty()) {
+            ViewUtils.showView(holder.tvStartingFrom)
+            ViewUtils.showView(holder.tvInstallments)
+        } else {
+            ViewUtils.hideView(holder.tvStartingFrom)
+            ViewUtils.hideView(holder.tvInstallments)
+        }
         holder.tvPrice.text = product.price
         if (!product.images.isNullOrEmpty()) {
             Picasso.get()
                 .load(product.images[0].src)
                 .into(holder.ivProductImg)
+        } else {
+            holder.ivProductImg.setImageResource(0)
         }
 
         holder.ivLike.setOnClickListener {
