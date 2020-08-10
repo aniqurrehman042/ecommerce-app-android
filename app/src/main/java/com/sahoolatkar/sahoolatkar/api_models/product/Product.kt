@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 import com.sahoolatkar.sahoolatkar.globals.GlobalVariables
 import java.io.Serializable
 
-data class ProductApiModel (
+data class Product (
 	@Expose @SerializedName("id") val id : Int,
 	@Expose @SerializedName("name") val name : String,
 	@Expose @SerializedName("slug") val slug : String,

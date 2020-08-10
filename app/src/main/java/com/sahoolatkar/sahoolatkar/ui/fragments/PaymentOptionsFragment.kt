@@ -21,6 +21,7 @@ import com.sahoolatkar.sahoolatkar.utils.LoadingUtils
 import com.sahoolatkar.sahoolatkar.utils.SharedPrefsUtils
 import com.sahoolatkar.sahoolatkar.utils.ToastUtils
 import com.sahoolatkar.sahoolatkar.viewmodels.MainViewModel
+import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_payment_options.*
 import kotlinx.android.synthetic.main.layout_loader.*
 import kotlinx.coroutines.launch
@@ -167,6 +168,11 @@ class PaymentOptionsFragment : Fragment() {
                 mainActivity.goBackToHomeFragment()
             }
         }.launch(mainViewModel.cartProducts)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        this.clearFindViewByIdCache()
     }
 
 }

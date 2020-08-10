@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.sahoolatkar.sahoolatkar.R
 import com.sahoolatkar.sahoolatkar.ui.MainActivity
 import com.sahoolatkar.sahoolatkar.utils.ViewUtils
+import kotlinx.android.synthetic.*
 
 class ProfileFragment : Fragment() {
 
@@ -37,5 +38,10 @@ class ProfileFragment : Fragment() {
     override fun onPause() {
         super.onPause()
         mainActivity.showTopBar()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        this.clearFindViewByIdCache()
     }
 }

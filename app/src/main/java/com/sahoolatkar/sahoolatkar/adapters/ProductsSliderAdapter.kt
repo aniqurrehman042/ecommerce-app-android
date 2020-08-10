@@ -9,8 +9,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.Navigation
 import com.asksira.loopingviewpager.LoopingPagerAdapter
 import com.sahoolatkar.sahoolatkar.R
-import com.sahoolatkar.sahoolatkar.api_models.product.ProductApiModel
-import com.sahoolatkar.sahoolatkar.globals.GlobalVariables
+import com.sahoolatkar.sahoolatkar.api_models.product.Product
 import com.sahoolatkar.sahoolatkar.ui.MainActivity
 import com.sahoolatkar.sahoolatkar.ui.fragments.HomeFragmentDirections
 import com.sahoolatkar.sahoolatkar.utils.ViewUtils
@@ -19,9 +18,9 @@ import kotlinx.android.synthetic.main.layout_product_item.view.*
 
 class ProductsSliderAdapter(
     val mainActivity: MainActivity,
-    private val products: List<ProductApiModel>,
+    private val products: List<Product>,
     isInfinite: Boolean
-) : LoopingPagerAdapter<ProductApiModel>(mainActivity, products, isInfinite) {
+) : LoopingPagerAdapter<Product>(mainActivity, products, isInfinite) {
 
     //This method will be triggered if the item View has not been inflated before.
     override fun inflateView(
@@ -80,7 +79,7 @@ class ProductsSliderAdapter(
         }
     }
 
-    private fun startProductDetailsFragment(product: ProductApiModel) {
+    private fun startProductDetailsFragment(product: Product) {
         Navigation.findNavController(mainActivity.findViewById(R.id.navHostFragment))
             .navigate(HomeFragmentDirections.actionHomeToProductDetailsFragment(product))
     }

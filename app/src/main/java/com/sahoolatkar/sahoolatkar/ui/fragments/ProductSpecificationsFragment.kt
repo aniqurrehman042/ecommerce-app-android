@@ -10,6 +10,7 @@ import com.sahoolatkar.sahoolatkar.R
 import com.sahoolatkar.sahoolatkar.adapters.SpecificationsRecyclerAdapter
 import com.sahoolatkar.sahoolatkar.api_models.product.Attributes
 import com.sahoolatkar.sahoolatkar.ui.MainActivity
+import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_specifications.*
 
 class ProductSpecificationsFragment(var attributes: List<Attributes>) : Fragment() {
@@ -38,5 +39,10 @@ class ProductSpecificationsFragment(var attributes: List<Attributes>) : Fragment
     private fun setUpRecycler() {
         rvSpecifications.layoutManager = LinearLayoutManager(mainActivity)
         rvSpecifications.adapter = SpecificationsRecyclerAdapter(attributes)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        this.clearFindViewByIdCache()
     }
 }

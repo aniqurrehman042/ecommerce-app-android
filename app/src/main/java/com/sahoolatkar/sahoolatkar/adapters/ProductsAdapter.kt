@@ -9,7 +9,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.sahoolatkar.sahoolatkar.R
-import com.sahoolatkar.sahoolatkar.api_models.product.ProductApiModel
+import com.sahoolatkar.sahoolatkar.api_models.product.Product
 import com.sahoolatkar.sahoolatkar.globals.GlobalVariables
 import com.sahoolatkar.sahoolatkar.ui.MainActivity
 import com.sahoolatkar.sahoolatkar.ui.fragments.HomeFragmentDirections
@@ -20,7 +20,7 @@ import com.squareup.picasso.Picasso
 
 class ProductsAdapter(
     val mainActivity: MainActivity,
-    val products: List<ProductApiModel>,
+    val products: List<Product>,
     private val parentFragment: String
 ) :
     RecyclerView.Adapter<ProductsAdapter.ViewHolder>() {
@@ -94,7 +94,7 @@ class ProductsAdapter(
         }
     }
 
-    private fun startProductDetailsFragment(product: ProductApiModel) {
+    private fun startProductDetailsFragment(product: Product) {
         when (parentFragment) {
             GlobalVariables.HOME_FRAGMENT -> {
                 Navigation.findNavController(mainActivity.findViewById(R.id.navHostFragment))

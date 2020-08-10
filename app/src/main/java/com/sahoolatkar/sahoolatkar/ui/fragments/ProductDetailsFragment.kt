@@ -17,6 +17,7 @@ import com.sahoolatkar.sahoolatkar.models.CartProduct
 import com.sahoolatkar.sahoolatkar.ui.MainActivity
 import com.sahoolatkar.sahoolatkar.utils.ViewUtils
 import com.sahoolatkar.sahoolatkar.viewmodels.MainViewModel
+import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_product_details.*
 import org.json.JSONObject
 
@@ -173,5 +174,10 @@ class ProductDetailsFragment : Fragment() {
         var num: Int = (tvQty.text).toString().toInt()
         num++
         tvQty.text = num.toString()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        this.clearFindViewByIdCache()
     }
 }

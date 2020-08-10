@@ -3,43 +3,33 @@ package com.sahoolatkar.sahoolatkar.ui.fragments
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
-import android.transition.Slide
-import android.transition.TransitionManager
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.PopupWindow
 import androidx.core.content.ContextCompat.getColor
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.sahoolatkar.sahoolatkar.R
 import com.sahoolatkar.sahoolatkar.adapters.OffersSliderAdapter
 import com.sahoolatkar.sahoolatkar.adapters.ProductsAdapter
 import com.sahoolatkar.sahoolatkar.adapters.ProductsSliderAdapter
-import com.sahoolatkar.sahoolatkar.adapters.SmallCategoriesRecyclerAdapter
-import com.sahoolatkar.sahoolatkar.api_callbacks.IGetAllProductsCallback
-import com.sahoolatkar.sahoolatkar.api_models.product.ProductApiModel
-import com.sahoolatkar.sahoolatkar.api_utils.SahoolatKarApiUtils
+import com.sahoolatkar.sahoolatkar.adapters.CategoriesRecyclerAdapter
+import com.sahoolatkar.sahoolatkar.api_models.product.Product
 import com.sahoolatkar.sahoolatkar.globals.GlobalVariables
-import com.sahoolatkar.sahoolatkar.models.CategoryModel
 import com.sahoolatkar.sahoolatkar.ui.MainActivity
 import com.sahoolatkar.sahoolatkar.ui.SplashActivity
+import com.sahoolatkar.sahoolatkar.utils.FixedDataUtils
 import com.sahoolatkar.sahoolatkar.viewmodels.MainViewModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.*
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
@@ -57,7 +47,12 @@ class HomeFragment : Fragment() {
     }
 
     private fun setUpViewModels() {
-        mainViewModel.mobiles.observe(viewLifecycleOwner, Observer<List<ProductApiModel>> {
+
+        mainViewModel.airConditioners.observe(viewLifecycleOwner, Observer<List<Product>> {
+            setUpAirConditionersRecycler(it)
+        })
+
+        mainViewModel.mobiles.observe(viewLifecycleOwner, Observer<List<Product>> {
             setUpMobilesRecycler(it)
         })
 
@@ -91,10 +86,10 @@ class HomeFragment : Fragment() {
             startProductsCatalogFragment(GlobalVariables.CATEGORY_MOBILES_ID, "Mobiles")
         }
 
-        tvHomeAppliancesViewAll.setOnClickListener {
+        tvAirConditionersViewAll.setOnClickListener {
             startProductsCatalogFragment(
-                GlobalVariables.CATEGORY_HOME_APPLIANCES_ID,
-                "Home Appliances"
+                GlobalVariables.CATEGORY_AIR_CONDITIONERS,
+                "Air Conditioners"
             )
         }
     }
@@ -137,36 +132,24 @@ class HomeFragment : Fragment() {
 
     private fun setUpRecyclers() {
         setUpCategoriesRecycler()
-        setUpHomeAppliancesRecycler()
     }
 
-    private fun setUpHomeAppliancesRecycler() {
-        SahoolatKarApiUtils.getProductsByCategory(
-            mainActivity,
-            GlobalVariables.CATEGORY_HOME_APPLIANCES_ID,
-            object :
-                IGetAllProductsCallback {
-                override fun onGetProducts(products: MutableList<ProductApiModel>) {
-
-                    val homeAppliancesAdapter =
-                        ProductsAdapter(
-                            mainActivity,
-                            products,
-                            GlobalVariables.HOME_FRAGMENT
-                        )
-                    if (rvHomeAppliances != null) {
-                        rvHomeAppliances.layoutManager = GridLayoutManager(context, 2)
-                        rvHomeAppliances.adapter = homeAppliancesAdapter
-                    }
-                }
-            })
+    private fun setUpAirConditionersRecycler(airConditioners: List<Product>) {
+        val airConditionersAdapter =
+            ProductsAdapter(
+                mainActivity,
+                airConditioners,
+                GlobalVariables.HOME_FRAGMENT
+            )
+        rvAirConditioners.layoutManager = GridLayoutManager(mainActivity, 2)
+        rvAirConditioners.adapter = airConditionersAdapter
     }
 
-    private fun setUpMobilesRecycler(it: List<ProductApiModel>) {
+    private fun setUpMobilesRecycler(mobiles: List<Product>) {
         val mobilesAdapter =
             ProductsAdapter(
                 mainActivity,
-                it,
+                mobiles,
                 GlobalVariables.HOME_FRAGMENT
             )
         rvMobiles.layoutManager = GridLayoutManager(mainActivity, 2)
@@ -174,80 +157,16 @@ class HomeFragment : Fragment() {
     }
 
     private fun setUpCategoriesRecycler() {
-        val categories: MutableList<CategoryModel> = ArrayList()
-        categories.add(
-            CategoryModel(
-                "Plastic Furniture",
-                "",
-                "https://learningtoys.pk/wp-content/uploads/2019/08/1-4-300x300.jpg",
-                R.drawable.ic_ic1_cat_furniture
-            )
-        )
-        categories.add(
-            CategoryModel(
-                "Mobile Phones",
-                "21",
-                "https://youngwomenshealth.org/wp-content/uploads/2014/02/fast-food.jpg",
-                R.drawable.ic_ic2_cat_mobile
-            )
-        )
-        categories.add(
-            CategoryModel(
-                "Deep Freezers",
-                "218",
-                "https://newmobiles.com.pk/wp-content/uploads/2020/06/infinix-note-7-pakistan-300x300.jpg",
-                R.drawable.ic_ic3_cat_deepfreezer
-            )
-        )
-        categories.add(
-            CategoryModel(
-                "Home Appliances",
-                "242",
-                "https://newmobiles.com.pk/wp-content/uploads/2020/06/infinix-note-7-pakistan-300x300.jpg",
-                R.drawable.ic_ic4_cat_home_appliances
-            )
-        )
-        categories.add(
-            CategoryModel(
-                "Air Conditioners",
-                "233",
-                "https://newmobiles.com.pk/wp-content/uploads/2020/06/infinix-note-7-pakistan-300x300.jpg",
-                R.drawable.ic_ic5_cat_ac
-            )
-        )
-        categories.add(
-            CategoryModel(
-                "Room Coolers",
-                "238",
-                "https://newmobiles.com.pk/wp-content/uploads/2020/06/infinix-note-7-pakistan-300x300.jpg",
-                R.drawable.ic_ic6_cat_roomcooler
-            )
-        )
-        categories.add(
-            CategoryModel(
-                "Water Dispenser",
-                "62",
-                "https://newmobiles.com.pk/wp-content/uploads/2020/06/infinix-note-7-pakistan-300x300.jpg",
-                R.drawable.ic_ic7_cat_waterdespensor
-            )
-        )
-        categories.add(
-            CategoryModel(
-                "Motorcycle",
-                "41",
-                "https://newmobiles.com.pk/wp-content/uploads/2020/06/infinix-note-7-pakistan-300x300.jpg",
-                R.drawable.ic_ic8_cat_motorcycle
-            )
-        )
+        val categories = FixedDataUtils.getCategoryList()
 
         val categoriesAdapter =
-            SmallCategoriesRecyclerAdapter(activity as Activity, categories)
+            CategoriesRecyclerAdapter(activity as Activity, categories)
         rvCategories.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         rvCategories.adapter = categoriesAdapter
     }
 
-    private fun setUpOffersSlider(offers: List<ProductApiModel>) {
+    private fun setUpOffersSlider(offers: List<Product>) {
         val sliderAdapter = OffersSliderAdapter(activity as Context, offers, true)
         offersSlider.adapter = sliderAdapter
 
@@ -257,7 +176,7 @@ class HomeFragment : Fragment() {
 
     }
 
-    private fun setUpFeaturedProductsSlider(featuredProducts: List<ProductApiModel>) {
+    private fun setUpFeaturedProductsSlider(featuredProducts: List<Product>) {
         val sliderAdapter = ProductsSliderAdapter(mainActivity, featuredProducts, true)
         featuredProductsSlider.adapter = sliderAdapter
 

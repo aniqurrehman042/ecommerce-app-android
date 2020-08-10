@@ -100,19 +100,19 @@
             app:layout_constraintTop_toBottomOf="@id/featuredProductsSlider" />
 
         <TextView
-            android:id="@+id/tvHomeAppliances"
+            android:id="@+id/tvAirConditioners"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/margin_small"
             android:layout_marginTop="@dimen/margin_extra_large"
-            android:text="Home Appliances"
+            android:text="Air Conditioners"
             android:textColor="@color/black"
             android:textSize="@dimen/text_heading"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv1stBanner" />
 
         <TextView
-            android:id="@+id/tvHomeAppliancesViewAll"
+            android:id="@+id/tvAirConditionersViewAll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_normal"
@@ -120,20 +120,20 @@
             android:textColor="@color/red"
             android:textSize="@dimen/text_small"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintBottom_toBottomOf="@id/tvHomeAppliances"
+            app:layout_constraintBottom_toBottomOf="@id/tvAirConditioners"
             android:paddingHorizontal="@dimen/padding_normal"
             android:paddingVertical="@dimen/_3sdp"
             android:layout_marginRight="@dimen/margin_small"
             android:background="@drawable/bg_white_circle_red_bordered"/>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvHomeAppliances"
+            android:id="@+id/rvAirConditioners"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_tiny"
             android:clipToPadding="false"
             android:paddingHorizontal="@dimen/padding_normal"
-            app:layout_constraintTop_toBottomOf="@id/tvHomeAppliances" />
+            app:layout_constraintTop_toBottomOf="@id/tvAirConditioners" />
 
         <TextView
             android:id="@+id/tvMobiles"
@@ -145,7 +145,7 @@
             android:textColor="@color/black"
             android:textSize="@dimen/text_heading"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rvHomeAppliances" />
+            app:layout_constraintTop_toBottomOf="@id/rvAirConditioners" />
 
         <TextView
             android:id="@+id/tvMobilesViewAll"

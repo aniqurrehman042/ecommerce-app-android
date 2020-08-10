@@ -1,6 +1,5 @@
 package com.sahoolatkar.sahoolatkar.ui.fragments
 
-import android.app.Activity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,9 +8,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sahoolatkar.sahoolatkar.R
 import com.sahoolatkar.sahoolatkar.adapters.MyOrdersAdapter
-import com.sahoolatkar.sahoolatkar.adapters.SmallCategoriesRecyclerAdapter
-import com.sahoolatkar.sahoolatkar.models.CategoryModel
 import com.sahoolatkar.sahoolatkar.models.UserOrderModel
+import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_home.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -74,5 +72,10 @@ class MyOrderFragment : Fragment() {
         rvCategories.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         rvCategories.adapter = myOrdersAdapter
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        this.clearFindViewByIdCache()
     }
 }

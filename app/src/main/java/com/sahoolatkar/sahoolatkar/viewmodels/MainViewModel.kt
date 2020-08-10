@@ -4,12 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.paging.DataSource
-import androidx.paging.LivePagedListBuilder
-import androidx.paging.PagedList
-import com.sahoolatkar.sahoolatkar.api_models.product.ProductApiModel
+import com.sahoolatkar.sahoolatkar.api_models.product.Product
 import com.sahoolatkar.sahoolatkar.api_utils.SahoolatKarApiUtils
-import com.sahoolatkar.sahoolatkar.data_sources.ProductDataSource
 import com.sahoolatkar.sahoolatkar.globals.GlobalVariables
 import com.sahoolatkar.sahoolatkar.models.CartProduct
 import kotlinx.coroutines.launch
@@ -17,14 +13,14 @@ import kotlinx.coroutines.launch
 class MainViewModel : ViewModel() {
 
 
-    val mobiles: LiveData<List<ProductApiModel>> by lazy<LiveData<List<ProductApiModel>>>{
+    val mobiles: LiveData<List<Product>> by lazy<LiveData<List<Product>>>{
 
-        MutableLiveData<List<ProductApiModel>>().also {
+        MutableLiveData<List<Product>>().also {
             viewModelScope.launch {
                 val response = SahoolatKarApiUtils.getProductsWithCo(
                     GlobalVariables.CATEGORY_MOBILES_ID,
-                    null,
-                    1
+                    pageNo = 1,
+                    pageSize = 10
                 )
                 if (response.isSuccessful) {
                     it.value = response.body()
@@ -33,13 +29,14 @@ class MainViewModel : ViewModel() {
         }
     }
 
-    val featuredProducts: LiveData<List<ProductApiModel>> by lazy<LiveData<List<ProductApiModel>>> {
-        MutableLiveData<List<ProductApiModel>>().also {
+    val airConditioners: LiveData<List<Product>> by lazy<LiveData<List<Product>>>{
+
+        MutableLiveData<List<Product>>().also {
             viewModelScope.launch {
                 val response = SahoolatKarApiUtils.getProductsWithCo(
-                    null,
-                    true,
-                    1
+                    GlobalVariables.CATEGORY_AIR_CONDITIONERS,
+                    pageNo = 1,
+                    pageSize = 10
                 )
                 if (response.isSuccessful) {
                     it.value = response.body()
@@ -48,13 +45,27 @@ class MainViewModel : ViewModel() {
         }
     }
 
-    val offers: LiveData<List<ProductApiModel>> by lazy<LiveData<List<ProductApiModel>>> {
-        MutableLiveData<List<ProductApiModel>>().also {
+    val featuredProducts: LiveData<List<Product>> by lazy<LiveData<List<Product>>> {
+        MutableLiveData<List<Product>>().also {
+            viewModelScope.launch {
+                val response = SahoolatKarApiUtils.getProductsWithCo(
+                    featured = true,
+                    pageNo = 1,
+                    pageSize = 10
+                )
+                if (response.isSuccessful) {
+                    it.value = response.body()
+                }
+            }
+        }
+    }
+
+    val offers: LiveData<List<Product>> by lazy<LiveData<List<Product>>> {
+        MutableLiveData<List<Product>>().also {
             viewModelScope.launch {
                 val response = SahoolatKarApiUtils.getProductsWithCo(
                     GlobalVariables.CATEGORY_OFFERS,
-                    null,
-                    1
+                    pageNo = 1
                 )
                 if (response.isSuccessful) {
                     it.value = response.body()
@@ -63,7 +74,7 @@ class MainViewModel : ViewModel() {
         }
     }
 
-    val wishListProducts: MutableList<ProductApiModel> = ArrayList()
+    val wishListProducts: MutableList<Product> = ArrayList()
 
     val cartProducts: MutableList<CartProduct> = ArrayList()
 

@@ -24,6 +24,7 @@ import com.sahoolatkar.sahoolatkar.models.CityFilterModel
 import com.sahoolatkar.sahoolatkar.models.StoreModel
 import com.sahoolatkar.sahoolatkar.utils.ViewUtils
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_store_locator.*
 import java.util.*
 import kotlin.collections.ArrayList
@@ -389,5 +390,10 @@ class StoreLocatorFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerC
             }
 
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        this.clearFindViewByIdCache()
     }
 }

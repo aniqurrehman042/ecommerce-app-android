@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.text.HtmlCompat
 import com.sahoolatkar.sahoolatkar.R
+import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_product_overview.*
 
 class ProductOverviewFragment(val shortDescription: String) : Fragment() {
@@ -40,5 +41,10 @@ class ProductOverviewFragment(val shortDescription: String) : Fragment() {
         } else {
             tvHighlights.text = HtmlCompat.fromHtml(shortDescription, HtmlCompat.FROM_HTML_MODE_COMPACT)
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        this.clearFindViewByIdCache()
     }
 }

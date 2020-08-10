@@ -1,17 +1,14 @@
 package com.sahoolatkar.sahoolatkar.adapters
 
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
-import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.sahoolatkar.sahoolatkar.api_models.product.ProductApiModel
+import com.sahoolatkar.sahoolatkar.api_models.product.Product
 import com.sahoolatkar.sahoolatkar.ui.fragments.ProductOverviewFragment
 import com.sahoolatkar.sahoolatkar.ui.fragments.ProductSpecificationsFragment
 
 class ProductDetailsPagerAdapter(
     fragment: Fragment,
-    val product: ProductApiModel
+    val product: Product
 ) : FragmentStateAdapter(fragment) {
 
     override fun getItemCount(): Int {

@@ -1,92 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cvPopUp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/bg_white_circle">
+    app:cardCornerRadius="8dp"
+    android:layout_height="wrap_content"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    android:background="@color/transparent"
+    android:layout_marginHorizontal="@dimen/margin_large">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cvPopUp"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:background="@color/transparent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <TextView
+            android:id="@+id/tvAll"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_marginStart="@dimen/margin_small"
+            android:layout_marginTop="@dimen/margin_small"
+            android:background="@drawable/bg_white_circle_dark_grey_bordered"
+            android:gravity="center"
+            android:text="All"
+            android:textSize="@dimen/text_normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tvOnline"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvOnline"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_25sdp"
+            android:background="@drawable/bg_white_circle_dark_grey_bordered"
+            android:gravity="center"
+            android:text="Online"
+            android:textSize="@dimen/text_normal"
+            app:layout_constraintStart_toEndOf="@+id/tvAll"
+            app:layout_constraintTop_toTopOf="@id/tvAll"
+            app:layout_constraintBottom_toBottomOf="@id/tvAll"
+            app:layout_constraintEnd_toStartOf="@id/tvInStore" />
+
+        <TextView
+            android:id="@+id/tvInStore"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_25sdp"
+            android:background="@drawable/bg_white_circle_dark_grey_bordered"
+            android:gravity="center"
+            android:text="In Store"
+            android:textSize="@dimen/text_normal"
+            app:layout_constraintBottom_toBottomOf="@+id/tvOnline"
+            app:layout_constraintStart_toEndOf="@+id/tvOnline"
+            app:layout_constraintTop_toTopOf="@+id/tvOnline"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/margin_small"/>
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:text="Categories"
+            android:textSize="@dimen/text_heading"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvAll" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvCategories"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView8"
+            app:layout_constraintVertical_bias="0.0" />
 
-            <TextView
-                android:id="@+id/tvOnline"
-                android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_25sdp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="28dp"
-                android:background="@drawable/bg_white_circle"
-                android:drawableLeft="@drawable/ic_store_locator"
-                android:gravity="center"
-                android:text="Online"
-                android:textSize="@dimen/text_normal"
-                app:layout_constraintStart_toEndOf="@+id/tvAll"
-                app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
-                android:id="@+id/tvAll"
-                android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_25sdp"
-                android:layout_marginStart="40dp"
-                android:background="#FFFFFF"
-                android:gravity="center"
-                android:text="All"
-                android:textSize="@dimen/text_normal"
-                app:layout_constraintBottom_toBottomOf="@+id/tvOnline"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/tvOnline"
-                app:layout_constraintVertical_bias="0.0" />
-
-            <TextView
-                android:id="@+id/tvInStore"
-                android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_25sdp"
-                android:layout_marginStart="20dp"
-                android:background="@drawable/bg_white_circle"
-                android:drawableLeft="@drawable/ic_store_locator"
-                android:gravity="center"
-                android:text="in store"
-                android:textSize="@dimen/text_normal"
-                app:layout_constraintBottom_toBottomOf="@+id/tvOnline"
-                app:layout_constraintStart_toEndOf="@+id/tvOnline"
-                app:layout_constraintTop_toTopOf="@+id/tvOnline" />
-
-            <TextView
-                android:id="@+id/textView8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-                android:text="Categories"
-                android:textSize="@dimen/text_heading"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvAll" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvCategories"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:layout_marginBottom="5dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView8"
-                app:layout_constraintVertical_bias="0.0" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

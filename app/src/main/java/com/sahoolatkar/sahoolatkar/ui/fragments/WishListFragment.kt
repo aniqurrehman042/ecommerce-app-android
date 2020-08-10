@@ -12,6 +12,7 @@ import com.sahoolatkar.sahoolatkar.adapters.ProductsAdapter
 import com.sahoolatkar.sahoolatkar.globals.GlobalVariables
 import com.sahoolatkar.sahoolatkar.ui.MainActivity
 import com.sahoolatkar.sahoolatkar.viewmodels.MainViewModel
+import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_wishlist.*
 
@@ -42,5 +43,10 @@ class WishListFragment : Fragment() {
     private fun setUpRecycler() {
         rvWishList.layoutManager = GridLayoutManager(context, 2)
         rvWishList.adapter = ProductsAdapter(mainActivity, mainViewModel.wishListProducts, GlobalVariables.WISH_LIST_FRAGMENT)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        this.clearFindViewByIdCache()
     }
 }

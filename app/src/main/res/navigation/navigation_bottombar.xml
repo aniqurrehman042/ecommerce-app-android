@@ -41,7 +41,7 @@
 
             <argument
                 android:name="product"
-                app:argType="com.sahoolatkar.sahoolatkar.api_models.product.ProductApiModel"
+                app:argType="com.sahoolatkar.sahoolatkar.api_models.product.Product"
                 app:nullable="false" />
 
         </action>
@@ -70,7 +70,7 @@
 
             <argument
                 android:name="product"
-                app:argType="com.sahoolatkar.sahoolatkar.api_models.product.ProductApiModel"
+                app:argType="com.sahoolatkar.sahoolatkar.api_models.product.Product"
                 app:nullable="false" />
 
         </action>
@@ -93,7 +93,7 @@
 
         <argument
             android:name="product"
-            app:argType="com.sahoolatkar.sahoolatkar.api_models.product.ProductApiModel"
+            app:argType="com.sahoolatkar.sahoolatkar.api_models.product.Product"
             app:nullable="false" />
 
     </fragment>
@@ -124,7 +124,7 @@
 
             <argument
                 android:name="product"
-                app:argType="com.sahoolatkar.sahoolatkar.api_models.product.ProductApiModel"
+                app:argType="com.sahoolatkar.sahoolatkar.api_models.product.Product"
                 app:nullable="false" />
 
         </action>

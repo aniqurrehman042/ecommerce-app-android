@@ -1,15 +1,13 @@
 package com.sahoolatkar.sahoolatkar.ui
 
 import android.app.Dialog
-import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.media.MediaPlayer
 import android.os.Bundle
-import android.transition.TransitionManager
 import android.view.Gravity
 import android.view.LayoutInflater
-import android.util.Log
 import android.view.View
-import android.view.ViewGroup
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
@@ -23,17 +21,17 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sahoolatkar.sahoolatkar.R
-import com.sahoolatkar.sahoolatkar.adapters.DealFilterAdapter
+import com.sahoolatkar.sahoolatkar.adapters.CategoriesRecyclerAdapter
 import com.sahoolatkar.sahoolatkar.adapters.MenuAdapter
-import com.sahoolatkar.sahoolatkar.api_models.product.ProductApiModel
-import com.sahoolatkar.sahoolatkar.models.CategoryModel
+import com.sahoolatkar.sahoolatkar.api_models.product.Product
 import com.sahoolatkar.sahoolatkar.models.MenuItemModel
+import com.sahoolatkar.sahoolatkar.utils.FixedDataUtils
+import com.sahoolatkar.sahoolatkar.utils.LoadingUtils
 import com.sahoolatkar.sahoolatkar.utils.UIUtils
 import com.sahoolatkar.sahoolatkar.utils.ViewUtils
 import com.sahoolatkar.sahoolatkar.viewmodels.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_menu.*
-import java.security.AccessController.getContext
 
 
 class MainActivity : AppCompatActivity() {
@@ -51,7 +49,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-     dialog= Dialog(this)
+        dialog = Dialog(this)
         UIUtils.setFullScreen(window)
 
         init()
@@ -72,11 +70,6 @@ class MainActivity : AppCompatActivity() {
     private fun setUpMenuRecycler() {
         val menuItems = ArrayList<MenuItemModel>()
         menuItems.add(MenuItemModel("Wish List", ""))
-        menuItems.add(MenuItemModel("Language", ""))
-        menuItems.add(MenuItemModel("Language", ""))
-        menuItems.add(MenuItemModel("Language", ""))
-        menuItems.add(MenuItemModel("Language", ""))
-        menuItems.add(MenuItemModel("Language", ""))
         rvMenuItems.layoutManager = LinearLayoutManager(this)
         rvMenuItems.adapter = MenuAdapter(this, menuItems)
     }
@@ -87,36 +80,58 @@ class MainActivity : AppCompatActivity() {
         animFadeInScaleUp =
             AnimationUtils.loadAnimation(this, R.anim.fade_in_scale_up).apply { fillAfter = true }
         animFadeOutScaleDown = AnimationUtils.loadAnimation(this, R.anim.fade_out_scale_down)
-            .apply { fillAfter = true }
+            .apply {
+                fillAfter = true
+                setAnimationListener(object : Animation.AnimationListener {
+                    override fun onAnimationRepeat(p0: Animation?) {
+
+                    }
+
+                    override fun onAnimationEnd(p0: Animation?) {
+                        ViewUtils.hideView(clCart)
+                    }
+
+                    override fun onAnimationStart(p0: Animation?) {
+
+                    }
+                })
+            }
         animFadeOutScaleDownFast =
             AnimationUtils.loadAnimation(this, R.anim.fade_out_scale_down_fast)
                 .apply { fillAfter = true }
         animExitToLeft =
             AnimationUtils.loadAnimation(this, R.anim.exit_to_left).apply {
-                fillAfter = true; setAnimationListener(object : Animation.AnimationListener {
-                override fun onAnimationRepeat(p0: Animation?) {
+                fillAfter = true
+                setAnimationListener(object : Animation.AnimationListener {
+                    override fun onAnimationRepeat(p0: Animation?) {
 
-                }
+                    }
 
-                override fun onAnimationEnd(p0: Animation?) {
-                    clMenuContainer.visibility = View.GONE
-                }
+                    override fun onAnimationEnd(p0: Animation?) {
+                        ViewUtils.hideView(clMenuContainer)
+                    }
 
-                override fun onAnimationStart(p0: Animation?) {
+                    override fun onAnimationStart(p0: Animation?) {
 
-                }
-            })
+                    }
+                })
             }
         animFadeIn = AlphaAnimation(0f, 1f).apply { fillAfter = true; duration = 500 }
         animFadeOut = AlphaAnimation(1f, 0f).apply { fillAfter = true; duration = 500 }
+
+        startInitialAnimations()
+    }
+
+    private fun startInitialAnimations() {
         val animExitToLeftFast =
             AnimationUtils.loadAnimation(this, R.anim.exit_to_left_fast).apply { fillAfter = true }
         val animFadeOutFast = AlphaAnimation(1f, 0f).apply { fillAfter = true; duration = 0 }
 
-        llCart.startAnimation(animFadeOutScaleDownFast)
+        clCart.startAnimation(animFadeOutScaleDownFast)
+        ViewUtils.hideView(clCart)
         clMenu.startAnimation(animExitToLeftFast)
         vOverlay.startAnimation(animFadeOutFast)
-        clMenuContainer.visibility = View.GONE
+        ViewUtils.hideView(clMenuContainer)
     }
 
     private fun setListeners() {
@@ -133,7 +148,7 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
-        ivSearchFilter.setOnClickListener{
+        ivSearchFilter.setOnClickListener {
             showPopUp()
         }
         ivMenu.setOnClickListener {
@@ -148,7 +163,7 @@ class MainActivity : AppCompatActivity() {
             closeMenu()
         }
 
-        llCart.setOnClickListener {
+        clCart.setOnClickListener {
             if (navHostFragment.childFragmentManager.fragments[0].javaClass.simpleName != "CartFragment")
                 Navigation.findNavController(this@MainActivity, R.id.navHostFragment)
                     .navigate(R.id.cartFragment, null, navOptions, null)
@@ -156,10 +171,10 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun openMenu() {
+    private fun openMenu() {
         clMenu.startAnimation(animEnterFromLeft)
         vOverlay.startAnimation(animFadeIn)
-        clMenuContainer.visibility = View.VISIBLE
+        ViewUtils.showView(clMenuContainer)
         menuOpen = true
     }
 
@@ -169,7 +184,7 @@ class MainActivity : AppCompatActivity() {
         menuOpen = false
     }
 
-    fun updateCartIcon(cartItems: Int) {
+    private fun updateCartIcon(cartItems: Int) {
         tvCartItems.text = cartItems.toString()
     }
 
@@ -192,16 +207,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showCart() {
-        llCart.startAnimation(animFadeInScaleUp)
+        ViewUtils.showView(clCart)
+        clCart.startAnimation(animFadeInScaleUp)
     }
 
     fun hideCart() {
-        llCart.startAnimation(animFadeOutScaleDown)
+        clCart.startAnimation(animFadeOutScaleDown)
     }
 
     fun blinkCart() {
-        llCart.startAnimation(animFadeOut)
-        llCart.startAnimation(animFadeIn)
+        clCart.startAnimation(animFadeOut)
+        clCart.startAnimation(animFadeIn)
     }
 
     private fun setUpBottomBar() {
@@ -215,7 +231,10 @@ class MainActivity : AppCompatActivity() {
 
     fun hideTopBar() {
         ViewUtils.hideView(vTopOval)
-        ViewUtils.hideView(ll_topbar)
+        ViewUtils.hideView(ivMenu)
+        ViewUtils.hideView(ivLogo)
+        ViewUtils.hideView(clCart)
+        ViewUtils.hideView(ivNotifications)
         hideSearchBar()
     }
 
@@ -233,16 +252,19 @@ class MainActivity : AppCompatActivity() {
 
     fun showTopBar() {
         ViewUtils.showView(vTopOval)
-        ViewUtils.showView(ll_topbar)
+        ViewUtils.showView(ivMenu)
+        ViewUtils.showView(ivLogo)
+        ViewUtils.showView(clCart)
+        ViewUtils.showView(ivNotifications)
         showSearchBar()
     }
 
-    fun removeProductFromWishList(product: ProductApiModel) {
+    fun removeProductFromWishList(product: Product) {
         if (mainViewModel.wishListProducts.contains(product))
             mainViewModel.wishListProducts.remove(product)
     }
 
-    fun addProductToWishList(product: ProductApiModel) {
+    fun addProductToWishList(product: Product) {
         if (!mainViewModel.wishListProducts.contains(product))
             mainViewModel.wishListProducts.add(product)
     }
@@ -253,101 +275,30 @@ class MainActivity : AppCompatActivity() {
             mpThrow.stop()
         mpThrow.start()
     }
-    fun showPopUp()
-    {
 
-        val inflater:LayoutInflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-
+    private fun showPopUp() {
         // Inflate a custom view using layout inflater
         val view: View =
-            LayoutInflater.from(this).inflate(R.layout.layout_deals_filter, null, false)
+            LayoutInflater.from(this).inflate(R.layout.layout_deals_filter, clRoot, false)
         // Initialize a new instance of popup window
         val popupWindow = PopupWindow(
             view, // Custom view to show in popup window
-            LinearLayout.LayoutParams.WRAP_CONTENT, // Width of popup window
-            LinearLayout.LayoutParams.WRAP_CONTENT,true // Window height
+            LinearLayout.LayoutParams.MATCH_PARENT, // Width of popup window
+            LinearLayout.LayoutParams.WRAP_CONTENT, true // Window height
         )
 
-        val recycler = view.findViewById<RecyclerView>(R.id.rvCategories);
+        popupWindow.setBackgroundDrawable(
+            ColorDrawable(
+                Color.TRANSPARENT
+            )
+        )
+
+        val recycler = view.findViewById<RecyclerView>(R.id.rvCategories)
         recycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        val listCategory = givelist()
-        rvMenuItems.adapter = DealFilterAdapter( listCategory)
-        TransitionManager.beginDelayedTransition(view as ViewGroup?)
-        popupWindow.showAtLocation(
-            view, // Location to display popup window
-            Gravity.CENTER, // Exact position of layout to display popup
-            0, // X offset
-            0 // Y offset
-        )
-    }
-    fun givelist() :MutableList<CategoryModel>
-    {
-        val categories: MutableList<CategoryModel> = ArrayList()
-        categories.add(
-            CategoryModel(
-                "Plastic Furniture",
-                "",
-                "https://learningtoys.pk/wp-content/uploads/2019/08/1-4-300x300.jpg",
-                R.drawable.ic_ic1_cat_furniture
-            )
-        )
-        categories.add(
-            CategoryModel(
-                "Mobile Phones",
-                "21",
-                "https://youngwomenshealth.org/wp-content/uploads/2014/02/fast-food.jpg",
-                R.drawable.ic_ic2_cat_mobile
-            )
-        )
-        categories.add(
-            CategoryModel(
-                "Deep Freezers",
-                "218",
-                "https://newmobiles.com.pk/wp-content/uploads/2020/06/infinix-note-7-pakistan-300x300.jpg",
-                R.drawable.ic_ic3_cat_deepfreezer
-            )
-        )
-        categories.add(
-            CategoryModel(
-                "Home Appliances",
-                "242",
-                "https://newmobiles.com.pk/wp-content/uploads/2020/06/infinix-note-7-pakistan-300x300.jpg",
-                R.drawable.ic_ic4_cat_home_appliances
-            )
-        )
-        categories.add(
-            CategoryModel(
-                "Air Conditioners",
-                "233",
-                "https://newmobiles.com.pk/wp-content/uploads/2020/06/infinix-note-7-pakistan-300x300.jpg",
-                R.drawable.ic_ic5_cat_ac
-            )
-        )
-        categories.add(
-            CategoryModel(
-                "Room Coolers",
-                "238",
-                "https://newmobiles.com.pk/wp-content/uploads/2020/06/infinix-note-7-pakistan-300x300.jpg",
-                R.drawable.ic_ic6_cat_roomcooler
-            )
-        )
-        categories.add(
-            CategoryModel(
-                "Water Dispenser",
-                "62",
-                "https://newmobiles.com.pk/wp-content/uploads/2020/06/infinix-note-7-pakistan-300x300.jpg",
-                R.drawable.ic_ic7_cat_waterdespensor
-            )
-        )
-        categories.add(
-            CategoryModel(
-                "Motorcycle",
-                "41",
-                "https://newmobiles.com.pk/wp-content/uploads/2020/06/infinix-note-7-pakistan-300x300.jpg",
-                R.drawable.ic_ic8_cat_motorcycle
-            )
-        )
-        return categories
+        val listCategory = FixedDataUtils.getCategoryList()
+        recycler.adapter = CategoriesRecyclerAdapter(this, listCategory)
+
+        popupWindow.showAtLocation(clRoot, Gravity.CENTER, 0, 0)
     }
 
     fun resetCart() {
@@ -357,6 +308,11 @@ class MainActivity : AppCompatActivity() {
 
     fun goBackToHomeFragment() {
         Navigation.findNavController(this, R.id.navHostFragment).popBackStack(R.id.home, false)
+    }
+
+    override fun onBackPressed() {
+        LoadingUtils.enableUserInteraction(this)
+        super.onBackPressed()
     }
 }
 

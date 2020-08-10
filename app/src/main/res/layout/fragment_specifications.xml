@@ -12,7 +12,8 @@
         android:text="Specifications"
         android:textColor="@color/black"
         android:textSize="@dimen/text_item_details"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_marginLeft="@dimen/margin_tiny"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvSpecifications"

@@ -11,6 +11,7 @@ import com.sahoolatkar.sahoolatkar.R
 import com.sahoolatkar.sahoolatkar.adapters.NotificationAdapter
 import com.sahoolatkar.sahoolatkar.models.NotificationModel
 import com.sahoolatkar.sahoolatkar.ui.MainActivity
+import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_notifications.*
 
 class NotificationsFragment : Fragment() {
@@ -60,5 +61,10 @@ class NotificationsFragment : Fragment() {
     override fun onPause() {
         super.onPause()
         mainActivity.showSearchBar()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        this.clearFindViewByIdCache()
     }
 }

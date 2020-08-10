@@ -18,6 +18,7 @@ import com.sahoolatkar.sahoolatkar.ui.MainActivity
 import com.sahoolatkar.sahoolatkar.utils.LoadingUtils
 import com.sahoolatkar.sahoolatkar.utils.ViewUtils
 import com.sahoolatkar.sahoolatkar.viewmodels.ProductCatalogViewModel
+import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_products_catalog.*
 import kotlinx.android.synthetic.main.layout_loader.*
 
@@ -86,5 +87,10 @@ class ProductsCatalogFragment : Fragment() {
     private fun setUpProductsRecycler() {
         rvProducts.layoutManager = GridLayoutManager(context, 2)
         rvProducts.adapter = productsPagedRecyclerAdapter
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        this.clearFindViewByIdCache()
     }
 }

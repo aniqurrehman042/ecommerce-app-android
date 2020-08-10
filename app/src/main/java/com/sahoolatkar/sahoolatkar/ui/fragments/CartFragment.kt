@@ -12,6 +12,7 @@ import com.sahoolatkar.sahoolatkar.R
 import com.sahoolatkar.sahoolatkar.adapters.CartRecyclerAdapter
 import com.sahoolatkar.sahoolatkar.ui.MainActivity
 import com.sahoolatkar.sahoolatkar.viewmodels.MainViewModel
+import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_cart.*
 
 class CartFragment : Fragment() {
@@ -49,5 +50,10 @@ class CartFragment : Fragment() {
     private fun setUpRecycler() {
         rvCart.layoutManager = LinearLayoutManager(mainActivity)
         rvCart.adapter = CartRecyclerAdapter(mainActivity, mainViewModel.cartProducts)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        this.clearFindViewByIdCache()
     }
 }

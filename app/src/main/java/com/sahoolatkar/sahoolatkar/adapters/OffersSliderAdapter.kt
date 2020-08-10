@@ -7,15 +7,14 @@ import android.view.ViewGroup
 import com.asksira.loopingviewpager.LoopingPagerAdapter
 import com.makeramen.roundedimageview.RoundedImageView
 import com.sahoolatkar.sahoolatkar.R
-import com.sahoolatkar.sahoolatkar.api_models.product.ProductApiModel
-import com.sahoolatkar.sahoolatkar.models.SliderItemModel
+import com.sahoolatkar.sahoolatkar.api_models.product.Product
 import com.squareup.picasso.Picasso
 
 class OffersSliderAdapter(
     context: Context,
-    var offers: List<ProductApiModel>,
+    var offers: List<Product>,
     isInfinite: Boolean
-) : LoopingPagerAdapter<ProductApiModel>(context, offers, isInfinite) {
+) : LoopingPagerAdapter<Product>(context, offers, isInfinite) {
 
     //This method will be triggered if the item View has not been inflated before.
     override fun inflateView(

@@ -1,16 +1,16 @@
 package com.sahoolatkar.sahoolatkar.data_sources
 
 import androidx.paging.PageKeyedDataSource
-import com.sahoolatkar.sahoolatkar.api_models.product.ProductApiModel
+import com.sahoolatkar.sahoolatkar.api_models.product.Product
 import com.sahoolatkar.sahoolatkar.api_utils.SahoolatKarApiUtils
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 
-class ProductDataSource(private val categoryId: String, private val coroutineScope: CoroutineScope) : PageKeyedDataSource<Int, ProductApiModel>() {
+class ProductDataSource(private val categoryId: String, private val coroutineScope: CoroutineScope) : PageKeyedDataSource<Int, Product>() {
     override fun loadInitial(
         params: LoadInitialParams<Int>,
-        callback: LoadInitialCallback<Int, ProductApiModel>
+        callback: LoadInitialCallback<Int, Product>
     ) {
         coroutineScope.launch {
             val response = SahoolatKarApiUtils.getProductsWithCo(categoryId, null, 1)
@@ -25,7 +25,7 @@ class ProductDataSource(private val categoryId: String, private val coroutineSco
 
     override fun loadAfter(
         params: LoadParams<Int>,
-        callback: LoadCallback<Int, ProductApiModel>
+        callback: LoadCallback<Int, Product>
     ) {
         coroutineScope.launch {
             val response = SahoolatKarApiUtils.getProductsWithCo(categoryId, null, params.key)
@@ -39,7 +39,7 @@ class ProductDataSource(private val categoryId: String, private val coroutineSco
 
     override fun loadBefore(
         params: LoadParams<Int>,
-        callback: LoadCallback<Int, ProductApiModel>
+        callback: LoadCallback<Int, Product>
     ) {
         coroutineScope.launch {
             val response = SahoolatKarApiUtils.getProductsWithCo(categoryId, null, params.key)

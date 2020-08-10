@@ -51,6 +51,7 @@ class GlobalVariables {
         const val CATEGORY_MOBILES_ID = "21"
         const val CATEGORY_HOME_APPLIANCES_ID = "242"
         const val CATEGORY_OFFERS: String = "243"
+        const val CATEGORY_AIR_CONDITIONERS: String = "233"
 
         // Installments
         const val INSTALLMENTS_1 = 0

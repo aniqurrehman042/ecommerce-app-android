@@ -11,7 +11,7 @@ import androidx.navigation.Navigation
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.sahoolatkar.sahoolatkar.R
-import com.sahoolatkar.sahoolatkar.api_models.product.ProductApiModel
+import com.sahoolatkar.sahoolatkar.api_models.product.Product
 import com.sahoolatkar.sahoolatkar.diff_util_callbacks.ProductsDiffUtilCallback
 import com.sahoolatkar.sahoolatkar.globals.GlobalVariables
 import com.sahoolatkar.sahoolatkar.ui.fragments.HomeFragmentDirections
@@ -20,7 +20,7 @@ import com.sahoolatkar.sahoolatkar.utils.ViewUtils
 import com.squareup.picasso.Picasso
 
 class ProductsPagedRecyclerAdapter(val activity: Activity, val parentFragment: String) :
-    PagedListAdapter<ProductApiModel, ProductsPagedRecyclerAdapter.ViewHolder>(
+    PagedListAdapter<Product, ProductsPagedRecyclerAdapter.ViewHolder>(
         ProductsDiffUtilCallback()
     ) {
     class ViewHolder(
@@ -28,7 +28,7 @@ class ProductsPagedRecyclerAdapter(val activity: Activity, val parentFragment: S
         private val parentFragment: String,
         private val activity: Activity
     ) : RecyclerView.ViewHolder(itemView) {
-        fun bindProduct(product: ProductApiModel) {
+        fun bindProduct(product: Product) {
             var liked = false
 
             tvProductName.text = product.name
@@ -63,7 +63,7 @@ class ProductsPagedRecyclerAdapter(val activity: Activity, val parentFragment: S
             }
         }
 
-        private fun startProductDetailsFragment(product: ProductApiModel) {
+        private fun startProductDetailsFragment(product: Product) {
             when (parentFragment) {
                 GlobalVariables.HOME_FRAGMENT -> {
                     Navigation.findNavController(activity.findViewById(R.id.navHostFragment))
