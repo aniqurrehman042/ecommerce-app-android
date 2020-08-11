@@ -74,6 +74,7 @@ class VerificationActivity : AppCompatActivity() {
 
     private fun startPinCreationActivity() {
         startActivity(Intent(this, PinCreationActivity::class.java))
+        finish()
     }
 
     private fun setupIndexLineNavigation() {

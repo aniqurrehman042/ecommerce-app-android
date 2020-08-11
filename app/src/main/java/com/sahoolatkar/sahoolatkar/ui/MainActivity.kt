@@ -1,40 +1,33 @@
 package com.sahoolatkar.sahoolatkar.ui
 
 import android.app.Dialog
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.media.MediaPlayer
 import android.os.Bundle
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.View
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.LinearLayout
-import android.widget.PopupWindow
+import android.view.inputmethod.EditorInfo
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavOptions
 import androidx.navigation.Navigation
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.sahoolatkar.sahoolatkar.R
-import com.sahoolatkar.sahoolatkar.adapters.CategoriesRecyclerAdapter
+import com.sahoolatkar.sahoolatkar.adapters.CategoriesFilterSpinnerAdapter
 import com.sahoolatkar.sahoolatkar.adapters.MenuAdapter
 import com.sahoolatkar.sahoolatkar.api_models.product.Product
+import com.sahoolatkar.sahoolatkar.models.Category
 import com.sahoolatkar.sahoolatkar.models.MenuItemModel
-import com.sahoolatkar.sahoolatkar.utils.FixedDataUtils
-import com.sahoolatkar.sahoolatkar.utils.LoadingUtils
-import com.sahoolatkar.sahoolatkar.utils.UIUtils
-import com.sahoolatkar.sahoolatkar.utils.ViewUtils
+import com.sahoolatkar.sahoolatkar.utils.*
 import com.sahoolatkar.sahoolatkar.viewmodels.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_menu.*
+import kotlinx.android.synthetic.main.layout_search_filter.*
 
 
 class MainActivity : AppCompatActivity() {
+
     private lateinit var animEnterFromLeft: Animation
     private lateinit var animExitToLeft: Animation
     private lateinit var animFadeInScaleUp: Animation
@@ -61,6 +54,23 @@ class MainActivity : AppCompatActivity() {
         setListeners()
         setAnimations()
         setUpMenuRecycler()
+        initSearchFilter()
+    }
+
+    private fun initSearchFilter() {
+        closeSearchFilterPopUp()
+
+        val categories = FixedDataUtils.getCategoryList()
+        categories.add(0, Category("Select Categories", "", "", 0))
+
+        spCategories.adapter = CategoriesFilterSpinnerAdapter(
+            this,
+            R.layout.layout_filter_category_item,
+            categories
+        )
+
+        rsPriceRange.valueFrom = 0f
+        rsPriceRange.valueTo = 300000f
     }
 
     private fun showMenu() {
@@ -148,9 +158,15 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
+
         ivSearchFilter.setOnClickListener {
-            showPopUp()
+            openSearchFilterPopUp()
         }
+
+        llCloseSearchFilter.setOnClickListener {
+            closeSearchFilterPopUp()
+        }
+
         ivMenu.setOnClickListener {
             if (menuOpen) {
                 closeMenu()
@@ -169,6 +185,20 @@ class MainActivity : AppCompatActivity() {
                     .navigate(R.id.cartFragment, null, navOptions, null)
         }
 
+        etSearch.setOnEditorActionListener { _, i, _ ->
+            if (i == EditorInfo.IME_ACTION_SEARCH) {
+                performSearch()
+                true
+            }
+
+            false
+        }
+
+    }
+
+    private fun performSearch() {
+        val searchTerm = etSearch.text.toString()
+        EditTextUtils.hideKeyboardFrom(this)
     }
 
     private fun openMenu() {
@@ -276,29 +306,12 @@ class MainActivity : AppCompatActivity() {
         mpThrow.start()
     }
 
-    private fun showPopUp() {
-        // Inflate a custom view using layout inflater
-        val view: View =
-            LayoutInflater.from(this).inflate(R.layout.layout_deals_filter, clRoot, false)
-        // Initialize a new instance of popup window
-        val popupWindow = PopupWindow(
-            view, // Custom view to show in popup window
-            LinearLayout.LayoutParams.MATCH_PARENT, // Width of popup window
-            LinearLayout.LayoutParams.WRAP_CONTENT, true // Window height
-        )
+    private fun openSearchFilterPopUp() {
+        ViewUtils.showView(clSearchFilterPopUp)
+    }
 
-        popupWindow.setBackgroundDrawable(
-            ColorDrawable(
-                Color.TRANSPARENT
-            )
-        )
-
-        val recycler = view.findViewById<RecyclerView>(R.id.rvCategories)
-        recycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        val listCategory = FixedDataUtils.getCategoryList()
-        recycler.adapter = CategoriesRecyclerAdapter(this, listCategory)
-
-        popupWindow.showAtLocation(clRoot, Gravity.CENTER, 0, 0)
+    private fun closeSearchFilterPopUp() {
+        ViewUtils.hideView(clSearchFilterPopUp)
     }
 
     fun resetCart() {
@@ -315,5 +328,3 @@ class MainActivity : AppCompatActivity() {
         super.onBackPressed()
     }
 }
-
-

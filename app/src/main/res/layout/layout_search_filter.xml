@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/clSearchFilterPopUp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvSearchFilterPopUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_normal"
+        android:layout_marginTop="@dimen/_180sdp"
+        app:cardBackgroundColor="@color/search_filter_bg"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:padding="@dimen/padding_large">
+
+            <TextView
+                android:id="@+id/tvAll"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_marginStart="@dimen/margin_small"
+                android:background="@drawable/bg_white_circle_dark_grey_bordered"
+                android:gravity="center"
+                android:paddingHorizontal="@dimen/padding_normal"
+                android:text="All"
+                android:textSize="@dimen/text_normal"
+                app:layout_constraintEnd_toStartOf="@id/tvOnline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvOnline"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_25sdp"
+                android:background="@drawable/bg_white_circle_dark_grey_bordered"
+                android:gravity="center"
+                android:paddingHorizontal="@dimen/padding_large"
+                android:text="Online"
+                android:textSize="@dimen/text_normal"
+                app:layout_constraintBottom_toBottomOf="@id/tvAll"
+                app:layout_constraintEnd_toStartOf="@id/tvInStore"
+                app:layout_constraintStart_toEndOf="@+id/tvAll"
+                app:layout_constraintTop_toTopOf="@id/tvAll" />
+
+            <TextView
+                android:id="@+id/tvInStore"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_marginEnd="@dimen/margin_small"
+                android:background="@drawable/bg_white_circle_dark_grey_bordered"
+                android:gravity="center"
+                android:paddingHorizontal="@dimen/padding_large"
+                android:text="In Store"
+                android:textSize="@dimen/text_normal"
+                app:layout_constraintBottom_toBottomOf="@+id/tvOnline"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tvOnline"
+                app:layout_constraintTop_toTopOf="@+id/tvOnline" />
+
+            <TextView
+                android:id="@+id/tvCategoriesHeading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:text="Categories"
+                android:textSize="@dimen/text_heading"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvAll" />
+
+            <Spinner
+                android:id="@+id/spCategories"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_tiny"
+                app:layout_constraintTop_toBottomOf="@id/tvCategoriesHeading" />
+
+            <TextView
+                android:id="@+id/tvPriceRangeHeading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:text="Price Range"
+                android:textSize="@dimen/text_heading"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spCategories" />
+
+            <com.google.android.material.slider.RangeSlider
+                android:id="@+id/rsPriceRange"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/red"
+                app:values="@array/initial_slider_values"
+                android:layout_marginTop="@dimen/margin_tiny"
+                app:layout_constraintTop_toBottomOf="@id/tvPriceRangeHeading" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:id="@+id/llCloseSearchFilter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="@drawable/bg_red_circle"
+        android:padding="@dimen/_3sdp"
+        app:layout_constraintTop_toTopOf="@id/cvSearchFilterPopUp"
+        app:layout_constraintRight_toRightOf="@id/cvSearchFilterPopUp"
+        app:layout_constraintBottom_toTopOf="@id/cvSearchFilterPopUp"
+        app:layout_constraintLeft_toRightOf="@id/cvSearchFilterPopUp">
+
+        <ImageView
+            android:layout_width="@dimen/_15sdp"
+            android:layout_height="@dimen/_15sdp"
+            android:src="@drawable/ic_close_white" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

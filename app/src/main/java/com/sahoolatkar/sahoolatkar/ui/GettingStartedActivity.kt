@@ -62,6 +62,7 @@ class GettingStartedActivity : AppCompatActivity() {
     private fun startSignInSignUpActivity() {
         SharedPrefsUtils.setFirstRun(this)
         startActivity(Intent(this, SignInSignUpActivity::class.java))
+        finish()
     }
 
     private fun setupViewPager() {

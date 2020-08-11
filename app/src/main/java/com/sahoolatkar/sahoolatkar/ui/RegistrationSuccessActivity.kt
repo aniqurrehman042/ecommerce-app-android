@@ -32,5 +32,6 @@ class RegistrationSuccessActivity : AppCompatActivity() {
 
     private fun startMainActivity() {
         startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 }

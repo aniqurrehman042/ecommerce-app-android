@@ -398,6 +398,7 @@ class SignInSignUpActivity : AppCompatActivity() {
 
     private fun startVerificationActivity() {
         startActivity(Intent(this@SignInSignUpActivity, VerificationActivity::class.java))
+        finish()
     }
 
     override fun onBackPressed() {

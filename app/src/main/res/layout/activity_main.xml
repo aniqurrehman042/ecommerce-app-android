@@ -109,7 +109,9 @@
         android:drawablePadding="@dimen/padding_small"
         android:hint="What are you looking for?"
         android:lines="1"
+        android:imeOptions="actionSearch"
         android:maxLines="1"
+        android:inputType="text"
         android:paddingVertical="@dimen/_10sdp"
         android:paddingLeft="@dimen/padding_normal"
         android:paddingRight="@dimen/padding_large"
@@ -161,6 +163,8 @@
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/menu_bottom_bar" />
+
+    <include layout="@layout/layout_search_filter" />
 
     <include layout="@layout/layout_menu" />
 

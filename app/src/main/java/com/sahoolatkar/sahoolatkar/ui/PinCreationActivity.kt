@@ -82,20 +82,15 @@ class PinCreationActivity : AppCompatActivity() {
                         )
                     }
                 } else {
-                    SharedPrefsUtils.deleteCustomer(this@PinCreationActivity)
                     ToastUtils.showLongToast(
                         this@PinCreationActivity,
                         "Failed To Register. Please Try Again."
                     )
-                    finish()
+                    SharedPrefsUtils.deleteCustomer(this@PinCreationActivity)
+                    startSignInSignUpActivity()
                 }
             }
         }
-    }
-
-    private fun startLoginActivity() {
-        startActivity(Intent(this, LoginActivity::class.java))
-        finish()
     }
 
     private fun validateFields(): Boolean {
@@ -116,9 +111,14 @@ class PinCreationActivity : AppCompatActivity() {
             }
         }
     }
+    private fun startSignInSignUpActivity() {
+        startActivity(Intent(this, SignInSignUpActivity::class.java))
+        finish()
+    }
 
     private fun startRegistrationSuccessActivity() {
         startActivity(Intent(this, RegistrationSuccessActivity::class.java))
+        finish()
     }
 
     private fun setupIndexLineNavigation() {

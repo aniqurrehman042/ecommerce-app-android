@@ -12,6 +12,11 @@
         <item>Policeman</item>
     </array>
 
+    <array name="initial_slider_values">
+        <item>0.0</item>
+        <item>300000.0</item>
+    </array>
+
     <!--    Fragment Labels-->
     <string name="fragment_home">fragment_home</string>
     <string name="fragment_products_catalog">fragment_products_catalog</string>

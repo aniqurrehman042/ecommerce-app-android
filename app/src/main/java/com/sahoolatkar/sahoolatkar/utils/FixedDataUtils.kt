@@ -1,16 +1,16 @@
 package com.sahoolatkar.sahoolatkar.utils
 
 import com.sahoolatkar.sahoolatkar.R
-import com.sahoolatkar.sahoolatkar.models.CategoryModel
+import com.sahoolatkar.sahoolatkar.models.Category
 
 class FixedDataUtils {
 
     companion object {
 
-        fun getCategoryList(): MutableList<CategoryModel> {
-            val categories: MutableList<CategoryModel> = ArrayList()
+        fun getCategoryList(): MutableList<Category> {
+            val categories: MutableList<Category> = ArrayList()
             categories.add(
-                CategoryModel(
+                Category(
                     "Plastic Furniture",
                     "",
                     "https://learningtoys.pk/wp-content/uploads/2019/08/1-4-300x300.jpg",
@@ -18,7 +18,7 @@ class FixedDataUtils {
                 )
             )
             categories.add(
-                CategoryModel(
+                Category(
                     "Mobile Phones",
                     "21",
                     "https://youngwomenshealth.org/wp-content/uploads/2014/02/fast-food.jpg",
@@ -26,7 +26,7 @@ class FixedDataUtils {
                 )
             )
             categories.add(
-                CategoryModel(
+                Category(
                     "Deep Freezers",
                     "218",
                     "https://newmobiles.com.pk/wp-content/uploads/2020/06/infinix-note-7-pakistan-300x300.jpg",
@@ -34,7 +34,7 @@ class FixedDataUtils {
                 )
             )
             categories.add(
-                CategoryModel(
+                Category(
                     "Home Appliances",
                     "242",
                     "https://newmobiles.com.pk/wp-content/uploads/2020/06/infinix-note-7-pakistan-300x300.jpg",
@@ -42,7 +42,7 @@ class FixedDataUtils {
                 )
             )
             categories.add(
-                CategoryModel(
+                Category(
                     "Air Conditioners",
                     "233",
                     "https://newmobiles.com.pk/wp-content/uploads/2020/06/infinix-note-7-pakistan-300x300.jpg",
@@ -50,7 +50,7 @@ class FixedDataUtils {
                 )
             )
             categories.add(
-                CategoryModel(
+                Category(
                     "Room Coolers",
                     "238",
                     "https://newmobiles.com.pk/wp-content/uploads/2020/06/infinix-note-7-pakistan-300x300.jpg",
@@ -58,7 +58,7 @@ class FixedDataUtils {
                 )
             )
             categories.add(
-                CategoryModel(
+                Category(
                     "Water Dispenser",
                     "62",
                     "https://newmobiles.com.pk/wp-content/uploads/2020/06/infinix-note-7-pakistan-300x300.jpg",
@@ -66,7 +66,7 @@ class FixedDataUtils {
                 )
             )
             categories.add(
-                CategoryModel(
+                Category(
                     "Motorcycle",
                     "41",
                     "https://newmobiles.com.pk/wp-content/uploads/2020/06/infinix-note-7-pakistan-300x300.jpg",

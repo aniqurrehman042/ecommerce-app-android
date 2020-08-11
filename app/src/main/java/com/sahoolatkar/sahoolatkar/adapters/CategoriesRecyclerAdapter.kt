@@ -10,11 +10,11 @@ import android.widget.TextView
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.sahoolatkar.sahoolatkar.R
-import com.sahoolatkar.sahoolatkar.models.CategoryModel
+import com.sahoolatkar.sahoolatkar.models.Category
 import com.sahoolatkar.sahoolatkar.ui.fragments.HomeFragmentDirections
 
 
-class CategoriesRecyclerAdapter(var activity: Activity, var horizontalItems: MutableList<CategoryModel>) :
+class CategoriesRecyclerAdapter(var activity: Activity, var horizontalItems: MutableList<Category>) :
     RecyclerView.Adapter<CategoriesRecyclerAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
