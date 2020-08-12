@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/clSearchFilterPopUp"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent"
+    android:background="@color/semi_trans_black"
+    android:elevation="20dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvSearchFilterPopUp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/margin_normal"
-        android:layout_marginTop="@dimen/_180sdp"
+        android:layout_marginTop="@dimen/_128sdp"
         app:cardBackgroundColor="@color/search_filter_bg"
         app:cardCornerRadius="15dp"
         app:cardElevation="0dp"
@@ -25,58 +28,14 @@
             android:padding="@dimen/padding_large">
 
             <TextView
-                android:id="@+id/tvAll"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/_25sdp"
-                android:layout_marginStart="@dimen/margin_small"
-                android:background="@drawable/bg_white_circle_dark_grey_bordered"
-                android:gravity="center"
-                android:paddingHorizontal="@dimen/padding_normal"
-                android:text="All"
-                android:textSize="@dimen/text_normal"
-                app:layout_constraintEnd_toStartOf="@id/tvOnline"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tvOnline"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/_25sdp"
-                android:background="@drawable/bg_white_circle_dark_grey_bordered"
-                android:gravity="center"
-                android:paddingHorizontal="@dimen/padding_large"
-                android:text="Online"
-                android:textSize="@dimen/text_normal"
-                app:layout_constraintBottom_toBottomOf="@id/tvAll"
-                app:layout_constraintEnd_toStartOf="@id/tvInStore"
-                app:layout_constraintStart_toEndOf="@+id/tvAll"
-                app:layout_constraintTop_toTopOf="@id/tvAll" />
-
-            <TextView
-                android:id="@+id/tvInStore"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/_25sdp"
-                android:layout_marginEnd="@dimen/margin_small"
-                android:background="@drawable/bg_white_circle_dark_grey_bordered"
-                android:gravity="center"
-                android:paddingHorizontal="@dimen/padding_large"
-                android:text="In Store"
-                android:textSize="@dimen/text_normal"
-                app:layout_constraintBottom_toBottomOf="@+id/tvOnline"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tvOnline"
-                app:layout_constraintTop_toTopOf="@+id/tvOnline" />
-
-            <TextView
                 android:id="@+id/tvCategoriesHeading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_small"
                 android:text="Categories"
                 android:textSize="@dimen/text_heading"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvAll" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Spinner
                 android:id="@+id/spCategories"
@@ -103,7 +62,38 @@
                 android:backgroundTint="@color/red"
                 app:values="@array/initial_slider_values"
                 android:layout_marginTop="@dimen/margin_tiny"
+                app:labelBehavior="gone"
                 app:layout_constraintTop_toBottomOf="@id/tvPriceRangeHeading" />
+
+            <TextView
+                android:id="@+id/tvMinPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Min: Rs.1000"
+                android:layout_marginTop="@dimen/margin_tiny"
+                app:layout_constraintLeft_toLeftOf="@id/rsPriceRange"
+                app:layout_constraintTop_toBottomOf="@id/rsPriceRange" />
+
+            <TextView
+                android:id="@+id/tvMaxPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Max: Rs.15000"
+                android:layout_marginTop="@dimen/margin_tiny"
+                app:layout_constraintRight_toRightOf="@id/rsPriceRange"
+                app:layout_constraintTop_toBottomOf="@id/rsPriceRange" />
+
+            <ImageButton
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:src="@drawable/ic_search_white"
+                android:scaleType="centerInside"
+                android:background="@drawable/bg_red_rounded"
+                android:padding="@dimen/_3sdp"
+                app:layout_constraintTop_toBottomOf="@id/tvMinPrice"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginTop="@dimen/margin_small" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -3,9 +3,12 @@ package com.sahoolatkar.sahoolatkar.utils
 import android.app.Activity
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
 import android.view.Window
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import com.sahoolatkar.sahoolatkar.R
+import com.sahoolatkar.sahoolatkar.ui.MainActivity
 
 
 class EditTextUtils {
@@ -44,7 +47,7 @@ class EditTextUtils {
             return combinedInputOfEts
         }
 
-        fun setToggleStatusbarOnEtFocus(ets : Array<EditText>, window: Window) {
+        fun setToggleStatusbarOnEtFocus(ets: Array<EditText>, window: Window) {
             for (et in ets) {
                 et.setOnFocusChangeListener { _, hasFocus ->
                     if (hasFocus) {
@@ -58,7 +61,10 @@ class EditTextUtils {
 
         fun hideKeyboardFrom(activity: Activity) {
             try {
-                (activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager).hideSoftInputFromWindow(activity.currentFocus!!.windowToken, 0)
+                (activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager).hideSoftInputFromWindow(
+                    activity.currentFocus!!.windowToken,
+                    0
+                )
             } catch (e: Exception) {
 
             }
@@ -101,6 +107,16 @@ class EditTextUtils {
                 }
             })
         }
+
+        fun hideKeyboardFromActivityOnOutsideClick(mainActivity: MainActivity, root: View) {
+            root.setOnClickListener {
+                hideKeyboardFrom(mainActivity)
+                val etSearch = mainActivity.findViewById<EditText>(R.id.etSearch)
+                if (etSearch.hasFocus())
+                    etSearch.clearFocus()
+            }
+        }
+
     }
 
 }

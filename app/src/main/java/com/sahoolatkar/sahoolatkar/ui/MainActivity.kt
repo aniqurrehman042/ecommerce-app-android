@@ -3,6 +3,7 @@ package com.sahoolatkar.sahoolatkar.ui
 import android.app.Dialog
 import android.media.MediaPlayer
 import android.os.Bundle
+import android.view.View
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
@@ -69,8 +70,13 @@ class MainActivity : AppCompatActivity() {
             categories
         )
 
-        rsPriceRange.valueFrom = 0f
-        rsPriceRange.valueTo = 300000f
+        rsPriceRange.valueFrom = 1000f
+        rsPriceRange.valueTo = 150000f
+
+        rsPriceRange.addOnChangeListener { slider, value, fromUser ->
+            tvMinPrice.text = "Min: Rs." + slider.values[0].toInt().toString()
+            tvMaxPrice.text = "Max: Rs." + slider.values[1].toInt().toString()
+        }
     }
 
     private fun showMenu() {
@@ -192,6 +198,18 @@ class MainActivity : AppCompatActivity() {
             }
 
             false
+        }
+
+        clRoot.setOnClickListener {
+            EditTextUtils.hideKeyboardFrom(this)
+            if (etSearch.hasFocus())
+                etSearch.clearFocus()
+        }
+
+        clSearchFilterPopUp.setOnClickListener {
+            EditTextUtils.hideKeyboardFrom(this)
+            if (etSearch.hasFocus())
+                etSearch.clearFocus()
         }
 
     }

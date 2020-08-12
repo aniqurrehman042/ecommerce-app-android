@@ -116,6 +116,10 @@
         android:paddingLeft="@dimen/padding_normal"
         android:paddingRight="@dimen/padding_large"
         android:textSize="@dimen/_11sdp"
+        android:elevation="22dp"
+        android:shadowColor="@color/transparent"
+        android:outlineAmbientShadowColor="@color/transparent"
+        android:outlineSpotShadowColor="@color/transparent"
         app:layout_constraintTop_toBottomOf="@id/ivLogo" />
 
     <ImageView
@@ -126,7 +130,10 @@
         android:src="@drawable/ic_filter_red"
         app:layout_constraintBottom_toBottomOf="@id/etSearch"
         app:layout_constraintRight_toRightOf="@id/etSearch"
-        app:layout_constraintTop_toTopOf="@id/etSearch" />
+        app:layout_constraintTop_toTopOf="@id/etSearch"
+        android:elevation="23dp"
+        android:outlineSpotShadowColor="@color/transparent"
+        android:outlineAmbientShadowColor="@color/transparent"/>
 
     <View
         android:id="@+id/vEtVerticalLine"
@@ -137,7 +144,10 @@
         android:background="@color/red"
         app:layout_constraintBottom_toBottomOf="@id/etSearch"
         app:layout_constraintRight_toLeftOf="@id/ivSearchFilter"
-        app:layout_constraintTop_toTopOf="@id/etSearch" />
+        app:layout_constraintTop_toTopOf="@id/etSearch"
+        android:elevation="23dp"
+        android:outlineSpotShadowColor="@color/transparent"
+        android:outlineAmbientShadowColor="@color/transparent"/>
 
     <fragment
         android:id="@+id/navHostFragment"

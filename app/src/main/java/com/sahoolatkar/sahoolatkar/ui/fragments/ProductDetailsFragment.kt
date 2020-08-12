@@ -15,6 +15,7 @@ import com.sahoolatkar.sahoolatkar.adapters.ProductImgsSliderAdapter
 import com.sahoolatkar.sahoolatkar.globals.GlobalVariables
 import com.sahoolatkar.sahoolatkar.models.CartProduct
 import com.sahoolatkar.sahoolatkar.ui.MainActivity
+import com.sahoolatkar.sahoolatkar.utils.EditTextUtils
 import com.sahoolatkar.sahoolatkar.utils.ViewUtils
 import com.sahoolatkar.sahoolatkar.viewmodels.MainViewModel
 import kotlinx.android.synthetic.*
@@ -56,6 +57,7 @@ class ProductDetailsFragment : Fragment() {
         if (args.product.meta_data.isNotEmpty() && args.product.meta_data[0].value.value[0] != '{') {
             ViewUtils.hideView(rgInstallments)
             ViewUtils.hideView(tvStartingFrom)
+            ViewUtils.hideView(tvPerMonth)
         } else {
             if (!args.product.variations.isNullOrEmpty()) {
                 getPrices()
@@ -103,6 +105,8 @@ class ProductDetailsFragment : Fragment() {
                 rb12Installments.id -> tvPrice.text = prices[4]
             }
         }
+
+        EditTextUtils.hideKeyboardFromActivityOnOutsideClick(mainActivity, clRoot)
     }
 
     private fun addCartItem() {

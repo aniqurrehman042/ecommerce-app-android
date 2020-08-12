@@ -34,7 +34,7 @@ class MainViewModel : ViewModel() {
         MutableLiveData<List<Product>>().also {
             viewModelScope.launch {
                 val response = SahoolatKarApiUtils.getProductsWithCo(
-                    GlobalVariables.CATEGORY_AIR_CONDITIONERS,
+                    GlobalVariables.CATEGORY_INVERTER_AC_ID,
                     pageNo = 1,
                     pageSize = 10
                 )

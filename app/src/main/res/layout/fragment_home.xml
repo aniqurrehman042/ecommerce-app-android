@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView
+    android:id="@+id/nsvRoot"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,6 +9,7 @@
     tools:context=".ui.fragments.HomeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clMain"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -21,6 +24,15 @@
             app:viewpagerAspectRatio="2.2"
             app:itemAspectRatio="2.2"
             app:layout_constraintTop_toTopOf="parent"/>
+
+        <ProgressBar
+            android:id="@+id/pbOffersSliderLoader"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            app:layout_constraintTop_toTopOf="@id/offersSlider"
+            app:layout_constraintBottom_toBottomOf="@id/offersSlider"
+            app:layout_constraintLeft_toLeftOf="@id/offersSlider"
+            app:layout_constraintRight_toRightOf="@id/offersSlider" />
 
         <com.asksira.loopingviewpager.indicator.CustomShapePagerIndicator
             android:id="@+id/offersIndicator"
@@ -82,15 +94,24 @@
         <com.asksira.loopingviewpager.LoopingViewPager
             android:id="@+id/featuredProductsSlider"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_140sdp"
+            android:layout_height="@dimen/_100sdp"
             app:isInfinite="true"
             app:autoScroll="true"
             app:scrollInterval="4000"
             android:clipToPadding="false"
-            app:viewpagerAspectRatio="1.2"
-            app:itemAspectRatio="1.2"
+            app:viewpagerAspectRatio="1.8"
+            app:itemAspectRatio="1.8"
             android:layout_marginTop="@dimen/margin_normal"
             app:layout_constraintTop_toBottomOf="@id/tvFeaturedProductsHeading"/>
+
+        <ProgressBar
+            android:id="@+id/pbFeaturedProductsSliderLoader"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            app:layout_constraintTop_toTopOf="@id/featuredProductsSlider"
+            app:layout_constraintBottom_toBottomOf="@id/featuredProductsSlider"
+            app:layout_constraintLeft_toLeftOf="@id/featuredProductsSlider"
+            app:layout_constraintRight_toRightOf="@id/featuredProductsSlider" />
 
         <ImageView
             android:id="@+id/iv1stBanner"
@@ -126,14 +147,28 @@
             android:layout_marginRight="@dimen/margin_small"
             android:background="@drawable/bg_white_circle_red_bordered"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvAirConditioners"
+        <LinearLayout
+            android:id="@+id/llAirConditioners"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_tiny"
-            android:clipToPadding="false"
-            android:paddingHorizontal="@dimen/padding_normal"
-            app:layout_constraintTop_toBottomOf="@id/tvAirConditioners" />
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            app:layout_constraintTop_toBottomOf="@id/tvAirConditioners" >
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvInverterAC"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_tiny"
+                android:clipToPadding="false"
+                android:paddingHorizontal="@dimen/padding_normal" />
+
+            <ProgressBar
+                android:id="@+id/pbInverterACLoader"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp" />
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/tvMobiles"
@@ -145,7 +180,7 @@
             android:textColor="@color/black"
             android:textSize="@dimen/text_heading"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rvAirConditioners" />
+            app:layout_constraintTop_toBottomOf="@id/llAirConditioners" />
 
         <TextView
             android:id="@+id/tvMobilesViewAll"
@@ -162,15 +197,29 @@
             android:layout_marginRight="@dimen/margin_small"
             android:background="@drawable/bg_white_circle_red_bordered"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvMobiles"
+        <LinearLayout
+            android:id="@+id/llMobiles"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_tiny"
-            android:clipToPadding="false"
-            android:paddingHorizontal="@dimen/padding_normal"
-            android:paddingBottom="@dimen/padding_large"
-            app:layout_constraintTop_toBottomOf="@id/tvMobiles" />
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            app:layout_constraintTop_toBottomOf="@id/tvMobiles">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvMobiles"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_tiny"
+                android:clipToPadding="false"
+                android:paddingHorizontal="@dimen/padding_normal"
+                android:paddingBottom="@dimen/padding_large" />
+
+            <ProgressBar
+                android:id="@+id/pbMobilesLoader"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp" />
+
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

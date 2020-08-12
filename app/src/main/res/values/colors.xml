@@ -14,7 +14,7 @@
     <color name="light_green">#4400aa00</color>
     <color name="extra_dark_grey">#4d4d4d</color>
     <color name="semi_trans_black">#88000000</color>
-    <color name="search_filter_bg">#eefdfdfd</color>
+    <color name="search_filter_bg">#eeffffff</color>
     <color name="simple_red">#ff0000</color>
     <color name="semi_trans_white">#ddffffff</color>
 </resources>

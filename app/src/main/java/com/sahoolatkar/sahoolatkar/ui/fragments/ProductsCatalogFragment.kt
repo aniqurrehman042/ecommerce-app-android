@@ -4,19 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
-import androidx.paging.PagedList
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sahoolatkar.sahoolatkar.R
 import com.sahoolatkar.sahoolatkar.adapters.ProductsPagedRecyclerAdapter
 import com.sahoolatkar.sahoolatkar.globals.GlobalVariables
 import com.sahoolatkar.sahoolatkar.ui.MainActivity
+import com.sahoolatkar.sahoolatkar.utils.EditTextUtils
 import com.sahoolatkar.sahoolatkar.utils.LoadingUtils
-import com.sahoolatkar.sahoolatkar.utils.ViewUtils
 import com.sahoolatkar.sahoolatkar.viewmodels.ProductCatalogViewModel
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_products_catalog.*
@@ -28,7 +26,7 @@ class ProductsCatalogFragment : Fragment() {
     private lateinit var productsPagedRecyclerAdapter: ProductsPagedRecyclerAdapter
     private var productsCatalogViewModel: ProductCatalogViewModel? = null
 
-    val args: ProductsCatalogFragmentArgs by navArgs()
+    private val args: ProductsCatalogFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,10 +44,15 @@ class ProductsCatalogFragment : Fragment() {
     }
 
     private fun init() {
+        setListeners()
         setCategoryText()
         initializeAdapter()
         setUpProductsRecycler()
         setUpViewModel()
+    }
+
+    private fun setListeners() {
+        EditTextUtils.hideKeyboardFromActivityOnOutsideClick(mainActivity, clRoot)
     }
 
     private fun setCategoryText() {

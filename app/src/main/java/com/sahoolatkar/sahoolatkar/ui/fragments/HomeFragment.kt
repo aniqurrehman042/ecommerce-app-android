@@ -26,7 +26,9 @@ import com.sahoolatkar.sahoolatkar.api_models.product.Product
 import com.sahoolatkar.sahoolatkar.globals.GlobalVariables
 import com.sahoolatkar.sahoolatkar.ui.MainActivity
 import com.sahoolatkar.sahoolatkar.ui.SplashActivity
+import com.sahoolatkar.sahoolatkar.utils.EditTextUtils
 import com.sahoolatkar.sahoolatkar.utils.FixedDataUtils
+import com.sahoolatkar.sahoolatkar.utils.ViewUtils
 import com.sahoolatkar.sahoolatkar.viewmodels.MainViewModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.*
@@ -49,7 +51,7 @@ class HomeFragment : Fragment() {
     private fun setUpViewModels() {
 
         mainViewModel.airConditioners.observe(viewLifecycleOwner, Observer<List<Product>> {
-            setUpAirConditionersRecycler(it)
+            setUpInverterACRecycler(it)
         })
 
         mainViewModel.mobiles.observe(viewLifecycleOwner, Observer<List<Product>> {
@@ -88,10 +90,12 @@ class HomeFragment : Fragment() {
 
         tvAirConditionersViewAll.setOnClickListener {
             startProductsCatalogFragment(
-                GlobalVariables.CATEGORY_AIR_CONDITIONERS,
+                GlobalVariables.CATEGORY_INVERTER_AC_ID,
                 "Air Conditioners"
             )
         }
+
+        EditTextUtils.hideKeyboardFromActivityOnOutsideClick(mainActivity, clMain)
     }
 
     private fun startProductsCatalogFragment(categoryId: String, categoryName: String) {
@@ -134,15 +138,17 @@ class HomeFragment : Fragment() {
         setUpCategoriesRecycler()
     }
 
-    private fun setUpAirConditionersRecycler(airConditioners: List<Product>) {
+    private fun setUpInverterACRecycler(airConditioners: List<Product>) {
         val airConditionersAdapter =
             ProductsAdapter(
                 mainActivity,
                 airConditioners,
                 GlobalVariables.HOME_FRAGMENT
             )
-        rvAirConditioners.layoutManager = GridLayoutManager(mainActivity, 2)
-        rvAirConditioners.adapter = airConditionersAdapter
+        rvInverterAC.layoutManager = GridLayoutManager(mainActivity, 2)
+        rvInverterAC.adapter = airConditionersAdapter
+
+        ViewUtils.hideView(pbInverterACLoader)
     }
 
     private fun setUpMobilesRecycler(mobiles: List<Product>) {
@@ -154,6 +160,8 @@ class HomeFragment : Fragment() {
             )
         rvMobiles.layoutManager = GridLayoutManager(mainActivity, 2)
         rvMobiles.adapter = mobilesAdapter
+
+        ViewUtils.hideView(pbMobilesLoader)
     }
 
     private fun setUpCategoriesRecycler() {
@@ -174,6 +182,8 @@ class HomeFragment : Fragment() {
         offersSlider.setPadding(70, 0, 70, 0)
         offersSlider.pageMargin = 20
 
+        ViewUtils.hideView(pbOffersSliderLoader)
+
     }
 
     private fun setUpFeaturedProductsSlider(featuredProducts: List<Product>) {
@@ -183,6 +193,8 @@ class HomeFragment : Fragment() {
         featuredProductsSlider.clipToPadding = false
         featuredProductsSlider.setPadding(70, 0, 70, 0)
         featuredProductsSlider.pageMargin = 20
+
+        ViewUtils.hideView(pbFeaturedProductsSliderLoader)
 
     }
 

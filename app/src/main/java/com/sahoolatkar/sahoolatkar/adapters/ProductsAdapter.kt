@@ -33,6 +33,7 @@ class ProductsAdapter(
         val tvPrice: TextView = itemView.findViewById(R.id.tvPrice)
         val tvStartingFrom: TextView = itemView.findViewById(R.id.tvStartingFrom)
         val tvInstallments: TextView = itemView.findViewById(R.id.tvInstallments)
+        val tvPerMonth: TextView = itemView.findViewById(R.id.tvPerMonth)
         val clProduct: ConstraintLayout = itemView.findViewById(R.id.clProduct)
     }
 
@@ -53,9 +54,11 @@ class ProductsAdapter(
         if (product.meta_data[0].value.value[0] == '{' && !product.variations.isNullOrEmpty()) {
             ViewUtils.showView(holder.tvStartingFrom)
             ViewUtils.showView(holder.tvInstallments)
+            ViewUtils.showView(holder.tvPerMonth)
         } else {
             ViewUtils.hideView(holder.tvStartingFrom)
             ViewUtils.hideView(holder.tvInstallments)
+            ViewUtils.hideView(holder.tvPerMonth)
         }
         holder.tvPrice.text = product.price
         if (!product.images.isNullOrEmpty()) {
