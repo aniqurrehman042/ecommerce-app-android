@@ -11,7 +11,10 @@ import com.sahoolatkar.sahoolatkar.R
 import com.sahoolatkar.sahoolatkar.models.MenuItemModel
 import com.sahoolatkar.sahoolatkar.ui.MainActivity
 
-class MenuAdapter(private val mainActivity: MainActivity, private val infoList: MutableList<MenuItemModel>) :
+class MenuAdapter(
+    private val mainActivity: MainActivity,
+    private val infoList: MutableList<MenuItemModel>
+) :
     RecyclerView.Adapter<MenuAdapter.MyView>() {
 
     inner class MyView(itemView: View) :
@@ -35,11 +38,22 @@ class MenuAdapter(private val mainActivity: MainActivity, private val infoList: 
         position: Int
     ) {
         holder.countryName.text = infoList[position].title
-        if (infoList[position].title == "Wish List") {
-            holder.llMain.setOnClickListener {
-                Navigation.findNavController(mainActivity, R.id.navHostFragment).navigate(R.id.wishListFragment)
-                mainActivity.closeMenu()
+        when (infoList[position].title) {
+            "Wish List" -> {
+                setClickListener(holder.llMain, R.id.wishListFragment)
             }
+
+            "Order History" -> {
+                setClickListener(holder.llMain, R.id.orderHistoryFragment)
+            }
+        }
+    }
+
+    private fun setClickListener(llMain: LinearLayout, fragmentId: Int) {
+        llMain.setOnClickListener {
+            Navigation.findNavController(mainActivity, R.id.navHostFragment)
+                .navigate(fragmentId)
+            mainActivity.closeMenu()
         }
     }
 

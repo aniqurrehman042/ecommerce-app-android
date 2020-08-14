@@ -1,8 +1,5 @@
 package com.sahoolatkar.sahoolatkar.api_utils
 
-import android.content.Context
-import android.widget.Toast
-import com.sahoolatkar.sahoolatkar.api_callbacks.IGetAllProductsCallback
 import com.sahoolatkar.sahoolatkar.api_models.NadraResponse
 import com.sahoolatkar.sahoolatkar.api_models.customer.Customer
 import com.sahoolatkar.sahoolatkar.api_models.order.Order
@@ -13,8 +10,6 @@ import com.sahoolatkar.sahoolatkar.apis_clients.SahoolatkarCustomersApiClient
 import com.sahoolatkar.sahoolatkar.globals.GlobalVariables
 import com.sahoolatkar.sahoolatkar.http_services.SahoolatkarCustomersService
 import com.sahoolatkar.sahoolatkar.http_services.SahoolatkarWoocommerceApiService
-import retrofit2.Call
-import retrofit2.Callback
 import retrofit2.Response
 
 @Suppress("UNCHECKED_CAST")
@@ -32,16 +27,16 @@ class SahoolatKarApiUtils {
         private val sahoolatkarCustomersApiClient: SahoolatkarCustomersApiClient =
             SahoolatkarCustomersService.createService(SahoolatkarCustomersApiClient::class.java)
 
-        suspend fun getProductsWithCo(
+        suspend fun getProducts(
             categoryId: String? = null,
             featured: Boolean? = null,
             pageNo: Int,
             pageSize: Int = 20
         ): Response<List<Product>> {
             return try {
-                sahoolatkarApiClient.getProductsWithCo(categoryId, featured, pageNo, pageSize = pageSize)
+                sahoolatkarApiClient.getProducts(categoryId, featured, pageNo, pageSize = pageSize)
             } catch (e: Exception) {
-                getProductsWithCo(categoryId, featured, pageNo, pageSize = pageSize)
+                getProducts(categoryId, featured, pageNo, pageSize = pageSize)
             }
         }
 
@@ -50,6 +45,14 @@ class SahoolatKarApiUtils {
                 sahoolatkarApiClient.postOrder(order)
             } catch (e: Exception) {
                 postOrder(order)
+            }
+        }
+
+        suspend fun getOrders(cusId: Int) : Response<List<Order>> {
+            return try {
+                sahoolatkarApiClient.getOrders(cusId)
+            } catch (e: Exception) {
+                getOrders(cusId)
             }
         }
 

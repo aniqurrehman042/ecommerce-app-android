@@ -25,7 +25,6 @@ data class Order (
 //	@SerializedName("shipping_total") val shipping_total : Double,
 //	@SerializedName("shipping_tax") val shipping_tax : Double,
 //	@SerializedName("cart_tax") val cart_tax : Double,
-//	@SerializedName("total") val total : Double,
 //	@SerializedName("total_tax") val total_tax : Double,
 //	@SerializedName("prices_include_tax") val prices_include_tax : Boolean,
     @Expose() @SerializedName("customer_id") val customer_id : Int,
@@ -46,7 +45,8 @@ data class Order (
 //	@SerializedName("meta_data") val meta_data : List<Meta_data>,
     @Expose() @SerializedName("line_items") val line_items : List<LineItems>,
 //	@SerializedName("tax_lines") val tax_lines : List<Tax_lines>,
-    @Expose() @SerializedName("shipping_lines") val shipping_lines : List<ShippingLines>
+    @Expose() @SerializedName("shipping_lines") val shipping_lines : List<ShippingLines>,
+    @Expose(serialize = false, deserialize = true) @SerializedName("total") val total : Double = 0.0
 //	@SerializedName("fee_lines") val fee_lines : List<String>,
 //	@SerializedName("coupon_lines") val coupon_lines : List<String>,
 //	@SerializedName("refunds") val refunds : List<String>,

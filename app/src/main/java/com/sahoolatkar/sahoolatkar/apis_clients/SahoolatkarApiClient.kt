@@ -16,13 +16,13 @@ interface SahoolatkarApiClient {
     fun getAllProducts(): Call<List<Product?>?>?
 
     @GET("/wp-json/wc/v3/products")
-    fun getProductsByCategory(@Query("category") categoryId: String): Call<List<Product?>?>?
-
-    @GET("/wp-json/wc/v3/products")
-    suspend fun getProductsWithCo(@Query("category") categoryId: String?, @Query("featured") featured: Boolean? = null, @Query("page") pageNo: Int, @Query("per_page") pageSize: Int = GlobalVariables.PRODUCTS_PAGE_SIZE): Response<List<Product>>
+    suspend fun getProducts(@Query("category") categoryId: String?, @Query("featured") featured: Boolean? = null, @Query("page") pageNo: Int, @Query("per_page") pageSize: Int = GlobalVariables.PRODUCTS_PAGE_SIZE): Response<List<Product>>
 
     @POST("/wp-json/wc/v3/orders")
     suspend fun postOrder(@Body order: Order) : Response<Order>
+
+    @GET("/wp-json/wc/v3/orders")
+    suspend fun getOrders(@Query("customer") cusId: Int) : Response<List<Order>>
 
     @POST("/wp-json/wc/v3/customers")
     suspend fun createCustomer(@Body customer: Customer) : Response<Customer>

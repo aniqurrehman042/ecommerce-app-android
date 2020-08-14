@@ -13,7 +13,7 @@ class ProductDataSource(private val categoryId: String, private val coroutineSco
         callback: LoadInitialCallback<Int, Product>
     ) {
         coroutineScope.launch {
-            val response = SahoolatKarApiUtils.getProductsWithCo(categoryId, null, 1)
+            val response = SahoolatKarApiUtils.getProducts(categoryId, null, 1)
             if (response.isSuccessful) {
                 callback.onResult(response.body()!!, null, 2)
             } else {
@@ -28,7 +28,7 @@ class ProductDataSource(private val categoryId: String, private val coroutineSco
         callback: LoadCallback<Int, Product>
     ) {
         coroutineScope.launch {
-            val response = SahoolatKarApiUtils.getProductsWithCo(categoryId, null, params.key)
+            val response = SahoolatKarApiUtils.getProducts(categoryId, null, params.key)
             if (response.isSuccessful) {
                 callback.onResult(response.body()!!, params.key + 1)
             } else {
@@ -42,7 +42,7 @@ class ProductDataSource(private val categoryId: String, private val coroutineSco
         callback: LoadCallback<Int, Product>
     ) {
         coroutineScope.launch {
-            val response = SahoolatKarApiUtils.getProductsWithCo(categoryId, null, params.key)
+            val response = SahoolatKarApiUtils.getProducts(categoryId, null, params.key)
             if (response.isSuccessful) {
                 callback.onResult(response.body()!!, params.key + 1)
             } else {

@@ -135,5 +135,10 @@
         android:name="com.sahoolatkar.sahoolatkar.ui.fragments.PaymentOptionsFragment"
         android:label="fragment_payment_options"
         tools:layout="@layout/fragment_payment_options" />
+    <fragment
+        android:id="@+id/orderHistoryFragment"
+        android:name="com.sahoolatkar.sahoolatkar.ui.fragments.OrderHistoryFragment"
+        android:label="fragment_order_history"
+        tools:layout="@layout/fragment_order_history" />
 
 </navigation>

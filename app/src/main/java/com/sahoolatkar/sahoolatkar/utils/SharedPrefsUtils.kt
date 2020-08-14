@@ -6,6 +6,7 @@ import com.sahoolatkar.sahoolatkar.api_models.customer.Customer
 import com.sahoolatkar.sahoolatkar.api_models.shared.Billing
 import com.sahoolatkar.sahoolatkar.api_models.shared.Shipping
 import com.sahoolatkar.sahoolatkar.globals.GlobalVariables
+import com.sahoolatkar.sahoolatkar.models.CurrentCustomer
 
 class SharedPrefsUtils {
     companion object {
@@ -27,6 +28,7 @@ class SharedPrefsUtils {
             }
 
             sharedPreferences.commit()
+            CurrentCustomer.cusId = customer.id
         }
 
         fun deleteCustomer(context: Context) {

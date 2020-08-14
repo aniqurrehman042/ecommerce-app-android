@@ -86,6 +86,7 @@ class MainActivity : AppCompatActivity() {
     private fun setUpMenuRecycler() {
         val menuItems = ArrayList<MenuItemModel>()
         menuItems.add(MenuItemModel("Wish List", ""))
+        menuItems.add(MenuItemModel("Order History", ""))
         rvMenuItems.layoutManager = LinearLayoutManager(this)
         rvMenuItems.adapter = MenuAdapter(this, menuItems)
     }

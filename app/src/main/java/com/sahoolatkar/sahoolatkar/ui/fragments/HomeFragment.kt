@@ -191,7 +191,7 @@ class HomeFragment : Fragment() {
         featuredProductsSlider.adapter = sliderAdapter
 
         featuredProductsSlider.clipToPadding = false
-        featuredProductsSlider.setPadding(70, 0, 70, 0)
+        featuredProductsSlider.setPadding(200, 0, 200, 0)
         featuredProductsSlider.pageMargin = 20
 
         ViewUtils.hideView(pbFeaturedProductsSliderLoader)

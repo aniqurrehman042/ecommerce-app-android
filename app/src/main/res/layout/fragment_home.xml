@@ -94,13 +94,13 @@
         <com.asksira.loopingviewpager.LoopingViewPager
             android:id="@+id/featuredProductsSlider"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_100sdp"
+            android:layout_height="wrap_content"
             app:isInfinite="true"
             app:autoScroll="true"
             app:scrollInterval="4000"
             android:clipToPadding="false"
-            app:viewpagerAspectRatio="1.8"
-            app:itemAspectRatio="1.8"
+            app:viewpagerAspectRatio="1.6"
+            app:itemAspectRatio="1.6"
             android:layout_marginTop="@dimen/margin_normal"
             app:layout_constraintTop_toBottomOf="@id/tvFeaturedProductsHeading"/>
 

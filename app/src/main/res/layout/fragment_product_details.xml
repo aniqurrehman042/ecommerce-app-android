@@ -19,10 +19,12 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <com.asksira.loopingviewpager.LoopingViewPager
+            <com.sahoolatkar.sahoolatkar.custom_views.ZoomableLoopingViewPager
                 android:id="@+id/productImgSlider"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_200sdp"
+                android:layout_height="wrap_content"
+                app:viewpagerAspectRatio="1.2"
+                app:itemAspectRatio="1.2"
                 android:layout_marginTop="@dimen/margin_small"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -96,17 +98,6 @@
                 app:layout_constraintTop_toBottomOf="@id/tvPrice"
                 app:layout_constraintLeft_toLeftOf="parent" />
 
-            <TextView
-                android:id="@+id/tvDeliverTo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_tiny"
-                android:paddingHorizontal="@dimen/padding_small"
-                android:paddingVertical="@dimen/_3sdp"
-                android:text="Deliver to Dubai"
-                android:textColor="@color/black"
-                app:layout_constraintTop_toBottomOf="@id/tvPrice" />
-
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tlProductDetails"
                 android:layout_width="match_parent"
@@ -117,7 +108,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_200sdp"
                 android:layout_marginTop="@dimen/margin_tiny"
-                app:layout_constraintTop_toBottomOf="@id/tvDeliverTo" />
+                app:layout_constraintTop_toBottomOf="@id/tvPerMonth" />
 
             <RadioGroup
                 android:id="@+id/rgInstallments"

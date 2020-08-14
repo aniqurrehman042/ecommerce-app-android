@@ -14,6 +14,7 @@ import com.sahoolatkar.sahoolatkar.api_models.customer.Customer
 import com.sahoolatkar.sahoolatkar.api_models.shared.Billing
 import com.sahoolatkar.sahoolatkar.api_models.shared.Shipping
 import com.sahoolatkar.sahoolatkar.api_utils.SahoolatKarApiUtils
+import com.sahoolatkar.sahoolatkar.models.CurrentCustomer
 import com.sahoolatkar.sahoolatkar.utils.*
 import kotlinx.android.synthetic.main.activity_sign_in_sign_up.*
 import kotlinx.android.synthetic.main.layout_loader.*

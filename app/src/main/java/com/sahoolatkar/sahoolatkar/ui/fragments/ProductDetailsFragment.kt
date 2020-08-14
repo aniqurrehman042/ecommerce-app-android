@@ -146,9 +146,9 @@ class ProductDetailsFragment : Fragment() {
         val sliderAdapter = ProductImgsSliderAdapter(activity as Context, args.product.images, true)
         productImgSlider.adapter = sliderAdapter
 
-        productImgSlider.clipToPadding = false
-        productImgSlider.setPadding(70, 0, 70, 0)
-        productImgSlider.pageMargin = 20
+//        productImgSlider.clipToPadding = false
+//        productImgSlider.setPadding(70, 0, 70, 0)
+//        productImgSlider.pageMargin = 20
     }
 
     private fun setViewValues() {
