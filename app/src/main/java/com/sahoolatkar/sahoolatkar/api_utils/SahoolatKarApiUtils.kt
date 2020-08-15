@@ -6,9 +6,9 @@ import com.sahoolatkar.sahoolatkar.api_models.order.Order
 import com.sahoolatkar.sahoolatkar.api_models.product.Product
 import com.sahoolatkar.sahoolatkar.api_models.subscription.Subscription
 import com.sahoolatkar.sahoolatkar.apis_clients.SahoolatkarApiClient
-import com.sahoolatkar.sahoolatkar.apis_clients.SahoolatkarCustomersApiClient
+import com.sahoolatkar.sahoolatkar.apis_clients.SahoolatkarGeneralApiClient
 import com.sahoolatkar.sahoolatkar.globals.GlobalVariables
-import com.sahoolatkar.sahoolatkar.http_services.SahoolatkarCustomersService
+import com.sahoolatkar.sahoolatkar.http_services.SahoolatkarGeneralService
 import com.sahoolatkar.sahoolatkar.http_services.SahoolatkarWoocommerceApiService
 import retrofit2.Response
 
@@ -24,8 +24,8 @@ class SahoolatKarApiUtils {
                 GlobalVariables.WOOCOMMERCE_CONSUMER_SECRET
             )
 
-        private val sahoolatkarCustomersApiClient: SahoolatkarCustomersApiClient =
-            SahoolatkarCustomersService.createService(SahoolatkarCustomersApiClient::class.java)
+        private val sahoolatkarGeneralApiClient: SahoolatkarGeneralApiClient =
+            SahoolatkarGeneralService.createService(SahoolatkarGeneralApiClient::class.java)
 
         suspend fun getProducts(
             categoryId: String? = null,
@@ -74,7 +74,7 @@ class SahoolatKarApiUtils {
 
         suspend fun createCustomerPin(customer: Customer) : Response<Boolean> {
             return try{
-                sahoolatkarCustomersApiClient.createCustomerPin(customer)
+                sahoolatkarGeneralApiClient.createCustomerPin(customer)
             } catch (e: Exception) {
                 createCustomerPin(customer)
             }
@@ -82,7 +82,7 @@ class SahoolatKarApiUtils {
 
         suspend fun getNadraDetails(cnic: String) : Response<NadraResponse> {
             return try{
-                sahoolatkarCustomersApiClient.getNadraDetails(cnic)
+                sahoolatkarGeneralApiClient.getNadraDetails(cnic)
             } catch (e: Exception) {
                 getNadraDetails(cnic)
             }
@@ -90,7 +90,7 @@ class SahoolatKarApiUtils {
 
         suspend fun getCustomer(cnic: String) : Response<Customer> {
             return try{
-                sahoolatkarCustomersApiClient.getCustomer(cnic)
+                sahoolatkarGeneralApiClient.getCustomer(cnic)
             } catch (e: Exception) {
                 getCustomer(cnic)
             }

@@ -9,13 +9,13 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.sahoolatkar.sahoolatkar.R
-import com.sahoolatkar.sahoolatkar.models.NotificationModel
+import com.sahoolatkar.sahoolatkar.models.Notification
 
 
 class NotificationAdapter //Constructor For Adapter
     (// List with String type
     private val activity: Activity,
-    private val notificationList: MutableList<NotificationModel>
+    private val notificationList: List<Notification>
 ) :
     RecyclerView.Adapter<NotificationAdapter.MyView>() {
 

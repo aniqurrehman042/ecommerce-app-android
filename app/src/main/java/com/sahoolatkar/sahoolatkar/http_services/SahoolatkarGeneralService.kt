@@ -5,12 +5,12 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class SahoolatkarCustomersService {
+class SahoolatkarGeneralService {
 
     companion object {
 
         //        private const val API_BASE_URL = "https://mygreatdubai.com/sahoolatkar/api/"
-        private const val API_BASE_URL = "https://sahoolatkar.com/api/"
+        private const val API_BASE_URL = "https://sahoolatkar.com/"
         private val httpClient = OkHttpClient.Builder()
         private val builder: Retrofit.Builder = Retrofit.Builder()
             .baseUrl(API_BASE_URL)

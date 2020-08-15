@@ -1,18 +1,21 @@
 package com.sahoolatkar.sahoolatkar.ui.fragments
 
-import android.app.Activity
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sahoolatkar.sahoolatkar.R
 import com.sahoolatkar.sahoolatkar.adapters.NotificationAdapter
-import com.sahoolatkar.sahoolatkar.models.NotificationModel
 import com.sahoolatkar.sahoolatkar.ui.MainActivity
+import com.sahoolatkar.sahoolatkar.utils.DBUtils
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_notifications.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class NotificationsFragment : Fragment() {
 
@@ -38,18 +41,15 @@ class NotificationsFragment : Fragment() {
     }
 
     private fun setUpNotificationsRecycler() {
-        val notifications = ArrayList<NotificationModel>()
-        notifications.add(NotificationModel("Sahoolat Kar Installments", "With no credit required, you can apply using our intuitive online procss in-store or at home while shopping online.", "02:30 pm", "Installment"))
-        notifications.add(NotificationModel("Sahoolat Kar Installments", "With no credit required, you can apply using our intuitive online procss in-store or at home while shopping online.", "02:30 pm", "Installment"))
-        notifications.add(NotificationModel("Sahoolat Kar Installments", "With no credit required, you can apply using our intuitive online procss in-store or at home while shopping online.", "02:30 pm", "Installment"))
-        notifications.add(NotificationModel("Sahoolat Kar Installments", "With no credit required, you can apply using our intuitive online procss in-store or at home while shopping online.", "02:30 pm", "Installment"))
-        notifications.add(NotificationModel("Sahoolat Kar Installments", "With no credit required, you can apply using our intuitive online procss in-store or at home while shopping online.", "02:30 pm", "Installment"))
-        notifications.add(NotificationModel("Sahoolat Kar Installments", "With no credit required, you can apply using our intuitive online procss in-store or at home while shopping online.", "02:30 pm", "Installment"))
-        notifications.add(NotificationModel("Sahoolat Kar Installments", "With no credit required, you can apply using our intuitive online procss in-store or at home while shopping online.", "02:30 pm", "Installment"))
-        notifications.add(NotificationModel("Sahoolat Kar Installments", "With no credit required, you can apply using our intuitive online procss in-store or at home while shopping online.", "02:30 pm", "Installment"))
-        notifications.add(NotificationModel("Sahoolat Kar Installments", "With no credit required, you can apply using our intuitive online procss in-store or at home while shopping online.", "02:30 pm", "Installment"))
-        rvNotifications.layoutManager = LinearLayoutManager(requireContext())
-        rvNotifications.adapter = NotificationAdapter(mainActivity, notifications)
+        lifecycleScope.launch {
+            withContext(Dispatchers.IO) {
+                val notifications = DBUtils.getDBInstance().notificationDao().getAll()
+                withContext(Dispatchers.Main) {
+                    rvNotifications.layoutManager = LinearLayoutManager(requireContext())
+                    rvNotifications.adapter = NotificationAdapter(mainActivity, notifications)
+                }
+            }
+        }
 
     }
 

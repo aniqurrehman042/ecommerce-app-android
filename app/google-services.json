@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "604453645134",
+    "firebase_url": "https://sahoolat-kar.firebaseio.com",
+    "project_id": "sahoolat-kar",
+    "storage_bucket": "sahoolat-kar.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:604453645134:android:41c916786d3a451f074c1f",
+        "android_client_info": {
+          "package_name": "com.sahoolatkar.sahoolatkar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "604453645134-d6kob1rh6t8vn58958dtu9f15v8nr24h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrL9_BBlsu87w8lyOHYpPuuQCT08s5N4s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "604453645134-d6kob1rh6t8vn58958dtu9f15v8nr24h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
